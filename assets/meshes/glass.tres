@@ -1,0 +1,13 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://dsc7f3s87d0v3"]
+
+[ext_resource type="Shader" uid="uid://cru2eo06psci1" path="res://assets/shaders/transparent.gdshader" id="1_5h5jn"]
+[ext_resource type="Texture2D" uid="uid://81axmesk8hbm" path="res://assets/sprites/select.png" id="2_xh1dr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_5h5jn")
+shader_parameter/grow_amount = 0.0
+shader_parameter/albedo_texture = ExtResource("2_xh1dr")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

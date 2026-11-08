@@ -1,0 +1,15 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://bbngdege4nuux"]
+
+[ext_resource type="Shader" uid="uid://bp4b6uvfwkd4o" path="res://assets/shaders/directional_texture.gdshader" id="1_vi8ds"]
+[ext_resource type="Texture2D" uid="uid://cs3fxcy12xmqa" path="res://assets/sprites/log_top.png" id="2_vi8ds"]
+[ext_resource type="Texture2D" uid="uid://bqdtqy8eron0s" path="res://assets/sprites/log_side.png" id="3_xvnaw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vi8ds"]
+render_priority = 0
+shader = ExtResource("1_vi8ds")
+shader_parameter/texture_top = ExtResource("2_vi8ds")
+shader_parameter/texture_side = ExtResource("3_xvnaw")
+shader_parameter/corner_offset = Vector3(0.5, 0.5, 0.5)
+
+[resource]
+material = SubResource("ShaderMaterial_vi8ds")

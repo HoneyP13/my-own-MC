@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://03cfsi8bti15"]
+
+[ext_resource type="Texture2D" uid="uid://dycqheqsniw1s" path="res://assets/sprites/stick.png" id="1_ij51e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij51e"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_ij51e")
+uv1_offset = Vector3(0.5, 0.5, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[resource]
+material = SubResource("StandardMaterial3D_ij51e")
+size = Vector3(1, 1, 0.075)

@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://c5fq5nasnodoi"]
+
+[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_hdn8c"]
+[ext_resource type="Texture2D" uid="uid://dv2f6g65jkthp" path="res://assets/sprites/grass_bottom.png" id="2_mph1t"]
+[ext_resource type="Texture2D" uid="uid://bw7wcsfppnstv" path="res://assets/sprites/grass_side.png" id="3_nynm1"]
+[ext_resource type="Texture2D" uid="uid://badbveyfof7b5" path="res://assets/sprites/grass_top.png" id="4_twqmy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mkex"]
+render_priority = 0
+shader = ExtResource("1_hdn8c")
+shader_parameter/texture_top = ExtResource("4_twqmy")
+shader_parameter/texture_side = ExtResource("3_nynm1")
+shader_parameter/texture_bottom = ExtResource("2_mph1t")
+
+[resource]
+material = SubResource("ShaderMaterial_2mkex")

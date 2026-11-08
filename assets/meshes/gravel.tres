@@ -1,0 +1,6 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://d0g7fqjt15r13"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

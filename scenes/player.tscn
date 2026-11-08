@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dn02jqka7u0mp"]
+
+[ext_resource type="Script" uid="uid://b8mnhf8ixi0u4" path="res://scripts/character_body_3d.gd" id="1_cvunv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
+radius = 0.4
+height = 1.8
+
+[node name="player" type="CharacterBody3D" unique_id=408094235]
+script = ExtResource("1_cvunv")
+can_freefly = true
+
+[node name="Collider" type="CollisionShape3D" parent="." unique_id=1287607218]
+shape = SubResource("CapsuleShape3D_ogq8d")
+
+[node name="Head" type="Node3D" parent="." unique_id=1602775328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=888559542]
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=1863275028]
+target_position = Vector3(0, 0, -2)
+hit_from_inside = true
+
+[connection signal="is_dead_changed" from="." to="." method="_on_is_dead_changed"]

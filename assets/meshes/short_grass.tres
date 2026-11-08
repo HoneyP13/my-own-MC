@@ -1,0 +1,14 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://b35h1klkb40si"]
+
+[ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_0gy5s"]
+[ext_resource type="Texture2D" uid="uid://dfg6087ub6hjs" path="res://assets/sprites/short_grass.png" id="1_sb7jn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("1_0gy5s")
+shader_parameter/grow_amount = 0.50000002375
+shader_parameter/albedo_texture = ExtResource("1_sb7jn")
+
+[resource]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")
