@@ -56,27 +56,30 @@ func get_targeted_block() -> VoxelRaycast.Hit:
 
 func _on_player_hit_pressed() -> void:
 	var target := get_targeted_block()
-	if target == null or grid_map.mesh_library.get_item_name(target.item) == "bedrock" : return
-	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
+	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
+	if block == null or block.id == &"bedrock": return
 	grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
+	if block.drop_id != &"": hud.add_item(block.drop_id)   # you'll write add_item: first matching stack, else first empty slot
+
+
 
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null or hud.held_item == null: return
-	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
-	
-	var item_id := grid_map.mesh_library.find_item_by_name(hud.held_item)
-	if item_id == GridMap.INVALID_CELL_ITEM: return
-	
-	var cell := target.place_cell
-	if grid_map.get_cell_item(cell) != GridMap.INVALID_CELL_ITEM: return  # ray started inside a block
-	if _cell_overlaps_player(cell): return
-	
-	var orientation := 0
-	if hud.held_item == "log":
-		orientation = _log_orientation(target.normal)
+	var def := Registry.get_item(hud.held_item.id)
+	def.use_on_block(self, target)    # blocks place, tools do whatever they define
+
+func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
+	var block: BlockDef = Registry.blocks[block_id]
+	var item_id := grid_map.mesh_library.find_item_by_name(block.mesh_name)
+	var cell := hit.place_cell
+	if item_id == GridMap.INVALID_CELL_ITEM: return false
+	if grid_map.get_cell_item(cell) != GridMap.INVALID_CELL_ITEM: return false
+	if _cell_overlaps_player(cell): return false
+	var orientation := _log_orientation(hit.normal) if block_id == &"log" else 0
 	grid_map.set_cell_item(cell, item_id, orientation)
+	return true
 
 
 ## Orientation index that points a log's end caps along the clicked face.

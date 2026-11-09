@@ -34,9 +34,7 @@ const SLOT_NORMAL := Color(0.576, 0.576, 0.576)
 const SLOT_HOVER := Color(1, 1, 1)
 
 
-var hotbar := [
-	"dirt", "stone", "log", "leaves", null, "cobblestone",
-]
+var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
 var current_hotbar_slot : int = 0:
 	set(value):
@@ -116,7 +114,10 @@ func refresh_slots() -> void:
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
 	if cursor_item != null:
-		cursor_icon.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(cursor_item))
+		cursor_icon.texture = _icon_for(cursor_item)
+
+func _icon_for(stack) -> Texture2D:
+	return Registry.get_item(stack.id).icon
 
 
 ## Closing the inventory while holding something puts it in the first free slot.
@@ -141,7 +142,7 @@ func rebuild_hotbar() -> void:
 			item.name = item_name
 			item.size = Vector2(56, 56)
 			item.position = Vector2(4, 4)
-			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
+			item.texture = _icon_for(item_name)
 			slot.add_child(item)
 	_update_hotbar_highlight()
 
@@ -196,7 +197,7 @@ func update_inventory() -> void:
 			item.name = item_name
 			item.size = Vector2(56, 56)
 			item.position = Vector2(4, 4)
-			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
+			item.texture = _icon_for(item_name)
 			slot.add_child(item)
 	for I in inv_hot_bar.get_child_count():
 		var slot: ColorRect = inv_hot_bar.get_child(I)
@@ -209,7 +210,7 @@ func update_inventory() -> void:
 			item.name = item_name
 			item.size = Vector2(56, 56)
 			item.position = Vector2(4, 4)
-			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
+			item.texture = _icon_for(item_name)
 			slot.add_child(item)
 
 

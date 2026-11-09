@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://bnrt2ee4kq4kk"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_clcpj"]
+
+[resource]
+script = ExtResource("1_clcpj")
+id = &"planks"
+mesh_name = "planks"
+drop_id = &"planks"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"
