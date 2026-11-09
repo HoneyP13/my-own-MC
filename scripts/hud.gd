@@ -4,6 +4,7 @@ extends CanvasLayer
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
 enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD }
+enum SlotArea { INVENTORY, HOTBAR }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
@@ -26,6 +27,11 @@ enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD }
 @onready var death_screen: PanelContainer = %DeathScreen
 
 var ui_state : UIState = UIState.PLAYING
+var cursor_item = null          # item name the mouse is holding, or null
+var cursor_icon: TextureRect
+
+const SLOT_NORMAL := Color(0.576, 0.576, 0.576)
+const SLOT_HOVER := Color(1, 1, 1)
 
 
 var hotbar := [
@@ -60,16 +66,67 @@ func _init() -> void:
 	inventory.resize(27)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.scrolled.connect(_on_player_scrolled)
 	player.open_menu.connect(_on_open_menu)
 	player.open_inventory.connect(_on_open_inventory)
 	player.open_chat.connect(_on_open_chat)
 	player.open_debug_info.connect(_on_open_debug_info)
+	_setup_inventory_slots()
+	refresh_slots()
+	_refresh_ui()
+
+func _setup_inventory_slots() -> void:
+	for i in inv.get_child_count():
+		_wire_slot(inv.get_child(i), SlotArea.INVENTORY, i)
+	for i in inv_hot_bar.get_child_count():
+		_wire_slot(inv_hot_bar.get_child(i), SlotArea.HOTBAR, i)
+
+	cursor_icon = TextureRect.new()
+	cursor_icon.size = Vector2(56, 56)
+	cursor_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE  # never block clicks on slots
+	cursor_icon.visible = false
+	add_child(cursor_icon)  # added last, so it draws on top
+
+
+func _wire_slot(slot: ColorRect, area: int, index: int) -> void:
+	slot.gui_input.connect(_on_slot_gui_input.bind(area, index))
+	slot.mouse_entered.connect(func(): slot.color = SLOT_HOVER)
+	slot.mouse_exited.connect(func(): slot.color = SLOT_NORMAL)
+
+
+func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
+	if not (event is InputEventMouseButton and event.pressed): return
+	if event.button_index != MOUSE_BUTTON_LEFT: return
+	var slots: Array = inventory if area == SlotArea.INVENTORY else hotbar
+	var tmp = slots[index]
+	slots[index] = cursor_item
+	cursor_item = tmp
+	refresh_slots()
+
+
+func _process(_delta: float) -> void:
+	if cursor_icon.visible:
+		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
+
+
+## Redraws every view of the item arrays: gameplay hotbar, inventory grid, inventory hotbar, cursor.
+func refresh_slots() -> void:
 	rebuild_hotbar()
 	update_inventory()
-	_refresh_ui()
+	cursor_icon.visible = cursor_item != null
+	if cursor_item != null:
+		cursor_icon.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(cursor_item))
+
+
+## Closing the inventory while holding something puts it in the first free slot.
+func _return_cursor_item() -> void:
+	if cursor_item == null: return
+	var i := inventory.find(null)
+	if i != -1: inventory[i] = cursor_item
+	cursor_item = null
+	refresh_slots()
+
 
 
 func rebuild_hotbar() -> void:
@@ -80,12 +137,13 @@ func rebuild_hotbar() -> void:
 		var item_name = hotbar[i]
 		if item_name != null:
 			var item := TextureRect.new()
+			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			item.name = item_name
 			item.size = Vector2(56, 56)
 			item.position = Vector2(4, 4)
 			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
 			slot.add_child(item)
-	_update_hotbar_highlight()	
+	_update_hotbar_highlight()
 
 
 # ---------------------------------------------------------------------------------------------
@@ -97,6 +155,8 @@ func set_ui_state(new_state: UIState) -> void:
 	var old_state := ui_state
 	ui_state = new_state
 	_refresh_ui()
+	if old_state == UIState.INVENTORY and new_state != UIState.INVENTORY:
+		_return_cursor_item()
 	if old_state == UIState.CHAT and new_state != UIState.CHAT:
 		type_interface.release_focus()
 	# Tell the player what's going on. Any screen at all frees the mouse and stops it
@@ -145,6 +205,7 @@ func update_inventory() -> void:
 		var item_name = hotbar[I]
 		if item_name != null:
 			var item := TextureRect.new()
+			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			item.name = item_name
 			item.size = Vector2(56, 56)
 			item.position = Vector2(4, 4)

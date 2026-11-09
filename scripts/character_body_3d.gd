@@ -255,6 +255,8 @@ func die() -> void:
 	is_dead = true
 	velocity = Vector3.ZERO
 	hud.inventory.fill(null)
+	hud.hotbar.fill(null)
+	hud.cursor_item = null
 	player_died.emit()
 
 

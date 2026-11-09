@@ -98,14 +98,14 @@ func _on_player_select_pressed() -> void:
 	var item_name := grid_map.mesh_library.get_item_name(target.item)
 	if item_name == "": return
 	hud.hotbar[hud.current_hotbar_slot] = item_name
-	hud.rebuild_hotbar()
+	hud.refresh_slots()
 
 
 func _on_player_drop_item_pressed() -> void:
 	#var item_id := grid_map.mesh_library.find_item_by_name(hud.held_item)
 	#if item_id == GridMap.INVALID_CELL_ITEM: return
 	hud.hotbar[hud.current_hotbar_slot] = null
-	hud.rebuild_hotbar()
+	hud.refresh_slots()
 
 
 
@@ -160,7 +160,7 @@ func load_game() -> bool:
 	hud.hotbar = data["hotbar"]
 	hud.inventory = data["inventory"]
 	hud.current_hotbar_slot = data["slot"]
-	hud.rebuild_hotbar()
+	hud.refresh_slots()
 	return true
 
 
