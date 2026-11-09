@@ -652,7 +652,5 @@ text = "Quit"
 
 [connection signal="current_hotbar_slot_changed" from="." to="." method="_on_current_hotbar_slot_changed"]
 [connection signal="text_submitted" from="Chat/TypeInterface" to="." method="_on_type_interface_text_submitted"]
-[connection signal="mouse_entered" from="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory/InvSlot1" to="InventoryMenu" method="_on_mouse" flags=3 binds= [3, 0, true]]
-[connection signal="mouse_exited" from="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory/InvSlot1" to="InventoryMenu" method="_on_mouse" binds= [3, 0, false]]
 [connection signal="pressed" from="MenuBG/PauseMenu/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MenuBG/PauseMenu/Settings" to="." method="_on_settings_pressed"]
