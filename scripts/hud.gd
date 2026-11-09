@@ -108,6 +108,21 @@ func _process(_delta: float) -> void:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
 
 
+func add_item(block_item_drop: StringName):
+	var block_item_id = Registry.get_item_def(block_item_drop)
+	for i in hotbar:
+		if block_item_id == i and block_item_id + i != block_item_id.max_stack:
+			hotbar[i] = block_item_id
+		if i == null: hotbar[i] = block_item_id
+	for I in inventory:
+		if block_item_id == I and block_item_id + I != block_item_id.max_stack:
+			inventory[I] = block_item_id
+		if I == null: inventory[I] = block_item_id
+	refresh_slots()
+
+
+
+
 ## Redraws every view of the item arrays: gameplay hotbar, inventory grid, inventory hotbar, cursor.
 func refresh_slots() -> void:
 	rebuild_hotbar()

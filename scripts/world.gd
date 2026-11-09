@@ -62,8 +62,6 @@ func _on_player_hit_pressed() -> void:
 	if block.drop_id != &"": hud.add_item(block.drop_id)   # you'll write add_item: first matching stack, else first empty slot
 
 
-
-
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null or hud.held_item == null: return

@@ -20,3 +20,18 @@ func _load_dir(path: String, into: Dictionary) -> void:
 
 func get_item(id: StringName) -> ItemDef:
 	return items.get(id)
+
+
+func get_item_def(item: StringName) -> ItemDef:
+	var output = items.find_key(item)
+	return output
+
+
+func get_block_def(block: StringName) -> BlockDef:
+	var output = blocks.find_key(block)
+	return output
+
+
+func get_block_by_mesh(mesh: Mesh) -> BlockDef:
+	var item = "&"+str(mesh.resource_name)
+	return get_block_def(item)
