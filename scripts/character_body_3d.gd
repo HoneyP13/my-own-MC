@@ -85,6 +85,7 @@ signal player_died()
 signal hit_pressed()
 signal use_pressed()
 signal select_pressed()
+signal drop_item_pressed()
 signal scrolled(is_up: bool)
 enum { LIQUID, ENTITY, BLOCK }
 
@@ -118,18 +119,22 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Look around
 	if mouse_captured and event is InputEventMouseMotion:
 		rotate_look(event.relative)
-
+	# Scroll through the hotbar
 	if mouse_captured and event.is_action_pressed(input_scroll_up):
 		scrolled.emit(true)
 	if mouse_captured and event.is_action_pressed(input_scroll_down):
 		scrolled.emit(false)
-
+	# Attack, break, use and open
 	if mouse_captured and event.is_action_pressed(input_hit):
 		hit_pressed.emit()
 	if mouse_captured and event.is_action_pressed(input_use):
 		use_pressed.emit()
+	# Select a block
 	if mouse_captured and event.is_action_pressed(input_select):
 		select_pressed.emit()
+	# Drop an item, but this currently erases it
+	if mouse_captured and event.is_action_pressed(input_drop_item):
+		drop_item_pressed.emit()
 	if mouse_captured and event.is_action_pressed(input_open_chat):
 		open_chat.emit(false)
 	if mouse_captured and event.is_action_pressed(input_debug_menu):

@@ -20,6 +20,7 @@ func _ready() -> void:
 	player.hit_pressed.connect(_on_player_hit_pressed)
 	player.use_pressed.connect(_on_player_use_pressed)
 	player.select_pressed.connect(_on_player_select_pressed)
+	player.drop_item_pressed.connect(_on_player_drop_item_pressed)
 	save_quit_button.pressed.connect(_on_save_quit_pressed)
 	respawn_button.pressed.connect(_on_respawn_pressed)
 	death_quit_button.pressed.connect(get_tree().quit)
@@ -55,7 +56,7 @@ func get_targeted_block() -> VoxelRaycast.Hit:
 
 func _on_player_hit_pressed() -> void:
 	var target := get_targeted_block()
-	if target == null or target.item == 5 : return
+	if target == null or grid_map.mesh_library.get_item_name(target.item) == "bedrock" : return
 	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
 	grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
 
@@ -67,24 +68,45 @@ func _on_player_use_pressed() -> void:
 	
 	var item_id := grid_map.mesh_library.find_item_by_name(hud.held_item)
 	if item_id == GridMap.INVALID_CELL_ITEM: return
-
+	
 	var cell := target.place_cell
 	if grid_map.get_cell_item(cell) != GridMap.INVALID_CELL_ITEM: return  # ray started inside a block
 	if _cell_overlaps_player(cell): return
 	
-	var cell_basis = Basis(target.normal, target.normal, target.normal)
-	grid_map.set_cell_item(cell, item_id, grid_map.get_orthogonal_index_from_basis(cell_basis))
+	var orientation := 0
+	if hud.held_item == "log":
+		orientation = _log_orientation(target.normal)
+	grid_map.set_cell_item(cell, item_id, orientation)
 
 
-func _on_player_select_pressed():
+## Orientation index that points a log's end caps along the clicked face.
+## Both caps use the same texture, so we only care about the axis, not the sign.
+func _log_orientation(normal: Vector3i) -> int:
+	var b := Basis.IDENTITY                       # clicked top/bottom: upright
+	if normal.x != 0:
+		b = Basis(Vector3.BACK, PI / 2.0)         # clicked an X face: lay it along X
+	elif normal.z != 0:
+		b = Basis(Vector3.RIGHT, PI / 2.0)        # clicked a Z face: lay it along Z
+	return grid_map.get_orthogonal_index_from_basis(b)
+
+
+func _on_player_select_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null: return
 	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
 
 	var item_name := grid_map.mesh_library.get_item_name(target.item)
-	if item_name == null: return
+	if item_name == "": return
 	hud.hotbar[hud.current_hotbar_slot] = item_name
 	hud.rebuild_hotbar()
+
+
+func _on_player_drop_item_pressed() -> void:
+	#var item_id := grid_map.mesh_library.find_item_by_name(hud.held_item)
+	#if item_id == GridMap.INVALID_CELL_ITEM: return
+	hud.hotbar[hud.current_hotbar_slot] = null
+	hud.rebuild_hotbar()
+
 
 
 func _cell_overlaps_player(cell: Vector3i) -> bool:
@@ -158,3 +180,7 @@ func _unpack_grid(grid: GridMap, packed: PackedInt32Array) -> void:
 	grid.clear()
 	for i in range(0, packed.size(), 5):
 		grid.set_cell_item(Vector3i(packed[i], packed[i + 1], packed[i + 2]), packed[i + 3], packed[i + 4])
+
+
+func _on_player_is_dead_changed(is_true: bool) -> void:
+	pass # Replace with function body.

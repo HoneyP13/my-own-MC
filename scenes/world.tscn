@@ -60,8 +60,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.013854, 0)
 [node name="HUD" parent="." unique_id=1757020517 instance=ExtResource("6_qfnet")]
 
 [connection signal="body_entered" from="Void" to="." method="_on_area_3d_body_entered"]
-[connection signal="open_chat" from="Player" to="." method="_on_character_body_3d_open_chat"]
-[connection signal="open_debug_info" from="Player" to="." method="_on_character_body_3d_open_debug_info"]
-[connection signal="open_inventory" from="Player" to="." method="_on_character_body_3d_open_inventory"]
-[connection signal="open_menu" from="Player" to="." method="_on_character_body_3d_open_menu"]
-[connection signal="player_died" from="Player" to="." method="_on_character_body_3d_player_died"]
+[connection signal="is_dead_changed" from="Player" to="." method="_on_player_is_dead_changed"]
+[connection signal="is_dead_changed" from="Player" to="HUD" method="_on_player_is_dead_changed"]

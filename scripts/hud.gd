@@ -7,17 +7,23 @@ enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
-@onready var hud_hot_bar: PanelContainer = $HUDHotBar
-@onready var hot_bar_parent: HBoxContainer = $HUDHotBar/MarginContainer/HBoxContainer
-@onready var inventory_menu: Panel = $InventoryMenu
-@onready var menu_bg: PanelContainer = $MenuBG
-@onready var pause_menu: VBoxContainer = $MenuBG/PauseMenu
-@onready var settings_menu: PanelContainer = $SettingsMenu
+@onready var hud_hot_bar: Control = %GameplayHUD
+@onready var hot_bar_parent: HBoxContainer = %HotBar
+@onready var inventory_menu: Panel = %InventoryMenu
+@onready var player_window: PanelContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow
+@onready var armor_slots: VBoxContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots
+@onready var inventory_crafting: GridContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting
+@onready var craft_result: ColorRect = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/CraftResult
+@onready var inv: GridContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory
+@onready var inv_hot_bar: HBoxContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar
+@onready var menu_bg: PanelContainer = %MenuBG
+@onready var pause_menu: VBoxContainer = %PauseMenu
+@onready var settings_menu: PanelContainer = %SettingsMenu
 @onready var debug_info: VBoxContainer = $DebugInfo
-@onready var chat: VBoxContainer = $Chat
-@onready var chat_history: RichTextLabel = $Chat/ChatHistory
-@onready var type_interface: LineEdit = $Chat/TypeInterface
-@onready var death_screen: PanelContainer = $DeathScreen
+@onready var chat: VBoxContainer = %Chat
+@onready var chat_history: RichTextLabel = %ChatHistory
+@onready var type_interface: LineEdit = %TypeInterface
+@onready var death_screen: PanelContainer = %DeathScreen
 
 var ui_state : UIState = UIState.PLAYING
 
@@ -62,6 +68,7 @@ func _ready() -> void:
 	player.open_chat.connect(_on_open_chat)
 	player.open_debug_info.connect(_on_open_debug_info)
 	rebuild_hotbar()
+	update_inventory()
 	_refresh_ui()
 
 
@@ -117,6 +124,33 @@ func _on_open_inventory() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.INVENTORY)
 		UIState.INVENTORY: set_ui_state(UIState.PLAYING)
+
+func update_inventory() -> void:
+	for i in inv.get_child_count():
+		var slot: ColorRect = inv.get_child(i)
+		for old in slot.get_children():
+			old.queue_free()
+		var item_name = inventory[i]
+		if item_name != null:
+			var item := TextureRect.new()
+			item.name = item_name
+			item.size = Vector2(56, 56)
+			item.position = Vector2(4, 4)
+			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
+			slot.add_child(item)
+	for I in inv_hot_bar.get_child_count():
+		var slot: ColorRect = inv_hot_bar.get_child(I)
+		for old in slot.get_children():
+			old.queue_free()
+		var item_name = hotbar[I]
+		if item_name != null:
+			var item := TextureRect.new()
+			item.name = item_name
+			item.size = Vector2(56, 56)
+			item.position = Vector2(4, 4)
+			item.texture = TERRAIN_MESH_LIBRARY.get_item_preview(TERRAIN_MESH_LIBRARY.find_item_by_name(item_name))
+			slot.add_child(item)
+
 
 
 ## Escape key (also used by the Resume button): back out of whatever is open.
@@ -177,3 +211,7 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 func _chat_print(line: String) -> void:
 	chat_history.newline()
 	chat_history.add_text(line)
+
+
+func _on_player_is_dead_changed(is_true: bool) -> void:
+	set_ui_state(UIState.DEAD if is_true else UIState.PLAYING)
