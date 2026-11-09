@@ -108,19 +108,46 @@ func _process(_delta: float) -> void:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
 
 
-func add_item(block_item_drop: StringName):
-	var block_item_id = Registry.get_item_def(block_item_drop)
-	for i in hotbar:
-		if block_item_id == i and block_item_id + i != block_item_id.max_stack:
-			hotbar[i] = block_item_id
-		if i == null: hotbar[i] = block_item_id
-	for I in inventory:
-		if block_item_id == I and block_item_id + I != block_item_id.max_stack:
-			inventory[I] = block_item_id
-		if I == null: inventory[I] = block_item_id
-	refresh_slots()
+#func add_item(block_item_drop: StringName):
+	#var block_item_id = Registry.get_item_def(block_item_drop)
+	#for i in hotbar:
+		#if block_item_id == i and block_item_id + i != block_item_id.max_stack:
+			#hotbar[i] = block_item_id
+		#if i == null: hotbar[i] = block_item_id
+	#for I in inventory:
+		#if block_item_id == I and block_item_id + I != block_item_id.max_stack:
+			#inventory[I] = block_item_id
+		#if I == null: inventory[I] = block_item_id
+	#refresh_slots()
 
 
+func add_item(item_id: StringName, amount: int = 1) -> void:
+	var def := Registry.get_item(item_id)
+	if def == null:
+		push_warning("No item defined for '%s'" % item_id)
+		return
+	# 1) top up an existing stack (hotbar first, then inventory)
+	for slots in [hotbar, inventory]:
+		for i in slots.size():
+			var s = slots[i]
+			if s != null and s.id == item_id and s.count < def.max_stack:
+				var moved := mini(def.max_stack - s.count, amount)
+				s.count += moved
+				amount -= moved
+				if amount == 0:
+					refresh_slots()
+					return
+	# 2) otherwise use empty slots
+	for slots in [hotbar, inventory]:
+		for i in slots.size():
+			if slots[i] == null:
+				var moved := mini(def.max_stack, amount)
+				slots[i] = {"id": item_id, "count": moved}
+				amount -= moved
+				if amount == 0:
+					refresh_slots()
+					return
+	refresh_slots()   # inventory full: leftovers are lost for now
 
 
 ## Redraws every view of the item arrays: gameplay hotbar, inventory grid, inventory hotbar, cursor.
@@ -129,10 +156,10 @@ func refresh_slots() -> void:
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
 	if cursor_item != null:
-		cursor_icon.texture = _icon_for(cursor_item)
+		cursor_icon.texture = _icon_for(cursor_item["id"])
 
-func _icon_for(stack) -> Texture2D:
-	return Registry.get_item(stack.id).icon
+func _icon_for(stack: StringName) -> Texture2D:
+	return Registry.get_item(stack).icon
 
 
 ## Closing the inventory while holding something puts it in the first free slot.
@@ -150,7 +177,8 @@ func rebuild_hotbar() -> void:
 		var slot: ColorRect = hot_bar_parent.get_child(i)
 		for old in slot.get_children():
 			old.queue_free()
-		var item_name = hotbar[i]
+		if hotbar[i] == null: return
+		var item_name = hotbar[i]["id"]
 		if item_name != null:
 			var item := TextureRect.new()
 			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -206,7 +234,8 @@ func update_inventory() -> void:
 		var slot: ColorRect = inv.get_child(i)
 		for old in slot.get_children():
 			old.queue_free()
-		var item_name = inventory[i]
+		if inventory[i] == null: return
+		var item_name = inventory[i]["id"]
 		if item_name != null:
 			var item := TextureRect.new()
 			item.name = item_name
@@ -218,7 +247,8 @@ func update_inventory() -> void:
 		var slot: ColorRect = inv_hot_bar.get_child(I)
 		for old in slot.get_children():
 			old.queue_free()
-		var item_name = hotbar[I]
+		if hotbar[I] == null: return
+		var item_name = hotbar[I]["id"]
 		if item_name != null:
 			var item := TextureRect.new()
 			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -271,13 +301,36 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 	if new_text.begins_with("/"):
 		var parts := new_text.substr(1).to_lower().split(" ", false)
 		var cmd := parts[0] if parts.size() > 0 else ""
+		var arg_1
+		var arg_2
 		match cmd:
 			"help":
-				_chat_print("Available commands: none")
+				if parts.size() == 1:
+					_chat_print("Available commands: /clear, /give")
+				else:
+					arg_1 = parts[1] if parts.size() > 1 else ""
+					match arg_1:
+						"clear":
+							_chat_print("Usage: /clear (clears chat history)")
+						"give":
+							_chat_print("Usage: /give(self) [item] [amount]")
+						_:
+							_chat_print("Unknown command: \"" + cmd + "\"")
+			"clear":
+				chat_history.clear()
+			"give":
+				arg_1 = parts[1] if parts.size() > 1 else ""
+				if arg_1.is_empty() or Registry.get_item(arg_1) == null:
+					_chat_print("Invalid argument \"[item]\" for \"/" + cmd + "\": " + str(arg_1))
+				#if int(arg_2) == null:
+					#_chat_print("Invalid argument \"[amount]\" for \"/" + cmd + "\": " + str(arg_1))
+				arg_2 = parts[2] if parts.size() > 2 else "1"
+				add_item(Registry.items.find_key(arg_1),int(arg_2))
+				_chat_print("Gave " + player.username + ": " + arg_2 + " " + arg_1 + "s." if int(arg_2) > 1 else ".")
 			_:
-				_chat_print("Unknown command: \"" + cmd + "\"")
+				_chat_print("Unknown command: \"/" + cmd + "\"")
 	else:
-		_chat_print("TempUsername > " + new_text)
+		_chat_print(str(player.username) + " > " + new_text)
 
 	type_interface.clear()
 
@@ -285,8 +338,8 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 ## Adds one line to the chat. add_text() shows the text exactly as typed, whereas append_text()
 ## would treat things like [b] as formatting tags.
 func _chat_print(line: String) -> void:
-	chat_history.newline()
 	chat_history.add_text(line)
+	chat_history.newline()
 
 
 func _on_player_is_dead_changed(is_true: bool) -> void:

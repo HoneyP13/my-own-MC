@@ -132,7 +132,6 @@ metadata/_edit_group_ = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
-text = "Username123 > sample message"
 fit_content = true
 tab_size = 0
 shortcut_keys_enabled = false

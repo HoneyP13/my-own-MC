@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
+@export var username : String
 ## Can we move around?
 @export var can_move : bool = true
 ## Are we affected by gravity?
@@ -100,6 +101,9 @@ var crouch_height : float = 1.0
 @onready var stand_height : float = collider.shape.height   # 1.8, read from the scene
 @onready var head_stand_y : float = head.position.y         # 0.5, read from the scene
 
+func _init() -> void:
+	if username.length() < 4 or username.length() > 18:
+		username = "InvalidUser"
 
 
 func _ready() -> void:

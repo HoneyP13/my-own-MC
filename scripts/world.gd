@@ -56,10 +56,11 @@ func get_targeted_block() -> VoxelRaycast.Hit:
 
 func _on_player_hit_pressed() -> void:
 	var target := get_targeted_block()
+	if target == null: return
 	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
-	if block == null or block.id == &"bedrock": return
+	if block == null or block.hardness < 0.0: return   # unknown or unbreakable
 	grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
-	if block.drop_id != &"": hud.add_item(block.drop_id)   # you'll write add_item: first matching stack, else first empty slot
+	if block.drop_id != &"": hud.add_item(block.drop_id)
 
 
 func _on_player_use_pressed() -> void:
@@ -67,6 +68,7 @@ func _on_player_use_pressed() -> void:
 	if target == null or hud.held_item == null: return
 	var def := Registry.get_item(hud.held_item.id)
 	def.use_on_block(self, target)    # blocks place, tools do whatever they define
+
 
 func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 	var block: BlockDef = Registry.blocks[block_id]
@@ -95,10 +97,9 @@ func _on_player_select_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null: return
 	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
-
-	var item_name := grid_map.mesh_library.get_item_name(target.item)
-	if item_name == "": return
-	hud.hotbar[hud.current_hotbar_slot] = item_name
+	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
+	if block == null: return
+	hud.hotbar[hud.current_hotbar_slot] = {"id": block.id, "count": 1}
 	hud.refresh_slots()
 
 
