@@ -192,7 +192,6 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 	if new_text == "": return
 
 	if new_text.begins_with("/"):
-		# "/Help me" -> parts = ["help", "me"]. parts[0] is the command, the rest are its arguments.
 		var parts := new_text.substr(1).to_lower().split(" ", false)
 		var cmd := parts[0] if parts.size() > 0 else ""
 		match cmd:

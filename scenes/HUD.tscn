@@ -211,21 +211,25 @@ layout_mode = 2
 [node name="HelmetSlot" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1604814973]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="TorsoSlot" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=659998176]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.5764706, 0.5764706, 0.5764706, 1)
 
 [node name="PantsSlot" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1379746442]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="BootsSlot" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1443225658]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="InventoryCrafting" type="GridContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=75306722]
@@ -237,21 +241,25 @@ columns = 2
 [node name="CraftSlot1" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting" unique_id=333981606]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="CraftSlot2" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting" unique_id=1621707803]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="CraftSlot3" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting" unique_id=1116616580]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="CraftSlot4" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting" unique_id=1549162314]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="CraftResult" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=304159331]
@@ -259,6 +267,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="Inventory" type="GridContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer" unique_id=1407553843]
@@ -268,6 +277,7 @@ columns = 9
 [node name="InvSlot1" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=602077879]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 1
 metadata/Location = "Inv"
@@ -275,6 +285,7 @@ metadata/Location = "Inv"
 [node name="InvSlot2" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1220895043]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 2
 metadata/Location = "Inv"
@@ -282,6 +293,7 @@ metadata/Location = "Inv"
 [node name="InvSlot3" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1940618380]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 3
 metadata/Location = "Inv"
@@ -289,6 +301,7 @@ metadata/Location = "Inv"
 [node name="InvSlot4" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1801591850]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 4
 metadata/Location = "Inv"
@@ -296,6 +309,7 @@ metadata/Location = "Inv"
 [node name="InvSlot5" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=285210968]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 5
 metadata/Location = "Inv"
@@ -303,6 +317,7 @@ metadata/Location = "Inv"
 [node name="InvSlot6" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=446770334]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 6
 metadata/Location = "Inv"
@@ -310,6 +325,7 @@ metadata/Location = "Inv"
 [node name="InvSlot7" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=126170261]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 7
 metadata/Location = "Inv"
@@ -317,6 +333,7 @@ metadata/Location = "Inv"
 [node name="InvSlot8" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=494634144]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 8
 metadata/Location = "Inv"
@@ -324,6 +341,7 @@ metadata/Location = "Inv"
 [node name="InvSlot9" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=843304449]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 9
 metadata/Location = "Inv"
@@ -331,6 +349,7 @@ metadata/Location = "Inv"
 [node name="InvSlot10" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=595600836]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 10
 metadata/Location = "Inv"
@@ -338,6 +357,7 @@ metadata/Location = "Inv"
 [node name="InvSlot11" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=566526228]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 11
 metadata/Location = "Inv"
@@ -345,6 +365,7 @@ metadata/Location = "Inv"
 [node name="InvSlot12" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=360892367]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 12
 metadata/Location = "Inv"
@@ -352,6 +373,7 @@ metadata/Location = "Inv"
 [node name="InvSlot13" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1423486241]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 13
 metadata/Location = "Inv"
@@ -359,6 +381,7 @@ metadata/Location = "Inv"
 [node name="InvSlot14" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1181650107]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 14
 metadata/Location = "Inv"
@@ -366,6 +389,7 @@ metadata/Location = "Inv"
 [node name="InvSlot15" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1657414244]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 15
 metadata/Location = "Inv"
@@ -373,6 +397,7 @@ metadata/Location = "Inv"
 [node name="InvSlot16" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1900953028]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 16
 metadata/Location = "Inv"
@@ -380,6 +405,7 @@ metadata/Location = "Inv"
 [node name="InvSlot17" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1496783070]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 17
 metadata/Location = "Inv"
@@ -387,6 +413,7 @@ metadata/Location = "Inv"
 [node name="InvSlot18" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1943640639]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 18
 metadata/Location = "Inv"
@@ -394,6 +421,7 @@ metadata/Location = "Inv"
 [node name="InvSlot19" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=558946383]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 19
 metadata/Location = "Inv"
@@ -401,6 +429,7 @@ metadata/Location = "Inv"
 [node name="InvSlot20" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=279016256]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 20
 metadata/Location = "Inv"
@@ -408,6 +437,7 @@ metadata/Location = "Inv"
 [node name="InvSlot21" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=282431411]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 21
 metadata/Location = "Inv"
@@ -415,6 +445,7 @@ metadata/Location = "Inv"
 [node name="InvSlot22" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=427222191]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 22
 metadata/Location = "Inv"
@@ -422,6 +453,7 @@ metadata/Location = "Inv"
 [node name="InvSlot23" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1987527403]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 23
 metadata/Location = "Inv"
@@ -429,6 +461,7 @@ metadata/Location = "Inv"
 [node name="InvSlot24" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1641980438]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 24
 metadata/Location = "Inv"
@@ -436,6 +469,7 @@ metadata/Location = "Inv"
 [node name="InvSlot25" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=1025646976]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 25
 metadata/Location = "Inv"
@@ -443,6 +477,7 @@ metadata/Location = "Inv"
 [node name="InvSlot26" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=415668598]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 26
 metadata/Location = "Inv"
@@ -450,6 +485,7 @@ metadata/Location = "Inv"
 [node name="InvSlot27" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory" unique_id=270872696]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 metadata/Slot = 27
 metadata/Location = "Inv"
@@ -462,46 +498,55 @@ size_flags_vertical = 4
 [node name="HBSlot1" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1687799309]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot2" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1417123463]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot3" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=469593173]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot4" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1144387459]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot5" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=425755315]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot6" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1373170677]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot7" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1542245828]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot8" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=408125396]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="HBSlot9" type="ColorRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar" unique_id=1949961870]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+mouse_filter = 1
 color = Color(0.57700837, 0.5770084, 0.57700837, 1)
 
 [node name="MenuBG" type="PanelContainer" parent="." unique_id=725429711]
