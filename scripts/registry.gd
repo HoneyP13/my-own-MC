@@ -24,9 +24,8 @@ func get_item(id: StringName) -> ItemDef:
 
 
 func get_block(id: StringName) -> BlockDef:
-	return blocks.get(id).icon
+	return blocks.get(id)
 
 
-func get_block_by_mesh(mesh: Mesh) -> BlockDef:
-	var item = "&"+str(mesh.resource_name)
-	return get_block(item)
+func get_block_by_mesh_name(mesh_name: String) -> BlockDef:
+	return blocks_by_mesh.get(mesh_name)

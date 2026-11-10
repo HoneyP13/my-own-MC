@@ -4,6 +4,7 @@ const SAVE_PATH := "user://world_save.dat"
 const SAVE_VERSION := 1
 const MIN_BUILD_HEIGHT := 0
 const MAX_BUILD_HEIGHT := 64
+const SEA_LEVEL := 10
 
 @onready var player: Player = $Player
 @onready var hud: CanvasLayer = $HUD
@@ -15,7 +16,7 @@ const MAX_BUILD_HEIGHT := 64
 @onready var death_quit_button: Button = $HUD/DeathScreen/CenterContainer/VBoxContainer/quit
 
 var is_debug_enabled : bool = false
-var spawnpoint := Vector3(0, 5, 0)
+var spawnpoint := Vector3(0, 12, 0)
 
 
 func _ready() -> void:
@@ -75,7 +76,18 @@ func _on_player_use_pressed() -> void:
 		hud._chat_print("Cannot build above Y:64")
 		return
 	var def := Registry.get_item(hud.held_item.id)
-	def.use_on_block(self, target)    # blocks place, tools do whatever they define
+	if def == null: return
+	# Only block items get used up; tools do whatever they define.
+	if def.use_on_block(self, target) and def is BlockItemDef:
+		_consume_held_item()
+
+
+func _consume_held_item() -> void:
+	var slot = hud.current_hotbar_slot
+	hud.hotbar[slot].count -= 1
+	if hud.hotbar[slot].count <= 0:
+		hud.hotbar[slot] = null
+	hud.refresh_slots()
 
 
 func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
@@ -107,7 +119,9 @@ func _on_player_select_pressed() -> void:
 	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
 	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
 	if block == null: return
-	hud.hotbar[hud.current_hotbar_slot] = {"id": block.id, "count": 1}
+	var def := Registry.get_item(block.id)
+	if def == null: return
+	hud.hotbar[hud.current_hotbar_slot] = {"id": block.id, "count": def.max_stack}
 	hud.refresh_slots()
 
 

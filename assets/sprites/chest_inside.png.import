@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3msef2eul35e"
-path="res://.godot/imported/raw meat.png-0f6c664a1058b64fe37b57775f0211bf.ctex"
+uid="uid://wm614qrye5kv"
+path="res://.godot/imported/chest_inside.png-27ad4a0b66ebbcc37ea4e4f58d96887b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/raw meat.png"
-dest_files=["res://.godot/imported/raw meat.png-0f6c664a1058b64fe37b57775f0211bf.ctex"]
+source_file="res://assets/sprites/chest_inside.png"
+dest_files=["res://.godot/imported/chest_inside.png-27ad4a0b66ebbcc37ea4e4f58d96887b.ctex"]
 
 [params]
 

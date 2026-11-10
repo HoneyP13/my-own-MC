@@ -8,6 +8,7 @@ enum SlotArea { INVENTORY, HOTBAR }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
+@onready var health_bar: HBoxContainer = %HealthBar
 @onready var hud_hot_bar: Control = %GameplayHUD
 @onready var hot_bar_parent: HBoxContainer = %HotBar
 @onready var inventory_menu: Panel = %InventoryMenu
@@ -32,7 +33,10 @@ var cursor_icon: TextureRect
 
 const SLOT_NORMAL := Color(0.576, 0.576, 0.576)
 const SLOT_HOVER := Color(1, 1, 1)
-
+const ICON_SIZE := Vector2(56, 56)
+const FULL_HEART = preload("uid://blntmmpygjof2")
+const HALF_HEART = preload("uid://cyfclxjq2w87m")
+const EMPTY_HEART = preload("uid://d0j2n8w1nl812")
 
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
@@ -59,6 +63,7 @@ var inventory : Array
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
 
+
 func _init() -> void:
 	hotbar.resize(9)
 	inventory.resize(27)
@@ -73,6 +78,7 @@ func _ready() -> void:
 	_setup_inventory_slots()
 	refresh_slots()
 	_refresh_ui()
+
 
 func _setup_inventory_slots() -> void:
 	for i in inv.get_child_count():
@@ -95,30 +101,53 @@ func _wire_slot(slot: ColorRect, area: int, index: int) -> void:
 
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
-	if event.button_index != MOUSE_BUTTON_LEFT: return
 	var slots: Array = inventory if area == SlotArea.INVENTORY else hotbar
-	var tmp = slots[index]
-	slots[index] = cursor_item
-	cursor_item = tmp
+	match event.button_index:
+		MOUSE_BUTTON_LEFT: _left_click(slots, index)
+		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
+		_: return
 	refresh_slots()
+
+
+func _left_click(slots: Array, i: int) -> void:
+	var slot = slots[i]
+	# Same item on both sides: pour the cursor stack into the slot, up to the stack limit.
+	if slot != null and cursor_item != null and slot.id == cursor_item.id:
+		var max_stack := Registry.get_item(slot.id).max_stack
+		var moved := mini(max_stack - slot.count, cursor_item.count)
+		slot.count += moved
+		cursor_item.count -= moved
+		if cursor_item.count <= 0: cursor_item = null
+		return
+	# Otherwise swap.
+	slots[i] = cursor_item
+	cursor_item = slot
+
+
+func _right_click(slots: Array, i: int) -> void:
+	var slot = slots[i]
+	if cursor_item == null:
+		# Pick up half (rounded up).
+		if slot == null: return
+		var half := ceili(slot.count / 2.0)
+		cursor_item = {"id": slot.id, "count": half}
+		slot.count -= half
+		if slot.count <= 0: slots[i] = null
+	else:
+		# Drop a single item into an empty slot or onto a matching stack.
+		if slot == null:
+			slots[i] = {"id": cursor_item.id, "count": 1}
+		elif slot.id == cursor_item.id and slot.count < Registry.get_item(slot.id).max_stack:
+			slot.count += 1
+		else:
+			return
+		cursor_item.count -= 1
+		if cursor_item.count <= 0: cursor_item = null
 
 
 func _process(_delta: float) -> void:
 	if cursor_icon.visible:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
-
-
-#func add_item(block_item_drop: StringName):
-	#var block_item_id = Registry.get_item_def(block_item_drop)
-	#for i in hotbar:
-		#if block_item_id == i and block_item_id + i != block_item_id.max_stack:
-			#hotbar[i] = block_item_id
-		#if i == null: hotbar[i] = block_item_id
-	#for I in inventory:
-		#if block_item_id == I and block_item_id + I != block_item_id.max_stack:
-			#inventory[I] = block_item_id
-		#if I == null: inventory[I] = block_item_id
-	#refresh_slots()
 
 
 func add_item(item_id: StringName, amount: int = 1) -> void:
@@ -150,40 +179,68 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 	refresh_slots()   # inventory full: leftovers are lost for now
 
 
-## Redraws every view of the item arrays: gameplay hotbar, inventory grid, inventory hotbar, cursor.
 func refresh_slots() -> void:
 	rebuild_hotbar()
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
+	for child in cursor_icon.get_children():
+		child.queue_free()
 	if cursor_item != null:
-		cursor_icon.texture = _icon_for(cursor_item["id"])
+		cursor_icon.texture = _icon_for(cursor_item.id)
+		if cursor_item.count > 1:
+			cursor_icon.add_child(_make_count_label(cursor_item.count))
+
+
+## Draws one stack (or nothing) into a slot: icon, plus a count in the corner when count > 1.
+func _fill_slot(slot: Control, stack) -> void:
+	for old in slot.get_children():
+		old.queue_free()
+	if stack == null: return
+	var icon := TextureRect.new()
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	icon.size = ICON_SIZE
+	icon.position = Vector2(4, 4)
+	icon.texture = _icon_for(stack.id)
+	slot.add_child(icon)
+	if stack.count > 1:
+		slot.add_child(_make_count_label(stack.count))
+
+
+func _make_count_label(count: int) -> Label:
+	var label := Label.new()
+	label.text = str(count)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 4)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	label.add_theme_font_size_override("font_size", 20)
+	label.add_theme_constant_override("outline_size", 6)
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	return label
+
+
+func rebuild_hotbar() -> void:
+	for i in hot_bar_parent.get_child_count():
+		_fill_slot(hot_bar_parent.get_child(i), hotbar[i])
+	_update_hotbar_highlight()
+
+
+func update_inventory() -> void:
+	for i in inv.get_child_count():
+		_fill_slot(inv.get_child(i), inventory[i])
+	for i in inv_hot_bar.get_child_count():
+		_fill_slot(inv_hot_bar.get_child(i), hotbar[i])
+
 
 func _icon_for(stack: StringName) -> Texture2D:
 	return Registry.get_item(stack).icon
 
 
-## Closing the inventory while holding something puts it in the first free slot.
 func _return_cursor_item() -> void:
 	if cursor_item == null: return
-	var i := inventory.find(null)
-	if i != -1: inventory[i] = cursor_item
+	var stack = cursor_item
 	cursor_item = null
-	refresh_slots()
-func rebuild_hotbar() -> void:
-	for i in hot_bar_parent.get_child_count():
-		var slot: ColorRect = hot_bar_parent.get_child(i)
-		for old in slot.get_children():
-			old.queue_free()
-		if hotbar[i] == null: continue
-		var item := TextureRect.new()
-		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		item.name = hotbar[i]["id"]
-		item.size = Vector2(56, 56)
-		item.position = Vector2(4, 4)
-		item.texture = _icon_for(hotbar[i]["id"])
-		slot.add_child(item)
-	_update_hotbar_highlight()
-
+	add_item(stack.id, stack.count)   # merges into existing stacks, then empty slots
 
 
 # ---------------------------------------------------------------------------------------------
@@ -224,32 +281,6 @@ func _on_open_inventory() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.INVENTORY)
 		UIState.INVENTORY: set_ui_state(UIState.PLAYING)
-
-func update_inventory() -> void:
-	for i in inv.get_child_count():
-		var slot: ColorRect = inv.get_child(i)
-		for old in slot.get_children():
-			old.queue_free()
-		if inventory[i] == null: continue
-		var item := TextureRect.new()
-		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		item.name = inventory[i]["id"]
-		item.size = Vector2(56, 56)
-		item.position = Vector2(4, 4)
-		item.texture = _icon_for(inventory[i]["id"])
-		slot.add_child(item)
-	for i in inv_hot_bar.get_child_count():
-		var slot: ColorRect = inv_hot_bar.get_child(i)
-		for old in slot.get_children():
-			old.queue_free()
-		if hotbar[i] == null: continue
-		var item := TextureRect.new()
-		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		item.name = hotbar[i]["id"]
-		item.size = Vector2(56, 56)
-		item.position = Vector2(4, 4)
-		item.texture = _icon_for(hotbar[i]["id"])
-		slot.add_child(item)
 
 
 
@@ -295,7 +326,6 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 		var parts := new_text.substr(1).to_lower().split(" ", false)
 		var cmd := parts[0] if parts.size() > 0 else ""
 		var arg_1
-		var arg_2
 		match cmd:
 			"help":
 				if parts.size() == 1:
@@ -311,6 +341,8 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 							_chat_print("Unknown command: \"" + cmd + "\"")
 			"clear":
 				chat_history.clear()
+			"1hp": # New temp secret command, because I can't get the cube to work
+				player.hurt(19)
 			"give":
 				var item_id := StringName(parts[1]) if parts.size() > 1 else &""
 				if Registry.get_item(item_id) == null:
@@ -336,3 +368,14 @@ func _chat_print(line: String) -> void:
 
 func _on_player_is_dead_changed(is_true: bool) -> void:
 	set_ui_state(UIState.DEAD if is_true else UIState.PLAYING)
+
+
+func _on_player_health_changed(hp: int) -> void:
+	var full_bar : int = player.FULL_HEALTH / 2
+	var hearts : float = hp / 2
+	for i in full_bar:
+		var icon : TextureRect = health_bar.get_child(i)
+		if hearts == 0.0: icon.texture = EMPTY_HEART
+		elif hearts < 1.0 and hearts > 0.0: icon.texture = HALF_HEART
+		elif hearts >= 1.0: icon.texture = FULL_HEART
+		hearts -= 1.0

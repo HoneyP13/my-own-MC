@@ -57,6 +57,9 @@ extends CharacterBody3D
 ## How far (in world units) we can reach to hit/use a block.
 @export var reach : float = 5.0
 
+const FULL_HEALTH := 20
+var health = FULL_HEALTH
+
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
@@ -224,6 +227,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func _process(delta: float) -> void:
+	if health < FULL_HEALTH: # No hunger yet
+		await get_tree().create_timer(3.0).timeout
+		hurt(-1)
+
+
+
 # ---------------------------------------------------------------------------------------------
 # Things the world asks of the player (the world calls these directly; nothing here is a signal)
 # ---------------------------------------------------------------------------------------------
@@ -250,6 +260,19 @@ func set_menu_open(is_open: bool) -> void:
 ## Called by the world while the pause menu is up.
 func set_game_paused(paused: bool) -> void:
 	is_game_paused = paused
+
+signal health_changed(hp: int)
+
+func hurt(value: int) -> void:
+	if value == null or value == 0: return
+	if value > 0:
+		health -= value
+		clampi(health, 0, 20)
+	if value < 0: # Heals too, I guess
+		health += absi(value)
+		clampi(health, 0, 20)
+	health_changed.emit(health)
+	if health == 0: die()
 
 
 ## Kill the player. Anything can call this (the void, lava, a health bar hitting zero...).

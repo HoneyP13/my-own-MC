@@ -1,12 +1,20 @@
 [gd_resource type="MeshLibrary" format=3 uid="uid://clhu5qdjmtbqa"]
 
-[ext_resource type="QuadMesh" uid="uid://5mipjuk1706n" path="res://assets/meshes/pickaxe.tres" id="1_8ad33"]
+[ext_resource type="QuadMesh" uid="uid://5mipjuk1706n" path="res://assets/meshes/items/pickaxe.tres" id="1_18dic"]
+[ext_resource type="BoxMesh" uid="uid://03cfsi8bti15" path="res://assets/meshes/items/3d_item.tres" id="2_ck0aj"]
 
 [resource]
 item/0/name = "pickaxe"
-item/0/mesh = ExtResource("1_8ad33")
+item/0/mesh = ExtResource("1_18dic")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
+item/1/name = "3d_item"
+item/1/mesh = ExtResource("2_ck0aj")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1

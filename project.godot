@@ -13,6 +13,7 @@ config_version=5
 config/name="pixelated_sandbox"
 run/main_scene="uid://6i6fy8jul0ak"
 config/features=PackedStringArray("4.7", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]

@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://g6mnpdc6h38i"]
+
+[ext_resource type="Shader" uid="uid://dyuvuc5m73e6b" path="res://assets/shaders/fuild_base.gdshader" id="1_e1jvy"]
+[ext_resource type="Texture2D" uid="uid://li4w3s2kg033" path="res://assets/sprites/water.png" id="2_cjbvp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_e1jvy")
+shader_parameter/transparency = 0.0
+shader_parameter/emissive = false
+shader_parameter/density = 1.0
+shader_parameter/albedo_texture = ExtResource("2_cjbvp")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")
+size = Vector3(1, 0.875, 1)

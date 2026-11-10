@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://dj3a7v44cvdfs"]
+
+[ext_resource type="Shader" uid="uid://dyuvuc5m73e6b" path="res://assets/shaders/fuild_base.gdshader" id="1_c0mr1"]
+[ext_resource type="Texture2D" uid="uid://c7s2c8065mrp3" path="res://assets/sprites/lava.png" id="2_f7fy0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pt2pm"]
+render_priority = 0
+shader = ExtResource("1_c0mr1")
+shader_parameter/transparency = 0.0
+shader_parameter/emissive = true
+shader_parameter/density = 1.0
+shader_parameter/albedo_texture = ExtResource("2_f7fy0")
+
+[resource]
+material = SubResource("ShaderMaterial_pt2pm")
+size = Vector3(1, 0.875, 1)

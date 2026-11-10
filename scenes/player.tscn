@@ -8,7 +8,7 @@ height = 1.8
 
 [node name="player" type="CharacterBody3D" unique_id=408094235]
 script = ExtResource("1_cvunv")
-username = "Player123"
+username = "hi"
 can_freefly = true
 
 [node name="Collider" type="CollisionShape3D" parent="." unique_id=1287607218]

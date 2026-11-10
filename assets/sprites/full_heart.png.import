@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nrinn2p7lxbi"
-path="res://.godot/imported/crafting table top.png-09897acace27a9da41fb99f804e80dbd.ctex"
+uid="uid://blntmmpygjof2"
+path="res://.godot/imported/full_heart.png-1f7e9ae29b75ceddac83c2a1dc6ffa24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/crafting table top.png"
-dest_files=["res://.godot/imported/crafting table top.png-09897acace27a9da41fb99f804e80dbd.ctex"]
+source_file="res://assets/sprites/full_heart.png"
+dest_files=["res://.godot/imported/full_heart.png-1f7e9ae29b75ceddac83c2a1dc6ffa24.ctex"]
 
 [params]
 

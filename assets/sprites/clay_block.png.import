@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnpdhfjpm3bf0"
-path="res://.godot/imported/wooden planks.png-f5454c428702492d0aa177c5bbdfc0c0.ctex"
+uid="uid://d1d40ih454t5s"
+path="res://.godot/imported/clay_block.png-6964e2d86f66bc60ae2b5aeb69aea94e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/wooden planks.png"
-dest_files=["res://.godot/imported/wooden planks.png-f5454c428702492d0aa177c5bbdfc0c0.ctex"]
+source_file="res://assets/sprites/clay_block.png"
+dest_files=["res://.godot/imported/clay_block.png-6964e2d86f66bc60ae2b5aeb69aea94e.ctex"]
 
 [params]
 

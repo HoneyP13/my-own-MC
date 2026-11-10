@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be7ht011s66ye"]
 
 [ext_resource type="Script" uid="uid://c242l27tccfee" path="res://scripts/hud.gd" id="1_qpvh6"]
-[ext_resource type="Script" uid="uid://ct8kyxgbmdiy5" path="res://scripts/inventory.gd" id="2_fls4u"]
+[ext_resource type="Texture2D" uid="uid://blntmmpygjof2" path="res://assets/sprites/full_heart.png" id="2_fls4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyap7"]
 bg_color = Color(0, 0, 0, 0)
@@ -20,7 +20,6 @@ script = ExtResource("1_qpvh6")
 
 [node name="GameplayHUD" type="Control" parent="." unique_id=412332304]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +46,7 @@ grow_vertical = 2
 layout_mode = 2
 text = "+"
 
-[node name="HotBarContainer" type="PanelContainer" parent="GameplayHUD" unique_id=1756964406]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameplayHUD" unique_id=995465758]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -59,62 +58,110 @@ offset_top = -72.0
 offset_right = 308.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="HealthBar" type="HBoxContainer" parent="GameplayHUD/VBoxContainer" unique_id=2147122770]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=1100283776]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect2" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=191763850]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect3" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=294643411]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect4" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=2124152063]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect5" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=1074588216]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect6" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=896192666]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect7" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=1457881825]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect8" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=180805638]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect9" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=1734599590]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="TextureRect10" type="TextureRect" parent="GameplayHUD/VBoxContainer/HealthBar" unique_id=20845331]
+layout_mode = 2
+texture = ExtResource("2_fls4u")
+
+[node name="HotBarContainer" type="PanelContainer" parent="GameplayHUD/VBoxContainer" unique_id=1756964406]
+layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="GameplayHUD/HotBarContainer" unique_id=235137120]
+[node name="MarginContainer" type="MarginContainer" parent="GameplayHUD/VBoxContainer/HotBarContainer" unique_id=235137120]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HotBar" type="HBoxContainer" parent="GameplayHUD/HotBarContainer/MarginContainer" unique_id=1996933106]
+[node name="HotBar" type="HBoxContainer" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer" unique_id=1996933106]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HotBarSlot1" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=1291414871]
+[node name="HotBarSlot1" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=1291414871]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot2" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=287084122]
+[node name="HotBarSlot2" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=287084122]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot3" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=814617741]
+[node name="HotBarSlot3" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=814617741]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot4" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=159132789]
+[node name="HotBarSlot4" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=159132789]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot5" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=1081905778]
+[node name="HotBarSlot5" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=1081905778]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot6" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=1115409869]
+[node name="HotBarSlot6" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=1115409869]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot7" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=675013579]
+[node name="HotBarSlot7" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=675013579]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot8" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=921289406]
+[node name="HotBarSlot8" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=921289406]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
 
-[node name="HotBarSlot9" type="ColorRect" parent="GameplayHUD/HotBarContainer/MarginContainer/HotBar" unique_id=1068835242]
+[node name="HotBarSlot9" type="ColorRect" parent="GameplayHUD/VBoxContainer/HotBarContainer/MarginContainer/HotBar" unique_id=1068835242]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 color = Color(1, 1, 1, 0.5019608)
@@ -157,13 +204,13 @@ middle_mouse_paste_enabled = false
 
 [node name="InventoryMenu" type="Panel" parent="." unique_id=789841521]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hyap7")
-script = ExtResource("2_fls4u")
 metadata/_edit_group_ = true
 
 [node name="Inventory" type="PanelContainer" parent="InventoryMenu" unique_id=1274981195]
