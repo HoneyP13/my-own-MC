@@ -3,7 +3,6 @@ render_mode vertex_lighting;
 
 uniform float transparency: hint_range(0.0, 1.0) = 0.0;
 uniform bool emissive = false;
-uniform float density: hint_range(1.0, 2.0) = 1.0;
 uniform sampler2D albedo_texture: source_color, repeat_enable, filter_nearest;
 
 varying vec3 world_pos;

@@ -19,8 +19,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=888559542]
 
-[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=1863275028]
-target_position = Vector3(0, 0, -2)
-hit_from_inside = true
-
 [connection signal="is_dead_changed" from="." to="." method="_on_is_dead_changed"]

@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled;
+render_mode cull_back;
 
 // Cube-shaped blocks with cut-out transparency (leaves, glass, ...).
 

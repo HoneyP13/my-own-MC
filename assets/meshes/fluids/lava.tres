@@ -1,6 +1,6 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://dj3a7v44cvdfs"]
 
-[ext_resource type="Shader" uid="uid://dyuvuc5m73e6b" path="res://assets/shaders/fuild_base.gdshader" id="1_c0mr1"]
+[ext_resource type="Shader" uid="uid://dyuvuc5m73e6b" path="res://assets/shaders/fluid_base.gdshader" id="1_c0mr1"]
 [ext_resource type="Texture2D" uid="uid://c7s2c8065mrp3" path="res://assets/sprites/lava.png" id="2_f7fy0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pt2pm"]

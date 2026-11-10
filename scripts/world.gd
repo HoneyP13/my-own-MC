@@ -16,7 +16,7 @@ const SEA_LEVEL := 10
 @onready var death_quit_button: Button = $HUD/DeathScreen/CenterContainer/VBoxContainer/quit
 
 var is_debug_enabled : bool = false
-var spawnpoint := Vector3(0, 12, 0)
+var spawnpoint := Vector3(-4.0, 4.5, -4.0)
 
 
 func _ready() -> void:
@@ -38,7 +38,25 @@ func _on_save_quit_pressed() -> void:
 # --- Dying and respawning ---------------------------------------------------
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body == player: player.die()
+	if body == player: entered_void = true
+	
+func _on_void_body_exited(body: Node3D) -> void:
+	if body == player: entered_void = false
+
+var entered_void : bool = false
+
+var hurt_timer := 0.0
+func _process(delta: float) -> void:
+	if player.is_game_paused: return
+	elif entered_void and not player.is_dead:
+		player.taking_damage = true
+		hurt_timer += delta
+		if hurt_timer >= 0.8:
+			hurt_timer = 0.0
+			player.hurt(5)
+	else:
+		hurt_timer = 0.0
+		player.taking_damage = false
 
 
 func _on_character_body_3d_player_died() -> void:
@@ -207,4 +225,4 @@ func _unpack_grid(grid: GridMap, packed: PackedInt32Array) -> void:
 
 
 func _on_player_is_dead_changed(is_true: bool) -> void:
-	pass # Replace with function body.
+	if is_true: _on_character_body_3d_player_died()

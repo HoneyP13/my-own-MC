@@ -371,11 +371,11 @@ func _on_player_is_dead_changed(is_true: bool) -> void:
 
 
 func _on_player_health_changed(hp: int) -> void:
-	var full_bar : int = player.FULL_HEALTH / 2
-	var hearts : float = hp / 2
-	for i in full_bar:
+	var full_bar : float = player.FULL_HEALTH / 2.0
+	var hearts : float = hp / 2.0
+	for i in int(full_bar):
 		var icon : TextureRect = health_bar.get_child(i)
-		if hearts == 0.0: icon.texture = EMPTY_HEART
-		elif hearts < 1.0 and hearts > 0.0: icon.texture = HALF_HEART
+		if hearts < 1.0 and hearts > 0.0: icon.texture = HALF_HEART
+		elif hearts <= 0.0: icon.texture = EMPTY_HEART
 		elif hearts >= 1.0: icon.texture = FULL_HEART
 		hearts -= 1.0

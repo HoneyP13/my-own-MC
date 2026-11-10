@@ -226,12 +226,18 @@ func _physics_process(delta: float) -> void:
 	# Use velocity to actually move
 	move_and_slide()
 
+var taking_damage : bool = false
 
+var regen_timer := 0.0
 func _process(delta: float) -> void:
-	if health < FULL_HEALTH: # No hunger yet
-		await get_tree().create_timer(3.0).timeout
-		hurt(-1)
-
+	if is_game_paused: return
+	elif health < FULL_HEALTH and not is_dead and not taking_damage:
+		regen_timer += delta
+		if regen_timer >= 3.0:
+			regen_timer = 0.0
+			hurt(-1)
+	else:
+		regen_timer = 0.0
 
 
 # ---------------------------------------------------------------------------------------------
@@ -266,11 +272,9 @@ signal health_changed(hp: int)
 func hurt(value: int) -> void:
 	if value == null or value == 0: return
 	if value > 0:
-		health -= value
-		clampi(health, 0, 20)
+		health = clampi(health - value, 0, FULL_HEALTH)
 	if value < 0: # Heals too, I guess
-		health += absi(value)
-		clampi(health, 0, 20)
+		health = clampi(health + absi(value), 0, FULL_HEALTH)
 	health_changed.emit(health)
 	if health == 0: die()
 
@@ -284,6 +288,7 @@ func die() -> void:
 	hud.inventory.fill(null)
 	hud.hotbar.fill(null)
 	hud.cursor_item = null
+	hud.refresh_slots()
 	player_died.emit()
 
 
@@ -291,6 +296,7 @@ func die() -> void:
 func respawn(pos: Vector3) -> void:
 	velocity = Vector3.ZERO
 	global_position = pos
+	hurt(-20)
 	is_dead = false
 
 
