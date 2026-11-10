@@ -2,6 +2,8 @@ extends Node3D
 
 const SAVE_PATH := "user://world_save.dat"
 const SAVE_VERSION := 1
+const MIN_BUILD_HEIGHT := 0
+const MAX_BUILD_HEIGHT := 64
 
 @onready var player: Player = $Player
 @onready var hud: CanvasLayer = $HUD
@@ -66,6 +68,12 @@ func _on_player_hit_pressed() -> void:
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null or hud.held_item == null: return
+	if target.cell.y < MIN_BUILD_HEIGHT:
+		hud._chat_print("Cannot build below Y:0")
+		return
+	if target.cell.y > MAX_BUILD_HEIGHT:
+		hud._chat_print("Cannot build above Y:64")
+		return
 	var def := Registry.get_item(hud.held_item.id)
 	def.use_on_block(self, target)    # blocks place, tools do whatever they define
 

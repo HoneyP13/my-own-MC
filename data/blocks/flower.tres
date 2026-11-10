@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://bjpf0ia3g86ce"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_vdb6t"]
+
+[resource]
+script = ExtResource("1_vdb6t")
+id = &"flower"
+mesh_name = "flower"
+drop_id = &"flower"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

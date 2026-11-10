@@ -169,25 +169,21 @@ func _return_cursor_item() -> void:
 	if i != -1: inventory[i] = cursor_item
 	cursor_item = null
 	refresh_slots()
-
-
-
 func rebuild_hotbar() -> void:
 	for i in hot_bar_parent.get_child_count():
 		var slot: ColorRect = hot_bar_parent.get_child(i)
 		for old in slot.get_children():
 			old.queue_free()
-		if hotbar[i] == null: return
-		var item_name = hotbar[i]["id"]
-		if item_name != null:
-			var item := TextureRect.new()
-			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			item.name = item_name
-			item.size = Vector2(56, 56)
-			item.position = Vector2(4, 4)
-			item.texture = _icon_for(item_name)
-			slot.add_child(item)
+		if hotbar[i] == null: continue
+		var item := TextureRect.new()
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		item.name = hotbar[i]["id"]
+		item.size = Vector2(56, 56)
+		item.position = Vector2(4, 4)
+		item.texture = _icon_for(hotbar[i]["id"])
+		slot.add_child(item)
 	_update_hotbar_highlight()
+
 
 
 # ---------------------------------------------------------------------------------------------
@@ -234,29 +230,26 @@ func update_inventory() -> void:
 		var slot: ColorRect = inv.get_child(i)
 		for old in slot.get_children():
 			old.queue_free()
-		if inventory[i] == null: return
-		var item_name = inventory[i]["id"]
-		if item_name != null:
-			var item := TextureRect.new()
-			item.name = item_name
-			item.size = Vector2(56, 56)
-			item.position = Vector2(4, 4)
-			item.texture = _icon_for(item_name)
-			slot.add_child(item)
-	for I in inv_hot_bar.get_child_count():
-		var slot: ColorRect = inv_hot_bar.get_child(I)
+		if inventory[i] == null: continue
+		var item := TextureRect.new()
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		item.name = inventory[i]["id"]
+		item.size = Vector2(56, 56)
+		item.position = Vector2(4, 4)
+		item.texture = _icon_for(inventory[i]["id"])
+		slot.add_child(item)
+	for i in inv_hot_bar.get_child_count():
+		var slot: ColorRect = inv_hot_bar.get_child(i)
 		for old in slot.get_children():
 			old.queue_free()
-		if hotbar[I] == null: return
-		var item_name = hotbar[I]["id"]
-		if item_name != null:
-			var item := TextureRect.new()
-			item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			item.name = item_name
-			item.size = Vector2(56, 56)
-			item.position = Vector2(4, 4)
-			item.texture = _icon_for(item_name)
-			slot.add_child(item)
+		if hotbar[i] == null: continue
+		var item := TextureRect.new()
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		item.name = hotbar[i]["id"]
+		item.size = Vector2(56, 56)
+		item.position = Vector2(4, 4)
+		item.texture = _icon_for(hotbar[i]["id"])
+		slot.add_child(item)
 
 
 
@@ -319,14 +312,13 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 			"clear":
 				chat_history.clear()
 			"give":
-				arg_1 = parts[1] if parts.size() > 1 else ""
-				if arg_1.is_empty() or Registry.get_item(arg_1) == null:
-					_chat_print("Invalid argument \"[item]\" for \"/" + cmd + "\": " + str(arg_1))
-				#if int(arg_2) == null:
-					#_chat_print("Invalid argument \"[amount]\" for \"/" + cmd + "\": " + str(arg_1))
-				arg_2 = parts[2] if parts.size() > 2 else "1"
-				add_item(Registry.items.find_key(arg_1),int(arg_2))
-				_chat_print("Gave " + player.username + ": " + arg_2 + " " + arg_1 + "s." if int(arg_2) > 1 else ".")
+				var item_id := StringName(parts[1]) if parts.size() > 1 else &""
+				if Registry.get_item(item_id) == null:
+					_chat_print("Unknown item: " + str(item_id))
+				else:
+					var amount := int(parts[2]) if parts.size() > 2 else 1
+					add_item(item_id, amount)
+					_chat_print("Gave %s: %d %s" % [player.username, amount, item_id])
 			_:
 				_chat_print("Unknown command: \"/" + cmd + "\"")
 	else:
