@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://dj3a7v44cvdfs"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_c0mr1"]
-[ext_resource type="Texture2D" uid="uid://c7s2c8065mrp3" path="res://assets/sprites/lava.png" id="2_f7fy0"]
+[ext_resource type="Texture2D" uid="uid://c4qsls303do4j" path="res://assets/sprites/lava.png" id="2_f7fy0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pt2pm"]
 render_priority = 0

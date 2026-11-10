@@ -6,5 +6,5 @@
 script = ExtResource("1_1i6jg")
 id = &"leaves"
 mesh_name = "leaves"
-drop_id = &"stick"
+drop_id = &"apple"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

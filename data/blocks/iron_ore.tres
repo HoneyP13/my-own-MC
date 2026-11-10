@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://ccqkawg7q4lw5"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_l8fpe"]
+
+[resource]
+script = ExtResource("1_l8fpe")
+id = &"iron_ore"
+mesh_name = "iron_ore"
+drop_id = &"iron_ore"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

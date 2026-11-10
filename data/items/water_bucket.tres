@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://rgjgicavwc7q"]
+
+[ext_resource type="Texture2D" uid="uid://b1he07ce8wjk6" path="res://assets/sprites/water_bucket.png" id="1_j3qj4"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_m8ota"]
+
+[resource]
+script = ExtResource("2_m8ota")
+id = &"water_bucket"
+display_name = "water bucket"
+icon = ExtResource("1_j3qj4")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

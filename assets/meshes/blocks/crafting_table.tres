@@ -1,16 +1,16 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bnnbw5svy5wbu"]
 
 [ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_oxf2p"]
-[ext_resource type="Texture2D" uid="uid://bnpdhfjpm3bf0" path="res://assets/sprites/planks.png" id="2_xeoxq"]
-[ext_resource type="Texture2D" uid="uid://du5422yclflgv" path="res://assets/sprites/crafting_table_side.png" id="3_y0cm5"]
-[ext_resource type="Texture2D" uid="uid://nrinn2p7lxbi" path="res://assets/sprites/crafting_table_top.png" id="4_2gtrc"]
+[ext_resource type="Texture2D" uid="uid://c572sssw7b75a" path="res://assets/sprites/plank.png" id="2_oxf2p"]
+[ext_resource type="Texture2D" uid="uid://cp8rd7c0bgqbj" path="res://assets/sprites/crafting_table_side.png" id="3_y0cm5"]
+[ext_resource type="Texture2D" uid="uid://dkgd6yapolwxa" path="res://assets/sprites/crafting_table_top.png" id="4_2gtrc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tsb8f"]
 render_priority = 0
 shader = ExtResource("1_oxf2p")
 shader_parameter/texture_top = ExtResource("4_2gtrc")
 shader_parameter/texture_side = ExtResource("3_y0cm5")
-shader_parameter/texture_bottom = ExtResource("2_xeoxq")
+shader_parameter/texture_bottom = ExtResource("2_oxf2p")
 
 [resource]
 material = SubResource("ShaderMaterial_tsb8f")

@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://g6mnpdc6h38i"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_e1jvy"]
-[ext_resource type="Texture2D" uid="uid://li4w3s2kg033" path="res://assets/sprites/water.png" id="2_cjbvp"]
+[ext_resource type="Texture2D" uid="uid://drhrl8ro0jkgj" path="res://assets/sprites/water.png" id="2_cjbvp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cjbvp"]
 render_priority = 0

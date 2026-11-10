@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://c7qxyjbu6pnxp"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_5vtos"]
+
+[resource]
+script = ExtResource("1_5vtos")
+id = &"gold_ore"
+mesh_name = "gold_ore"
+drop_id = &"gold_ore"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

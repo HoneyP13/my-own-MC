@@ -1,0 +1,14 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://duitll6nvjond"]
+
+[ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_ir2ub"]
+[ext_resource type="Texture2D" uid="uid://cm4as6i121a0r" path="res://assets/sprites/red_flower.png" id="2_ddxg5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("1_ir2ub")
+shader_parameter/grow_amount = 0.50000002375
+shader_parameter/albedo_texture = ExtResource("2_ddxg5")
+
+[resource]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")

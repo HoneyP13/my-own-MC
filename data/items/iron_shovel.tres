@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bww1kerjnim1i"]
+
+[ext_resource type="Texture2D" uid="uid://5hbe3ylsneoj" path="res://assets/sprites/iron_shovel.png" id="1_lqad6"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_56xxg"]
+
+[resource]
+script = ExtResource("2_56xxg")
+id = &"iron_shovel"
+display_name = "iron shovel"
+icon = ExtResource("1_lqad6")
+max_stack = 1
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

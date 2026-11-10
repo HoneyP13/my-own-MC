@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://v6bbq6k3dgp1"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_ebasy"]
+[ext_resource type="Texture2D" uid="uid://c572sssw7b75a" path="res://assets/sprites/plank.png" id="2_ebasy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_ebasy")
+shader_parameter/texture_2d = ExtResource("2_ebasy")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

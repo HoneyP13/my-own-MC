@@ -1,0 +1,17 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://q5bxv3dpiwej"]
+
+[ext_resource type="Shader" uid="uid://dunmvc7ff0syp" path="res://assets/shaders/directional_y_axis.gdshader" id="1_344ti"]
+[ext_resource type="Texture2D" uid="uid://dnpg1nq17qa0x" path="res://assets/sprites/furnace_front.png" id="2_344ti"]
+[ext_resource type="Texture2D" uid="uid://dv8632oxn26ye" path="res://assets/sprites/furnace_side.png" id="3_oxglm"]
+[ext_resource type="Texture2D" uid="uid://dbn41x0aktnxx" path="res://assets/sprites/furnace_top.png" id="4_pogq0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
+render_priority = 0
+shader = ExtResource("1_344ti")
+shader_parameter/texture_top = ExtResource("4_pogq0")
+shader_parameter/texture_side = ExtResource("3_oxglm")
+shader_parameter/texture_front = ExtResource("2_344ti")
+shader_parameter/corner_offset = Vector3(0.5, 0.5, 0.5)
+
+[resource]
+material = SubResource("ShaderMaterial_p88hg")

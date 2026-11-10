@@ -2,24 +2,22 @@
 
 [ext_resource type="BoxMesh" uid="uid://bsa445eq5cxn6" path="res://assets/meshes/blocks/dirt.tres" id="1_ftcee"]
 [ext_resource type="BoxMesh" uid="uid://cw370jxnt6250" path="res://assets/meshes/blocks/stone.tres" id="3_qogbe"]
+[ext_resource type="BoxMesh" uid="uid://xuu86d7oup8t" path="res://assets/meshes/blocks/coal_ore.tres" id="4_3s85j"]
+[ext_resource type="BoxMesh" uid="uid://duitll6nvjond" path="res://assets/meshes/blocks/red_flower.tres" id="5_bjp6x"]
 [ext_resource type="BoxMesh" uid="uid://b5jvkirclh85v" path="res://assets/meshes/blocks/sand.tres" id="5_ntran"]
-[ext_resource type="BoxMesh" uid="uid://xuu86d7oup8t" path="res://assets/meshes/blocks/coal ore.tres" id="7_8qcg7"]
 [ext_resource type="BoxMesh" uid="uid://bnnbw5svy5wbu" path="res://assets/meshes/blocks/crafting_table.tres" id="8_3s85j"]
+[ext_resource type="BoxMesh" uid="uid://ctn4ge5c7unfo" path="res://assets/meshes/blocks/brick_block.tres" id="9_1oisa"]
 [ext_resource type="BoxMesh" uid="uid://3gt03xlyl8h1" path="res://assets/meshes/blocks/clay.tres" id="9_bjp6x"]
-[ext_resource type="BoxMesh" uid="uid://duitll6nvjond" path="res://assets/meshes/blocks/flower.tres" id="9_cnkuy"]
-[ext_resource type="BoxMesh" uid="uid://ctn4ge5c7unfo" path="res://assets/meshes/blocks/bricks.tres" id="10_1oisa"]
 [ext_resource type="BoxMesh" uid="uid://d0g7fqjt15r13" path="res://assets/meshes/blocks/gravel.tres" id="11_21d3n"]
 [ext_resource type="BoxMesh" uid="uid://cis3e0w18qj0f" path="res://assets/meshes/blocks/cobblestone.tres" id="11_75pwm"]
 [ext_resource type="BoxMesh" uid="uid://1wlta17dknne" path="res://assets/meshes/blocks/chest.tres" id="12_1oisa"]
-[ext_resource type="BoxMesh" uid="uid://c2n7l4436qjbo" path="res://assets/meshes/blocks/hurt.tres" id="13_ntran"]
+[ext_resource type="BoxMesh" uid="uid://cly5evqwy7yd1" path="res://assets/meshes/blocks/torch.tres" id="13_21d3n"]
 [ext_resource type="BoxMesh" uid="uid://bbngdege4nuux" path="res://assets/meshes/blocks/log.tres" id="13_ptyle"]
-[ext_resource type="BoxMesh" uid="uid://d2bpnydlqx5v3" path="res://assets/meshes/blocks/heal.tres" id="14_21d3n"]
-[ext_resource type="BoxMesh" uid="uid://c5fq5nasnodoi" path="res://assets/meshes/blocks/grass.tres" id="15_e5n0k"]
+[ext_resource type="BoxMesh" uid="uid://c5fq5nasnodoi" path="res://assets/meshes/blocks/grass_block.tres" id="14_cx2io"]
 [ext_resource type="BoxMesh" uid="uid://ds1a83qd2bpqq" path="res://assets/meshes/blocks/leaves.tres" id="17_smuq3"]
+[ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass_block.tres" id="18_k2i0r"]
 [ext_resource type="BoxMesh" uid="uid://bvpvxxoc80hks" path="res://assets/meshes/blocks/bedrock.tres" id="19_10o61"]
 [ext_resource type="BoxMesh" uid="uid://b35h1klkb40si" path="res://assets/meshes/blocks/short_grass.tres" id="21_hmb8a"]
-[ext_resource type="BoxMesh" uid="uid://cdytl7a8a87se" path="res://assets/meshes/blocks/test_block.tres" id="23_mdel1"]
-[ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass.tres" id="25_o14jv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -40,8 +38,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_6l3rs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn2ro"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o0lcr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0am6y"]
 
@@ -68,7 +64,7 @@ item/2/shapes = [SubResource("BoxShape3D_cptob"), Transform3D(1, 0, 0, 0, 1, 0, 
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
 item/3/name = "grass"
-item/3/mesh = ExtResource("15_e5n0k")
+item/3/mesh = ExtResource("14_cx2io")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
 item/3/shapes = [SubResource("BoxShape3D_umdqk"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -95,15 +91,8 @@ item/6/mesh_cast_shadow = 1
 item/6/shapes = []
 item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/6/navigation_layers = 1
-item/8/name = "test_block"
-item/8/mesh = ExtResource("23_mdel1")
-item/8/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/8/mesh_cast_shadow = 1
-item/8/shapes = [SubResource("BoxShape3D_o0lcr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/8/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/8/navigation_layers = 1
 item/9/name = "glass"
-item/9/mesh = ExtResource("25_o14jv")
+item/9/mesh = ExtResource("18_k2i0r")
 item/9/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/9/mesh_cast_shadow = 1
 item/9/shapes = [SubResource("BoxShape3D_0am6y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -117,14 +106,14 @@ item/10/shapes = [SubResource("BoxShape3D_h0k7y"), Transform3D(1, 0, 0, 0, 1, 0,
 item/10/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/10/navigation_layers = 1
 item/11/name = "coal_ore"
-item/11/mesh = ExtResource("7_8qcg7")
+item/11/mesh = ExtResource("4_3s85j")
 item/11/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/11/mesh_cast_shadow = 1
 item/11/shapes = [SubResource("BoxShape3D_lr7et"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/11/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/11/navigation_layers = 1
-item/12/name = "flower"
-item/12/mesh = ExtResource("9_cnkuy")
+item/12/name = "red_flower"
+item/12/mesh = ExtResource("5_bjp6x")
 item/12/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/12/mesh_cast_shadow = 1
 item/12/shapes = []
@@ -137,13 +126,6 @@ item/13/mesh_cast_shadow = 1
 item/13/shapes = [SubResource("BoxShape3D_ftcee"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/13/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/13/navigation_layers = 1
-item/14/name = "hurt"
-item/14/mesh = ExtResource("13_ntran")
-item/14/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/14/mesh_cast_shadow = 1
-item/14/shapes = []
-item/14/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/14/navigation_layers = 1
 item/15/name = "crafting_table"
 item/15/mesh = ExtResource("8_3s85j")
 item/15/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -159,7 +141,7 @@ item/16/shapes = []
 item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/navigation_layers = 1
 item/17/name = "bricks"
-item/17/mesh = ExtResource("10_1oisa")
+item/17/mesh = ExtResource("9_1oisa")
 item/17/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/17/mesh_cast_shadow = 1
 item/17/shapes = []
@@ -179,8 +161,8 @@ item/19/mesh_cast_shadow = 1
 item/19/shapes = []
 item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/navigation_layers = 1
-item/20/name = "heal"
-item/20/mesh = ExtResource("14_21d3n")
+item/20/name = "torch"
+item/20/mesh = ExtResource("13_21d3n")
 item/20/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/mesh_cast_shadow = 1
 item/20/shapes = []

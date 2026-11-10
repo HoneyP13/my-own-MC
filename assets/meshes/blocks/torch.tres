@@ -1,0 +1,19 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://cly5evqwy7yd1"]
+
+[ext_resource type="Shader" uid="uid://bafsys6e0e0hn" path="res://assets/shaders/torch.gdshader" id="1_v7707"]
+[ext_resource type="Texture2D" uid="uid://bnyja3qfm2pa6" path="res://assets/sprites/torch_bottom.png" id="2_w3aes"]
+[ext_resource type="Texture2D" uid="uid://ya3uvronev8" path="res://assets/sprites/torch_side.png" id="3_yp6qn"]
+[ext_resource type="Texture2D" uid="uid://beg5sykn2thbj" path="res://assets/sprites/torch_top.png" id="4_rp1o0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("1_v7707")
+shader_parameter/side_shrink = 0.438
+shader_parameter/top_shrink = 0.438
+shader_parameter/top_texture = ExtResource("4_rp1o0")
+shader_parameter/side_texture = ExtResource("3_yp6qn")
+shader_parameter/bottom_texture = ExtResource("2_w3aes")
+
+[resource]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://blikxpjo25kww"]
+
+[ext_resource type="Texture2D" uid="uid://v5lwq06houlw" path="res://assets/sprites/stone_pickaxe.png" id="1_pblgl"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_10rab"]
+
+[resource]
+script = ExtResource("2_10rab")
+id = &"stone_pickaxe"
+display_name = "stone pickaxe"
+icon = ExtResource("1_pblgl")
+max_stack = 1
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

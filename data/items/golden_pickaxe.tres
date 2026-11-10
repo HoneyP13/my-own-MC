@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cjkuji8xl2yjc"]
+
+[ext_resource type="Texture2D" uid="uid://bkb8jtk0ha2pn" path="res://assets/sprites/golden_pickaxe.png" id="1_r4re1"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_rlijq"]
+
+[resource]
+script = ExtResource("2_rlijq")
+id = &"golden_pickaxe"
+display_name = "golden pickaxe"
+icon = ExtResource("1_r4re1")
+max_stack = 1
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

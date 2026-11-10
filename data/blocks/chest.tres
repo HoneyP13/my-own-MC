@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_64udl")
-id = &"glass"
-mesh_name = "glass"
+id = &"chest"
+mesh_name = "chest"
+drop_id = &"chest"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

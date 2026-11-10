@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://drwy27mvvlo58"]
+
+[ext_resource type="Texture2D" uid="uid://bvww8yyumups4" path="res://assets/sprites/wooden_sword.png" id="1_ddwwj"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_q4h6c"]
+
+[resource]
+script = ExtResource("2_q4h6c")
+id = &"wooden_sword"
+display_name = "wooden sword"
+icon = ExtResource("1_ddwwj")
+max_stack = 1
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

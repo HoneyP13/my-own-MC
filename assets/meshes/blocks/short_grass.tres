@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://b35h1klkb40si"]
 
 [ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_0gy5s"]
-[ext_resource type="Texture2D" uid="uid://dfg6087ub6hjs" path="res://assets/sprites/short_grass.png" id="1_sb7jn"]
+[ext_resource type="Texture2D" uid="uid://cthbhrsdnb2ac" path="res://assets/sprites/short_grass.png" id="1_sb7jn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
 render_priority = 0

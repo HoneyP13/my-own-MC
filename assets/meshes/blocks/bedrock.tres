@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bvpvxxoc80hks"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_ircru"]
-[ext_resource type="Texture2D" uid="uid://dkal6wq72g8j6" path="res://assets/sprites/bedrock.png" id="2_ircru"]
+[ext_resource type="Texture2D" uid="uid://cbxo8kro6n3al" path="res://assets/sprites/bedrock.png" id="2_ircru"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://ca4dojy85qtqs"]
+
+[ext_resource type="Texture2D" uid="uid://cbvbfmaj58byj" path="res://assets/sprites/wooden_hoe.png" id="1_gdyc5"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_rnkj5"]
+
+[resource]
+script = ExtResource("2_rnkj5")
+id = &"wooden_hoe"
+display_name = "wooden hoe"
+icon = ExtResource("1_gdyc5")
+max_stack = 1
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

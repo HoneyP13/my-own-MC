@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://kf4xvxc8jr3i"]
+
+[ext_resource type="Texture2D" uid="uid://cbvyrbujvho5q" path="res://assets/sprites/iron_ingot.png" id="1_beyju"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_b4tt0"]
+
+[resource]
+script = ExtResource("2_b4tt0")
+id = &"iron_ingot"
+display_name = "iron ingot"
+icon = ExtResource("1_beyju")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"
