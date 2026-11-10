@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://dvm3s6ptxwfhd"]
+
+[ext_resource type="Texture2D" uid="uid://1ybk2a3eyytw" path="res://assets/sprites/yeye.png" id="1_ygnjh"]
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_gx5lw"]
+
+[resource]
+script = ExtResource("2_gx5lw")
+block_id = &"heal"
+id = &"heal"
+display_name = "heal block"
+icon = ExtResource("1_ygnjh")
+max_stack = 1
+metadata/_custom_type_script = "uid://bw6b1s4do376f"

@@ -104,12 +104,10 @@ var crouch_height : float = 1.0
 @onready var stand_height : float = collider.shape.height   # 1.8, read from the scene
 @onready var head_stand_y : float = head.position.y         # 0.5, read from the scene
 
-func _init() -> void:
-	if username.length() < 4 or username.length() > 18:
-		username = "InvalidUser"
-
 
 func _ready() -> void:
+	if username.length() < 4 or username.length() > 18:
+		username = "InvalidUser"
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
@@ -374,4 +372,4 @@ func check_input_mappings():
 
 
 func _on_is_dead_changed(is_true: bool) -> void:
-	print("is dead = "+str(is_true))
+	hud._chat_print("is dead = "+str(is_true))

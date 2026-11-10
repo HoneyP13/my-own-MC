@@ -1,7 +1,14 @@
 extends Node3D
 
 const SAVE_PATH := "user://world_save.dat"
-const SAVE_VERSION := 1
+const SAVE_VERSION := 2
+const WORLD_RADIUS_CHUNKS := 3   # world is (2*3)x(2*3) chunks = 96x96 blocks. Raise it later.
+const NEIGHBORS: Array[Vector3i] = [
+	Vector3i.RIGHT, Vector3i.LEFT, Vector3i.UP, Vector3i.DOWN, Vector3i.BACK, Vector3i.FORWARD]
+
+var generator: TerrainGenerator
+var world_seed := 0
+var _broken := {}   # cells the player has dug out, so we never "refill" themconst MIN_BUILD_HEIGHT := 0
 const MIN_BUILD_HEIGHT := 0
 const MAX_BUILD_HEIGHT := 64
 const SEA_LEVEL := 10
@@ -27,7 +34,12 @@ func _ready() -> void:
 	save_quit_button.pressed.connect(_on_save_quit_pressed)
 	respawn_button.pressed.connect(_on_respawn_pressed)
 	death_quit_button.pressed.connect(get_tree().quit)
-	load_game()
+	if fluids_map.mesh_library == null:
+		fluids_map.mesh_library = preload("uid://bt86017oxii2w")
+	if not load_game():
+		world_seed = randi()
+		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
+		generate_world()
 
 
 func _on_save_quit_pressed() -> void:
@@ -81,6 +93,8 @@ func _on_player_hit_pressed() -> void:
 	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
 	if block == null or block.hardness < 0.0: return   # unknown or unbreakable
 	grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
+	_broken[target.cell] = true
+	_reveal_neighbors(target.cell)
 	if block.drop_id != &"": hud.add_item(block.drop_id)
 
 
@@ -109,7 +123,8 @@ func _consume_held_item() -> void:
 
 
 func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
-	var block: BlockDef = Registry.blocks[block_id]
+	var block: BlockDef = Registry.get_block(block_id)
+	if block == null: return false
 	var item_id := grid_map.mesh_library.find_item_by_name(block.mesh_name)
 	var cell := hit.place_cell
 	if item_id == GridMap.INVALID_CELL_ITEM: return false
@@ -174,6 +189,8 @@ func save_game() -> void:
 		"hotbar": hud.hotbar,
 		"slot": hud.current_hotbar_slot,
 		"inventory": hud.inventory,
+		"seed": world_seed,
+		"broken": _pack_broken(),
 	}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f == null:
@@ -190,7 +207,10 @@ func load_game() -> bool:
 	if typeof(data) != TYPE_DICTIONARY or data.get("version", 0) != SAVE_VERSION:
 		push_warning("Save file missing or from another version, ignoring it.")
 		return false
-
+	
+	world_seed = data["seed"]
+	generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
+	_unpack_broken(data["broken"])
 	_unpack_grid(grid_map, data["terrain"])
 	_unpack_grid(fluids_map, data["fluids"])
 
@@ -204,6 +224,41 @@ func load_game() -> bool:
 	hud.current_hotbar_slot = data["slot"]
 	hud.refresh_slots()
 	return true
+
+func generate_world() -> void:
+	grid_map.clear()
+	fluids_map.clear()
+	_broken.clear()
+	for cx in range(-WORLD_RADIUS_CHUNKS, WORLD_RADIUS_CHUNKS):
+		for cz in range(-WORLD_RADIUS_CHUNKS, WORLD_RADIUS_CHUNKS):
+			generator.generate_chunk(Vector2i(cx, cz), grid_map, fluids_map)
+	spawnpoint = generator.find_spawn()
+	player.velocity = Vector3.ZERO
+	player.global_position = spawnpoint
+
+func _pack_broken() -> PackedInt32Array:
+	var out := PackedInt32Array()
+	for c: Vector3i in _broken:
+		out.append(c.x); out.append(c.y); out.append(c.z)
+	return out
+
+func _unpack_broken(packed: PackedInt32Array) -> void:
+	_broken.clear()
+	for i in range(0, packed.size(), 3):
+		_broken[Vector3i(packed[i], packed[i + 1], packed[i + 2])] = true
+
+
+## Digging exposes cells we skipped when generating. Put the natural terrain back around the hole.
+func _reveal_neighbors(cell: Vector3i) -> void:
+	for n in NEIGHBORS:
+		var c := cell + n
+		if c.y < MIN_BUILD_HEIGHT or _broken.has(c): continue
+		if grid_map.get_cell_item(c) != GridMap.INVALID_CELL_ITEM: continue
+		var block_name := generator.block_at(c.x, c.y, c.z)
+		if block_name == &"": continue
+		var item := grid_map.mesh_library.find_item_by_name(String(block_name))
+		if item != GridMap.INVALID_CELL_ITEM:
+			grid_map.set_cell_item(c, item)
 
 
 # Each cell is stored as 5 ints: x, y, z, item, orientation

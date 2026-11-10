@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://8igdpmdee0ei"]
+
+[ext_resource type="Texture2D" uid="uid://du2jju5nxu4ww" path="res://assets/sprites/nono.png" id="1_1gshl"]
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_rjefb"]
+
+[resource]
+script = ExtResource("2_rjefb")
+block_id = &"hurt"
+id = &"hurt"
+display_name = "hurt block"
+icon = ExtResource("1_1gshl")
+max_stack = 1
+metadata/_custom_type_script = "uid://bw6b1s4do376f"

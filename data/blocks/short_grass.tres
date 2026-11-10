@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://bq2b2jdm26ytw"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_7fk0n"]
+
+[resource]
+script = ExtResource("1_7fk0n")
+id = &"short_grass"
+mesh_name = "short_grass"
+drop_id = &"short_grass"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

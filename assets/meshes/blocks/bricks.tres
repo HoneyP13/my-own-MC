@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://ctn4ge5c7unfo"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_yjx8v"]
+[ext_resource type="Texture2D" uid="uid://dflj52qljqmq6" path="res://assets/sprites/bricks.png" id="2_eebsc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hc6hj"]
+render_priority = 0
+shader = ExtResource("1_yjx8v")
+shader_parameter/texture_2d = ExtResource("2_eebsc")
+
+[resource]
+material = SubResource("ShaderMaterial_hc6hj")

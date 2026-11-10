@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://dupcve6j6kg36"]
+
+[ext_resource type="Texture2D" uid="uid://druaoiti5aifq" path="res://assets/sprites/gravel.png" id="1_7vsub"]
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_57jbp"]
+
+[resource]
+script = ExtResource("2_57jbp")
+block_id = &"gravel"
+id = &"gravel"
+display_name = "gravel"
+icon = ExtResource("1_7vsub")
+metadata/_custom_type_script = "uid://bw6b1s4do376f"
