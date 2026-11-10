@@ -11,27 +11,29 @@ uniform sampler2D texture_front: source_color, repeat_enable, filter_nearest; //
 // Where the block's corner sits relative to the mesh origin. 0.5 = cube centred on its origin
 // (a BoxMesh, or a cube made in Blender/Blockbench with the origin in the middle).
 // Use 0.0 if your mesh has its origin at a corner.
-uniform vec3 corner_offset = vec3(0.5);
+uniform vec3 corner_offset = vec3(0.0);
 
 varying vec3 block_pos;    // position inside the block, 0..1, in the block's own (unrotated) space
-varying vec3 block_orientation; // face towards player
+varying vec3 block_normal; // face towards player
 
 void vertex() {
 	block_pos = VERTEX + corner_offset;
-	block_orientation = CAMERA_DIRECTION_WORLD;
+	block_normal = NORMAL;
 }
 
 void fragment() {
-	vec3 a = block_orientation;
+	vec3 a = block_normal;
 	vec3 albedo;
 	if (a.x > a.z && a.x > 0.0) {
-		albedo = texture(texture_side, 1.0 - block_pos.yz).rgb;
+		albedo = texture(texture_side, 1.0 - block_pos.zy).rgb;
 	} else if (a.z > a.x && a.z > 0.0) {
+		albedo = texture(texture_front, 1.0 - block_pos.xy).rgb;
+	} else if (a.x < a.z && a.x < 0.0) {
+		albedo = texture(texture_side, 1.0 - block_pos.zy).rgb;
+	} else if (a.z < a.x && a.z < 0.0) {
 		albedo = texture(texture_side, 1.0 - block_pos.xy).rgb;
-	} else if (a.x > a.z && a.z < 0.0) {
-		albedo = texture(texture_side, 1.0 - block_pos.yz).rgb;
-	} else if (a.z > a.x && a.x < 0.0) {
-		albedo = texture(texture_side, 1.0 - block_pos.xy).rgb;
+	} else {
+		albedo = texture(texture_top, 1.0 - block_pos.xz).rgb;
 	}
 	ALBEDO = albedo;
 }

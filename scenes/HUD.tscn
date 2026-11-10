@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be7ht011s66ye"]
 
 [ext_resource type="Script" uid="uid://c242l27tccfee" path="res://scripts/hud.gd" id="1_qpvh6"]
-[ext_resource type="Texture2D" uid="uid://blntmmpygjof2" path="res://assets/sprites/full_heart.png" id="2_fls4u"]
+[ext_resource type="Texture2D" uid="uid://djyw2tavut04a" path="res://assets/sprites/full_heart.png" id="2_fls4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyap7"]
 bg_color = Color(0, 0, 0, 0)

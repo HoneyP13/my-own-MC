@@ -62,7 +62,7 @@ func block_at(x: int, y: int, z: int) -> StringName:
 		return &""
 	var beach := h <= sea_level + 1
 	if y == h:
-		return &"sand" if beach else &"grass"
+		return &"sand" if beach else &"grass_block"
 	if y > h - 4:
 		return &"sand" if beach else &"dirt"
 	if _hash(x, y, z, 7) % 100 < 2:
@@ -130,10 +130,12 @@ func generate_chunk(chunk: Vector2i, terrain: GridMap, fluids: GridMap) -> void:
 			# Grass tufts and flowers
 			if h > sea_level + 1:
 				var r := _hash(x, 1, z, 17) % 100
-				if r < 8:
+				if r < 1:
+					_place(terrain, Vector3i(x, h + 1, z), &"blue_flower")
+				elif r < 8:
 					_place(terrain, Vector3i(x, h + 1, z), &"short_grass")
 				elif r < 10:
-					_place(terrain, Vector3i(x, h + 1, z), &"flower")
+					_place(terrain, Vector3i(x, h + 1, z), &"red_flower")
 
 	# Trees. Look a little outside the chunk so trees on the border aren't cut in half; each chunk
 	# only writes the cells that are inside it, so neighbouring chunks agree with each other.

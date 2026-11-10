@@ -23,7 +23,7 @@ const SEA_LEVEL := 10
 @onready var death_quit_button: Button = $HUD/DeathScreen/CenterContainer/VBoxContainer/quit
 
 var is_debug_enabled : bool = false
-var spawnpoint := Vector3(-4.0, 4.5, -4.0)
+var spawnpoint : Vector3
 
 
 func _ready() -> void:
@@ -40,6 +40,10 @@ func _ready() -> void:
 		world_seed = randi()
 		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
 		generate_world()
+		spawnpoint = generator.find_spawn()
+	for b in Registry.blocks.values():
+		if grid_map.mesh_library.find_item_by_name(b.mesh_name) == GridMap.INVALID_CELL_ITEM:
+			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
 
 
 func _on_save_quit_pressed() -> void:
@@ -81,6 +85,10 @@ func _on_respawn_pressed() -> void:
 	hud.set_ui_state(hud.UIState.PLAYING)
 
 
+func _on_player_is_dead_changed(is_true: bool) -> void:
+	if is_true: _on_character_body_3d_player_died()
+
+
 # --- Targeting blocks -------------------------------------------------------
 
 func get_targeted_block() -> VoxelRaycast.Hit:
@@ -101,10 +109,10 @@ func _on_player_hit_pressed() -> void:
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null or hud.held_item == null: return
-	if target.cell.y < MIN_BUILD_HEIGHT:
+	if target.place_cell.y < MIN_BUILD_HEIGHT:
 		hud._chat_print("Cannot build below Y:0")
 		return
-	if target.cell.y > MAX_BUILD_HEIGHT:
+	if target.place_cell.y > MAX_BUILD_HEIGHT:
 		hud._chat_print("Cannot build above Y:64")
 		return
 	var def := Registry.get_item(hud.held_item.id)
@@ -277,7 +285,3 @@ func _unpack_grid(grid: GridMap, packed: PackedInt32Array) -> void:
 	grid.clear()
 	for i in range(0, packed.size(), 5):
 		grid.set_cell_item(Vector3i(packed[i], packed[i + 1], packed[i + 2]), packed[i + 3], packed[i + 4])
-
-
-func _on_player_is_dead_changed(is_true: bool) -> void:
-	if is_true: _on_character_body_3d_player_died()

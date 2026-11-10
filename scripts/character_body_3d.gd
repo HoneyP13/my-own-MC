@@ -24,7 +24,7 @@ extends CharacterBody3D
 @export var sprint_speed : float = 7.0
 ## How fast do we freefly?
 @export var freefly_speed : float = 20.0
-@export var crouch_speed : float = 5.0
+@export var crouch_speed : float = 2.0
 
 @export_group("Input Actions")
 ## Name of Input Action to move Left.

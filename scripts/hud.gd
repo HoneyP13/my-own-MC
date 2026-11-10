@@ -34,9 +34,10 @@ var cursor_icon: TextureRect
 const SLOT_NORMAL := Color(0.576, 0.576, 0.576)
 const SLOT_HOVER := Color(1, 1, 1)
 const ICON_SIZE := Vector2(56, 56)
-const FULL_HEART = preload("uid://blntmmpygjof2")
-const HALF_HEART = preload("uid://cyfclxjq2w87m")
-const EMPTY_HEART = preload("uid://d0j2n8w1nl812")
+
+const FULL_HEART = preload("uid://djyw2tavut04a")
+const HALF_HEART = preload("uid://7l7eaqncaxjt")
+const EMPTY_HEART = preload("uid://b5cis83cjqupe")
 
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
@@ -341,14 +342,12 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 							_chat_print("Unknown command: \"" + cmd + "\"")
 			"clear":
 				chat_history.clear()
-			"1hp": # New temp secret command, because I can't get the cube to work
-				player.hurt(19)
 			"give":
 				var item_id := StringName(parts[1]) if parts.size() > 1 else &""
 				if Registry.get_item(item_id) == null:
 					_chat_print("Unknown item: " + str(item_id))
 				else:
-					var amount := int(parts[2]) if parts.size() > 2 else 1
+					var amount := maxi(1, int(parts[2])) if parts.size() > 2 else 1
 					add_item(item_id, amount)
 					_chat_print("Gave %s: %d %s" % [player.username, amount, item_id])
 			_:

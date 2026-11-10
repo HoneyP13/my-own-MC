@@ -14,8 +14,14 @@
 [ext_resource type="BoxMesh" uid="uid://cly5evqwy7yd1" path="res://assets/meshes/blocks/torch.tres" id="13_21d3n"]
 [ext_resource type="BoxMesh" uid="uid://bbngdege4nuux" path="res://assets/meshes/blocks/log.tres" id="13_ptyle"]
 [ext_resource type="BoxMesh" uid="uid://c5fq5nasnodoi" path="res://assets/meshes/blocks/grass_block.tres" id="14_cx2io"]
+[ext_resource type="BoxMesh" uid="uid://dnyrijkusivx7" path="res://assets/meshes/blocks/blue_flower.tres" id="14_xlegy"]
+[ext_resource type="BoxMesh" uid="uid://q5bxv3dpiwej" path="res://assets/meshes/blocks/furnace.tres" id="15_nw1yx"]
+[ext_resource type="BoxMesh" uid="uid://q4uqr5h17swl" path="res://assets/meshes/blocks/iron_ore.tres" id="16_ftcee"]
+[ext_resource type="BoxMesh" uid="uid://2a4aoapwjvfw" path="res://assets/meshes/blocks/gold_ore.tres" id="17_qogbe"]
 [ext_resource type="BoxMesh" uid="uid://ds1a83qd2bpqq" path="res://assets/meshes/blocks/leaves.tres" id="17_smuq3"]
 [ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass_block.tres" id="18_k2i0r"]
+[ext_resource type="BoxMesh" uid="uid://dcqq2yillpcuk" path="res://assets/meshes/blocks/diamond_ore.tres" id="18_ntran"]
+[ext_resource type="BoxMesh" uid="uid://v6bbq6k3dgp1" path="res://assets/meshes/blocks/plank.tres" id="19_8qcg7"]
 [ext_resource type="BoxMesh" uid="uid://bvpvxxoc80hks" path="res://assets/meshes/blocks/bedrock.tres" id="19_10o61"]
 [ext_resource type="BoxMesh" uid="uid://b35h1klkb40si" path="res://assets/meshes/blocks/short_grass.tres" id="21_hmb8a"]
 
@@ -31,7 +37,25 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cx2io"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_cnkuy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75pwm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ptyle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5n0k"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_cptob"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smuq3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10o61"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmb8a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdel1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o14jv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umdqk"]
 
@@ -63,7 +87,7 @@ item/2/mesh_cast_shadow = 1
 item/2/shapes = [SubResource("BoxShape3D_cptob"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
-item/3/name = "grass"
+item/3/name = "grass_block"
 item/3/mesh = ExtResource("14_cx2io")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
@@ -91,7 +115,7 @@ item/6/mesh_cast_shadow = 1
 item/6/shapes = []
 item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/6/navigation_layers = 1
-item/9/name = "glass"
+item/9/name = "glass_block"
 item/9/mesh = ExtResource("18_k2i0r")
 item/9/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/9/mesh_cast_shadow = 1
@@ -133,32 +157,32 @@ item/15/mesh_cast_shadow = 1
 item/15/shapes = [SubResource("BoxShape3D_cx2io"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/15/navigation_layers = 1
-item/16/name = "clay"
+item/16/name = "clay_block"
 item/16/mesh = ExtResource("9_bjp6x")
 item/16/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/mesh_cast_shadow = 1
-item/16/shapes = []
+item/16/shapes = [SubResource("BoxShape3D_cnkuy"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/navigation_layers = 1
-item/17/name = "bricks"
+item/17/name = "brick_block"
 item/17/mesh = ExtResource("9_1oisa")
 item/17/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/17/mesh_cast_shadow = 1
-item/17/shapes = []
+item/17/shapes = [SubResource("BoxShape3D_75pwm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/17/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/17/navigation_layers = 1
 item/18/name = "gravel"
 item/18/mesh = ExtResource("11_21d3n")
 item/18/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/18/mesh_cast_shadow = 1
-item/18/shapes = []
+item/18/shapes = [SubResource("BoxShape3D_ptyle"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/18/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/18/navigation_layers = 1
 item/19/name = "chest"
 item/19/mesh = ExtResource("12_1oisa")
 item/19/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/mesh_cast_shadow = 1
-item/19/shapes = []
+item/19/shapes = [SubResource("BoxShape3D_e5n0k"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/navigation_layers = 1
 item/20/name = "torch"
@@ -168,4 +192,46 @@ item/20/mesh_cast_shadow = 1
 item/20/shapes = []
 item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/navigation_layers = 1
+item/21/name = "blue_flower"
+item/21/mesh = ExtResource("14_xlegy")
+item/21/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/21/mesh_cast_shadow = 1
+item/21/shapes = []
+item/21/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/21/navigation_layers = 1
+item/22/name = "furnace"
+item/22/mesh = ExtResource("15_nw1yx")
+item/22/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/22/mesh_cast_shadow = 1
+item/22/shapes = [SubResource("BoxShape3D_smuq3"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/22/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/22/navigation_layers = 1
+item/23/name = "iron_ore"
+item/23/mesh = ExtResource("16_ftcee")
+item/23/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/23/mesh_cast_shadow = 1
+item/23/shapes = [SubResource("BoxShape3D_10o61"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/23/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/23/navigation_layers = 1
+item/24/name = "gold_ore"
+item/24/mesh = ExtResource("17_qogbe")
+item/24/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/24/mesh_cast_shadow = 1
+item/24/shapes = [SubResource("BoxShape3D_hmb8a"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/24/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/24/navigation_layers = 1
+item/25/name = "diamond_ore"
+item/25/mesh = ExtResource("18_ntran")
+item/25/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/25/mesh_cast_shadow = 1
+item/25/shapes = [SubResource("BoxShape3D_mdel1"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/25/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/25/navigation_layers = 1
+item/26/name = "plank"
+item/26/mesh = ExtResource("19_8qcg7")
+item/26/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/26/mesh_cast_shadow = 1
+item/26/shapes = [SubResource("BoxShape3D_o14jv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/26/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/26/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

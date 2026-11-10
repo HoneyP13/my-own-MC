@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp8rd7c0bgqbj"
-path.s3tc="res://.godot/imported/crafting_table_side.png-2df5d460856c226e173b7889026b9b32.s3tc.ctex"
+uid="uid://drw8qap5gykyy"
+path.s3tc="res://.godot/imported/crafting_table_side_2.png-ad4f361f23ab7f6eb813e998c2ca900c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/crafting_table_side.png"
-dest_files=["res://.godot/imported/crafting_table_side.png-2df5d460856c226e173b7889026b9b32.s3tc.ctex"]
+source_file="res://assets/sprites/crafting_table_side_2.png"
+dest_files=["res://.godot/imported/crafting_table_side_2.png-ad4f361f23ab7f6eb813e998c2ca900c.s3tc.ctex"]
 
 [params]
 
