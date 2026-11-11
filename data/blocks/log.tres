@@ -7,4 +7,6 @@ script = ExtResource("1_jov61")
 id = &"log"
 mesh_name = "log"
 drop_id = &"log"
+hardness = 2.0
+tool_kind = &"axe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

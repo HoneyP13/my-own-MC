@@ -6,4 +6,6 @@
 script = ExtResource("1_frk1q")
 id = &"glass_block"
 mesh_name = "glass_block"
+drop_id = &"glass_block"
+hardness = 0.3
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

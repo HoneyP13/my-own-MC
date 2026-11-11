@@ -7,4 +7,6 @@ script = ExtResource("1_5vtos")
 id = &"gold_ore"
 mesh_name = "gold_ore"
 drop_id = &"gold_ore"
+hardness = 3.5
+tool_kind = &"pickaxe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

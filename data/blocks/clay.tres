@@ -7,4 +7,6 @@ script = ExtResource("1_u8oxl")
 id = &"clay_block"
 mesh_name = "clay_block"
 drop_id = &"clay"
+hardness = 0.6
+tool_kind = &"shovel"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

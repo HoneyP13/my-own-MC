@@ -7,4 +7,6 @@ script = ExtResource("1_aoimj")
 id = &"coal_ore"
 mesh_name = "coal_ore"
 drop_id = &"coal"
+hardness = 3.0
+tool_kind = &"pickaxe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

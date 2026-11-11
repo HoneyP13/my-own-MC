@@ -7,4 +7,5 @@ script = ExtResource("1_pt6du")
 id = &"blue_flower"
 mesh_name = "blue_flower"
 drop_id = &"blue_flower"
+hardness = 0.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

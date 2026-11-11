@@ -7,4 +7,5 @@ script = ExtResource("1_xmher")
 id = &"red_flower"
 mesh_name = "red_flower"
 drop_id = &"red_flower"
+hardness = 0.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

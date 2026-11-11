@@ -191,25 +191,35 @@ func get_targeted_block() -> VoxelRaycast.Hit:
 	return VoxelRaycast.cast_ray(grid_map, player.get_eye_position(), player.get_look_direction(), player.reach)
 
 func _on_player_hit_pressed() -> void:
-	var target := get_targeted_block()
-	var mob_hit := _raycast_mobs()
-	if not mob_hit.is_empty():
-		var d := player.get_eye_position().distance_to(mob_hit.position)
-		if target == null or d < target.distance:   # a mob in front beats a block behind it
-			(mob_hit.collider as Mob).hurt(ATTACK_DAMAGE, player.global_position)
-			return
-	if target == null: return
-	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
-	if block == null or block.hardness < 0.0: return   # unknown or unbreakable
-	grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
-	_broken[target.cell] = true
-	_reveal_neighbors(target.cell)
-	if block.drop_id != &"": hud.add_item(block.drop_id)
+	var mob := _mob_in_front(get_targeted_block())
+	if mob != null:
+		mob.hurt(ATTACK_DAMAGE, player.global_position)
+
+#func _on_player_hit_pressed() -> void:
+	#var target := get_targeted_block()
+	#var mob_hit := _raycast_mobs()
+	#if not mob_hit.is_empty():
+		#var d := player.get_eye_position().distance_to(mob_hit.position)
+		#if target == null or d < target.distance:   # a mob in front beats a block behind it
+			#(mob_hit.collider as Mob).hurt(ATTACK_DAMAGE, player.global_position)
+			#return
+	#if target == null: return
+	#var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
+	#if block == null or block.hardness < 0.0: return   # unknown or unbreakable
+	#grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
+	#_broken[target.cell] = true
+	#_reveal_neighbors(target.cell)
+	#if block.drop_id != &"": hud.add_item(block.drop_id)
 
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
-	if target == null or hud.held_item == null: return
+	if target == null: return
+	var hit_block := _block_for_item(target.item)
+	if hit_block != null and hit_block.id == &"crafting_table" and not player.is_crouching:
+		hud.set_ui_state(hud.UIState.CONTAINER)
+		return
+	if hud.held_item == null: return
 	if target.place_cell.y < MIN_BUILD_HEIGHT:
 		hud._chat_print("Cannot build below Y:0")
 		return
@@ -218,10 +228,8 @@ func _on_player_use_pressed() -> void:
 		return
 	var def := Registry.get_item(hud.held_item.id)
 	if def == null: return
-	# Only block items get used up; tools do whatever they define.
 	if def.use_on_block(self, target) and def is BlockItemDef:
 		_consume_held_item()
-
 
 func _consume_held_item() -> void:
 	var slot = hud.current_hotbar_slot
@@ -290,6 +298,130 @@ func _cell_overlaps_player(cell: Vector3i) -> bool:
 
 func world_to_cell(world_pos: Vector3) -> Vector3i:
 	return grid_map.local_to_map(grid_map.to_local(world_pos))
+
+const CRACK_STAGES := 10
+const NO_CELL := Vector3i(0, -999999, 0)
+const TOOL_SPEED := {"wooden": 2.0, "stone": 4.0, "iron": 6.0, "diamond": 8.0, "golden": 12.0}
+
+var _break_cell := NO_CELL
+var _break_progress := 0.0
+var _break_cooldown := 0.0
+var _crack: MeshInstance3D
+var _crack_mat: ShaderMaterial
+var _crack_textures: Array[ImageTexture] = []
+
+
+func _setup_crack() -> void:
+	# Random pixels get darker as the stage goes up. Swap in your own textures here later.
+	var order := range(256)
+	order.shuffle()
+	var rank := PackedInt32Array()
+	rank.resize(256)
+	for k in 256:
+		rank[order[k]] = k
+	for s in CRACK_STAGES:
+		var img := Image.create(16, 16, false, Image.FORMAT_RGBA8)
+		var limit := int(256 * 0.55 * (s + 1) / CRACK_STAGES)
+		for i in 256:
+			if rank[i] < limit:
+				img.set_pixel(i % 16, i / 16, Color(0, 0, 0, 0.65))
+		_crack_textures.append(ImageTexture.create_from_image(img))
+
+	var shader := Shader.new()
+	shader.code = """
+shader_type spatial;
+render_mode unshaded, depth_draw_never;
+uniform sampler2D crack_tex : filter_nearest, repeat_disable;
+varying vec3 p;
+varying vec3 n;
+void vertex() { p = VERTEX + vec3(0.5); n = NORMAL; }
+void fragment() {
+	vec3 a = abs(n);
+	vec2 uv = (a.x >= a.y && a.x >= a.z) ? p.zy : ((a.y >= a.z) ? p.xz : p.xy);
+	vec4 c = texture(crack_tex, uv);
+	ALBEDO = c.rgb;
+	ALPHA = c.a;
+}
+"""
+	_crack_mat = ShaderMaterial.new()
+	_crack_mat.shader = shader
+	var box := BoxMesh.new()
+	box.size = Vector3.ONE * 1.003
+	_crack = MeshInstance3D.new()
+	_crack.mesh = box
+	_crack.material_override = _crack_mat
+	_crack.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_crack.visible = false
+	add_child(_crack)
+
+
+func _block_for_item(item: int) -> BlockDef:
+	return Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(item))
+
+
+## Seconds needed to break `block` with whatever is in the player's hand.
+func _break_time(block: BlockDef) -> float:
+	if player.current_gamemode == player.Gamemode.CREATIVE: return 0.0
+	var speed := 1.0
+	var held = hud.held_item
+	if held != null:
+		var parts := String(held.id).split("_", false, 1)   # "stone_pickaxe" -> ["stone", "pickaxe"]
+		if parts.size() == 2 and StringName(parts[1]) == block.tool_kind and TOOL_SPEED.has(parts[0]):
+			speed = TOOL_SPEED[parts[0]]
+	return block.hardness / speed
+
+
+func _mob_in_front(target: VoxelRaycast.Hit) -> Mob:
+	var mob_hit := _raycast_mobs()
+	if mob_hit.is_empty(): return null
+	var d := player.get_eye_position().distance_to(mob_hit.position)
+	if target == null or d < target.distance:
+		return mob_hit.collider as Mob
+	return null
+
+
+func _stop_breaking() -> void:
+	_break_cell = NO_CELL
+	_break_progress = 0.0
+	_crack.visible = false
+
+
+func _update_breaking(delta: float) -> void:
+	_break_cooldown = maxf(_break_cooldown - delta, 0.0)
+	var holding : bool = Input.is_action_pressed(player.input_hit) and player.mouse_captured \
+		and hud.ui_state == hud.UIState.PLAYING
+	var t: VoxelRaycast.Hit = get_targeted_block() if holding else null
+	if t == null or _mob_in_front(t) != null:
+		_stop_breaking()
+		return
+	var block := _block_for_item(t.item)
+	if block == null or block.hardness < 0.0:
+		_stop_breaking()
+		return
+	if t.cell != _break_cell:
+		_break_cell = t.cell
+		_break_progress = 0.0
+	if _break_cooldown > 0.0: return
+	_break_progress += delta
+	var needed := _break_time(block)
+	if _break_progress >= needed:
+		_break_block(t.cell, block)
+		_stop_breaking()
+		_break_cooldown = 0.25
+		return
+	_crack.global_position = grid_map.to_global(grid_map.map_to_local(t.cell))
+	var stage := clampi(int(_break_progress / needed * CRACK_STAGES), 0, CRACK_STAGES - 1)
+	_crack_mat.set_shader_parameter("crack_tex", _crack_textures[stage])
+	_crack.visible = true
+
+
+func _break_block(cell: Vector3i, block: BlockDef) -> void:
+	grid_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
+	_broken[cell] = true
+	_reveal_neighbors(cell)
+	if block.drop_id != &"": hud.add_item(block.drop_id)
+
+
 
 
 # --- Save / load ------------------------------------------------------------

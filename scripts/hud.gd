@@ -66,6 +66,9 @@ const RECIPES := [
 	{"result": &"crafting_table", "count": 1, "ingredients": {&"plank": 4}},
 ]
 
+
+
+
 const SMELTING := [
 	{}
 ]
@@ -94,6 +97,14 @@ var inventory : Array
 var inv_craft_grid : Array
 var inv_craft_result
 var player_armor : Array
+var table_craft_grid : Array
+var craft_grid : Array          # whichever grid is active right now
+var craft_width := 2
+var table_menu: Panel
+var table_grid: GridContainer
+var table_result: TextureRect
+var table_inv: GridContainer
+var table_hotbar: HBoxContainer
 
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
@@ -102,9 +113,10 @@ const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
 func _init() -> void:
 	player_armor.resize(4)
 	inv_craft_grid.resize(4)
+	table_craft_grid.resize(9)
+	craft_grid = inv_craft_grid
 	inventory.resize(27)
 	hotbar.resize(9)
-
 
 
 func _ready() -> void:
@@ -113,9 +125,75 @@ func _ready() -> void:
 	player.open_inventory.connect(_on_open_inventory)
 	player.open_chat.connect(_on_open_chat)
 	player.open_debug_info.connect(_on_open_debug_info)
+	_build_table_menu()
 	_setup_inventory_slots()
 	refresh_slots()
 	_refresh_ui()
+
+func _make_slot() -> TextureRect:
+	var s := TextureRect.new()
+	s.custom_minimum_size = Vector2(64, 64)
+	s.texture = SLOT_NORMAL
+	return s
+
+
+func _build_table_menu() -> void:
+	table_menu = Panel.new()
+	table_menu.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	table_menu.visible = false
+	add_child(table_menu)
+	table_menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var center := CenterContainer.new()
+	table_menu.add_child(center)
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var window := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.333, 0.333, 0.333)
+	window.add_theme_stylebox_override("panel", sb)
+	center.add_child(window)
+
+	var margin := MarginContainer.new()
+	for side in ["left", "top", "right", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 12)
+	window.add_child(margin)
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 12)
+	margin.add_child(vbox)
+
+	var top := HBoxContainer.new()
+	top.alignment = BoxContainer.ALIGNMENT_CENTER
+	top.add_theme_constant_override("separation", 48)
+	vbox.add_child(top)
+	table_grid = GridContainer.new()
+	table_grid.columns = 3
+	top.add_child(table_grid)
+	for i in 9:
+		var s := _make_slot()
+		table_grid.add_child(s)
+		_wire_slot(s, SlotArea.CRAFTING_TABLE, i)
+	table_result = _make_slot()
+	table_result.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	top.add_child(table_result)
+	_wire_slot(table_result, SlotArea.RESULT, 0)
+
+	table_inv = GridContainer.new()
+	table_inv.columns = 9
+	vbox.add_child(table_inv)
+	for i in 27:
+		var s := _make_slot()
+		table_inv.add_child(s)
+		_wire_slot(s, SlotArea.INVENTORY, i)
+
+	table_hotbar = HBoxContainer.new()
+	table_hotbar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(table_hotbar)
+	for i in 9:
+		var s := _make_slot()
+		table_hotbar.add_child(s)
+		_wire_slot(s, SlotArea.HOTBAR, i)
+
 
 
 func _setup_inventory_slots() -> void:
@@ -153,6 +231,7 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
 	if area == SlotArea.HOTBAR: slots = hotbar
+	if area == SlotArea.CRAFTING_TABLE: slots = table_craft_grid
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: _left_click(slots, index)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
@@ -197,26 +276,64 @@ func _right_click(slots: Array, i: int) -> void:
 
 var craft_output = null   # {"id":..., "count":...} or null
 
-func _find_recipe() -> Dictionary:
-	var have := {}
-	for s in inv_craft_grid:
-		if s != null:
-			have[s.id] = have.get(s.id, 0) + 1   # one item per occupied slot
-	if have.is_empty(): return {}
-	for r in RECIPES:
-		var need: Dictionary = r.ingredients
-		if need.size() != have.size(): continue
-		var ok := true
-		for id in need:
-			if have.get(id, 0) != need[id]:
-				ok = false
-				break
-		if ok: return r
-	return {}
+func _grid_ids(grid: Array) -> Array:
+	var out := []
+	for s in grid:
+		out.append(s.id if s != null else &"")
+	return out
 
-func _update_craft_result() -> void:
-	var r := _find_recipe()
-	craft_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
+
+func _pattern_ids(pattern: Array) -> Array:
+	var out := []
+	for e in pattern:
+		out.append(e.keys()[0] if e != null else &"")
+	return out
+
+
+## Crops an id grid to its filled area, so shapes match wherever they sit in the grid.
+@warning_ignore("integer_division")
+func _trimmed(ids: Array, width: int) -> Dictionary:
+	var height := ids.size() / width
+	var min_x := width
+	var max_x := -1
+	var min_y := height
+	var max_y := -1
+	for i in ids.size():
+		if ids[i] == &"": continue
+		min_x = mini(min_x, i % width)
+		max_x = maxi(max_x, i % width)
+		min_y = mini(min_y, i / width)
+		max_y = maxi(max_y, i / width)
+	if max_x < 0: return {}
+	var out := []
+	for y in range(min_y, max_y + 1):
+		for x in range(min_x, max_x + 1):
+			out.append(ids[y * width + x])
+	return {"w": max_x - min_x + 1, "h": max_y - min_y + 1, "ids": out}
+
+
+func _find_recipe() -> Dictionary:
+	var ids := _grid_ids(craft_grid)
+	var shape := _trimmed(ids, craft_width)
+	if shape.is_empty(): return {}
+	var have := {}
+	for id in ids:
+		if id != &"": have[id] = have.get(id, 0) + 1
+	for r in RECIPES:
+		if r.ingredients is Dictionary:                 # shapeless
+			var need: Dictionary = r.ingredients
+			if need.size() != have.size(): continue
+			var ok := true
+			for id in need:
+				if have.get(id, 0) != need[id]:
+					ok = false
+					break
+			if ok: return r
+		else:                                           # shaped (3x3 pattern)
+			var pat := _trimmed(_pattern_ids(r.ingredients), 3)
+			if pat.w == shape.w and pat.h == shape.h and pat.ids == shape.ids:
+				return r
+	return {}
 
 
 func _take_result() -> void:
@@ -228,10 +345,32 @@ func _take_result() -> void:
 		cursor_item.count += craft_output.count
 	else:
 		return
-	for i in inv_craft_grid.size():          # use up one item from each filled slot
-		if inv_craft_grid[i] != null:
-			inv_craft_grid[i].count -= 1
-			if inv_craft_grid[i].count <= 0: inv_craft_grid[i] = null
+	for i in craft_grid.size():
+		if craft_grid[i] != null:
+			craft_grid[i].count -= 1
+			if craft_grid[i].count <= 0: craft_grid[i] = null
+
+
+func _return_cursor_item() -> void:
+	if cursor_item != null:
+		var stack = cursor_item
+		cursor_item = null
+		add_item(stack.id, stack.count)
+	for grid in [inv_craft_grid, table_craft_grid]:
+		for i in grid.size():
+			if grid[i] != null:
+				add_item(grid[i].id, grid[i].count)
+				grid[i] = null
+	refresh_slots()
+
+
+
+
+func _update_craft_result() -> void:
+	var r := _find_recipe()
+	craft_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
+
+
 
 
 func _process(_delta: float) -> void:
@@ -325,44 +464,40 @@ func update_inventory() -> void:
 	for i in inventory_crafting.get_child_count():
 		_fill_slot(inventory_crafting.get_child(i), inv_craft_grid[i])
 	_fill_slot(craft_result, craft_output)
+	for i in table_grid.get_child_count():
+		_fill_slot(table_grid.get_child(i), table_craft_grid[i])
+	for i in table_inv.get_child_count():
+		_fill_slot(table_inv.get_child(i), inventory[i])
+	for i in table_hotbar.get_child_count():
+		_fill_slot(table_hotbar.get_child(i), hotbar[i])
+	_fill_slot(table_result, craft_output)
 
 
 func _icon_for(stack: StringName) -> Texture2D:
 	return Registry.get_item(stack).icon
 
 
-func _return_cursor_item() -> void:
-	if cursor_item == null: return
-	var stack = cursor_item
-	cursor_item = null
-	add_item(stack.id, stack.count)   # merges into existing stacks, then empty slots
-	for i in inv_craft_grid:
-		if i == null: return
-		add_item(i["id"], i["count"])
-		i = null
-	if craft_output == null: return
-	add_item(craft_output["id"], craft_output["count"])
-	craft_output = null
 	
 
 # ---------------------------------------------------------------------------------------------
 # UI state
 # ---------------------------------------------------------------------------------------------
 
-## Switch to a different screen. This is the only function that changes ui_state.
 func set_ui_state(new_state: UIState) -> void:
 	var old_state := ui_state
 	ui_state = new_state
+	craft_grid = table_craft_grid if new_state == UIState.CONTAINER else inv_craft_grid
+	craft_width = 3 if new_state == UIState.CONTAINER else 2
 	_refresh_ui()
-	if old_state == UIState.INVENTORY and new_state != UIState.INVENTORY:
+	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER
+	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER
+	if was_crafting and not is_crafting:
 		_return_cursor_item()
 	if old_state == UIState.CHAT and new_state != UIState.CHAT:
 		type_interface.release_focus()
-	# Tell the player what's going on. Any screen at all frees the mouse and stops it
-	# from moving around; only the pause menu actually freezes it.
 	player.set_menu_open(new_state != UIState.PLAYING)
 	player.set_game_paused(new_state == UIState.PAUSED or new_state == UIState.SETTINGS)
-
+	refresh_slots()
 
 ## Show exactly the panels that belong to the current state, and hide the rest.
 func _refresh_ui() -> void:
@@ -376,21 +511,21 @@ func _refresh_ui() -> void:
 	death_screen.visible = s == UIState.DEAD
 	# The debug overlay (toggled with the debug key) hides behind the inventory and pause menus.
 	debug_info.visible = world.is_debug_enabled and (s == UIState.PLAYING or s == UIState.CHAT or s == UIState.DEAD)
-
+	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER
+	table_menu.visible = s == UIState.CONTAINER
 
 ## Inventory key. Opens the inventory while playing, closes it again, and does nothing anywhere else.
 func _on_open_inventory() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.INVENTORY)
-		UIState.INVENTORY: set_ui_state(UIState.PLAYING)
-
+		UIState.INVENTORY, UIState.CONTAINER: set_ui_state(UIState.PLAYING)
 
 
 ## Escape key (also used by the Resume button): back out of whatever is open.
 func _on_open_menu() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.PAUSED)
-		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED: set_ui_state(UIState.PLAYING)
+		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER: set_ui_state(UIState.PLAYING)
 		UIState.SETTINGS: set_ui_state(UIState.PAUSED) # back to the pause menu
 		# DEAD: Escape does nothing. You have to hit Respawn.
 

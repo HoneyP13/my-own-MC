@@ -7,4 +7,6 @@ script = ExtResource("1_wyjrb")
 id = &"cobblestone"
 mesh_name = "cobblestone"
 drop_id = &"cobblestone"
+hardness = 2.0
+tool_kind = &"pickaxe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

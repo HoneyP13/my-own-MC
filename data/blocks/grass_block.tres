@@ -7,4 +7,6 @@ script = ExtResource("1_wygft")
 id = &"grass_block"
 mesh_name = "grass_block"
 drop_id = &"dirt"
+hardness = 0.6
+tool_kind = &"shovel"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

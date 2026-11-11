@@ -7,4 +7,6 @@ script = ExtResource("1_6vy8s")
 id = &"brick_block"
 mesh_name = "brick_block"
 drop_id = &"brick_block"
+hardness = 2.0
+tool_kind = &"pickaxe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"
