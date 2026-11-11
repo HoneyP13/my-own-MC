@@ -36,6 +36,7 @@ func _ready() -> void:
 	death_quit_button.pressed.connect(get_tree().quit)
 	if fluids_map.mesh_library == null:
 		fluids_map.mesh_library = preload("uid://bt86017oxii2w")
+		_setup_water_surface()
 	if not load_game():
 		world_seed = randi()
 		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
@@ -43,6 +44,66 @@ func _ready() -> void:
 	for b in Registry.blocks.values():
 		if grid_map.mesh_library.find_item_by_name(b.mesh_name) == GridMap.INVALID_CELL_ITEM:
 			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
+
+func _setup_water_surface() -> void:
+	var lib := fluids_map.mesh_library
+	if lib.find_item_by_name("water_surface") != GridMap.INVALID_CELL_ITEM: return
+	var water_id := lib.find_item_by_name("water")
+	var plane := PlaneMesh.new()
+	plane.size = Vector2.ONE
+	plane.material = lib.get_item_mesh(water_id).material
+	var id := lib.get_last_unused_item_id()
+	lib.create_item(id)
+	lib.set_item_name(id, "water_surface")
+	lib.set_item_mesh(id, plane)
+	lib.set_item_mesh_transform(id, Transform3D(Basis.IDENTITY, Vector3(0, 0.4, 0)))
+	lib.set_item_mesh(water_id, null)   # interior water: logic only, nothing drawn
+
+@onready var env: Environment = $Environment.environment
+
+func fluid_at(pos: Vector3) -> StringName:
+	var local := fluids_map.to_local(pos)
+	var cell := fluids_map.local_to_map(local)
+	var item := fluids_map.get_cell_item(cell)
+	if item == GridMap.INVALID_CELL_ITEM: return &""
+	match fluids_map.mesh_library.get_item_name(item):
+		"lava": return &"lava"
+		"water": return &"water"
+		"water_surface":
+			return &"water" if local.y - cell.y < 0.9 else &""   # above the plane = out of the water
+	return &""
+
+func _update_fog() -> void:
+	var f := fluid_at(player.get_eye_position())
+	env.fog_enabled = f != &""
+	if f == &"water":
+		env.fog_light_color = Color(0.1, 0.3, 0.6); env.fog_density = 0.08
+	elif f == &"lava":
+		env.fog_light_color = Color(0.9, 0.3, 0.05); env.fog_density = 0.6
+
+const MOB_COUNT := 12
+const ATTACK_DAMAGE := 2
+
+func spawn_mobs() -> void:
+	var half := WORLD_RADIUS_CHUNKS * TerrainGenerator.CHUNK_SIZE
+	var spawned := 0
+	for _try in 300:
+		if spawned >= MOB_COUNT: break
+		var x := randi_range(-half, half - 1)
+		var z := randi_range(-half, half - 1)
+		var h := generator.height_at(x, z)
+		if h <= SEA_LEVEL + 1 or generator.has_tree(x, z): continue
+		var mob := Mob.new()
+		add_child(mob)
+		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)
+		spawned += 1
+
+
+func _raycast_mobs() -> Dictionary:
+	var from := player.get_eye_position()
+	var to := from + player.get_look_direction() * player.reach
+	var q := PhysicsRayQueryParameters3D.create(from, to, 2)   # mask: layer 2 only
+	return get_world_3d().direct_space_state.intersect_ray(q)
 
 
 func _on_save_quit_pressed() -> void:
@@ -59,20 +120,25 @@ func _on_void_body_exited(body: Node3D) -> void:
 	if body == player: entered_void = false
 
 var entered_void : bool = false
-
 var hurt_timer := 0.0
+const LAVA_DAMAGE := 2
+const LAVA_INTERVAL := 0.5
+
 func _process(delta: float) -> void:
 	if player.is_game_paused: return
-	elif entered_void and not player.is_dead:
+	_update_fog()
+	var in_lava := fluid_at(player.global_position) == &"lava" \
+		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
+	if (entered_void or in_lava) and not player.is_dead:
 		player.taking_damage = true
 		hurt_timer += delta
-		if hurt_timer >= 0.8:
+		var interval := LAVA_INTERVAL if in_lava else 0.8
+		if hurt_timer >= interval:
 			hurt_timer = 0.0
-			player.hurt(5)
+			player.hurt(LAVA_DAMAGE if in_lava else 5)
 	else:
 		hurt_timer = 0.0
 		player.taking_damage = false
-
 
 func _on_character_body_3d_player_died() -> void:
 	hud.set_ui_state(hud.UIState.DEAD)
@@ -93,9 +159,14 @@ func _on_player_is_dead_changed(is_true: bool) -> void:
 func get_targeted_block() -> VoxelRaycast.Hit:
 	return VoxelRaycast.cast_ray(grid_map, player.get_eye_position(), player.get_look_direction(), player.reach)
 
-
 func _on_player_hit_pressed() -> void:
 	var target := get_targeted_block()
+	var mob_hit := _raycast_mobs()
+	if not mob_hit.is_empty():
+		var d := player.get_eye_position().distance_to(mob_hit.position)
+		if target == null or d < target.distance:   # a mob in front beats a block behind it
+			(mob_hit.collider as Mob).hurt(ATTACK_DAMAGE, player.global_position)
+			return
 	if target == null: return
 	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
 	if block == null or block.hardness < 0.0: return   # unknown or unbreakable
@@ -160,18 +231,6 @@ func _log_orientation(normal: Vector3i) -> int:
 	return grid_map.get_orthogonal_index_from_basis(b)
 
 
-#func _y_orientation(rot: float) -> int:
-	#var b := Basis.IDENTITY
-	#if rot >= 90:
-		#b = Basis(Vector3.LEFT, PI)
-	#elif rot >= 180:
-		#b = Basis(Vector3.FORWARD, PI / 2.0)
-	#elif rot >= 270:
-		#b = Basis(Vector3.RIGHT, PI)
-	#return grid_map.get_orthogonal_index_from_basis(b)
-
-
-
 func _on_player_select_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null: return
@@ -189,7 +248,6 @@ func _on_player_drop_item_pressed() -> void:
 	#if item_id == GridMap.INVALID_CELL_ITEM: return
 	hud.hotbar[hud.current_hotbar_slot] = null
 	hud.refresh_slots()
-
 
 
 func _cell_overlaps_player(cell: Vector3i) -> bool:

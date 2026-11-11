@@ -15,7 +15,8 @@ varying vec3 world_normal;
 
 void vertex() {
 	VERTEX.xz -= NORMAL.xz * side_shrink;
-	VERTEX.y -= NORMAL.y * top_shrink;
+	if (NORMAL.y > 0.5) VERTEX.y -= top_shrink;       // only the top comes down
+	else if (NORMAL.y < -0.5) VERTEX.y += 0.01;       // avoid z-fighting with the block below
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
 }
@@ -26,9 +27,10 @@ void fragment() {
 	// which made plants 1.5x too bright.)
 	vec3 w = pow(abs(world_normal.xzy), vec3(8.0));
 	w /= max(w.x + w.z + w.y, 0.00001);
-
+	
+	vec2 uv_y = 1.0 - world_pos.zx;
+	vec4 tex_y = world_normal.y > 0.0 ? texture(top_texture, uv_y) : texture(bottom_texture, uv_y);
 	vec4 tex_x = texture(side_texture, 1.0 - world_pos.zy);
-	vec4 tex_y = texture(top_texture, 1.0 - world_pos.zx);
 	vec4 tex_z = texture(side_texture, 1.0 - world_pos.xy);
 	vec4 c = tex_x * w.x + tex_y * w.z + tex_z * w.y;
 

@@ -184,15 +184,23 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Apply gravity to velocity
-	if has_gravity:
-		if not is_on_floor():
-			velocity += get_gravity() * delta
+	var world := get_parent()
+	var fluid: StringName = world.fluid_at(global_position)
+	var in_fluid := fluid != &""
 
+	if has_gravity and not is_on_floor():
+		velocity += get_gravity() * delta * (0.15 if in_fluid else 1.0)
+	if in_fluid:
+		velocity.y = clampf(velocity.y, -2.0, 4.0)
+		if Input.is_action_pressed(input_jump) and not is_menu_open:
+			velocity.y = swim_speed
+	
 	# Apply jumping
 	if can_jump and not is_menu_open:
 		if Input.is_action_just_pressed(input_jump) and is_on_floor():
 			velocity.y = jump_velocity
-
+	
+	
 	# Hold to crouch; only stand back up if there's room above you
 	var want_crouch := Input.is_action_pressed(input_crouch) and not is_menu_open
 	if want_crouch and not is_crouching:
@@ -208,7 +216,8 @@ func _physics_process(delta: float) -> void:
 		move_speed = sprint_speed
 	else:
 		move_speed = base_speed
-
+	if in_fluid: move_speed = swim_speed if fluid == &"water" else swim_speed * 0.5
+	
 	# Apply desired movement to velocity
 	if can_move:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)

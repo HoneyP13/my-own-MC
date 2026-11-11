@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode vertex_lighting;
+render_mode vertex_lighting, cull_disabled;
 
 uniform float transparency: hint_range(0.0, 1.0) = 0.0;
 uniform bool emissive = false;

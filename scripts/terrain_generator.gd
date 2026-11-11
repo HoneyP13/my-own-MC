@@ -123,10 +123,10 @@ func generate_chunk(chunk: Vector2i, terrain: GridMap, fluids: GridMap) -> void:
 				_place(terrain, Vector3i(x, y, z), block_at(x, y, z))
 
 			# Water fills lakes up to sea level.
-			if water_id != GridMap.INVALID_CELL_ITEM:
-				for y in range(h + 1, sea_level + 1):
-					fluids.set_cell_item(Vector3i(x, y, z), water_id)
-
+			var surface_id := fluids.mesh_library.find_item_by_name("water_surface")
+			for y in range(h + 1, sea_level + 1):
+				fluids.set_cell_item(Vector3i(x, y, z), surface_id if y == sea_level else water_id)
+				
 			# Grass tufts and flowers
 			if h > sea_level + 1:
 				var r := _hash(x, 1, z, 17) % 100
