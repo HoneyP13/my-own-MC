@@ -3,8 +3,8 @@ extends CanvasLayer
 ## Which screen is up. This is the ONE place that answers "what's on screen right now?".
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
-enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD }
-enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR }
+enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER }
+enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FURNACE, CRAFTING_TABLE }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
@@ -53,18 +53,22 @@ const FULL_SHANK = preload("uid://cq2wuxythsc3")
 const HALF_SHANK = preload("uid://b0x815uer06mj")
 const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
 
-const CRAFTING_RECIPES := {
-	&"plank" : {"id":&"log","count":1.0/4.0}, # was trying to get the equivalent of x4 by dividing in reverse
-	&"stick" : {"id":&"plank","count":2.0/4.0}, # same trick here
-	#&"wooden_axe" : {"id":&"plank","count":2.0/4.0}, I forgot to even add one, oops
-	#&"wooden_pickaxe" : {"id":&"plank","count":2.0/4.0},
-	#&"wooden_sword" : {"id":&"plank","count":2.0/4.0},
-	#&"wooden_hoe" : {"id":&"plank","count":2.0/4.0},
-	#&"wooden_shovel" : {"id":&"plank","count":2.0/4.0},
-	#&"torch" : {"id":&"coal","id":&"stick"},
-}
+const RECIPES := [
+	{"result": &"plank", "count": 4, "ingredients": {&"log": 1}},
+	{"result": &"stick", "count": 4, "ingredients": {&"plank": 2}},
+	{"result": &"torch", "count": 4, "ingredients": {&"coal": 1, &"stick": 1}},
+	{"result": &"snow_block", "count": 1, "ingredients": {&"snowball": 4}},
+	{"result": &"crafting_table", "count": 1, "ingredients": {&"plank": 4}},
+	{"result": &"wooden_pickaxe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, {&"plank": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
+	{"result": &"wooden_shovel", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
+	{"result": &"wooden_sword", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"plank": 1,}, null, null, {&"stick": 1,}, null]},
+	{"result": &"wood_block", "count": 3, "ingredients": {&"log": 4}},
+	{"result": &"crafting_table", "count": 1, "ingredients": {&"plank": 4}},
+]
 
-
+const SMELTING := [
+	{}
+]
 
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
@@ -141,7 +145,10 @@ func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	var slots: Array
-	if area == SlotArea.RESULT: return
+	if area == SlotArea.RESULT:
+		if event.button_index == MOUSE_BUTTON_LEFT: _take_result()
+		refresh_slots()
+		return
 	if area == SlotArea.ARMOR: slots = player_armor
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
@@ -188,6 +195,44 @@ func _right_click(slots: Array, i: int) -> void:
 		cursor_item.count -= 1
 		if cursor_item.count <= 0: cursor_item = null
 
+var craft_output = null   # {"id":..., "count":...} or null
+
+func _find_recipe() -> Dictionary:
+	var have := {}
+	for s in inv_craft_grid:
+		if s != null:
+			have[s.id] = have.get(s.id, 0) + 1   # one item per occupied slot
+	if have.is_empty(): return {}
+	for r in RECIPES:
+		var need: Dictionary = r.ingredients
+		if need.size() != have.size(): continue
+		var ok := true
+		for id in need:
+			if have.get(id, 0) != need[id]:
+				ok = false
+				break
+		if ok: return r
+	return {}
+
+func _update_craft_result() -> void:
+	var r := _find_recipe()
+	craft_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
+
+
+func _take_result() -> void:
+	if craft_output == null: return
+	var max_stack := Registry.get_item(craft_output.id).max_stack
+	if cursor_item == null:
+		cursor_item = craft_output.duplicate()
+	elif cursor_item.id == craft_output.id and cursor_item.count + craft_output.count <= max_stack:
+		cursor_item.count += craft_output.count
+	else:
+		return
+	for i in inv_craft_grid.size():          # use up one item from each filled slot
+		if inv_craft_grid[i] != null:
+			inv_craft_grid[i].count -= 1
+			if inv_craft_grid[i].count <= 0: inv_craft_grid[i] = null
+
 
 func _process(_delta: float) -> void:
 	if cursor_icon.visible:
@@ -224,6 +269,7 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 
 
 func refresh_slots() -> void:
+	_update_craft_result()
 	rebuild_hotbar()
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
@@ -278,6 +324,7 @@ func update_inventory() -> void:
 		_fill_slot(armor_slots.get_child(i), player_armor[i])
 	for i in inventory_crafting.get_child_count():
 		_fill_slot(inventory_crafting.get_child(i), inv_craft_grid[i])
+	_fill_slot(craft_result, craft_output)
 
 
 func _icon_for(stack: StringName) -> Texture2D:
@@ -289,7 +336,14 @@ func _return_cursor_item() -> void:
 	var stack = cursor_item
 	cursor_item = null
 	add_item(stack.id, stack.count)   # merges into existing stacks, then empty slots
-
+	for i in inv_craft_grid:
+		if i == null: return
+		add_item(i["id"], i["count"])
+		i = null
+	if craft_output == null: return
+	add_item(craft_output["id"], craft_output["count"])
+	craft_output = null
+	
 
 # ---------------------------------------------------------------------------------------------
 # UI state
@@ -377,7 +431,7 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 		match cmd:
 			"help":
 				if parts.size() == 1:
-					_chat_print("Available commands: /clear, /give")
+					_chat_print("Available commands: /clear, /give, /gamemode")
 				else:
 					arg_1 = parts[1] if parts.size() > 1 else ""
 					match arg_1:
@@ -385,6 +439,8 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 							_chat_print("Usage: /clear (clears chat history)")
 						"give":
 							_chat_print("Usage: /give(self) [item] [amount]")
+						"gamemode":
+							_chat_print("Usage: /gamemode s (survival) / c (creative)")
 						_:
 							_chat_print("Unknown command: \"" + cmd + "\"")
 			"clear":
@@ -397,6 +453,13 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 					var amount := maxi(1, int(parts[2])) if parts.size() > 2 else 1
 					add_item(item_id, amount)
 					_chat_print("Gave %s: %d %s" % [player.username, amount, item_id])
+			"gamemode":
+				arg_1 = parts[1] if parts.size() > 1 else ""
+				match arg_1:
+					"c", "creative":
+						player.current_gamemode = player.Gamemode.CREATIVE
+					"s", "survival":
+						player.current_gamemode = player.Gamemode.SURVIVAL
 			_:
 				_chat_print("Unknown command: \"/" + cmd + "\"")
 	else:
@@ -425,3 +488,12 @@ func _on_player_health_changed(hp: int) -> void:
 		elif hearts <= 0.0: icon.texture = EMPTY_HEART
 		elif hearts >= 1.0: icon.texture = FULL_HEART
 		hearts -= 1.0
+
+
+func _on_player_current_gamemode_changed(Gamemode: Variant) -> void:
+	health_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
+	hunger_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
+	player.can_freefly = true if Gamemode == player.Gamemode.CREATIVE else false
+	if player.freeflying: player.disable_freefly()
+	
+	

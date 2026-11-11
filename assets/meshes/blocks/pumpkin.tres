@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://bhhgmetk7r2vb"]
+
+[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_fh6xn"]
+[ext_resource type="Texture2D" uid="uid://ccbx2egnpqffg" path="res://assets/sprites/pumpkin_bottom.png" id="2_wd8ic"]
+[ext_resource type="Texture2D" uid="uid://dxqelmqw2s2o5" path="res://assets/sprites/pumpkin_side.png" id="3_kfl27"]
+[ext_resource type="Texture2D" uid="uid://bfynner3d85o7" path="res://assets/sprites/pumpkin_top.png" id="4_f1hss"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
+render_priority = 0
+shader = ExtResource("1_fh6xn")
+shader_parameter/texture_top = ExtResource("4_f1hss")
+shader_parameter/texture_side = ExtResource("3_kfl27")
+shader_parameter/texture_bottom = ExtResource("2_wd8ic")
+
+[resource]
+material = SubResource("ShaderMaterial_p88hg")

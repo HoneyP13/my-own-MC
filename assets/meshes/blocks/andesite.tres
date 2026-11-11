@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://bahig3vmp5x5b"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_2jkg1"]
+[ext_resource type="Texture2D" uid="uid://ctofp4cije5y6" path="res://assets/sprites/andesite.png" id="2_2jkg1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_2jkg1")
+shader_parameter/texture_2d = ExtResource("2_2jkg1")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

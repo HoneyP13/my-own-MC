@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://camdpgnae67gx"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_rdhwo"]
+[ext_resource type="Texture2D" uid="uid://b7xtqrghvwx2p" path="res://assets/sprites/diamond_block.png" id="2_rdhwo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_rdhwo")
+shader_parameter/texture_2d = ExtResource("2_rdhwo")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

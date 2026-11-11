@@ -94,6 +94,13 @@ signal use_pressed()
 signal select_pressed()
 signal drop_item_pressed()
 signal scrolled(is_up: bool)
+enum Gamemode { SURVIVAL, CREATIVE }
+signal current_gamemode_changed(Gamemode)
+var current_gamemode = Gamemode.CREATIVE:
+	set(value):
+		current_gamemode = value
+		current_gamemode_changed.emit(current_gamemode)
+var can_be_hurt : bool = false
 enum { LIQUID, ENTITY, BLOCK }
 
 ## IMPORTANT REFERENCES
@@ -240,6 +247,7 @@ var taking_damage : bool = false
 
 var regen_timer := 0.0
 func _process(delta: float) -> void:
+	if current_gamemode == Gamemode.CREATIVE: return
 	if is_game_paused: return
 	elif health < FULL_HEALTH and not is_dead and not taking_damage:
 		regen_timer += delta
@@ -385,3 +393,7 @@ func check_input_mappings():
 
 func _on_is_dead_changed(is_true: bool) -> void:
 	hud._chat_print("is dead = "+str(is_true))
+
+
+func _on_current_gamemode_changed(gamemode: Variant) -> void:
+	can_be_hurt = false if gamemode == Gamemode.CREATIVE else true

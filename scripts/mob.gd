@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	_knockback = _knockback.move_toward(Vector3.ZERO, 20.0 * delta)
 	if _dir != Vector3.ZERO:
 		rotation.y = atan2(-_dir.x, -_dir.z)
-		if is_on_wall() and is_on_floor(): velocity.y = 5.0   # hop up one block
+		if is_on_wall() and is_on_floor(): velocity.y = 10.0   # hop up one block
 	move_and_slide()
 	if world.fluid_at(global_position) == &"lava":
 		hurt(1, global_position)

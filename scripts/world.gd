@@ -36,7 +36,7 @@ func _ready() -> void:
 	death_quit_button.pressed.connect(get_tree().quit)
 	if fluids_map.mesh_library == null:
 		fluids_map.mesh_library = preload("uid://bt86017oxii2w")
-		_setup_water_surface()
+	_setup_water_surface()
 	if not load_game():
 		world_seed = randi()
 		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
@@ -44,6 +44,33 @@ func _ready() -> void:
 	for b in Registry.blocks.values():
 		if grid_map.mesh_library.find_item_by_name(b.mesh_name) == GridMap.INVALID_CELL_ITEM:
 			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
+	spawn_mobs.call_deferred()
+	_setup_outline()
+
+var outline: MeshInstance3D
+
+func _setup_outline() -> void:
+	var im := ImmediateMesh.new()
+	im.surface_begin(Mesh.PRIMITIVE_LINES)
+	for i in 8:
+		var a := (Vector3(i & 1, (i >> 1) & 1, (i >> 2) & 1) - Vector3.ONE * 0.5) * 1.005
+		for bit in [1, 2, 4]:
+			if i & bit == 0:
+				var j: int = i | bit
+				var b := (Vector3(j & 1, (j >> 1) & 1, (j >> 2) & 1) - Vector3.ONE * 0.5) * 1.005
+				im.surface_add_vertex(a)
+				im.surface_add_vertex(b)
+	im.surface_end()
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_color = Color(0, 0, 0, 0.8)
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	im.surface_set_material(0, mat)
+	outline = MeshInstance3D.new()
+	outline.mesh = im
+	outline.visible = false
+	add_child(outline)
+
 
 func _setup_water_surface() -> void:
 	var lib := fluids_map.mesh_library
@@ -126,10 +153,14 @@ const LAVA_INTERVAL := 0.5
 
 func _process(delta: float) -> void:
 	if player.is_game_paused: return
+	var t := get_targeted_block()
+	outline.visible = t != null and hud.ui_state == hud.UIState.PLAYING
+	if outline.visible:
+		outline.global_position = grid_map.to_global(grid_map.map_to_local(t.cell))
 	_update_fog()
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
-	if (entered_void or in_lava) and not player.is_dead:
+	if (entered_void or in_lava) and not player.is_dead and player.can_be_hurt:
 		player.taking_damage = true
 		hurt_timer += delta
 		var interval := LAVA_INTERVAL if in_lava else 0.8
@@ -270,6 +301,7 @@ func save_game() -> void:
 		"fluids": _pack_grid(fluids_map),
 		"player_pos": player.global_position,
 		"player_look": player.look_rotation,
+		"gamemode": player.current_gamemode,
 		"hotbar": hud.hotbar,
 		"slot": hud.current_hotbar_slot,
 		"inventory": hud.inventory,
@@ -303,6 +335,7 @@ func load_game() -> bool:
 	player.global_position = data["player_pos"]
 	player.look_rotation = data["player_look"]
 	player.rotate_look(Vector2.ZERO)  # re-applies look_rotation to the body and head
+	player.current_gamemode = data["gamemode"]
 
 	hud.hotbar = data["hotbar"]
 	hud.inventory = data["inventory"]

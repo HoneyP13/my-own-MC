@@ -1,0 +1,10 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://c8sckgpc0uunu"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_wplch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_wplch")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

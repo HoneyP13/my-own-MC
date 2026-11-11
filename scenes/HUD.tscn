@@ -698,6 +698,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Gameplay"
 
+[node name="Stats" type="Button" parent="SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer" unique_id=921704992]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Stats"
+
 [node name="Sounds" type="Button" parent="SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer" unique_id=793411052]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
@@ -713,6 +719,12 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Graphics"
+
+[node name="Advancements" type="Button" parent="SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=367409625]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Advancements"
 
 [node name="Debug" type="Button" parent="SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=26831687]
 layout_mode = 2
