@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://28cukqa3cjv8"]
+
+[ext_resource type="Texture2D" uid="uid://b58qcvbtwcbsb" path="res://assets/sprites/clay.png" id="1_7pkes"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_pa8bm"]
+
+[resource]
+script = ExtResource("2_pa8bm")
+id = &"clay"
+display_name = "clay"
+icon = ExtResource("1_7pkes")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

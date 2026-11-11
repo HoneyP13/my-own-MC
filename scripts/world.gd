@@ -8,7 +8,7 @@ const NEIGHBORS: Array[Vector3i] = [
 
 var generator: TerrainGenerator
 var world_seed := 0
-var _broken := {}   # cells the player has dug out, so we never "refill" themconst MIN_BUILD_HEIGHT := 0
+var _broken := {}   # cells the player has dug out, so we never "refill" them
 const MIN_BUILD_HEIGHT := 0
 const MAX_BUILD_HEIGHT := 64
 const SEA_LEVEL := 10
@@ -40,7 +40,6 @@ func _ready() -> void:
 		world_seed = randi()
 		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
 		generate_world()
-		spawnpoint = generator.find_spawn()
 	for b in Registry.blocks.values():
 		if grid_map.mesh_library.find_item_by_name(b.mesh_name) == GridMap.INVALID_CELL_ITEM:
 			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
@@ -138,10 +137,16 @@ func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 	if item_id == GridMap.INVALID_CELL_ITEM: return false
 	if grid_map.get_cell_item(cell) != GridMap.INVALID_CELL_ITEM: return false
 	if _cell_overlaps_player(cell): return false
-	var orientation := _log_orientation(hit.normal) if block_id == &"log" else 0
-	#orientation = _y_orientation(player.look_rotation.y) if block_id == &"chest" else 0
+	var orientation := 0
+	match block_id:
+		&"log": orientation = _log_orientation(hit.normal)
+		&"chest", &"furnace": orientation = _facing_orientation()
 	grid_map.set_cell_item(cell, item_id, orientation)
 	return true
+
+func _facing_orientation() -> int:
+	var yaw := roundf(player.look_rotation.y / (PI / 2.0)) * (PI / 2.0)
+	return grid_map.get_orthogonal_index_from_basis(Basis(Vector3.UP, yaw))
 
 
 ## Orientation index that points a log's end caps along the clicked face.
@@ -235,6 +240,7 @@ func load_game() -> bool:
 	_unpack_grid(grid_map, data["terrain"])
 	_unpack_grid(fluids_map, data["fluids"])
 
+	spawnpoint = generator.find_spawn()
 	player.velocity = Vector3.ZERO
 	player.global_position = data["player_pos"]
 	player.look_rotation = data["player_look"]

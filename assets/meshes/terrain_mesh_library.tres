@@ -23,6 +23,7 @@
 [ext_resource type="BoxMesh" uid="uid://dcqq2yillpcuk" path="res://assets/meshes/blocks/diamond_ore.tres" id="18_ntran"]
 [ext_resource type="BoxMesh" uid="uid://v6bbq6k3dgp1" path="res://assets/meshes/blocks/plank.tres" id="19_8qcg7"]
 [ext_resource type="BoxMesh" uid="uid://bvpvxxoc80hks" path="res://assets/meshes/blocks/bedrock.tres" id="19_10o61"]
+[ext_resource type="BoxMesh" uid="uid://06g0f2cbl8v5" path="res://assets/meshes/blocks/snow_block.tres" id="20_nw1yx"]
 [ext_resource type="BoxMesh" uid="uid://b35h1klkb40si" path="res://assets/meshes/blocks/short_grass.tres" id="21_hmb8a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
@@ -56,6 +57,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mdel1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o14jv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qogbe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_umdqk"]
 
@@ -234,4 +237,11 @@ item/26/mesh_cast_shadow = 1
 item/26/shapes = [SubResource("BoxShape3D_o14jv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/26/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/26/navigation_layers = 1
+item/27/name = "snow_block"
+item/27/mesh = ExtResource("20_nw1yx")
+item/27/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/27/mesh_cast_shadow = 1
+item/27/shapes = [SubResource("BoxShape3D_qogbe"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/27/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/27/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

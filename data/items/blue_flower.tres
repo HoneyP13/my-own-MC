@@ -7,6 +7,6 @@
 script = ExtResource("2_m1r4d")
 block_id = &"blue_flower"
 id = &"blue_flower"
-display_name = "blue_flower"
+display_name = "blue flower"
 icon = ExtResource("1_qk42h")
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

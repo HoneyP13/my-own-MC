@@ -141,6 +141,7 @@ func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	var slots: Array
+	if area == SlotArea.RESULT: return
 	if area == SlotArea.ARMOR: slots = player_armor
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
@@ -273,6 +274,10 @@ func update_inventory() -> void:
 		_fill_slot(inv.get_child(i), inventory[i])
 	for i in inv_hot_bar.get_child_count():
 		_fill_slot(inv_hot_bar.get_child(i), hotbar[i])
+	for i in armor_slots.get_child_count():
+		_fill_slot(armor_slots.get_child(i), player_armor[i])
+	for i in inventory_crafting.get_child_count():
+		_fill_slot(inventory_crafting.get_child(i), inv_craft_grid[i])
 
 
 func _icon_for(stack: StringName) -> Texture2D:

@@ -49,6 +49,7 @@ shape = SubResource("WorldBoundaryShape3D_ogq8d")
 
 [node name="Player" parent="." unique_id=408094235 instance=ExtResource("28_qg546")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, -4)
+username = "SampleUsername"
 
 [node name="HUD" parent="." unique_id=1757020517 instance=ExtResource("6_qfnet")]
 
