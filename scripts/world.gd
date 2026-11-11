@@ -139,6 +139,7 @@ func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 	if grid_map.get_cell_item(cell) != GridMap.INVALID_CELL_ITEM: return false
 	if _cell_overlaps_player(cell): return false
 	var orientation := _log_orientation(hit.normal) if block_id == &"log" else 0
+	#orientation = _y_orientation(player.look_rotation.y) if block_id == &"chest" else 0
 	grid_map.set_cell_item(cell, item_id, orientation)
 	return true
 
@@ -152,6 +153,18 @@ func _log_orientation(normal: Vector3i) -> int:
 	elif normal.z != 0:
 		b = Basis(Vector3.RIGHT, PI / 2.0)        # clicked a Z face: lay it along Z
 	return grid_map.get_orthogonal_index_from_basis(b)
+
+
+#func _y_orientation(rot: float) -> int:
+	#var b := Basis.IDENTITY
+	#if rot >= 90:
+		#b = Basis(Vector3.LEFT, PI)
+	#elif rot >= 180:
+		#b = Basis(Vector3.FORWARD, PI / 2.0)
+	#elif rot >= 270:
+		#b = Basis(Vector3.RIGHT, PI)
+	#return grid_map.get_orthogonal_index_from_basis(b)
+
 
 
 func _on_player_select_pressed() -> void:

@@ -4,18 +4,19 @@ extends CanvasLayer
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
 enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD }
-enum SlotArea { INVENTORY, HOTBAR }
+enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
 @onready var health_bar: HBoxContainer = %HealthBar
+@onready var hunger_bar: HBoxContainer = %HungerBar
 @onready var hud_hot_bar: Control = %GameplayHUD
 @onready var hot_bar_parent: HBoxContainer = %HotBar
 @onready var inventory_menu: Panel = %InventoryMenu
 @onready var player_window: PanelContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow
 @onready var armor_slots: VBoxContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots
 @onready var inventory_crafting: GridContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/InventoryCrafting
-@onready var craft_result: ColorRect = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/CraftResult
+@onready var craft_result: TextureRect = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/CraftResult
 @onready var inv: GridContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/Inventory
 @onready var inv_hot_bar: HBoxContainer = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/HotBar
 @onready var menu_bg: PanelContainer = %MenuBG
@@ -31,13 +32,39 @@ var ui_state : UIState = UIState.PLAYING
 var cursor_item = null          # item name the mouse is holding, or null
 var cursor_icon: TextureRect
 
-const SLOT_NORMAL := Color(0.576, 0.576, 0.576)
-const SLOT_HOVER := Color(1, 1, 1)
+const HELMET_SLOT_HINT = preload("uid://boytvciuq1c8g")
+const HELMET_HOVER_HINT = preload("uid://jc8ylrfom8mn")
+const CHESTPLATE_SLOT_HINT = preload("uid://c6wv1gb2gsvra")
+const CHESTPLATE_HOVER_HINT = preload("uid://bpb25e81u1ud6")
+const LEGGINGS_SLOT_HINT = preload("uid://6un28ehnxl1f")
+const LEGGINGS_HOVER_HINT = preload("uid://c4xehnjsyf7wq")
+const BOOTS_SLOT_HINT = preload("uid://le7sxt7k6owg")
+const BOOTS_HOVER_HINT = preload("uid://cdyle6uqtpdey")
+
+const SLOT_NORMAL := preload("uid://j01ee113mi0m")
+const SLOT_HOVER := preload("uid://ddsjvo8b3cuwi")
 const ICON_SIZE := Vector2(56, 56)
 
 const FULL_HEART = preload("uid://djyw2tavut04a")
 const HALF_HEART = preload("uid://7l7eaqncaxjt")
 const EMPTY_HEART = preload("uid://b5cis83cjqupe")
+
+const FULL_SHANK = preload("uid://cq2wuxythsc3")
+const HALF_SHANK = preload("uid://b0x815uer06mj")
+const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
+
+const CRAFTING_RECIPES := {
+	&"plank" : {"id":&"log","count":1.0/4.0}, # was trying to get the equivalent of x4 by dividing in reverse
+	&"stick" : {"id":&"plank","count":2.0/4.0}, # same trick here
+	#&"wooden_axe" : {"id":&"plank","count":2.0/4.0}, I forgot to even add one, oops
+	#&"wooden_pickaxe" : {"id":&"plank","count":2.0/4.0},
+	#&"wooden_sword" : {"id":&"plank","count":2.0/4.0},
+	#&"wooden_hoe" : {"id":&"plank","count":2.0/4.0},
+	#&"wooden_shovel" : {"id":&"plank","count":2.0/4.0},
+	#&"torch" : {"id":&"coal","id":&"stick"},
+}
+
+
 
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
@@ -58,16 +85,22 @@ func _on_current_hotbar_slot_changed(_slot: int) -> void:
 
 func _update_hotbar_highlight() -> void:
 	for i in hot_bar_parent.get_child_count():
-		hot_bar_parent.get_child(i).color = Color(1, 1, 1, 1) if i == current_hotbar_slot else Color(1, 1, 1, 0.5)
+		hot_bar_parent.get_child(i).texture = SLOT_HOVER if i == current_hotbar_slot else SLOT_NORMAL
 var inventory : Array
+var inv_craft_grid : Array
+var inv_craft_result
+var player_armor : Array
 
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
 
 
 func _init() -> void:
-	hotbar.resize(9)
+	player_armor.resize(4)
+	inv_craft_grid.resize(4)
 	inventory.resize(27)
+	hotbar.resize(9)
+
 
 
 func _ready() -> void:
@@ -82,6 +115,11 @@ func _ready() -> void:
 
 
 func _setup_inventory_slots() -> void:
+	for i in armor_slots.get_child_count():
+		_wire_slot(armor_slots.get_child(i), SlotArea.ARMOR, i)
+	for i in inventory_crafting.get_child_count():
+		_wire_slot(inventory_crafting.get_child(i), SlotArea.CRAFTING, i)
+	_wire_slot(craft_result, SlotArea.RESULT, 0)
 	for i in inv.get_child_count():
 		_wire_slot(inv.get_child(i), SlotArea.INVENTORY, i)
 	for i in inv_hot_bar.get_child_count():
@@ -94,15 +132,19 @@ func _setup_inventory_slots() -> void:
 	add_child(cursor_icon)  # added last, so it draws on top
 
 
-func _wire_slot(slot: ColorRect, area: int, index: int) -> void:
+func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 	slot.gui_input.connect(_on_slot_gui_input.bind(area, index))
-	slot.mouse_entered.connect(func(): slot.color = SLOT_HOVER)
-	slot.mouse_exited.connect(func(): slot.color = SLOT_NORMAL)
+	slot.mouse_entered.connect(func(): slot.texture = SLOT_HOVER)
+	slot.mouse_exited.connect(func(): slot.texture = SLOT_NORMAL)
 
 
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
-	var slots: Array = inventory if area == SlotArea.INVENTORY else hotbar
+	var slots: Array
+	if area == SlotArea.ARMOR: slots = player_armor
+	if area == SlotArea.CRAFTING: slots = inv_craft_grid
+	if area == SlotArea.INVENTORY: slots = inventory
+	if area == SlotArea.HOTBAR: slots = hotbar
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: _left_click(slots, index)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
