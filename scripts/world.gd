@@ -46,6 +46,7 @@ func _ready() -> void:
 			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
 	spawn_mobs.call_deferred()
 	_setup_outline()
+	_setup_crack()
 
 var outline: MeshInstance3D
 
@@ -157,6 +158,7 @@ func _process(delta: float) -> void:
 	outline.visible = t != null and hud.ui_state == hud.UIState.PLAYING
 	if outline.visible:
 		outline.global_position = grid_map.to_global(grid_map.map_to_local(t.cell))
+	_update_breaking(delta)
 	_update_fog()
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
@@ -195,21 +197,6 @@ func _on_player_hit_pressed() -> void:
 	if mob != null:
 		mob.hurt(ATTACK_DAMAGE, player.global_position)
 
-#func _on_player_hit_pressed() -> void:
-	#var target := get_targeted_block()
-	#var mob_hit := _raycast_mobs()
-	#if not mob_hit.is_empty():
-		#var d := player.get_eye_position().distance_to(mob_hit.position)
-		#if target == null or d < target.distance:   # a mob in front beats a block behind it
-			#(mob_hit.collider as Mob).hurt(ATTACK_DAMAGE, player.global_position)
-			#return
-	#if target == null: return
-	#var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
-	#if block == null or block.hardness < 0.0: return   # unknown or unbreakable
-	#grid_map.set_cell_item(target.cell, GridMap.INVALID_CELL_ITEM)
-	#_broken[target.cell] = true
-	#_reveal_neighbors(target.cell)
-	#if block.drop_id != &"": hud.add_item(block.drop_id)
 
 
 func _on_player_use_pressed() -> void:

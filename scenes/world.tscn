@@ -6,6 +6,7 @@
 [ext_resource type="MeshLibrary" uid="uid://bt86017oxii2w" path="res://assets/meshes/fluids_mesh_library.tres" id="4_i7141"]
 [ext_resource type="PhysicsMaterial" uid="uid://bh7ynjpdbdik5" path="res://assets/materials/liquid_physics_material.tres" id="5_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://be7ht011s66ye" path="res://scenes/HUD.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://cklif0t5p80ej" path="res://scenes/pig.tscn" id="8_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://dn02jqka7u0mp" path="res://scenes/player.tscn" id="28_qg546"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvueo"]
@@ -52,6 +53,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, -4)
 username = "SampleUsername"
 
 [node name="HUD" parent="." unique_id=1757020517 instance=ExtResource("6_qfnet")]
+
+[node name="Pig" parent="." unique_id=1765357688 instance=ExtResource("8_4mrxx")]
 
 [connection signal="body_entered" from="Void" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Void" to="." method="_on_void_body_exited"]
