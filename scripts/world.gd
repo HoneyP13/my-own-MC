@@ -136,7 +136,12 @@ func _raycast_mobs() -> Dictionary:
 
 func _on_save_quit_pressed() -> void:
 	save_game()
-	get_tree().quit()
+	var save_icon : Image
+	await RenderingServer.frame_post_draw
+	save_icon = player.get_viewport().get_texture().get_image()
+	Global.save_icons.append(save_icon)
+	Global.save_capture()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 # --- Dying and respawning ---------------------------------------------------

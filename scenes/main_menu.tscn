@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://g35v4ah5c2y2"]
+
+[ext_resource type="Script" uid="uid://bwr4rkbho1038" path="res://scripts/title_screen.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control" unique_id=2045772779]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="BG" type="Panel" parent="." unique_id=526049461]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleScreen" type="CenterContainer" parent="." unique_id=808349719]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -17.5
+offset_right = 4.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TitleScreen" unique_id=233724652]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TitleScreen/VBoxContainer2" unique_id=1110444768]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "MEINKRAFT"
+
+[node name="Button" type="Button" parent="TitleScreen/VBoxContainer2" unique_id=809155286]
+layout_mode = 2
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="TitleScreen/VBoxContainer2" unique_id=48333857]
+layout_mode = 2
+text = "QUIT"
+
+[node name="Saves" type="MarginContainer" parent="." unique_id=554113680]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="PanelContainer" type="PanelContainer" parent="Saves" unique_id=1559123395]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Saves/PanelContainer" unique_id=393195320]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 74
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Saves/PanelContainer/HBoxContainer" unique_id=198598685]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Saves/PanelContainer/HBoxContainer/VBoxContainer" unique_id=646025817]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "World 1"
+
+[node name="Label2" type="Label" parent="Saves/PanelContainer/HBoxContainer/VBoxContainer" unique_id=975413743]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Singleplayer Survival"
+
+[node name="Label3" type="Label" parent="Saves/PanelContainer/HBoxContainer/VBoxContainer" unique_id=201051681]
+visible = false
+layout_mode = 2
+text = "user://world_save.dat"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Saves/PanelContainer/HBoxContainer" unique_id=1699390003]
+custom_maximum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="WorldOptions" type="HBoxContainer" parent="Saves" unique_id=1511655368]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 74
+
+[node name="Button" type="Button" parent="Saves/WorldOptions" unique_id=1450602082]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Button2" type="Button" parent="Saves/WorldOptions" unique_id=1639306459]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Edit"
+
+[connection signal="pressed" from="TitleScreen/VBoxContainer2/Button" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="TitleScreen/VBoxContainer2/Button2" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Saves/WorldOptions/Button" to="." method="_on_play_pressed"]

@@ -96,7 +96,7 @@ signal drop_item_pressed()
 signal scrolled(is_up: bool)
 enum Gamemode { SURVIVAL, CREATIVE }
 signal current_gamemode_changed(Gamemode)
-var current_gamemode = Gamemode.CREATIVE:
+var current_gamemode = Gamemode.SURVIVAL:
 	set(value):
 		current_gamemode = value
 		current_gamemode_changed.emit(current_gamemode)
@@ -392,7 +392,7 @@ func check_input_mappings():
 
 
 func _on_is_dead_changed(is_true: bool) -> void:
-	hud._chat_print("is dead = "+str(is_true))
+	if is_true: hud._chat_print(username+" died.")
 
 
 func _on_current_gamemode_changed(gamemode: Variant) -> void:
