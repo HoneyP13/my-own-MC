@@ -236,6 +236,7 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
+	if hud.held_item == null: return
 	if target == null:
 		if Registry.get_item(hud.held_item.id).on_use != ItemDef.Use.FEED_PLAYER:
 			return
@@ -249,7 +250,6 @@ func _on_player_use_pressed() -> void:
 			furnaces[target.cell] = {"slots": [null, null, null], "burn": 0.0, "burn_max": 0.0, "cook": 0.0}
 		hud.open_furnace(furnaces[target.cell].slots)
 		return
-	if hud.held_item == null: return
 	if target != null:
 		if target.place_cell.y < MIN_BUILD_HEIGHT:
 			hud._chat_print("Cannot build below Y:0")

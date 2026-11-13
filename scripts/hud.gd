@@ -378,7 +378,7 @@ var is_shift_pressed : bool = false
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	var slots: Array
-	is_shift_pressed = true if event.is_pressed() and event.keycode == KEY_SHIFT else false
+	is_shift_pressed = true if Input.is_key_pressed(KEY_SHIFT) else false
 	if area == SlotArea.RESULT or area == SlotArea.OUTPUT:
 		if event.button_index == MOUSE_BUTTON_LEFT: _take_result()
 		refresh_slots()
@@ -419,7 +419,7 @@ func _left_click(slots: Array, i: int) -> void:
 			for item in spots.size():
 				if spots[item] == null:
 					var moved := mini(def.max_stack, amount)
-					spots[item] = {"id": item.id, "count": moved}
+					spots[item] = {"id": slot.id, "count": moved}
 					amount -= moved
 					if amount == 0:
 						slot = null
