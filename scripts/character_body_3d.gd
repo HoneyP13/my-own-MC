@@ -61,7 +61,9 @@ extends CharacterBody3D
 @export var reach : float = 5.0
 
 const FULL_HEALTH := 20
+const FULL_HUNGER := 20
 var health = FULL_HEALTH
+var hunger = FULL_HUNGER
 
 var mouse_captured : bool = false
 var look_rotation : Vector2
@@ -107,6 +109,7 @@ enum { LIQUID, ENTITY, BLOCK }
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 @onready var hud: CanvasLayer = $"../HUD"
+@onready var world: Node3D = $".."
 
 
 var is_crouching : bool = false
@@ -240,17 +243,23 @@ func _physics_process(delta: float) -> void:
 	# Use velocity to actually move
 	move_and_slide()
 
-var taking_damage : bool = false
+var taking_damage := false
 
+var hunger_timer := 0.0
 var regen_timer := 0.0
 func _process(delta: float) -> void:
 	if current_gamemode == Gamemode.CREATIVE: return
 	if is_game_paused: return
-	elif health < FULL_HEALTH and not is_dead and not taking_damage:
+	elif health < FULL_HEALTH and not is_dead and not taking_damage and is_satiated:
 		regen_timer += delta
 		if regen_timer >= 3.0:
 			regen_timer = 0.0
 			hurt(-1)
+	elif hunger > 0 and not is_dead:
+		hunger_timer += delta
+		if hunger_timer >= 50.0:
+			hunger_timer = 0.0
+			feast(-1)
 	else:
 		regen_timer = 0.0
 
@@ -288,6 +297,22 @@ func hurt(value: int) -> void:
 		health = clampi(health + absi(value), 0, FULL_HEALTH)
 	health_changed.emit(health)
 	if health == 0: die()
+
+signal hunger_changed(value: int)
+var is_satiated := true
+var is_starving := false
+func feast(value: int, item: Variant = null) -> void:
+	if value == null or value == 0: return
+	if value < 0:
+		hunger = clampi(hunger - absi(value), 0, FULL_HUNGER)
+	if hunger == FULL_HUNGER: return
+	if value > 0:
+		hunger = clampi(hunger + value, 0, FULL_HUNGER)
+	hunger_changed.emit(hunger)
+	if item: world._consume_held_item()
+	is_satiated = true if hunger >= 17 else false
+	is_starving = true if hunger == 0 else false
+
 
 ## Kill the player. Anything can call this (the void, lava, a health bar hitting zero...).
 ## The world listens for player_died to show the death screen.

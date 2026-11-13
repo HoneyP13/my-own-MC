@@ -1,14 +1,16 @@
-#class_name Mob
+class_name Mob
 extends CharacterBody3D
 
-@export var max_health := 10
-@export var speed := 2.0
-@export var drop_id: StringName = &"raw_meat"
+@export var mob_id: StringName
+@export var max_health: int
+@export var speed: float
+@export var drop_id: StringName
 
 var health : int
 var _dir := Vector3.ZERO
 var _timer := 0.0
 var _knockback := Vector3.ZERO
+var _lava_timer := 0.0
 @onready var world := get_parent()
 
 
@@ -36,7 +38,6 @@ func _physics_process(delta: float) -> void:
 		rotation.y = atan2(-_dir.x, -_dir.z)
 		if is_on_wall() and is_on_floor(): velocity.y = 8.0   # hop up one block
 	move_and_slide()
-	var _lava_timer := 0.0
 	if world.fluid_at(global_position) == &"lava":
 		_lava_timer -= delta
 		if _lava_timer <= 0.0:

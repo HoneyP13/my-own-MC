@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://ltktpjd1ndix"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_nc5pf"]
-[ext_resource type="Texture2D" uid="uid://cnphho5umlw1g" path="res://assets/sprites/cooked_meat.png" id="1_yd7oq"]
+[ext_resource type="Texture2D" uid="uid://cjd1nwhsmqkfo" path="res://assets/sprites/cooked_meat.png" id="1_yd7oq"]
 
 [resource]
 script = ExtResource("1_nc5pf")
 id = &"cooked_meat"
 display_name = "cooked meat"
 icon = ExtResource("1_yd7oq")
+on_use = 1
+on_use_value = 8
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

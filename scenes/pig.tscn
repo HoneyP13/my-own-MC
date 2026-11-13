@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cklif0t5p80ej"]
 
-[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/pig.gd" id="1_sq5kf"]
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_sq5kf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 radius = 0.4
@@ -13,15 +13,19 @@ albedo_color = Color(0.9, 0.6, 0.65, 1)
 material = SubResource("StandardMaterial3D_hyap7")
 size = Vector3(0.7, 0.8, 1.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyur1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq5kf"]
 albedo_color = Color(0.9, 0.6, 0.65, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_irt5y"]
-material = SubResource("StandardMaterial3D_hyur1")
+material = SubResource("StandardMaterial3D_sq5kf")
 size = Vector3(0.3, 0.25, 0.2)
 
 [node name="Pig" type="CharacterBody3D" unique_id=1765357688]
 script = ExtResource("1_sq5kf")
+mob_id = &"pig"
+max_health = 10
+speed = 2.0
+drop_id = &"raw_meat"
 
 [node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]
 shape = SubResource("CapsuleShape3D_ogq8d")

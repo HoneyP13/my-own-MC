@@ -55,28 +55,29 @@ const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
 
 const RECIPES := [
 	{"result": &"plank", "count": 4, "ingredients": {&"log": 1}},
-	{"result": &"red_wool", "count": 4, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
-	{"result": &"green_wool", "count": 4, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
-	{"result": &"blue_wool", "count": 4, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
-	{"result": &"cyan_wool", "count": 4, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
-	{"result": &"magneta_wool", "count": 4, "ingredients": {&"white_wool": 1, &"magneta_dye": 1}},
-	{"result": &"yellow_wool", "count": 4, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
-	{"result": &"black_wool", "count": 4, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
-	{"result": &"gray_wool", "count": 4, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
-	{"result": &"light_gray_wool", "count": 4, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
-	{"result": &"white_wool", "count": 4, "ingredients": {&"string": 4}},
-	{"result": &"orange_wool", "count": 4, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
-	{"result": &"pink_wool", "count": 4, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
-	{"result": &"light_blue_wool", "count": 4, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
-	{"result": &"brown_wool", "count": 4, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
-	{"result": &"pink_dye", "count": 4, "ingredients": {&"red_dye": 1, &"white_dye": 1}},
-	{"result": &"orange_dye", "count": 4, "ingredients": {&"red_dye": 1, &"yellow_dye": 1}},
-	{"result": &"light_blue_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
-	{"result": &"light_gray_dye", "count": 4, "ingredients": {&"gray_dye": 1, &"white_dye": 1}},
-	{"result": &"gray_dye", "count": 4, "ingredients": {&"black_dye": 1, &"white_dye": 1}},
-	{"result": &"lime_dye", "count": 4, "ingredients": {&"green_dye": 1, &"white_dye": 1}},
-	{"result": &"light_blue_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
-	{"result": &"cyan_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"green_dye": 1}},
+	{"result": &"red_wool", "count": 1, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
+	{"result": &"green_wool", "count": 1, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
+	{"result": &"blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
+	{"result": &"cyan_wool", "count": 1, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
+	{"result": &"magenta_wool", "count": 1, "ingredients": {&"white_wool": 1, &"magenta_dye": 1}},
+	{"result": &"yellow_wool", "count": 1, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
+	{"result": &"black_wool", "count": 1, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
+	{"result": &"gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
+	{"result": &"light_gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
+	{"result": &"white_wool", "count": 1, "ingredients": {&"string": 4}},
+	{"result": &"orange_wool", "count": 1, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
+	{"result": &"pink_wool", "count": 1, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
+	{"result": &"light_blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
+	{"result": &"brown_wool", "count": 1, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
+	{"result": &"pink_dye", "count": 2, "ingredients": {&"red_dye": 1, &"white_dye": 1}},
+	{"result": &"orange_dye", "count": 2, "ingredients": {&"red_dye": 1, &"yellow_dye": 1}},
+	{"result": &"light_blue_dye", "count": 2, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
+	{"result": &"light_gray_dye", "count": 2, "ingredients": {&"gray_dye": 1, &"white_dye": 1}},
+	{"result": &"gray_dye", "count": 2, "ingredients": {&"black_dye": 1, &"white_dye": 1}},
+	{"result": &"lime_dye", "count": 2, "ingredients": {&"green_dye": 1, &"white_dye": 1}},
+	{"result": &"light_blue_dye", "count": 2, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
+	{"result": &"cyan_dye", "count": 2, "ingredients": {&"blue_dye": 1, &"green_dye": 1}},
+	{"result": &"magenta_dye", "count": 2, "ingredients": {&"pink_dye": 1, &"purple_dye": 1}},
 	{"result": &"stick", "count": 4, "ingredients": {&"plank": 2}},
 	{"result": &"torch", "count": 4, "ingredients": {&"coal": 1, &"stick": 1}},
 	{"result": &"snow_block", "count": 1, "ingredients": {&"snowball": 4}},
@@ -147,7 +148,7 @@ const RECIPES := [
 	{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
 	{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
 	{"result": &"blue_ice", "count": 1, "ingredients": [{&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}]},
-]
+] # TODO: I forgot packed ice existed, so eventually replace ice blocks with it in the blue ice recipe
 # TODO: add the ability to smelt gold and iron armor / tools into nuggets, once added, and output an empty bucket if lava bucket was used as fuel source.
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
 	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond", }
@@ -763,6 +764,17 @@ func _on_player_health_changed(hp: int) -> void:
 		elif hearts <= 0.0: icon.texture = EMPTY_HEART
 		elif hearts >= 1.0: icon.texture = FULL_HEART
 		hearts -= 1.0
+
+func _on_player_hunger_changed(hunger: int) -> void:
+	var full_bar : float = player.FULL_HEALTH / 2.0
+	var shanks : float = hunger / 2.0
+	var difference := full_bar - shanks
+	for i in int(full_bar):
+		var icon : TextureRect = hunger_bar.get_child(i)
+		if difference < 1.0 and difference > 0.0: icon.texture = HALF_SHANK
+		elif difference >= 1.0: icon.texture = EMPTY_SHANK
+		elif difference <= 0.0: icon.texture = FULL_SHANK
+		difference -= 1.0
 
 func _on_player_current_gamemode_changed(Gamemode: Variant) -> void:
 	health_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true

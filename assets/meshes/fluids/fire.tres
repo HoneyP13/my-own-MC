@@ -1,0 +1,13 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://cegbtw518n0ge"]
+
+[ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_ja45n"]
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_js1h7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vu4o"]
+render_priority = 0
+shader = ExtResource("1_ja45n")
+shader_parameter/grow_amount = 0.250000011875
+shader_parameter/albedo_texture = ExtResource("2_js1h7")
+
+[resource]
+material = SubResource("ShaderMaterial_7vu4o")

@@ -28,7 +28,7 @@ var is_debug_enabled : bool = false
 var spawnpoint : Vector3
 
 const PIG_SCENE := preload("res://scenes/pig.tscn")
-const ZOMBIE_SCENE := preload("res://scenes/zombie.tscn")
+const CHICKEN_SCENE := preload("res://scenes/chicken.tscn")
 
 func _ready() -> void:
 	player.hit_pressed.connect(_on_player_hit_pressed)
@@ -124,7 +124,9 @@ func spawn_mobs() -> void:
 		var z := randi_range(-half, half - 1)
 		var h := generator.height_at(x, z)
 		if h <= SEA_LEVEL + 1 or generator.has_tree(x, z): continue
-		var mob: Mob = PIG_SCENE.instantiate()
+		var mob: Mob
+		if randf() > 0.5: mob = PIG_SCENE.instantiate()
+		else: mob = CHICKEN_SCENE.instantiate()
 		add_child(mob)
 		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)
 		spawned += 1
@@ -156,6 +158,8 @@ var entered_void : bool = false
 var hurt_timer := 0.0
 const LAVA_DAMAGE := 2
 const LAVA_INTERVAL := 0.5
+const STARVING_DAMAGE := 1
+const STARVING_INTERVAL := 5.0
 
 func _process(delta: float) -> void:
 	if player.is_game_paused: return
@@ -168,13 +172,13 @@ func _process(delta: float) -> void:
 	_tick_furnaces(delta)
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
-	if (entered_void or in_lava) and not player.is_dead and player.can_be_hurt:
+	if (entered_void or in_lava or player.is_starving) and not player.is_dead and player.can_be_hurt:
 		player.taking_damage = true
 		hurt_timer += delta
-		var interval := LAVA_INTERVAL if in_lava else 0.8
+		var interval := LAVA_INTERVAL if in_lava else STARVING_INTERVAL if player.is_starving else 0.8
 		if hurt_timer >= interval:
 			hurt_timer = 0.0
-			player.hurt(LAVA_DAMAGE if in_lava else 5)
+			player.hurt(LAVA_DAMAGE if in_lava else STARVING_DAMAGE if player.is_starving else 5)
 	else:
 		hurt_timer = 0.0
 		player.taking_damage = false
@@ -441,6 +445,8 @@ func save_game() -> void:
 		"player_look": player.look_rotation,
 		"gamemode": player.current_gamemode,
 		"hotbar": hud.hotbar,
+		"player_health": player.health,
+		"player_hunger": player.hunger,
 		"slot": hud.current_hotbar_slot,
 		"inventory": hud.inventory,
 		"seed": world_seed,
@@ -473,6 +479,8 @@ func load_game() -> bool:
 	player.velocity = Vector3.ZERO
 	player.global_position = data["player_pos"]
 	player.look_rotation = data["player_look"]
+	player.health = data["player_hunger"]
+	player.hunger = data["player_health"]
 	player.rotate_look(Vector2.ZERO)  # re-applies look_rotation to the body and head
 	player.current_gamemode = data["gamemode"]
 

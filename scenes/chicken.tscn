@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cp4gvss1tri6i"]
 
-[ext_resource type="Script" uid="uid://drhyxbldmls73" path="res://scripts/zombie.gd" id="1_8lku0"]
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_8lku0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 radius = 0.4
@@ -21,8 +21,9 @@ size = Vector3(0.35, 0.1, 0.24)
 
 [node name="Chicken" type="CharacterBody3D" unique_id=1765357688]
 script = ExtResource("1_8lku0")
-max_health = 20
-speed = 5.0
+mob_id = &"chicken"
+max_health = 5
+speed = 2.0
 drop_id = &"string"
 
 [node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]

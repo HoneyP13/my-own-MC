@@ -57,5 +57,6 @@ username = "SampleUsername"
 [connection signal="body_exited" from="Void" to="." method="_on_void_body_exited"]
 [connection signal="current_gamemode_changed" from="Player" to="HUD" method="_on_player_current_gamemode_changed"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
+[connection signal="hunger_changed" from="Player" to="HUD" method="_on_player_hunger_changed"]
 [connection signal="is_dead_changed" from="Player" to="." method="_on_player_is_dead_changed"]
 [connection signal="is_dead_changed" from="Player" to="HUD" method="_on_player_is_dead_changed"]

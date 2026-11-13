@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://sbt4hqoqws0a"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_c6wt2"]
+
+[resource]
+script = ExtResource("1_c6wt2")
+id = &"gold_block"
+mesh_name = "gold_block"
+drop_id = &"gold_block"
+hardness = 3.5
+tool_kind = &"pickaxe"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

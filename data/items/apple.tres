@@ -8,4 +8,6 @@ script = ExtResource("2_hwi2a")
 id = &"apple"
 display_name = "apple"
 icon = ExtResource("1_j163c")
+on_use = 1
+on_use_value = 2
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -8,4 +8,6 @@ script = ExtResource("2_meqyy")
 id = &"bread"
 display_name = "bread"
 icon = ExtResource("1_5xdh6")
+on_use = 1
+on_use_value = 6
 metadata/_custom_type_script = "uid://cu3dgxq723uac"
