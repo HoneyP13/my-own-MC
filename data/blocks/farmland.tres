@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://qssn5mjqmwq3"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_k7cps"]
+
+[resource]
+script = ExtResource("1_k7cps")
+id = &"farmland"
+mesh_name = "farmland"
+drop_id = &"dirt"
+hardness = 0.5
+tool_kind = &"shovel"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

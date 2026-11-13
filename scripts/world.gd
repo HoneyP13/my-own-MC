@@ -128,10 +128,10 @@ func spawn_mobs() -> void:
 		if h <= SEA_LEVEL + 1 or generator.has_tree(x, z): continue
 		var mob: Mob
 		var f = randf()
-		if f > 0.25: mob = COW_SCENE.instantiate()
-		if f > 0.5: mob = SHEEP_SCENE.instantiate()
-		if f > 0.75: mob = PIG_SCENE.instantiate()
-		else: mob = CHICKEN_SCENE.instantiate()
+		if f < 0.25: mob = CHICKEN_SCENE.instantiate()
+		elif f < 0.5: mob = COW_SCENE.instantiate()
+		elif f < 0.75: mob = SHEEP_SCENE.instantiate()
+		else: mob = PIG_SCENE.instantiate()
 		add_child(mob)
 		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)
 		spawned += 1
@@ -434,6 +434,7 @@ func _update_breaking(delta: float) -> void:
 	_crack.visible = true
 
 func _break_block(cell: Vector3i, block: BlockDef) -> void:
+	var tiers := [&"wooden", &"stone", &"iron", &"diamond"]
 	grid_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
 	_broken[cell] = true
 	_reveal_neighbors(cell)
@@ -441,7 +442,10 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 		for stack in furnaces[cell].slots:
 			if stack != null: hud.add_item(stack.id, stack.count)
 		furnaces.erase(cell)
-	if block.drop_id != &"": hud.add_item(block.drop_id)
+	if block.drop_id != &"" and randi() % 100 < block.drop_chance:
+		hud.add_item(block.drop_id)
+	if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
+		hud.add_item(block.drop_id_2)
 
 # --- Save / load ------------------------------------------------------------
 

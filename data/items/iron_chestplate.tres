@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dpm6cdh0x1bt2"]
+
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_l0co4"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_jlnwu"]
+
+[resource]
+script = ExtResource("2_jlnwu")
+id = &"iron_chestplate"
+display_name = "iron chestplate"
+icon = ExtResource("1_l0co4")
+max_stack = 1
+on_use = 8
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

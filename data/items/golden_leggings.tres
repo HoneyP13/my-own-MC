@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://d2y868dhkm01d"]
+
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_58npo"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_vv5wt"]
+
+[resource]
+script = ExtResource("2_vv5wt")
+id = &"golden_leggings"
+display_name = "golden leggings"
+icon = ExtResource("1_58npo")
+max_stack = 1
+on_use = 8
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cmx3h0imu12wl"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_b64eh"]
+
+[resource]
+script = ExtResource("1_b64eh")
+id = &"snow_layer"
+mesh_name = "snow_layer"
+drop_id = &"snowball"
+drop_chance = 150
+hardness = 0.3
+tool_kind = &"shovel"
+req_tier = &"wooden"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

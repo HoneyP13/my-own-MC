@@ -45,6 +45,12 @@
 [ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
 [ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/fence.tres" id="41_y8tf5"]
 [ext_resource type="BoxMesh" uid="uid://dw3lperd1gh8q" path="res://assets/meshes/blocks/lever.tres" id="42_gthcv"]
+[ext_resource type="BoxMesh" uid="uid://gyf1a8a3uhw1" path="res://assets/meshes/blocks/bed.tres" id="43_gthcv"]
+[ext_resource type="BoxMesh" uid="uid://clmkhojc2bsp6" path="res://assets/meshes/blocks/lapis_lazuli_block.tres" id="45_w2p7p"]
+[ext_resource type="BoxMesh" uid="uid://cb85scaxvpxqe" path="res://assets/meshes/blocks/hay_bale.tres" id="46_u6ce4"]
+[ext_resource type="BoxMesh" uid="uid://bhu5exy7qjtxr" path="res://assets/meshes/blocks/cactus.tres" id="47_gf5wm"]
+[ext_resource type="BoxMesh" uid="uid://bhp5jgml4gstk" path="res://assets/meshes/blocks/packed_ice.tres" id="48_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://c3rabmse7froj" path="res://assets/meshes/blocks/farmland.tres" id="49_v6asg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -114,7 +120,21 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dol6b"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_w31n8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuep8"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn2ro"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71v0w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1gdm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i8r8g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kipw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_syuof"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0am6y"]
 
@@ -338,7 +358,7 @@ item/33/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 item/33/navigation_layers = 1
 item/34/name = "snow_layer"
 item/34/mesh = ExtResource("28_7op3e")
-item/34/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/34/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
 item/34/mesh_cast_shadow = 1
 item/34/shapes = []
 item/34/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -424,7 +444,7 @@ item/47/name = "fence"
 item/47/mesh = ExtResource("41_y8tf5")
 item/47/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/47/mesh_cast_shadow = 1
-item/47/shapes = []
+item/47/shapes = [SubResource("BoxShape3D_w31n8"), Transform3D(0.25, 0, 0, 0, 1.5, 0, 0, 0, 0.25, 0, 0.5, 0)]
 item/47/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/47/navigation_layers = 1
 item/48/name = "lever"
@@ -434,4 +454,46 @@ item/48/mesh_cast_shadow = 1
 item/48/shapes = []
 item/48/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/48/navigation_layers = 1
+item/49/name = "bed"
+item/49/mesh = ExtResource("43_gthcv")
+item/49/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/49/mesh_cast_shadow = 1
+item/49/shapes = [SubResource("BoxShape3D_vuep8"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/49/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/49/navigation_layers = 1
+item/50/name = "lapis_lazuli_block"
+item/50/mesh = ExtResource("45_w2p7p")
+item/50/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/50/mesh_cast_shadow = 1
+item/50/shapes = [SubResource("BoxShape3D_71v0w"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/50/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/50/navigation_layers = 1
+item/51/name = "hay_bale"
+item/51/mesh = ExtResource("46_u6ce4")
+item/51/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/51/mesh_cast_shadow = 1
+item/51/shapes = [SubResource("BoxShape3D_m1gdm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/51/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/51/navigation_layers = 1
+item/52/name = "cactus"
+item/52/mesh = ExtResource("47_gf5wm")
+item/52/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/52/mesh_cast_shadow = 1
+item/52/shapes = [SubResource("BoxShape3D_i8r8g"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/52/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/52/navigation_layers = 1
+item/53/name = "packed_ice"
+item/53/mesh = ExtResource("48_gu01m")
+item/53/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/53/mesh_cast_shadow = 1
+item/53/shapes = [SubResource("BoxShape3D_3kipw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/53/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/53/navigation_layers = 1
+item/54/name = "farmland"
+item/54/mesh = ExtResource("49_v6asg")
+item/54/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/54/mesh_cast_shadow = 1
+item/54/shapes = [SubResource("BoxShape3D_syuof"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/54/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/54/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

@@ -119,23 +119,23 @@ const RECIPES := [
 	{"result": &"diamond_axe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_hoe", "count": 1, "ingredients": [null, {&"diamond": 1}, {&"diamond": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"fishing_rod", "count": 1, "ingredients": [{&"stick": 1}, null, null, {&"string": 1}, {&"stick": 1}, null, {&"string": 1}, null, {&"stick": 1}]},
-	#{"result": &"flint_and_steel", "count": 1, "ingredients": {&"flint": 1, &"iron_ingot": 1}},
-	#{"result": &"leather_cap", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
-	#{"result": &"leather_tunic", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}]},
-	#{"result": &"leather_pants", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
-	#{"result": &"leather_boots", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
-	#{"result": &"iron_helmet", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
-	#{"result": &"iron_hchestplate", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
-	#{"result": &"iron_hleggings", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
-	#{"result": &"iron_hboots", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
-	#{"result": &"golden_helmet", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
-	#{"result": &"golden_chestplate", "count": 1, "ingredients": [{&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}]},
-	#{"result": &"golden_leggings", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
-	#{"result": &"golden_boots", "count": 1, "ingredients": [{&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
-	#{"result": &"diamond_helmet", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
-	#{"result": &"diamond_chestplate", "count": 1, "ingredients": [{&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}]},
-	#{"result": &"diamond_leggings", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
-	#{"result": &"diamond_boots", "count": 1, "ingredients": [{&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
+	{"result": &"flint_and_steel", "count": 1, "ingredients": {&"flint": 1, &"iron_ingot": 1}},
+	{"result": &"leather_cap", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
+	{"result": &"leather_tunic", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}]},
+	{"result": &"leather_pants", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
+	{"result": &"leather_boots", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
+	{"result": &"iron_helmet", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
+	{"result": &"iron_hchestplate", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
+	{"result": &"iron_hleggings", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
+	{"result": &"iron_hboots", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
+	{"result": &"golden_helmet", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
+	{"result": &"golden_chestplate", "count": 1, "ingredients": [{&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}]},
+	{"result": &"golden_leggings", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
+	{"result": &"golden_boots", "count": 1, "ingredients": [{&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
+	{"result": &"diamond_helmet", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
+	{"result": &"diamond_chestplate", "count": 1, "ingredients": [{&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}]},
+	{"result": &"diamond_leggings", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
+	{"result": &"diamond_boots", "count": 1, "ingredients": [{&"diamond": 1}, null, {&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}]},
 	{"result": &"golden_apple", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"apple": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}]},
 	{"result": &"redstone_dust", "count": 9, "ingredients": {&"redstone_block": 1}},
 	{"result": &"diamond", "count": 9, "ingredients": {&"diamond_block": 1}},
@@ -151,8 +151,13 @@ const RECIPES := [
 	{"result": &"red_dye", "count": 4, "ingredients": {&"red_flower": 1}},
 	{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
 	{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
-	{"result": &"blue_ice", "count": 1, "ingredients": [{&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}]},
-] # TODO: I forgot packed ice existed, so eventually replace ice blocks with it in the blue ice recipe
+	{"result": &"packed_ice", "count": 1, "ingredients": [{&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}]},
+	{"result": &"blue_ice", "count": 1, "ingredients": [{&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}]},
+	{"result": &"gold_nugget", "count": 9, "ingredients": {&"gold_ingot": 1}},
+	{"result": &"gold_ingot", "count": 1, "ingredients": [{&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}]},
+	{"result": &"iron_nugget", "count": 9, "ingredients": {&"iron_ingot": 1}},
+	{"result": &"iron_ingot", "count": 1, "ingredients": [{&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}]},
+]
 # TODO: add the ability to smelt gold and iron armor / tools into nuggets, once added, and output an empty bucket if lava bucket was used as fuel source.
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
 	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond", }
@@ -400,33 +405,7 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 
 func _left_click(slots: Array, i: int) -> void:
 	var slot = slots[i]
-	if is_shift_pressed and slot != null:
-		var def := Registry.get_item(slot.id)
-		var amount = slot.count
-		if def == null: return
-		for spots in (hotbar if slots == hotbar else inventory):
-			for item in spots.size():
-				var s = spots[item]
-				if s != null and s.id == slot.id and s.count < def.max_stack:
-					var moved := mini(def.max_stack - s.count, amount)
-					s.count += moved
-					amount -= moved
-					if amount == 0:
-						slot = null
-						refresh_slots()
-						return
-		for spots in (hotbar if slots == hotbar else inventory):
-			for item in spots.size():
-				if spots[item] == null:
-					var moved := mini(def.max_stack, amount)
-					spots[item] = {"id": slot.id, "count": moved}
-					amount -= moved
-					if amount == 0:
-						slot = null
-						refresh_slots()
-						return
-				else: return
-		refresh_slots()
+	if is_shift_pressed and slot != null: _quick_move(slots, i); return
 	# Same item on both sides: pour the cursor stack into the slot, up to the stack limit.
 	if slot != null and cursor_item != null and slot.id == cursor_item.id:
 		var max_stack := Registry.get_item(slot.id).max_stack
@@ -458,6 +437,25 @@ func _right_click(slots: Array, i: int) -> void:
 			return
 		cursor_item.count -= 1
 		if cursor_item.count <= 0: cursor_item = null
+
+func _quick_move(slots: Array, i: int) -> void:
+	var stack = slots[i]
+	if stack == null: return
+	var max_stack := Registry.get_item(stack.id).max_stack
+	var dest: Array = inventory if slots == hotbar else hotbar
+	for fill_empty in [false, true]:
+		for j in dest.size():
+			if stack.count <= 0: break
+			var d = dest[j]
+			if not fill_empty and d != null and d.id == stack.id and d.count < max_stack:
+				var moved := mini(max_stack - d.count, stack.count)
+				d.count += moved
+				stack.count -= moved
+			elif fill_empty and d == null:
+				var moved := mini(max_stack, stack.count)
+				dest[j] = {"id": stack.id, "count": moved}
+				stack.count -= moved
+	if stack.count <= 0: slots[i] = null
 
 var craft_output = null   # {"id":..., "count":...} or null
 func _grid_ids(grid: Array) -> Array:

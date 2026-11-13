@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_v10ca")
-block_id = &"melon"
+block_id = &"watermelon"
 id = &"melon_seeds"
 display_name = "melon seeds"
 icon = ExtResource("1_lsy0l")

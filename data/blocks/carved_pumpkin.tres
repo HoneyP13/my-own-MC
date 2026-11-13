@@ -4,9 +4,8 @@
 
 [resource]
 script = ExtResource("1_fg5da")
-id = &"white_wool"
-mesh_name = "white_wool"
-drop_id = &"white_wool"
-hardness = 0.6
-tool_kind = &"hoe"
+id = &"carved_pumpkin"
+mesh_name = "carved_pumpkin"
+drop_id = &"carved_pumpkin"
+tool_kind = &"axe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"
