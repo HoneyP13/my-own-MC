@@ -65,8 +65,16 @@ func block_at(x: int, y: int, z: int) -> StringName:
 		return &"sand" if beach else &"grass_block"
 	if y > h - 4:
 		return &"sand" if beach else &"dirt"
-	if _hash(x, y, z, 7) % 100 < 2:
-		return &"coal_ore"
+	const ORES := [   # block, max_y, chance per 1000, hash salt
+		[&"diamond_ore", 6, 4, 21],
+		[&"gold_ore", 10, 8, 19],
+		[&"iron_ore", 18, 18, 17],
+		[&"coal_ore", 40, 25, 7],
+	]
+	# in block_at(), after the dirt/sand layer check:
+	for o in ORES:
+		if y <= o[1] and _hash(x, y, z, o[3]) % 1000 < o[2]:
+			return o[0]
 	return &"stone"
 
 

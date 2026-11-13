@@ -3,8 +3,8 @@ extends CanvasLayer
 ## Which screen is up. This is the ONE place that answers "what's on screen right now?".
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
-enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER }
-enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FURNACE, CRAFTING_TABLE }
+enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURNACE }
+enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, OUTPUT, CRAFTING_TABLE }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
@@ -120,15 +120,16 @@ const RECIPES := [
 	#{"result": &"iron_block", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
 	#{"result": &"tnt", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
 	#{"result": &"slime_block", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
+	#{"result": &"red_dye", "count": 4, "ingredients": {&"red_flower": 1}},
+	#{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
+	#{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
 ]
+# TODO: add the ability to smelt gold and iron armor / tools into nuggets, once added, and output an empty bucket if lava bucket was used as fuel source.
+const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
+	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond", }
+const FUEL := {&"lava_bucket": 1000.0, &"coal_block": 800.0, &"coal": 80.0, &"charcoal": 80.0, &"log": 15.0, &"plank": 15.0, &"wooden_axe": 10.0, &"wooden_sword": 10.0, &"wooden_shovel": 10.0, &"wooden_hoe": 10.0, &"wooden_pickaxe": 10.0, &"crafting_table": 15.0, &"fishing_rod": 15.0, &"stick": 5.0}  # burn seconds
 
-
-
-
-const SMELTING := [
-	{}
-]
-
+var furnace_slots : Array = [null, null, null]
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
 var current_hotbar_slot : int = 0:
@@ -149,18 +150,27 @@ func _on_current_hotbar_slot_changed(_slot: int) -> void:
 func _update_hotbar_highlight() -> void:
 	for i in hot_bar_parent.get_child_count():
 		hot_bar_parent.get_child(i).texture = SLOT_HOVER if i == current_hotbar_slot else SLOT_NORMAL
-var inventory : Array
-var inv_craft_grid : Array
+var inventory: Array
+var inv_craft_grid: Array
 var inv_craft_result
-var player_armor : Array
-var table_craft_grid : Array
-var craft_grid : Array          # whichever grid is active right now
+var player_armor: Array
+var table_craft_grid: Array
+var craft_grid: Array          # whichever grid is active right now
 var craft_width := 2
 var table_menu: Panel
 var table_grid: GridContainer
 var table_result: TextureRect
 var table_inv: GridContainer
 var table_hotbar: HBoxContainer
+var furnace_ingredient
+var furnace_fuel
+var furnace_result
+var furnace_menu: Panel
+var smelting_fuel: TextureRect
+var smelting_ingredient: TextureRect
+var smelting_result: TextureRect
+var furnace_inv: GridContainer
+var furnace_hotbar: HBoxContainer
 
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
@@ -182,6 +192,7 @@ func _ready() -> void:
 	player.open_chat.connect(_on_open_chat)
 	player.open_debug_info.connect(_on_open_debug_info)
 	_build_table_menu()
+	_build_furnace_menu()
 	_setup_inventory_slots()
 	refresh_slots()
 	_refresh_ui()
@@ -250,6 +261,74 @@ func _build_table_menu() -> void:
 		table_hotbar.add_child(s)
 		_wire_slot(s, SlotArea.HOTBAR, i)
 
+func _build_furnace_menu() -> void:
+	furnace_menu = Panel.new()
+	furnace_menu.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	furnace_menu.visible = false
+	add_child(furnace_menu)
+	furnace_menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var center := CenterContainer.new()
+	furnace_menu.add_child(center)
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var window := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.333, 0.333, 0.333)
+	window.add_theme_stylebox_override("panel", sb)
+	center.add_child(window)
+
+	var margin := MarginContainer.new()
+	for side in ["left", "top", "right", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 12)
+	window.add_child(margin)
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 12)
+	margin.add_child(vbox)
+
+	var top := HBoxContainer.new()
+	top.alignment = BoxContainer.ALIGNMENT_CENTER
+	top.add_theme_constant_override("separation", 48)
+	vbox.add_child(top)
+	var interface := VBoxContainer.new()
+	interface.add_theme_constant_override("separation", 48)
+	top.add_child(interface)
+	smelting_ingredient = _make_slot()
+	_wire_slot(smelting_ingredient, SlotArea.INPUT, 0)
+	smelting_ingredient.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	interface.add_child(smelting_ingredient)
+	smelting_fuel = _make_slot()
+	_wire_slot(smelting_fuel, SlotArea.FUEL, 0)
+	smelting_fuel.size_flags_vertical = Control.SIZE_SHRINK_END
+	interface.add_child(smelting_fuel)
+	smelting_result = _make_slot()
+	smelting_result.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	top.add_child(smelting_result)
+	_wire_slot(smelting_result, SlotArea.OUTPUT, 0)
+
+	furnace_inv = GridContainer.new()
+	furnace_inv.columns = 9
+	vbox.add_child(furnace_inv)
+	for i in 27:
+		var s := _make_slot()
+		furnace_inv.add_child(s)
+		_wire_slot(s, SlotArea.INVENTORY, i)
+
+	furnace_hotbar = HBoxContainer.new()
+	furnace_hotbar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(furnace_hotbar)
+	for i in 9:
+		var s := _make_slot()
+		furnace_hotbar.add_child(s)
+		_wire_slot(s, SlotArea.HOTBAR, i)
+
+
+func open_furnace(slots: Array):
+	furnace_ingredient = slots[0]
+	furnace_fuel = slots[1]
+	furnace_result = slots[2]
+	set_ui_state(UIState.FURNACE)
+
 
 
 func _setup_inventory_slots() -> void:
@@ -279,10 +358,11 @@ func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	var slots: Array
-	if area == SlotArea.RESULT:
+	if area == SlotArea.RESULT or area == SlotArea.OUTPUT:
 		if event.button_index == MOUSE_BUTTON_LEFT: _take_result()
 		refresh_slots()
 		return
+	if area == SlotArea.INPUT or area == SlotArea.FUEL: slots = furnace_slots
 	if area == SlotArea.ARMOR: slots = player_armor
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
@@ -331,6 +411,7 @@ func _right_click(slots: Array, i: int) -> void:
 		if cursor_item.count <= 0: cursor_item = null
 
 var craft_output = null   # {"id":..., "count":...} or null
+var smelt_output = null
 
 func _grid_ids(grid: Array) -> Array:
 	var out := []
@@ -393,19 +474,29 @@ func _find_recipe() -> Dictionary:
 
 
 func _take_result() -> void:
-	if craft_output == null: return
-	var max_stack := Registry.get_item(craft_output.id).max_stack
-	if cursor_item == null:
-		cursor_item = craft_output.duplicate()
-	elif cursor_item.id == craft_output.id and cursor_item.count + craft_output.count <= max_stack:
-		cursor_item.count += craft_output.count
-	else:
-		return
-	for i in craft_grid.size():
-		if craft_grid[i] != null:
-			craft_grid[i].count -= 1
-			if craft_grid[i].count <= 0: craft_grid[i] = null
-
+	match ui_state:
+		UIState.INVENTORY, UIState.CONTAINER:
+			if craft_output == null: return
+			var max_stack := Registry.get_item(craft_output.id).max_stack
+			if cursor_item == null:
+				cursor_item = craft_output.duplicate()
+			elif cursor_item.id == craft_output.id and cursor_item.count + craft_output.count <= max_stack:
+				cursor_item.count += craft_output.count
+			else:
+				return
+			for i in craft_grid.size():
+				if craft_grid[i] != null:
+					craft_grid[i].count -= 1
+					if craft_grid[i].count <= 0: craft_grid[i] = null
+		UIState.FURNACE:
+			if furnace_result == null: return
+			var max_stack := Registry.get_item(furnace_result.id).max_stack
+			if cursor_item == null:
+				cursor_item = furnace_result.duplicate()
+			elif cursor_item.id == furnace_result.id and cursor_item.count + furnace_result.count <= max_stack:
+				cursor_item.count += furnace_result.count
+			else:
+				return
 
 func _return_cursor_item() -> void:
 	if cursor_item != null:
@@ -426,7 +517,9 @@ func _update_craft_result() -> void:
 	var r := _find_recipe()
 	craft_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
 
-
+func _update_smelt_result() -> void:
+	var r := _find_recipe()
+	smelt_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
 
 
 func _process(_delta: float) -> void:
@@ -465,6 +558,7 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 
 func refresh_slots() -> void:
 	_update_craft_result()
+	_update_smelt_result()
 	rebuild_hotbar()
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
@@ -527,6 +621,13 @@ func update_inventory() -> void:
 	for i in table_hotbar.get_child_count():
 		_fill_slot(table_hotbar.get_child(i), hotbar[i])
 	_fill_slot(table_result, craft_output)
+	for i in furnace_inv.get_child_count():
+		_fill_slot(furnace_inv.get_child(i), inventory[i])
+	for i in furnace_hotbar.get_child_count():
+		_fill_slot(furnace_hotbar.get_child(i), hotbar[i])
+	_fill_slot(smelting_ingredient, furnace_slots[0])
+	_fill_slot(smelting_fuel, furnace_slots[1])
+	_fill_slot(smelting_result, smelt_output)
 
 
 func _icon_for(stack: StringName) -> Texture2D:
@@ -545,8 +646,8 @@ func set_ui_state(new_state: UIState) -> void:
 	craft_grid = table_craft_grid if new_state == UIState.CONTAINER else inv_craft_grid
 	craft_width = 3 if new_state == UIState.CONTAINER else 2
 	_refresh_ui()
-	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER
-	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER
+	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER or old_state == UIState.FURNACE
+	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER or old_state == UIState.FURNACE
 	if was_crafting and not is_crafting:
 		_return_cursor_item()
 	if old_state == UIState.CHAT and new_state != UIState.CHAT:
@@ -558,7 +659,7 @@ func set_ui_state(new_state: UIState) -> void:
 ## Show exactly the panels that belong to the current state, and hide the rest.
 func _refresh_ui() -> void:
 	var s := ui_state
-	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD
+	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER and s != UIState.FURNACE
 	inventory_menu.visible = s == UIState.INVENTORY
 	chat.visible = s == UIState.CHAT
 	menu_bg.visible = s == UIState.PAUSED or s == UIState.SETTINGS
@@ -567,8 +668,8 @@ func _refresh_ui() -> void:
 	death_screen.visible = s == UIState.DEAD
 	# The debug overlay (toggled with the debug key) hides behind the inventory and pause menus.
 	debug_info.visible = world.is_debug_enabled and (s == UIState.PLAYING or s == UIState.CHAT or s == UIState.DEAD)
-	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER
 	table_menu.visible = s == UIState.CONTAINER
+	furnace_menu.visible = s == UIState.FURNACE
 
 ## Inventory key. Opens the inventory while playing, closes it again, and does nothing anywhere else.
 func _on_open_inventory() -> void:
@@ -581,7 +682,7 @@ func _on_open_inventory() -> void:
 func _on_open_menu() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.PAUSED)
-		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER: set_ui_state(UIState.PLAYING)
+		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER, UIState.FURNACE: set_ui_state(UIState.PLAYING)
 		UIState.SETTINGS: set_ui_state(UIState.PAUSED) # back to the pause menu
 		# DEAD: Escape does nothing. You have to hit Respawn.
 

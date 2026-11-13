@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var speed := 2.0
 @export var drop_id: StringName = &"raw_meat"
 
-var health := max_health
+var health : int
 var _dir := Vector3.ZERO
 var _timer := 0.0
 var _knockback := Vector3.ZERO
@@ -13,6 +13,7 @@ var _knockback := Vector3.ZERO
 
 
 func _ready() -> void:
+	health = max_health
 	collision_layer = 2   # mobs live on layer 2 so attack rays can target only them
 	collision_mask = 1    # and they collide with terrain
 

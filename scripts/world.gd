@@ -6,6 +6,8 @@ const WORLD_RADIUS_CHUNKS := 3   # world is (2*3)x(2*3) chunks = 96x96 blocks. R
 const NEIGHBORS: Array[Vector3i] = [
 	Vector3i.RIGHT, Vector3i.LEFT, Vector3i.UP, Vector3i.DOWN, Vector3i.BACK, Vector3i.FORWARD]
 
+enum World { OVERWORLD }
+var dimension := World.OVERWORLD
 var generator: TerrainGenerator
 var world_seed := 0
 var _broken := {}   # cells the player has dug out, so we never "refill" them
@@ -24,6 +26,8 @@ const SEA_LEVEL := 10
 
 var is_debug_enabled : bool = false
 var spawnpoint : Vector3
+
+const PIG_SCENE := preload("res://scenes/pig.tscn")
 
 
 func _ready() -> void:
@@ -121,8 +125,7 @@ func spawn_mobs() -> void:
 		var z := randi_range(-half, half - 1)
 		var h := generator.height_at(x, z)
 		if h <= SEA_LEVEL + 1 or generator.has_tree(x, z): continue
-		var mob := Mob.new()
-		add_child(mob)
+		var mob: Mob = PIG_SCENE.instantiate()
 		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)
 		spawned += 1
 
@@ -165,6 +168,7 @@ func _process(delta: float) -> void:
 		outline.global_position = grid_map.to_global(grid_map.map_to_local(t.cell))
 	_update_breaking(delta)
 	_update_fog()
+	_tick_furnaces(delta)
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
 	if (entered_void or in_lava) and not player.is_dead and player.can_be_hurt:
@@ -202,7 +206,30 @@ func _on_player_hit_pressed() -> void:
 	if mob != null:
 		mob.hurt(ATTACK_DAMAGE, player.global_position)
 
+var furnaces := {}  # Vector3i -> {slots=[input,fuel,output], burn, burn_max, cook}
 
+func _tick_furnaces(delta: float) -> void:   # call from _process
+	for cell in furnaces:
+		var f = furnaces[cell]
+		var s: Array = f.slots
+		var out_id = hud.SMELTING.get(s[0].id) if s[0] else null
+		var can: bool = out_id != null and (s[2] == null or (s[2].id == out_id \
+			and s[2].count < Registry.get_item(out_id).max_stack))
+		if f.burn <= 0.0 and can and s[1] != null and hud.FUEL.has(s[1].id):
+			f.burn = hud.FUEL[s[1].id]; f.burn_max = f.burn
+			s[1].count -= 1
+			if s[1].count <= 0: s[1] = null
+		if f.burn > 0.0:
+			f.burn -= delta
+			f.cook = f.cook + delta if can else 0.0
+			if f.cook >= 10.0:
+				f.cook = 0.0
+				s[0].count -= 1
+				if s[0].count <= 0: s[0] = null
+				if s[2] == null: s[2] = {"id": out_id, "count": 1}
+				else: s[2].count += 1
+		else:
+			f.cook = 0.0
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
@@ -210,6 +237,11 @@ func _on_player_use_pressed() -> void:
 	var hit_block := _block_for_item(target.item)
 	if hit_block != null and hit_block.id == &"crafting_table" and not player.is_crouching:
 		hud.set_ui_state(hud.UIState.CONTAINER)
+		return
+	if hit_block != null and hit_block.id == &"furnace" and not player.is_crouching:
+		if not furnaces.has(target.cell):
+			furnaces[target.cell] = {"slots": [null, null, null], "burn": 0.0, "burn_max": 0.0, "cook": 0.0}
+		hud.open_furnace(furnaces[target.cell].slots)
 		return
 	if hud.held_item == null: return
 	if target.place_cell.y < MIN_BUILD_HEIGHT:
