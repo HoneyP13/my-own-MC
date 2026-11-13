@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://huel5p5bypi1"]
+
+[ext_resource type="Texture2D" uid="uid://cni5eohbg251k" path="res://assets/sprites/redstone_dust_dot.png" id="1_g18hg"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_l46sg"]
+
+[resource]
+script = ExtResource("1_l46sg")
+id = &"redstone_dust"
+display_name = "redstone dust"
+icon = ExtResource("1_g18hg")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

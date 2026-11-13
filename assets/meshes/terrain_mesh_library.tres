@@ -39,9 +39,10 @@
 [ext_resource type="BoxMesh" uid="uid://b8xf2w57dli3g" path="res://assets/meshes/blocks/redstone_dust.tres" id="33_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://586no1jvv6dd" path="res://assets/meshes/blocks/redstone_block.tres" id="35_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://dcuirxno3ywd6" path="res://assets/meshes/blocks/gold_block.tres" id="36_vuep8"]
-[ext_resource type="BoxMesh" uid="uid://c8sckgpc0uunu" path="res://assets/meshes/blocks/wool_block.tres" id="37_71v0w"]
+[ext_resource type="BoxMesh" uid="uid://c8sckgpc0uunu" path="res://assets/meshes/blocks/white_wool.tres" id="37_hhxch"]
 [ext_resource type="BoxMesh" uid="uid://bxc5ffqks0640" path="res://assets/meshes/blocks/redstone_torch.tres" id="38_m1gdm"]
 [ext_resource type="BoxMesh" uid="uid://camdpgnae67gx" path="res://assets/meshes/blocks/diamond_block.tres" id="39_i8r8g"]
+[ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -108,6 +109,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rljr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvwf3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dol6b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn2ro"]
 
@@ -387,8 +390,8 @@ item/41/mesh_cast_shadow = 1
 item/41/shapes = [SubResource("BoxShape3D_1j2fh"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/41/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/41/navigation_layers = 1
-item/42/name = "wool_block"
-item/42/mesh = ExtResource("37_71v0w")
+item/42/name = "white_wool"
+item/42/mesh = ExtResource("37_hhxch")
 item/42/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/42/mesh_cast_shadow = 1
 item/42/shapes = [SubResource("BoxShape3D_2rljr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -408,4 +411,11 @@ item/45/mesh_cast_shadow = 1
 item/45/shapes = [SubResource("BoxShape3D_fvwf3"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/45/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/45/navigation_layers = 1
+item/46/name = "coal_block"
+item/46/mesh = ExtResource("40_y8tf5")
+item/46/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/46/mesh_cast_shadow = 1
+item/46/shapes = [SubResource("BoxShape3D_dol6b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/46/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/46/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

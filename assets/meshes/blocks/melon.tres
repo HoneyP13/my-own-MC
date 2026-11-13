@@ -1,10 +1,14 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bo4p8tl3qw0k4"]
 
 [ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_5bpdm"]
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_5fnna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
 render_priority = 0
 shader = ExtResource("1_5bpdm")
+shader_parameter/texture_top = ExtResource("2_5fnna")
+shader_parameter/texture_side = ExtResource("2_5fnna")
+shader_parameter/texture_bottom = ExtResource("2_5fnna")
 
 [resource]
 material = SubResource("ShaderMaterial_p88hg")

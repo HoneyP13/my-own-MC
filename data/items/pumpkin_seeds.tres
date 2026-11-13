@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://kw2fkte8hght"]
+
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_mbscu"]
+
+[resource]
+script = ExtResource("1_mbscu")
+block_id = &"pumpkin"
+id = &"pumpkin_seeds"
+display_name = "pumpkin seeds"
+metadata/_custom_type_script = "uid://bw6b1s4do376f"

@@ -12,9 +12,8 @@ var ui_state := UI.MAIN
 func _ready() -> void:
 	$BG.show()
 	title_screen.show()
-	#var dir = DirAccess.open("user://save_icon.png")
-	#if dir:
-	texture_rect.texture = load("res://save_icon.png")
+	if FileAccess.file_exists("user://save_icon.png"):
+		texture_rect.texture = ImageTexture.create_from_image(Image.load_from_file("user://save_icon.png"))
 	texture_rect.size = Vector2i(128, 128)
 	
 

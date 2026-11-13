@@ -55,45 +55,68 @@ const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
 
 const RECIPES := [
 	{"result": &"plank", "count": 4, "ingredients": {&"log": 1}},
+	{"result": &"red_wool", "count": 4, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
+	{"result": &"green_wool", "count": 4, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
+	{"result": &"blue_wool", "count": 4, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
+	{"result": &"cyan_wool", "count": 4, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
+	{"result": &"magneta_wool", "count": 4, "ingredients": {&"white_wool": 1, &"magneta_dye": 1}},
+	{"result": &"yellow_wool", "count": 4, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
+	{"result": &"black_wool", "count": 4, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
+	{"result": &"gray_wool", "count": 4, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
+	{"result": &"light_gray_wool", "count": 4, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
+	{"result": &"white_wool", "count": 4, "ingredients": {&"string": 4}},
+	{"result": &"orange_wool", "count": 4, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
+	{"result": &"pink_wool", "count": 4, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
+	{"result": &"light_blue_wool", "count": 4, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
+	{"result": &"brown_wool", "count": 4, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
+	{"result": &"pink_dye", "count": 4, "ingredients": {&"red_dye": 1, &"white_dye": 1}},
+	{"result": &"orange_dye", "count": 4, "ingredients": {&"red_dye": 1, &"yellow_dye": 1}},
+	{"result": &"light_blue_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
+	{"result": &"light_gray_dye", "count": 4, "ingredients": {&"gray_dye": 1, &"white_dye": 1}},
+	{"result": &"gray_dye", "count": 4, "ingredients": {&"black_dye": 1, &"white_dye": 1}},
+	{"result": &"lime_dye", "count": 4, "ingredients": {&"green_dye": 1, &"white_dye": 1}},
+	{"result": &"light_blue_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
+	{"result": &"cyan_dye", "count": 4, "ingredients": {&"blue_dye": 1, &"green_dye": 1}},
 	{"result": &"stick", "count": 4, "ingredients": {&"plank": 2}},
 	{"result": &"torch", "count": 4, "ingredients": {&"coal": 1, &"stick": 1}},
 	{"result": &"snow_block", "count": 1, "ingredients": {&"snowball": 4}},
 	{"result": &"crafting_table", "count": 1, "ingredients": {&"plank": 4}},
 	{"result": &"wooden_pickaxe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, {&"plank": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"wooden_axe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, null, null, {&"stick": 1,}, null, {&"plank": 1}, {&"stick": 1,}, null]},
+	{"result": &"wooden_axe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, null, null, {&"stick": 1,}, null, {&"plank": 1}, {&"stick": 1,}, null]},
 	{"result": &"wooden_shovel", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"wooden_sword", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"plank": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"wood_block", "count": 3, "ingredients": {&"log": 4}},
 	{"result": &"wooden_hoe", "count": 1, "ingredients": [null, {&"plank": 1}, {&"plank": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"redstone_torch", "count": 1, "ingredients": {&"redstone_dust": 1, &"stick": 1}},
 	{"result": &"furnace", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, null, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}]},
-	#{"result": &"hay_bale", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
+	{"result": &"hay_bale", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
 	{"result": &"redstone_block", "count": 1, "ingredients": [{&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}]},
-	#{"result": &"bed", "count": 1, "ingredients": [{&"wool": 1}, {&"wool": 1}, {&"wool": 1}, {&"plank": 1}, {&"plank": 1}, {&"plank": 1}]},
+	{"result": &"bed", "count": 1, "ingredients": [{&"white_wool": 1}, {&"white_wool": 1}, {&"white_wool": 1}, {&"plank": 1}, {&"plank": 1}, {&"plank": 1}]},
+	{"result": &"bread", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
 	{"result": &"diamond_block", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}]},
-	#{"result": &"coal_block", "count": 1, "ingredients": [{&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}]},
+	{"result": &"coal_block", "count": 1, "ingredients": [{&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}]},
 	#{"result": &"lever", "count": 1, "ingredients": {&"stick": 1, &"cobblestone": 1}},
 	{"result": &"stone_pickaxe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"stone_shovel", "count": 1, "ingredients": [null, {&"cobblestone": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"stone_sword", "count": 1, "ingredients": [null, {&"cobblestone": 1}, null, null, {&"cobblestone": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"stone_axe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, null, null, {&"stick": 1,}, null, {&"cobblestone": 1}, {&"stick": 1,}, null]},
+	{"result": &"stone_axe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, null, null, {&"stick": 1,}, null, {&"cobblestone": 1}, {&"stick": 1,}, null]},
 	{"result": &"stone_hoe", "count": 1, "ingredients": [null, {&"cobblestone": 1}, {&"cobblestone": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_pickaxe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_shovel", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_sword", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, null, null, {&"iron_ingot": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"iron_axe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, null, null, {&"stick": 1,}, null, {&"iron_ingot": 1}, {&"stick": 1,}, null]},
+	{"result": &"iron_axe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, null, null, {&"stick": 1,}, null, {&"iron_ingot": 1}, {&"stick": 1,}, null]},
 	{"result": &"iron_hoe", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_pickaxe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_shovel", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_sword", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, null, null, {&"gold_ingot": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"golden_axe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, null, null, {&"stick": 1,}, null, {&"gold_ingot": 1}, {&"stick": 1,}, null]},
+	{"result": &"golden_axe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, null, null, {&"stick": 1,}, null, {&"gold_ingot": 1}, {&"stick": 1,}, null]},
 	{"result": &"golden_hoe", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_pickaxe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_shovel", "count": 1, "ingredients": [null, {&"diamond": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_sword", "count": 1, "ingredients": [null, {&"diamond": 1}, null, null, {&"diamond": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"diamond_axe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, null, null, {&"stick": 1,}, null, {&"diamond": 1}, {&"stick": 1,}, null]},
+	{"result": &"diamond_axe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, null, null, {&"stick": 1,}, null, {&"diamond": 1}, {&"stick": 1,}, null]},
 	{"result": &"diamond_hoe", "count": 1, "ingredients": [null, {&"diamond": 1}, {&"diamond": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
-	#{"result": &"fishing_rod", "count": 1, "ingredients": [{&"stick": 1}, null, null, {&"string": 1}, {&"stick": 1}, null, {&"string": 1}, null, {&"stick": 1}]},
+	{"result": &"fishing_rod", "count": 1, "ingredients": [{&"stick": 1}, null, null, {&"string": 1}, {&"stick": 1}, null, {&"string": 1}, null, {&"stick": 1}]},
 	#{"result": &"flint_and_steel", "count": 1, "ingredients": {&"flint": 1, &"iron_ingot": 1}},
 	#{"result": &"leather_cap", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
 	#{"result": &"leather_tunic", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}]},
@@ -115,14 +138,15 @@ const RECIPES := [
 	{"result": &"redstone_dust", "count": 9, "ingredients": {&"redstone_block": 1}},
 	{"result": &"diamond", "count": 9, "ingredients": {&"diamond_block": 1}},
 	{"result": &"gold_ingot", "count": 9, "ingredients": {&"gold_block": 1}},
-	#{"result": &"iron_ingot", "count": 9, "ingredients": {&"iron_block": 1}},
+	{"result": &"iron_ingot", "count": 9, "ingredients": {&"iron_block": 1}},
 	{"result": &"gold_block", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}]},
-	#{"result": &"iron_block", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
+	{"result": &"iron_block", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
 	#{"result": &"tnt", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
 	#{"result": &"slime_block", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
-	#{"result": &"red_dye", "count": 4, "ingredients": {&"red_flower": 1}},
-	#{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
-	#{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
+	{"result": &"red_dye", "count": 4, "ingredients": {&"red_flower": 1}},
+	{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
+	{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
+	{"result": &"blue_ice", "count": 1, "ingredients": [{&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}]},
 ]
 # TODO: add the ability to smelt gold and iron armor / tools into nuggets, once added, and output an empty bucket if lava bucket was used as fuel source.
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
@@ -162,9 +186,6 @@ var table_grid: GridContainer
 var table_result: TextureRect
 var table_inv: GridContainer
 var table_hotbar: HBoxContainer
-var furnace_ingredient
-var furnace_fuel
-var furnace_result
 var furnace_menu: Panel
 var smelting_fuel: TextureRect
 var smelting_ingredient: TextureRect
@@ -175,7 +196,6 @@ var furnace_hotbar: HBoxContainer
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
 
-
 func _init() -> void:
 	player_armor.resize(4)
 	inv_craft_grid.resize(4)
@@ -183,7 +203,6 @@ func _init() -> void:
 	craft_grid = inv_craft_grid
 	inventory.resize(27)
 	hotbar.resize(9)
-
 
 func _ready() -> void:
 	player.scrolled.connect(_on_player_scrolled)
@@ -196,13 +215,15 @@ func _ready() -> void:
 	_setup_inventory_slots()
 	refresh_slots()
 	_refresh_ui()
+	for r in RECIPES:
+		if Registry.get_item(r.result) == null:
+			push_warning("Recipe result '%s' has no item def" % r.result)
 
 func _make_slot() -> TextureRect:
 	var s := TextureRect.new()
 	s.custom_minimum_size = Vector2(64, 64)
 	s.texture = SLOT_NORMAL
 	return s
-
 
 func _build_table_menu() -> void:
 	table_menu = Panel.new()
@@ -298,13 +319,13 @@ func _build_furnace_menu() -> void:
 	smelting_ingredient.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	interface.add_child(smelting_ingredient)
 	smelting_fuel = _make_slot()
-	_wire_slot(smelting_fuel, SlotArea.FUEL, 0)
+	_wire_slot(smelting_fuel, SlotArea.FUEL, 1)
 	smelting_fuel.size_flags_vertical = Control.SIZE_SHRINK_END
 	interface.add_child(smelting_fuel)
 	smelting_result = _make_slot()
 	smelting_result.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	top.add_child(smelting_result)
-	_wire_slot(smelting_result, SlotArea.OUTPUT, 0)
+	_wire_slot(smelting_result, SlotArea.OUTPUT, 2)
 
 	furnace_inv = GridContainer.new()
 	furnace_inv.columns = 9
@@ -322,14 +343,9 @@ func _build_furnace_menu() -> void:
 		furnace_hotbar.add_child(s)
 		_wire_slot(s, SlotArea.HOTBAR, i)
 
-
-func open_furnace(slots: Array):
-	furnace_ingredient = slots[0]
-	furnace_fuel = slots[1]
-	furnace_result = slots[2]
+func open_furnace(slots: Array) -> void:
+	furnace_slots = slots   # same array reference, so edits write through to world.furnaces
 	set_ui_state(UIState.FURNACE)
-
-
 
 func _setup_inventory_slots() -> void:
 	for i in armor_slots.get_child_count():
@@ -348,12 +364,10 @@ func _setup_inventory_slots() -> void:
 	cursor_icon.visible = false
 	add_child(cursor_icon)  # added last, so it draws on top
 
-
 func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 	slot.gui_input.connect(_on_slot_gui_input.bind(area, index))
 	slot.mouse_entered.connect(func(): slot.texture = SLOT_HOVER)
 	slot.mouse_exited.connect(func(): slot.texture = SLOT_NORMAL)
-
 
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
@@ -368,12 +382,14 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if area == SlotArea.INVENTORY: slots = inventory
 	if area == SlotArea.HOTBAR: slots = hotbar
 	if area == SlotArea.CRAFTING_TABLE: slots = table_craft_grid
+	if cursor_item != null:
+		if area == SlotArea.INPUT and not SMELTING.has(cursor_item.id): return
+		if area == SlotArea.FUEL and not FUEL.has(cursor_item.id): return
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: _left_click(slots, index)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
 		_: return
 	refresh_slots()
-
 
 func _left_click(slots: Array, i: int) -> void:
 	var slot = slots[i]
@@ -388,7 +404,6 @@ func _left_click(slots: Array, i: int) -> void:
 	# Otherwise swap.
 	slots[i] = cursor_item
 	cursor_item = slot
-
 
 func _right_click(slots: Array, i: int) -> void:
 	var slot = slots[i]
@@ -411,21 +426,17 @@ func _right_click(slots: Array, i: int) -> void:
 		if cursor_item.count <= 0: cursor_item = null
 
 var craft_output = null   # {"id":..., "count":...} or null
-var smelt_output = null
-
 func _grid_ids(grid: Array) -> Array:
 	var out := []
 	for s in grid:
 		out.append(s.id if s != null else &"")
 	return out
 
-
 func _pattern_ids(pattern: Array) -> Array:
 	var out := []
 	for e in pattern:
 		out.append(e.keys()[0] if e != null else &"")
 	return out
-
 
 ## Crops an id grid to its filled area, so shapes match wherever they sit in the grid.
 @warning_ignore("integer_division")
@@ -447,7 +458,6 @@ func _trimmed(ids: Array, width: int) -> Dictionary:
 		for x in range(min_x, max_x + 1):
 			out.append(ids[y * width + x])
 	return {"w": max_x - min_x + 1, "h": max_y - min_y + 1, "ids": out}
-
 
 func _find_recipe() -> Dictionary:
 	var ids := _grid_ids(craft_grid)
@@ -472,7 +482,6 @@ func _find_recipe() -> Dictionary:
 				return r
 	return {}
 
-
 func _take_result() -> void:
 	match ui_state:
 		UIState.INVENTORY, UIState.CONTAINER:
@@ -489,14 +498,15 @@ func _take_result() -> void:
 					craft_grid[i].count -= 1
 					if craft_grid[i].count <= 0: craft_grid[i] = null
 		UIState.FURNACE:
-			if furnace_result == null: return
-			var max_stack := Registry.get_item(furnace_result.id).max_stack
+			var out = furnace_slots[2]
+			if out == null: return
+			var max_stack := Registry.get_item(out.id).max_stack
 			if cursor_item == null:
-				cursor_item = furnace_result.duplicate()
-			elif cursor_item.id == furnace_result.id and cursor_item.count + furnace_result.count <= max_stack:
-				cursor_item.count += furnace_result.count
-			else:
-				return
+				cursor_item = out
+				furnace_slots[2] = null
+			elif cursor_item.id == out.id and cursor_item.count + out.count <= max_stack:
+				cursor_item.count += out.count
+				furnace_slots[2] = null
 
 func _return_cursor_item() -> void:
 	if cursor_item != null:
@@ -510,22 +520,14 @@ func _return_cursor_item() -> void:
 				grid[i] = null
 	refresh_slots()
 
-
-
-
 func _update_craft_result() -> void:
 	var r := _find_recipe()
-	craft_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
-
-func _update_smelt_result() -> void:
-	var r := _find_recipe()
-	smelt_output = {"id": r.result, "count": r.count} if not r.is_empty() else null
-
+	var ok := not r.is_empty() and Registry.get_item(r.result) != null
+	craft_output = {"id": r.result, "count": r.count} if ok else null
 
 func _process(_delta: float) -> void:
 	if cursor_icon.visible:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
-
 
 func add_item(item_id: StringName, amount: int = 1) -> void:
 	var def := Registry.get_item(item_id)
@@ -555,10 +557,8 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 					return
 	refresh_slots()   # inventory full: leftovers are lost for now
 
-
 func refresh_slots() -> void:
 	_update_craft_result()
-	_update_smelt_result()
 	rebuild_hotbar()
 	update_inventory()
 	cursor_icon.visible = cursor_item != null
@@ -568,7 +568,6 @@ func refresh_slots() -> void:
 		cursor_icon.texture = _icon_for(cursor_item.id)
 		if cursor_item.count > 1:
 			cursor_icon.add_child(_make_count_label(cursor_item.count))
-
 
 ## Draws one stack (or nothing) into a slot: icon, plus a count in the corner when count > 1.
 func _fill_slot(slot: Control, stack) -> void:
@@ -584,7 +583,6 @@ func _fill_slot(slot: Control, stack) -> void:
 	if stack.count > 1:
 		slot.add_child(_make_count_label(stack.count))
 
-
 func _make_count_label(count: int) -> Label:
 	var label := Label.new()
 	label.text = str(count)
@@ -597,12 +595,10 @@ func _make_count_label(count: int) -> Label:
 	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	return label
 
-
 func rebuild_hotbar() -> void:
 	for i in hot_bar_parent.get_child_count():
 		_fill_slot(hot_bar_parent.get_child(i), hotbar[i])
 	_update_hotbar_highlight()
-
 
 func update_inventory() -> void:
 	for i in inv.get_child_count():
@@ -627,14 +623,10 @@ func update_inventory() -> void:
 		_fill_slot(furnace_hotbar.get_child(i), hotbar[i])
 	_fill_slot(smelting_ingredient, furnace_slots[0])
 	_fill_slot(smelting_fuel, furnace_slots[1])
-	_fill_slot(smelting_result, smelt_output)
-
+	_fill_slot(smelting_result, furnace_slots[2])
 
 func _icon_for(stack: StringName) -> Texture2D:
 	return Registry.get_item(stack).icon
-
-
-	
 
 # ---------------------------------------------------------------------------------------------
 # UI state
@@ -647,7 +639,7 @@ func set_ui_state(new_state: UIState) -> void:
 	craft_width = 3 if new_state == UIState.CONTAINER else 2
 	_refresh_ui()
 	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER or old_state == UIState.FURNACE
-	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER or old_state == UIState.FURNACE
+	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER or new_state == UIState.FURNACE
 	if was_crafting and not is_crafting:
 		_return_cursor_item()
 	if old_state == UIState.CHAT and new_state != UIState.CHAT:
@@ -675,8 +667,7 @@ func _refresh_ui() -> void:
 func _on_open_inventory() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.INVENTORY)
-		UIState.INVENTORY, UIState.CONTAINER: set_ui_state(UIState.PLAYING)
-
+		UIState.INVENTORY, UIState.CONTAINER, UIState.FURNACE: set_ui_state(UIState.PLAYING)
 
 ## Escape key (also used by the Resume button): back out of whatever is open.
 func _on_open_menu() -> void:
@@ -686,11 +677,9 @@ func _on_open_menu() -> void:
 		UIState.SETTINGS: set_ui_state(UIState.PAUSED) # back to the pause menu
 		# DEAD: Escape does nothing. You have to hit Respawn.
 
-
 func _on_open_debug_info() -> void:
 	world.is_debug_enabled = not world.is_debug_enabled
 	_refresh_ui()
-
 
 func _on_open_chat(is_command: bool) -> void:
 	if ui_state != UIState.PLAYING: return
@@ -700,14 +689,11 @@ func _on_open_chat(is_command: bool) -> void:
 		type_interface.caret_column = 1
 	type_interface.grab_focus()
 
-
 func _on_resume_pressed() -> void:
 	if ui_state == UIState.PAUSED: set_ui_state(UIState.PLAYING)
 
-
 func _on_settings_pressed() -> void:
 	if ui_state == UIState.PAUSED: set_ui_state(UIState.SETTINGS)
-
 
 # ---------------------------------------------------------------------------------------------
 # Chat
@@ -759,17 +745,14 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 
 	type_interface.clear()
 
-
 ## Adds one line to the chat. add_text() shows the text exactly as typed, whereas append_text()
 ## would treat things like [b] as formatting tags.
 func _chat_print(line: String) -> void:
 	chat_history.add_text(line)
 	chat_history.newline()
 
-
 func _on_player_is_dead_changed(is_true: bool) -> void:
 	set_ui_state(UIState.DEAD if is_true else UIState.PLAYING)
-
 
 func _on_player_health_changed(hp: int) -> void:
 	var full_bar : float = player.FULL_HEALTH / 2.0
@@ -781,11 +764,8 @@ func _on_player_health_changed(hp: int) -> void:
 		elif hearts >= 1.0: icon.texture = FULL_HEART
 		hearts -= 1.0
 
-
 func _on_player_current_gamemode_changed(Gamemode: Variant) -> void:
 	health_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
 	hunger_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
 	player.can_freefly = true if Gamemode == player.Gamemode.CREATIVE else false
 	if player.freeflying: player.disable_freefly()
-	
-	

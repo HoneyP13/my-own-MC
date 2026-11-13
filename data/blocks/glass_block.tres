@@ -8,4 +8,5 @@ id = &"glass_block"
 mesh_name = "glass_block"
 drop_id = &"glass_block"
 hardness = 0.3
+tool_kind = &"pickaxe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

@@ -36,8 +36,12 @@ func _physics_process(delta: float) -> void:
 		rotation.y = atan2(-_dir.x, -_dir.z)
 		if is_on_wall() and is_on_floor(): velocity.y = 8.0   # hop up one block
 	move_and_slide()
+	var _lava_timer := 0.0
 	if world.fluid_at(global_position) == &"lava":
-		hurt(1, global_position)
+		_lava_timer -= delta
+		if _lava_timer <= 0.0:
+			_lava_timer = 0.5
+			hurt(2, global_position)
 
 func hurt(amount: int, from: Vector3) -> void:
 	health -= amount

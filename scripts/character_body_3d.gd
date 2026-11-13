@@ -100,7 +100,7 @@ var current_gamemode = Gamemode.SURVIVAL:
 	set(value):
 		current_gamemode = value
 		current_gamemode_changed.emit(current_gamemode)
-var can_be_hurt : bool = false
+var can_be_hurt : bool = true
 enum { LIQUID, ENTITY, BLOCK }
 
 ## IMPORTANT REFERENCES
@@ -114,14 +114,12 @@ var crouch_height : float = 1.0
 @onready var stand_height : float = collider.shape.height   # 1.8, read from the scene
 @onready var head_stand_y : float = head.position.y         # 0.5, read from the scene
 
-
 func _ready() -> void:
 	if username.length() < 4 or username.length() > 18:
 		username = "InvalidUser"
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing. React to the click event itself, and let the click that grabs the
@@ -173,7 +171,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			enable_freefly()
 		else:
 			disable_freefly()
-
 
 func _physics_process(delta: float) -> void:
 	if is_dead or is_game_paused: return
@@ -257,7 +254,6 @@ func _process(delta: float) -> void:
 	else:
 		regen_timer = 0.0
 
-
 # ---------------------------------------------------------------------------------------------
 # Things the world asks of the player (the world calls these directly; nothing here is a signal)
 # ---------------------------------------------------------------------------------------------
@@ -266,12 +262,10 @@ func _process(delta: float) -> void:
 func get_eye_position() -> Vector3:
 	return head.global_position
 
-
 ## The direction we're looking in, in world space (unit length).
 ## A node looks down its own -Z axis, and the Head carries both the yaw and the pitch.
 func get_look_direction() -> Vector3:
 	return -head.global_basis.z
-
 
 ## Called by the world whenever a screen opens or closes. Frees the mouse while one is up,
 ## and grabs it back when you're playing again.
@@ -279,7 +273,6 @@ func set_menu_open(is_open: bool) -> void:
 	is_menu_open = is_open
 	if is_open: release_mouse()
 	else: capture_mouse()
-
 
 ## Called by the world while the pause menu is up.
 func set_game_paused(paused: bool) -> void:
@@ -296,7 +289,6 @@ func hurt(value: int) -> void:
 	health_changed.emit(health)
 	if health == 0: die()
 
-
 ## Kill the player. Anything can call this (the void, lava, a health bar hitting zero...).
 ## The world listens for player_died to show the death screen.
 func die() -> void:
@@ -309,14 +301,12 @@ func die() -> void:
 	hud.refresh_slots()
 	player_died.emit()
 
-
 ## Bring the player back to life at `pos`.
 func respawn(pos: Vector3) -> void:
 	velocity = Vector3.ZERO
 	global_position = pos
 	hurt(-20)
 	is_dead = false
-
 
 func set_crouching(value: bool) -> void:
 	is_crouching = value
@@ -325,7 +315,6 @@ func set_crouching(value: bool) -> void:
 	# The capsule is centred on the body, so shift collider + camera to keep your feet planted
 	collider.position.y = -(stand_height - h) / 2.0
 	head.position.y = head_stand_y - (stand_height - h)
-
 
 func can_stand() -> bool:
 	# Sweep the crouched body upward; if it hits something, there's no headroom
@@ -343,27 +332,22 @@ func rotate_look(rot_input : Vector2):
 	head.transform.basis = Basis()
 	head.rotate_x(look_rotation.x)
 
-
 func enable_freefly():
 	collider.disabled = true
 	freeflying = true
 	velocity = Vector3.ZERO
 
-
 func disable_freefly():
 	collider.disabled = false
 	freeflying = false
-
 
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
 
-
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
-
 
 ## Checks if some Input Actions haven't been created.
 ## Disables functionality accordingly.
@@ -390,10 +374,8 @@ func check_input_mappings():
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
 
-
 func _on_is_dead_changed(is_true: bool) -> void:
 	if is_true: hud._chat_print(username+" died.")
-
 
 func _on_current_gamemode_changed(gamemode: Variant) -> void:
 	can_be_hurt = false if gamemode == Gamemode.CREATIVE else true

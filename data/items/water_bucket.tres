@@ -8,4 +8,5 @@ script = ExtResource("2_m8ota")
 id = &"water_bucket"
 display_name = "water bucket"
 icon = ExtResource("1_j3qj4")
+max_stack = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

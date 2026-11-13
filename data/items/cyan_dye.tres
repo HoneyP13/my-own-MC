@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bts4lbt0py641"]
+
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_fmqnn"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_27bwt"]
+
+[resource]
+script = ExtResource("2_27bwt")
+id = &"cyan_dye"
+display_name = "cyan dye"
+icon = ExtResource("1_fmqnn")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"
