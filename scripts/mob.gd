@@ -22,6 +22,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if global_position.y < -20.0: queue_free(); return
+	if world.player.is_game_paused: return
 	if not is_on_floor(): velocity += get_gravity() * delta
 	_timer -= delta
 	if _timer <= 0.0:

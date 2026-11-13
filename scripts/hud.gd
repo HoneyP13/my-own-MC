@@ -83,7 +83,7 @@ const RECIPES := [
 	{"result": &"snow_block", "count": 1, "ingredients": {&"snowball": 4}},
 	{"result": &"crafting_table", "count": 1, "ingredients": {&"plank": 4}},
 	{"result": &"wooden_pickaxe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, {&"plank": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
-	{"result": &"wooden_axe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, null, null, {&"stick": 1,}, null, {&"plank": 1}, {&"stick": 1,}, null]},
+	{"result": &"wooden_axe", "count": 1, "ingredients": [{&"plank": 1}, {&"plank": 1}, null, {&"plank": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"wooden_shovel", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"wooden_sword", "count": 1, "ingredients": [null, {&"plank": 1}, null, null, {&"plank": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"wood_block", "count": 3, "ingredients": {&"log": 4}},
@@ -96,26 +96,27 @@ const RECIPES := [
 	{"result": &"bread", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
 	{"result": &"diamond_block", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}]},
 	{"result": &"coal_block", "count": 1, "ingredients": [{&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}]},
+	{"result": &"fence", "count": 3, "ingredients": [{&"plank": 1}, {&"stick": 1}, {&"plank": 1}, {&"plank": 1}, {&"stick": 1}, {&"plank": 1}]},
 	#{"result": &"lever", "count": 1, "ingredients": {&"stick": 1, &"cobblestone": 1}},
 	{"result": &"stone_pickaxe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"stone_shovel", "count": 1, "ingredients": [null, {&"cobblestone": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"stone_sword", "count": 1, "ingredients": [null, {&"cobblestone": 1}, null, null, {&"cobblestone": 1,}, null, null, {&"stick": 1,}, null]},
-	{"result": &"stone_axe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, null, null, {&"stick": 1,}, null, {&"cobblestone": 1}, {&"stick": 1,}, null]},
+	{"result": &"stone_axe", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, null, {&"cobblestone": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"stone_hoe", "count": 1, "ingredients": [null, {&"cobblestone": 1}, {&"cobblestone": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_pickaxe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_shovel", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_sword", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, null, null, {&"iron_ingot": 1,}, null, null, {&"stick": 1,}, null]},
-	{"result": &"iron_axe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, null, null, {&"stick": 1,}, null, {&"iron_ingot": 1}, {&"stick": 1,}, null]},
+	{"result": &"iron_axe", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"iron_hoe", "count": 1, "ingredients": [null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_pickaxe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_shovel", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_sword", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, null, null, {&"gold_ingot": 1,}, null, null, {&"stick": 1,}, null]},
-	{"result": &"golden_axe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, null, null, {&"stick": 1,}, null, {&"gold_ingot": 1}, {&"stick": 1,}, null]},
+	{"result": &"golden_axe", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"golden_hoe", "count": 1, "ingredients": [null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_pickaxe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1,}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_shovel", "count": 1, "ingredients": [null, {&"diamond": 1}, null, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_sword", "count": 1, "ingredients": [null, {&"diamond": 1}, null, null, {&"diamond": 1,}, null, null, {&"stick": 1,}, null]},
-	{"result": &"diamond_axe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, null, null, {&"stick": 1,}, null, {&"diamond": 1}, {&"stick": 1,}, null]},
+	{"result": &"diamond_axe", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, null, {&"diamond": 1}, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"diamond_hoe", "count": 1, "ingredients": [null, {&"diamond": 1}, {&"diamond": 1}, null, {&"stick": 1,}, null, null, {&"stick": 1,}, null]},
 	{"result": &"fishing_rod", "count": 1, "ingredients": [{&"stick": 1}, null, null, {&"string": 1}, {&"stick": 1}, null, {&"string": 1}, null, {&"stick": 1}]},
 	#{"result": &"flint_and_steel", "count": 1, "ingredients": {&"flint": 1, &"iron_ingot": 1}},
@@ -367,18 +368,20 @@ func _setup_inventory_slots() -> void:
 
 func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 	slot.gui_input.connect(_on_slot_gui_input.bind(area, index))
-	slot.mouse_entered.connect(func(): slot.texture = SLOT_HOVER)
-	slot.mouse_exited.connect(func(): slot.texture = SLOT_NORMAL)
+	slot.mouse_entered.connect(func(): slot.texture = HELMET_HOVER_HINT if slot.name == "HelmetSlot" else CHESTPLATE_HOVER_HINT if slot.name == "TorsoSlot" else LEGGINGS_HOVER_HINT if slot.name == "PantsSlot" else BOOTS_HOVER_HINT if slot.name == "BootsSlot" else SLOT_HOVER)
+	slot.mouse_exited.connect(func(): slot.texture = HELMET_SLOT_HINT if slot.name == "HelmetSlot" else CHESTPLATE_SLOT_HINT if slot.name == "TorsoSlot" else LEGGINGS_SLOT_HINT if slot.name == "PantsSlot" else BOOTS_SLOT_HINT if slot.name == "BootsSlot" else SLOT_NORMAL)
 
+var is_shift_pressed : bool = false
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if not (event is InputEventMouseButton and event.pressed): return
 	var slots: Array
+	is_shift_pressed = true if event.is_pressed() and event.keycode == KEY_SHIFT else false
 	if area == SlotArea.RESULT or area == SlotArea.OUTPUT:
 		if event.button_index == MOUSE_BUTTON_LEFT: _take_result()
 		refresh_slots()
 		return
 	if area == SlotArea.INPUT or area == SlotArea.FUEL: slots = furnace_slots
-	if area == SlotArea.ARMOR: slots = player_armor
+	if area == SlotArea.ARMOR: slots = player_armor # TODO: Fix this
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
 	if area == SlotArea.HOTBAR: slots = hotbar
@@ -394,6 +397,33 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 
 func _left_click(slots: Array, i: int) -> void:
 	var slot = slots[i]
+	if is_shift_pressed and slot != null:
+		var def := Registry.get_item(slot.id)
+		var amount = slot.count
+		if def == null: return
+		for spots in (hotbar if slots == hotbar else inventory):
+			for item in spots.size():
+				var s = spots[item]
+				if s != null and s.id == slot.id and s.count < def.max_stack:
+					var moved := mini(def.max_stack - s.count, amount)
+					s.count += moved
+					amount -= moved
+					if amount == 0:
+						slot = null
+						refresh_slots()
+						return
+		for spots in (hotbar if slots == hotbar else inventory):
+			for item in spots.size():
+				if spots[item] == null:
+					var moved := mini(def.max_stack, amount)
+					spots[item] = {"id": item.id, "count": moved}
+					amount -= moved
+					if amount == 0:
+						slot = null
+						refresh_slots()
+						return
+				else: return
+		refresh_slots()
 	# Same item on both sides: pour the cursor stack into the slot, up to the stack limit.
 	if slot != null and cursor_item != null and slot.id == cursor_item.id:
 		var max_stack := Registry.get_item(slot.id).max_stack

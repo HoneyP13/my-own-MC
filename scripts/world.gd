@@ -231,8 +231,11 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
-	if target == null: return
-	var hit_block := _block_for_item(target.item)
+	if target == null:
+		if Registry.get_item(hud.held_item.id).on_use != ItemDef.Use.FEED_PLAYER:
+			return
+	var hit_block : BlockDef
+	if target != null: hit_block = _block_for_item(target.item)
 	if hit_block != null and hit_block.id == &"crafting_table" and not player.is_crouching:
 		hud.set_ui_state(hud.UIState.CONTAINER)
 		return
@@ -242,12 +245,13 @@ func _on_player_use_pressed() -> void:
 		hud.open_furnace(furnaces[target.cell].slots)
 		return
 	if hud.held_item == null: return
-	if target.place_cell.y < MIN_BUILD_HEIGHT:
-		hud._chat_print("Cannot build below Y:0")
-		return
-	if target.place_cell.y > MAX_BUILD_HEIGHT:
-		hud._chat_print("Cannot build above Y:64")
-		return
+	if target != null:
+		if target.place_cell.y < MIN_BUILD_HEIGHT:
+			hud._chat_print("Cannot build below Y:0")
+			return
+		if target.place_cell.y > MAX_BUILD_HEIGHT:
+			hud._chat_print("Cannot build above Y:64")
+			return
 	var def := Registry.get_item(hud.held_item.id)
 	if def == null: return
 	if def.use_on_block(self, target) and def is BlockItemDef:
@@ -479,8 +483,8 @@ func load_game() -> bool:
 	player.velocity = Vector3.ZERO
 	player.global_position = data["player_pos"]
 	player.look_rotation = data["player_look"]
-	player.health = data["player_hunger"]
-	player.hunger = data["player_health"]
+	player.health = data["player_health"]
+	player.hunger = data["player_hunger"]
 	player.rotate_look(Vector2.ZERO)  # re-applies look_rotation to the body and head
 	player.current_gamemode = data["gamemode"]
 

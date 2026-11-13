@@ -55,6 +55,7 @@ extends CharacterBody3D
 @export var input_scroll_up : String = "scroll up"
 @export var input_scroll_down : String = "scroll down"
 @export var input_select : String = "select block"
+@export var input_hide_ui : String = "hide ui"
 
 @export_group("Block Targeting")
 ## How far (in world units) we can reach to hit/use a block.

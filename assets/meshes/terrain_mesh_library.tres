@@ -43,6 +43,7 @@
 [ext_resource type="BoxMesh" uid="uid://bxc5ffqks0640" path="res://assets/meshes/blocks/redstone_torch.tres" id="38_m1gdm"]
 [ext_resource type="BoxMesh" uid="uid://camdpgnae67gx" path="res://assets/meshes/blocks/diamond_block.tres" id="39_i8r8g"]
 [ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
+[ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/fence.tres" id="41_y8tf5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -418,4 +419,11 @@ item/46/mesh_cast_shadow = 1
 item/46/shapes = [SubResource("BoxShape3D_dol6b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/46/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/46/navigation_layers = 1
+item/47/name = "fence"
+item/47/mesh = ExtResource("41_y8tf5")
+item/47/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/47/mesh_cast_shadow = 1
+item/47/shapes = []
+item/47/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/47/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

@@ -13,8 +13,24 @@ enum Use { NONE, FEED_PLAYER, BUCKET }
 ## Right-click with this item selected. Return true if it did something.
 func use_on_block(_world: Node, _hit: VoxelRaycast.Hit) -> bool:
 	if on_use == Use.FEED_PLAYER:
-		var player = get_local_scene().find_child("Player")
-		player.feast(on_use_value, true)
+		_world.player.feast(on_use_value, true)
 		return true
+	elif on_use == Use.BUCKET:
+		if _world.fluid_at(_hit.cell) == &"lava" or _world.fluid_at(_hit.cell) == &"water":
+			if _world.hud.held_item.id == &"bucket":
+				if _world.hud.held_item.count > 1:
+					var items = _world.hud.held_item
+					items.count -= 1
+					_world.hud.held_item.count = 1
+					_world.hud.held_item.id = &"lava_bucket" if _world.fluid_at(_hit.cell) == &"lava" else &"water_bucket"
+					_world.hud.add_item(items.id,items.count)
+				else:
+					_world.hud.held_item.id = &"lava_bucket" if _world.fluid_at(_hit.cell) == &"lava" else &"water_bucket"
+				_world.fluids_map.set_cell(_hit.cell, GridMap.INVALID_CELL_ITEM)
+				return true
+			else:
+				return false
+		else:
+			return false
 	else:
 		return false
