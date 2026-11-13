@@ -9,4 +9,6 @@ block_id = &"snow_block"
 id = &"snow_block"
 display_name = "snow block"
 icon = ExtResource("1_8c13s")
+on_use = 7
+on_use_value = 2
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

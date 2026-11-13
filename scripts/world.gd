@@ -29,6 +29,8 @@ var spawnpoint : Vector3
 
 const PIG_SCENE := preload("res://scenes/pig.tscn")
 const CHICKEN_SCENE := preload("res://scenes/chicken.tscn")
+const COW_SCENE = preload("uid://y4kxawccfa18")
+const SHEEP_SCENE = preload("uid://r3pfy4dfhvjo")
 
 func _ready() -> void:
 	player.hit_pressed.connect(_on_player_hit_pressed)
@@ -125,7 +127,10 @@ func spawn_mobs() -> void:
 		var h := generator.height_at(x, z)
 		if h <= SEA_LEVEL + 1 or generator.has_tree(x, z): continue
 		var mob: Mob
-		if randf() > 0.5: mob = PIG_SCENE.instantiate()
+		var f = randf()
+		if f > 0.25: mob = COW_SCENE.instantiate()
+		if f > 0.5: mob = SHEEP_SCENE.instantiate()
+		if f > 0.75: mob = PIG_SCENE.instantiate()
 		else: mob = CHICKEN_SCENE.instantiate()
 		add_child(mob)
 		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)

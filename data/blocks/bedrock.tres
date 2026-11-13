@@ -6,5 +6,6 @@
 script = ExtResource("1_dbjve")
 id = &"bedrock"
 mesh_name = "bedrock"
+drop_chance = 0
 hardness = -1.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

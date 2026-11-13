@@ -8,5 +8,5 @@ script = ExtResource("2_8pc3m")
 id = &"bucket"
 display_name = "bucket"
 icon = ExtResource("1_oqkwe")
-on_use = 2
+on_use = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

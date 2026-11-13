@@ -33,7 +33,7 @@
 [ext_resource type="BoxMesh" uid="uid://c2p35bucg604w" path="res://assets/meshes/blocks/ice_block.tres" id="27_ie5yr"]
 [ext_resource type="BoxMesh" uid="uid://b0em2klaecy5b" path="res://assets/meshes/blocks/snow_layer.tres" id="28_7op3e"]
 [ext_resource type="BoxMesh" uid="uid://bhhgmetk7r2vb" path="res://assets/meshes/blocks/pumpkin.tres" id="29_nfxs4"]
-[ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/melon.tres" id="30_w2p7p"]
+[ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/watermelon.tres" id="30_dol6b"]
 [ext_resource type="BoxMesh" uid="uid://byrikgqfmawh7" path="res://assets/meshes/blocks/carved_pumpkin.tres" id="31_u6ce4"]
 [ext_resource type="BoxMesh" uid="uid://bovawh6un8rrf" path="res://assets/meshes/blocks/redstone_ore.tres" id="32_gf5wm"]
 [ext_resource type="BoxMesh" uid="uid://b8xf2w57dli3g" path="res://assets/meshes/blocks/redstone_dust.tres" id="33_gu01m"]
@@ -44,6 +44,7 @@
 [ext_resource type="BoxMesh" uid="uid://camdpgnae67gx" path="res://assets/meshes/blocks/diamond_block.tres" id="39_i8r8g"]
 [ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
 [ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/fence.tres" id="41_y8tf5"]
+[ext_resource type="BoxMesh" uid="uid://dw3lperd1gh8q" path="res://assets/meshes/blocks/lever.tres" id="42_gthcv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -349,8 +350,8 @@ item/35/mesh_cast_shadow = 1
 item/35/shapes = [SubResource("BoxShape3D_vtu4l"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/35/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/35/navigation_layers = 1
-item/36/name = "melon"
-item/36/mesh = ExtResource("30_w2p7p")
+item/36/name = "watermelon"
+item/36/mesh = ExtResource("30_dol6b")
 item/36/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/36/mesh_cast_shadow = 1
 item/36/shapes = [SubResource("BoxShape3D_5hlrj"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -426,4 +427,11 @@ item/47/mesh_cast_shadow = 1
 item/47/shapes = []
 item/47/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/47/navigation_layers = 1
+item/48/name = "lever"
+item/48/mesh = ExtResource("42_gthcv")
+item/48/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/48/mesh_cast_shadow = 1
+item/48/shapes = []
+item/48/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/48/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

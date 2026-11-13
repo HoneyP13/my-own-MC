@@ -9,4 +9,6 @@ id = &"golden_pickaxe"
 display_name = "golden pickaxe"
 icon = ExtResource("1_r4re1")
 max_stack = 1
+on_use = 6
+on_use_value = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

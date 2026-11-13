@@ -8,4 +8,5 @@ id = &"white_wool"
 mesh_name = "white_wool"
 drop_id = &"white_wool"
 hardness = 0.6
+tool_kind = &"hoe"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

@@ -9,4 +9,6 @@ id = &"wooden_axe"
 display_name = "wooden axe"
 icon = ExtResource("1_tgsm3")
 max_stack = 1
+on_use = 6
+on_use_value = 2
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

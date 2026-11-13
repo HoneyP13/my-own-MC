@@ -9,4 +9,5 @@ mesh_name = "coal_block"
 drop_id = &"coal_block"
 hardness = 3.0
 tool_kind = &"pickaxe"
+req_tier = &"wooden"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

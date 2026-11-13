@@ -9,4 +9,5 @@ id = &"water_bucket"
 display_name = "water bucket"
 icon = ExtResource("1_j3qj4")
 max_stack = 1
+on_use = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -9,4 +9,6 @@ id = &"stone_sword"
 display_name = "stone sword"
 icon = ExtResource("1_i16o4")
 max_stack = 1
+on_use = 6
+on_use_value = 4
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

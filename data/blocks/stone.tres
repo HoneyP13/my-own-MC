@@ -9,4 +9,5 @@ mesh_name = "stone"
 drop_id = &"cobblestone"
 hardness = 1.5
 tool_kind = &"pickaxe"
+req_tier = &"wooden"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

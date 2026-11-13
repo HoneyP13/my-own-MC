@@ -9,4 +9,6 @@ id = &"diamond_axe"
 display_name = "diamond axe"
 icon = ExtResource("1_tx2gj")
 max_stack = 1
+on_use = 6
+on_use_value = 5
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

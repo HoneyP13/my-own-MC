@@ -9,4 +9,5 @@ id = &"lava_bucket"
 display_name = "lava bucket"
 icon = ExtResource("1_m8ii8")
 max_stack = 1
+on_use = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -9,4 +9,6 @@ id = &"diamond_shovel"
 display_name = "diamond shovel"
 icon = ExtResource("1_yc35y")
 max_stack = 1
+on_use = 6
+on_use_value = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

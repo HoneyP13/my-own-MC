@@ -9,4 +9,6 @@ id = &"iron_shovel"
 display_name = "iron shovel"
 icon = ExtResource("1_lqad6")
 max_stack = 1
+on_use = 6
+on_use_value = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

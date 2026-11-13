@@ -9,4 +9,6 @@ id = &"diamond_sword"
 display_name = "diamond sword"
 icon = ExtResource("1_tylii")
 max_stack = 1
+on_use = 6
+on_use_value = 6
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

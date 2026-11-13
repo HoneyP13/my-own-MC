@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://r3pfy4dfhvjo"]
+
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_t8l8v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
+radius = 0.4
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyap7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eg0p3"]
+material = SubResource("StandardMaterial3D_hyap7")
+size = Vector3(0.645, 0.69, 0.95)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lku0"]
+albedo_color = Color(0.9019608, 0.6745098, 0.60784316, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1yv3s"]
+material = SubResource("StandardMaterial3D_8lku0")
+size = Vector3(0.35, 0.33, 0.27)
+
+[node name="Sheep" type="CharacterBody3D" unique_id=1765357688]
+script = ExtResource("1_t8l8v")
+mob_id = &"sheep"
+max_health = 12
+speed = 3.0
+drop_id = &"white_wool"
+
+[node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]
+shape = SubResource("CapsuleShape3D_ogq8d")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=1709678543]
+mesh = SubResource("BoxMesh_eg0p3")
+
+[node name="face" type="MeshInstance3D" parent="." unique_id=1626653863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, -0.485)
+mesh = SubResource("BoxMesh_1yv3s")

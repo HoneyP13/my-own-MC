@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://qgsqkfof1x8j"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_1ftpm"]
+
+[resource]
+script = ExtResource("1_1ftpm")
+id = &"white_wool"
+mesh_name = "white_wool"
+drop_id = &"white_wool"
+hardness = 0.6
+tool_kind = &"hoe"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

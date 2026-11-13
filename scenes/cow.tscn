@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://y4kxawccfa18"]
+
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_fgglk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
+radius = 0.4
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hyap7"]
+albedo_color = Color(0.61960787, 0.25882354, 0.078431375, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eg0p3"]
+material = SubResource("StandardMaterial3D_hyap7")
+size = Vector3(0.415, 0.635, 0.905)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lku0"]
+albedo_color = Color(0.61960787, 0.25882354, 0.078431375, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1yv3s"]
+material = SubResource("StandardMaterial3D_8lku0")
+size = Vector3(0.345, 0.325, 0.37)
+
+[node name="Cow" type="CharacterBody3D" unique_id=1765357688]
+script = ExtResource("1_fgglk")
+mob_id = &"cow"
+max_health = 16
+speed = 3.0
+drop_id = &"leather"
+
+[node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]
+shape = SubResource("CapsuleShape3D_ogq8d")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=1709678543]
+mesh = SubResource("BoxMesh_eg0p3")
+
+[node name="head" type="MeshInstance3D" parent="." unique_id=1626653863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -0.51)
+mesh = SubResource("BoxMesh_1yv3s")

@@ -9,4 +9,6 @@ id = &"wooden_hoe"
 display_name = "wooden hoe"
 icon = ExtResource("1_gdyc5")
 max_stack = 1
+on_use = 6
+on_use_value = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

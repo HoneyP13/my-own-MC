@@ -8,4 +8,5 @@ script = ExtResource("2_g74ha")
 id = &"spider_eye"
 display_name = "spider eye"
 icon = ExtResource("1_70dco")
+on_use = 5
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

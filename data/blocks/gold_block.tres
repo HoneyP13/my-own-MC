@@ -9,4 +9,5 @@ mesh_name = "gold_block"
 drop_id = &"gold_block"
 hardness = 3.5
 tool_kind = &"pickaxe"
+req_tier = &"iron"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

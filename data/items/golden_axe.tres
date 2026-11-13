@@ -9,4 +9,6 @@ id = &"golden_axe"
 display_name = "golden axe"
 icon = ExtResource("1_kr31b")
 max_stack = 1
+on_use = 6
+on_use_value = 4
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

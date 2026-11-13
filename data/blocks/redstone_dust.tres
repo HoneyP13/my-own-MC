@@ -4,4 +4,8 @@
 
 [resource]
 script = ExtResource("1_35381")
+id = &"redstone_dust"
+mesh_name = "redstone_dust"
+drop_id = &"redstone_dust"
+hardness = 0.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

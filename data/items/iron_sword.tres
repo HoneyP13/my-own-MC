@@ -9,4 +9,6 @@ id = &"iron_sword"
 display_name = "iron sword"
 icon = ExtResource("1_d3ohw")
 max_stack = 1
+on_use = 6
+on_use_value = 5
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

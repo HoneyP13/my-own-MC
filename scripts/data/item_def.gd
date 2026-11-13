@@ -9,7 +9,7 @@ extends Resource
 @export var on_use: Use
 @export var on_use_value: int = 0
 
-enum Use { NONE, FEED_PLAYER, BUCKET }
+enum Use { NONE, FEED_PLAYER, FEED_MOB, BUCKET, SLEEP, GIVE_EFFECT, ATTACK_DAMAGE, PROJECTILE, PROTECTION }
 ## Right-click with this item selected. Return true if it did something.
 func use_on_block(_world: Node, _hit: VoxelRaycast.Hit) -> bool:
 	if on_use == Use.FEED_PLAYER:
