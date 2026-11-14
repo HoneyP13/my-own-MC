@@ -9,4 +9,5 @@ mesh_name = "diamond_ore"
 drop_id = &"diamond_ore"
 hardness = 3.5
 tool_kind = &"pickaxe"
+req_tier = &"iron"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

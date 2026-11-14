@@ -3,9 +3,14 @@ extends CharacterBody3D
 
 @export var mob_id: StringName
 @export var max_health: int
-@export var speed: float
+@export var walking_speed: float
+@export var running_speed: float = walking_speed
 @export var drop_id: StringName
-
+@export var behavior: Behavior
+# If behavior is Roam, then Flee when attacked
+enum Behavior { ROAM, FLEE, HUNT, ATTACK, CHASE, FOLLOW } 
+## ROAM: Passive mobs that FLEE once attacked. Hostile mobs HUNT the player, and attack on sight
+## They can also CHASE the player if they are near or in line of sight. Pets will FOLLOW their owner, and teleport if needed
 var health : int
 var _dir := Vector3.ZERO
 var _timer := 0.0
@@ -32,8 +37,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			var a := randf() * TAU
 			_dir = Vector3(cos(a), 0, sin(a))
-	velocity.x = _dir.x * speed + _knockback.x
-	velocity.z = _dir.z * speed + _knockback.z
+	velocity.x = _dir.x * walking_speed + _knockback.x
+	velocity.z = _dir.z * walking_speed + _knockback.z
 	_knockback = _knockback.move_toward(Vector3.ZERO, 20.0 * delta)
 	if _dir != Vector3.ZERO:
 		rotation.y = atan2(-_dir.x, -_dir.z)
@@ -46,6 +51,7 @@ func _physics_process(delta: float) -> void:
 			hurt(2, global_position)
 
 func hurt(amount: int, from: Vector3) -> void:
+	behavior = Behavior.FLEE # for like, 15 seconds, then back to Roam
 	health -= amount
 	var away := global_position - from
 	away.y = 0.0

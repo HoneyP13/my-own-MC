@@ -24,7 +24,8 @@ size = Vector3(0.3, 0.25, 0.2)
 script = ExtResource("1_sq5kf")
 mob_id = &"pig"
 max_health = 10
-speed = 2.0
+walking_speed = 2.0
+running_speed = 5.0
 drop_id = &"raw_meat"
 
 [node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]

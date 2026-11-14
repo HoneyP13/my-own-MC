@@ -26,6 +26,7 @@ script = ExtResource("1_qpvh6")
 
 [node name="GameplayHUD" type="Control" parent="." unique_id=412332304]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -788,6 +789,89 @@ text = "Respawn"
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="CreativeInventory" type="Panel" parent="." unique_id=1116187236]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CreativeInventory" unique_id=1359961336]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="CreativeInventory/ScrollContainer" unique_id=443077169]
+layout_mode = 2
+columns = 9
+
+[node name="HotBar" type="HBoxContainer" parent="CreativeInventory" unique_id=572592643]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -64.0
+offset_right = 304.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBSlot1" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=541404759]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot2" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=233595037]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot3" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=208557700]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot4" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=1622298178]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot5" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=1952043861]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot6" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=2055744735]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot7" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=730853025]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot8" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=904985391]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
+
+[node name="HBSlot9" type="TextureRect" parent="CreativeInventory/HotBar" unique_id=1462816768]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_1etfg")
 
 [connection signal="current_hotbar_slot_changed" from="." to="." method="_on_current_hotbar_slot_changed"]
 [connection signal="text_submitted" from="Chat/TypeInterface" to="." method="_on_type_interface_text_submitted"]

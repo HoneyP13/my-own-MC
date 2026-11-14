@@ -3,8 +3,8 @@ extends CanvasLayer
 ## Which screen is up. This is the ONE place that answers "what's on screen right now?".
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
-enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURNACE }
-enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, OUTPUT, CRAFTING_TABLE }
+enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURNACE, CREATIVE }
+enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, OUTPUT, CRAFTING_TABLE, CREATIVE }
 
 @onready var world: Node3D = $".."
 @onready var player: Player = $"../Player"
@@ -27,6 +27,9 @@ enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, 
 @onready var chat_history: RichTextLabel = %ChatHistory
 @onready var type_interface: LineEdit = %TypeInterface
 @onready var death_screen: PanelContainer = %DeathScreen
+@onready var creative_inventory: Panel = %CreativeInventory
+@onready var creative_grid: GridContainer = $CreativeInventory/ScrollContainer/GridContainer
+@onready var creative_hot_bar: HBoxContainer = $CreativeInventory/HotBar
 
 var ui_state : UIState = UIState.PLAYING
 var cursor_item = null          # item name the mouse is holding, or null
@@ -55,20 +58,20 @@ const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
 
 const RECIPES := [
 	{"result": &"plank", "count": 4, "ingredients": {&"log": 1}},
-	{"result": &"red_wool", "count": 1, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
-	{"result": &"green_wool", "count": 1, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
-	{"result": &"blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
-	{"result": &"cyan_wool", "count": 1, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
-	{"result": &"magenta_wool", "count": 1, "ingredients": {&"white_wool": 1, &"magenta_dye": 1}},
-	{"result": &"yellow_wool", "count": 1, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
-	{"result": &"black_wool", "count": 1, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
-	{"result": &"gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
-	{"result": &"light_gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
+	#{"result": &"red_wool", "count": 1, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
+	#{"result": &"green_wool", "count": 1, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
+	#{"result": &"blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
+	#{"result": &"cyan_wool", "count": 1, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
+	#{"result": &"magenta_wool", "count": 1, "ingredients": {&"white_wool": 1, &"magenta_dye": 1}},
+	#{"result": &"yellow_wool", "count": 1, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
+	#{"result": &"black_wool", "count": 1, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
+	#{"result": &"gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
+	#{"result": &"light_gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
 	{"result": &"white_wool", "count": 1, "ingredients": {&"string": 4}},
-	{"result": &"orange_wool", "count": 1, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
-	{"result": &"pink_wool", "count": 1, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
-	{"result": &"light_blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
-	{"result": &"brown_wool", "count": 1, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
+	#{"result": &"orange_wool", "count": 1, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
+	#{"result": &"pink_wool", "count": 1, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
+	#{"result": &"light_blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
+	#{"result": &"brown_wool", "count": 1, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
 	{"result": &"pink_dye", "count": 2, "ingredients": {&"red_dye": 1, &"white_dye": 1}},
 	{"result": &"orange_dye", "count": 2, "ingredients": {&"red_dye": 1, &"yellow_dye": 1}},
 	{"result": &"light_blue_dye", "count": 2, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
@@ -125,9 +128,9 @@ const RECIPES := [
 	{"result": &"leather_pants", "count": 1, "ingredients": [{&"leather": 1}, {&"leather": 1}, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
 	{"result": &"leather_boots", "count": 1, "ingredients": [{&"leather": 1}, null, {&"leather": 1}, {&"leather": 1}, null, {&"leather": 1}]},
 	{"result": &"iron_helmet", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
-	{"result": &"iron_hchestplate", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
-	{"result": &"iron_hleggings", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
-	{"result": &"iron_hboots", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
+	{"result": &"iron_chestplate", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
+	{"result": &"iron_leggings", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
+	{"result": &"iron_boots", "count": 1, "ingredients": [{&"iron_ingot": 1}, null, {&"iron_ingot": 1}, {&"iron_ingot": 1}, null, {&"iron_ingot": 1}]},
 	{"result": &"golden_helmet", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
 	{"result": &"golden_chestplate", "count": 1, "ingredients": [{&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}]},
 	{"result": &"golden_leggings", "count": 1, "ingredients": [{&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}, {&"gold_ingot": 1}, null, {&"gold_ingot": 1}]},
@@ -164,8 +167,8 @@ const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
 	&"iron_helmet": &"iron_nugget", &"iron_chestplate": &"iron_nugget", &"iron_leggings": &"iron_nugget", &"iron_boots": &"iron_nugget", &"iron_pickaxe": &"iron_nugget", &"iron_axe": &"iron_nugget", &"iron_shovel": &"iron_nugget", &"iron_sword": &"iron_nugget", &"iron_hoe": &"iron_nugget",
 	&"golden_helmet": &"gold_nugget", &"golden_chestplate": &"gold_nugget", &"golden_leggings": &"gold_nugget", &"golden_boots": &"gold_nugget", &"golden_pickaxe": &"gold_nugget", &"golden_axe": &"gold_nugget", &"golden_shovel": &"gold_nugget", &"golden_sword": &"gold_nugget", &"golden_hoe": &"gold_nugget"}
 const FUEL := {&"lava_bucket": 1000.0, &"coal_block": 800.0, &"coal": 80.0, &"charcoal": 80.0, &"log": 15.0, &"plank": 15.0, &"wooden_axe": 10.0, &"wooden_sword": 10.0, &"wooden_shovel": 10.0, &"wooden_hoe": 10.0, &"wooden_pickaxe": 10.0, &"crafting_table": 15.0, &"fishing_rod": 15.0, &"stick": 5.0}  # burn seconds
-const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"diamond_helmet"], &"torso": [&"leather_tunic", &"iron_chestplate", &"golden_chestplate", &"diamond_chestplate"], &"legs": [&"leather_pants", &"iron_leggigns", &"golden_leggings", &"diamond_leggings"], &"feet": [&"leather_boots", &"iron_boots", &"golden_boots", &"diamond_boots"]}
-
+const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"diamond_helmet"], &"torso": [&"leather_tunic", &"iron_chestplate", &"golden_chestplate", &"diamond_chestplate"], &"legs": [&"leather_pants", &"iron_leggings", &"golden_leggings", &"diamond_leggings"], &"feet": [&"leather_boots", &"iron_boots", &"golden_boots", &"diamond_boots"]}
+const ARMOR_SLOTS := [&"head", &"torso", &"legs", &"feet"]
 
 
 var furnace_slots : Array = [null, null, null]
@@ -196,6 +199,7 @@ var player_armor: Array
 var table_craft_grid: Array
 var craft_grid: Array          # whichever grid is active right now
 var craft_width := 2
+var creative_menu: Array
 var table_menu: Panel
 var table_grid: GridContainer
 var table_result: TextureRect
@@ -271,6 +275,19 @@ func _make_slot() -> TextureRect:
 	s.custom_minimum_size = Vector2(64, 64)
 	s.texture = SLOT_NORMAL
 	return s
+
+func _build_creative_menu() -> void:
+	var reg := Registry.items
+	for i in reg:
+		creative_menu.append(i)
+	for i in reg.keys().size():
+		var s := _make_slot()
+		creative_grid.add_child(s)
+		_wire_slot(s, SlotArea.CREATIVE, i)
+
+	for i in creative_hot_bar.get_child_count():
+		_wire_slot(creative_hot_bar.get_child(i), SlotArea.HOTBAR, i)
+
 
 func _build_table_menu() -> void:
 	table_menu = Panel.new()
@@ -436,10 +453,7 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if cursor_item != null:
 		if area == SlotArea.INPUT and not SMELTING.has(cursor_item.id): return
 		if area == SlotArea.FUEL and not FUEL.has(cursor_item.id): return
-		if area == SlotArea.ARMOR and slots[0] and not ARMOR[&"head"].has(cursor_item.id): return
-		if area == SlotArea.ARMOR and slots[1] and not ARMOR[&"torso"].has(cursor_item.id): return
-		if area == SlotArea.ARMOR and slots[2] and not ARMOR[&"legs"].has(cursor_item.id): return
-		if area == SlotArea.ARMOR and slots[3] and not ARMOR[&"feet"].has(cursor_item.id): return
+		if area == SlotArea.ARMOR and not ARMOR[ARMOR_SLOTS[index]].has(cursor_item.id): return
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: _left_click(slots, index)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
@@ -740,13 +754,14 @@ func set_ui_state(new_state: UIState) -> void:
 ## Show exactly the panels that belong to the current state, and hide the rest.
 func _refresh_ui() -> void:
 	var s := ui_state
-	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER and s != UIState.FURNACE
+	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER and s != UIState.FURNACE and s != UIState.CREATIVE
 	inventory_menu.visible = s == UIState.INVENTORY
 	chat.visible = s == UIState.CHAT
 	menu_bg.visible = s == UIState.PAUSED or s == UIState.SETTINGS
 	pause_menu.visible = s == UIState.PAUSED
 	settings_menu.visible = s == UIState.SETTINGS
 	death_screen.visible = s == UIState.DEAD
+	creative_inventory.visible = s == UIState.CREATIVE
 	# The debug overlay (toggled with the debug key) hides behind the inventory and pause menus.
 	debug_info.visible = world.is_debug_enabled and (s == UIState.PLAYING or s == UIState.CHAT or s == UIState.DEAD)
 	table_menu.visible = s == UIState.CONTAINER
@@ -755,8 +770,8 @@ func _refresh_ui() -> void:
 ## Inventory key. Opens the inventory while playing, closes it again, and does nothing anywhere else.
 func _on_open_inventory() -> void:
 	match ui_state:
-		UIState.PLAYING: set_ui_state(UIState.INVENTORY)
-		UIState.INVENTORY, UIState.CONTAINER, UIState.FURNACE: set_ui_state(UIState.PLAYING)
+		UIState.PLAYING: set_ui_state(UIState.INVENTORY if player.current_gamemode == player.Gamemode.SURVIVAL else UIState.CREATIVE)
+		UIState.INVENTORY, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE: set_ui_state(UIState.PLAYING)
 
 ## Escape key (also used by the Resume button): back out of whatever is open.
 func _on_open_menu() -> void:
@@ -869,3 +884,4 @@ func _on_player_current_gamemode_changed(Gamemode: Variant) -> void:
 	hunger_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
 	player.can_freefly = true if Gamemode == player.Gamemode.CREATIVE else false
 	if player.freeflying: player.disable_freefly()
+	if Gamemode == player.Gamemode.CREATIVE: _build_creative_menu()

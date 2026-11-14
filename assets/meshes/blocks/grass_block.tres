@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://c5fq5nasnodoi"]
 
 [ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_m1038"]
-[ext_resource type="Texture2D" uid="uid://dv4akbet76d8g" path="res://assets/sprites/grass_bottom.png" id="2_0auak"]
+[ext_resource type="Texture2D" uid="uid://deuxstquixp1n" path="res://assets/sprites/dirt.png" id="2_m1038"]
 [ext_resource type="Texture2D" uid="uid://k4t3n1ca47dw" path="res://assets/sprites/grass_side.png" id="3_w6xi1"]
 [ext_resource type="Texture2D" uid="uid://ce01l45ngsh8l" path="res://assets/sprites/grass_top.png" id="4_dc11l"]
 
@@ -10,7 +10,7 @@ render_priority = 0
 shader = ExtResource("1_m1038")
 shader_parameter/texture_top = ExtResource("4_dc11l")
 shader_parameter/texture_side = ExtResource("3_w6xi1")
-shader_parameter/texture_bottom = ExtResource("2_0auak")
+shader_parameter/texture_bottom = ExtResource("2_m1038")
 
 [resource]
 material = SubResource("ShaderMaterial_2mkex")

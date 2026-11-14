@@ -4,9 +4,10 @@
 
 [resource]
 script = ExtResource("1_awfdk")
-id = &"bed"
-mesh_name = "bed"
-drop_id = &"bed"
+id = &"packed_ice"
+mesh_name = "packed_ice"
+drop_id = &"packed_ice"
 hardness = 0.6
-tool_kind = &"axe"
+tool_kind = &"pickaxe"
+req_tier = &"wooden"
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

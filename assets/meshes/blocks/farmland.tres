@@ -2,12 +2,12 @@
 
 [ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_2are4"]
 [ext_resource type="Texture2D" uid="uid://deuxstquixp1n" path="res://assets/sprites/dirt.png" id="2_2are4"]
-[ext_resource type="Texture2D" uid="uid://bp6mr67no0ska" path="res://assets/sprites/log_side.png" id="3_evhht"]
+[ext_resource type="Texture2D" uid="uid://cqddecblf4n3y" path="res://assets/sprites/farmland_top.png" id="3_2are4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0
 shader = ExtResource("1_2are4")
-shader_parameter/texture_top = ExtResource("3_evhht")
+shader_parameter/texture_top = ExtResource("3_2are4")
 shader_parameter/texture_side = ExtResource("2_2are4")
 shader_parameter/texture_bottom = ExtResource("2_2are4")
 

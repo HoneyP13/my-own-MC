@@ -9,4 +9,5 @@ id = &"iron_boots"
 display_name = "iron boots"
 icon = ExtResource("1_m8h6w")
 max_stack = 1
+on_use = 8
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

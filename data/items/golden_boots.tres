@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("2_fuj2k")
-id = &"flint_and_steel"
-display_name = "flint and steel"
+id = &"golden_boots"
+display_name = "golden boots"
 icon = ExtResource("1_13rmk")
 max_stack = 1
+on_use = 8
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

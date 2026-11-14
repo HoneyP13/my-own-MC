@@ -207,10 +207,15 @@ func get_targeted_block() -> VoxelRaycast.Hit:
 func _on_player_hit_pressed() -> void:
 	var mob := _mob_in_front(get_targeted_block())
 	if mob != null:
-		mob.hurt(ATTACK_DAMAGE, player.global_position)
+		mob.hurt(_held_attack_damage(), player.global_position)
+
+func _held_attack_damage() -> int:
+	var held = hud.held_item
+	if held == null: return 1
+	var def := Registry.get_item(held.id)
+	return def.on_use_value if def != null and def.on_use == ItemDef.Use.ATTACK_DAMAGE else 1
 
 var furnaces := {}  # Vector3i -> {slots=[input,fuel,output], burn, burn_max, cook}
-
 func _tick_furnaces(delta: float) -> void:   # call from _process
 	for cell in furnaces:
 		var f = furnaces[cell]
@@ -279,8 +284,8 @@ func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 	if _cell_overlaps_player(cell): return false
 	var orientation := 0
 	match block_id:
-		&"log": orientation = _log_orientation(hit.normal)
-		&"chest", &"furnace": orientation = _facing_orientation()
+		&"log", &"hay_bale": orientation = _log_orientation(hit.normal)
+		&"chest", &"furnace", &"carved_pumpkin": orientation = _facing_orientation()
 	grid_map.set_cell_item(cell, item_id, orientation)
 	return true
 
@@ -433,8 +438,17 @@ func _update_breaking(delta: float) -> void:
 	_crack_mat.set_shader_parameter("crack_tex", _crack_textures[stage])
 	_crack.visible = true
 
+const TIERS := [&"wooden", &"stone", &"iron", &"diamond"]
+
+func _tool_tier(block: BlockDef) -> int:   # -1 = no matching tool; golden counts as wooden
+	var held = hud.held_item
+	if held == null: return -1
+	var parts := String(held.id).split("_", false, 1)
+	if parts.size() != 2 or StringName(parts[1]) != block.tool_kind: return -1
+	return 0 if parts[0] == "golden" else TIERS.find(StringName(parts[0]))
+
+
 func _break_block(cell: Vector3i, block: BlockDef) -> void:
-	var tiers := [&"wooden", &"stone", &"iron", &"diamond"]
 	grid_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
 	_broken[cell] = true
 	_reveal_neighbors(cell)
@@ -442,10 +456,12 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 		for stack in furnaces[cell].slots:
 			if stack != null: hud.add_item(stack.id, stack.count)
 		furnaces.erase(cell)
-	if block.drop_id != &"" and randi() % 100 < block.drop_chance:
-		hud.add_item(block.drop_id)
-	if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
-		hud.add_item(block.drop_id_2)
+	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
+	if can_harvest:
+		if block.drop_id != &"" and randi() % 100 < block.drop_chance:
+			hud.add_item(block.drop_id)
+		if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
+			hud.add_item(block.drop_id_2)
 
 # --- Save / load ------------------------------------------------------------
 
@@ -460,6 +476,7 @@ func save_game() -> void:
 		"hotbar": hud.hotbar,
 		"player_health": player.health,
 		"player_hunger": player.hunger,
+		"player_armor": hud.player_armor,
 		"slot": hud.current_hotbar_slot,
 		"inventory": hud.inventory,
 		"seed": world_seed,
@@ -494,6 +511,7 @@ func load_game() -> bool:
 	player.look_rotation = data["player_look"]
 	player.health = data["player_health"]
 	player.hunger = data["player_hunger"]
+	hud.player_armor = data["player_armor"]
 	player.rotate_look(Vector2.ZERO)  # re-applies look_rotation to the body and head
 	player.current_gamemode = data["gamemode"]
 

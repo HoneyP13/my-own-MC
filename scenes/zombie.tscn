@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b76qcri4gl1we"]
 
-[ext_resource type="Script" uid="uid://drhyxbldmls73" path="res://scripts/zombie.gd" id="1_1vlb3"]
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_1vlb3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 radius = 0.4
@@ -15,9 +15,11 @@ size = Vector3(0.7, 0.8, 1.1)
 
 [node name="Zombie" type="CharacterBody3D" unique_id=1765357688]
 script = ExtResource("1_1vlb3")
+mob_id = &"zombie"
 max_health = 20
-speed = 5.0
-drop_id = &"string"
+walking_speed = 3.0
+running_speed = 3.0
+behavior = 2
 
 [node name="shape" type="CollisionShape3D" parent="." unique_id=532731609]
 shape = SubResource("CapsuleShape3D_ogq8d")
