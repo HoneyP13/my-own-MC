@@ -81,6 +81,8 @@ func block_at(x: int, y: int, z: int) -> StringName:
 	if y == 0:
 		return &"bedrock"
 	var h := height_at(x, z)
+	if y > h:
+		return &""
 	var biome := biome_at(x, z)
 	var sandy := h <= sea_level + 1 or biome == &"desert"
 	if y == h:

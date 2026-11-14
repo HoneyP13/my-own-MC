@@ -290,19 +290,17 @@ func _make_slot() -> TextureRect:
 	return s
 
 func _build_creative_menu() -> void:
-	for i in Registry.items.size():
-		var reg := Registry.get_item(Registry.items.keys()[i])
-		creative_menu[i] = {"id":reg.id, "count":reg.max_stack}
+	var ids := Registry.items.keys(); ids.sort()
+	for i in ids.size():
+		creative_menu[i] = {"id": ids[i], "count": 1}
 		var s := _make_slot()
 		creative_grid.add_child(s)
 		_wire_slot(s, SlotArea.CREATIVE, i)
-	
-	for i in creative_hot_bar.get_child_count():
-		_wire_slot(creative_hot_bar.get_child(i), SlotArea.HOTBAR, i)
-	
 	for i in creative_grid.get_child_count():
 		_fill_slot(creative_grid.get_child(i), creative_menu[i])
 	
+	for i in creative_hot_bar.get_child_count():
+		_wire_slot(creative_hot_bar.get_child(i), SlotArea.HOTBAR, i)
 	for i in creative_hot_bar.get_child_count():
 		_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
 
@@ -519,6 +517,17 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT: _take_result()
 		refresh_slots()
 		return
+	if area == SlotArea.CREATIVE:
+		var def := Registry.get_item(creative_menu[index].id)
+		if cursor_item != null:
+			cursor_item = null   # holding something: clicking the menu deletes it
+		elif event.button_index == MOUSE_BUTTON_LEFT:
+			if Input.is_key_pressed(KEY_SHIFT): add_item(def.id, def.max_stack)
+			else: cursor_item = {"id": def.id, "count": def.max_stack}
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			cursor_item = {"id": def.id, "count": 1}
+		refresh_slots()
+		return
 	if area == SlotArea.INPUT or area == SlotArea.FUEL: slots = furnace_slots
 	if area == SlotArea.ARMOR: slots = player_armor
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
@@ -700,7 +709,7 @@ func _process(_delta: float) -> void:
 	if cursor_icon.visible:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
 	var stack = _stack_at(hover_area, hover_index) if hover_area >= 0 else null
-	var menu_open := ui_state == UIState.INVENTORY or ui_state == UIState.CONTAINER or ui_state == UIState.FURNACE or ui_state == UIState.CHEST
+	var menu_open := ui_state == UIState.INVENTORY or ui_state == UIState.CONTAINER or ui_state == UIState.FURNACE or ui_state == UIState.CHEST or ui_state == UIState.CREATIVE
 	var show_tip: bool = stack != null and cursor_item == null and menu_open
 	tooltip.visible = show_tip
 	if show_tip:
@@ -827,6 +836,7 @@ func _icon_for(stack: StringName) -> Texture2D:
 func set_ui_state(new_state: UIState) -> void:
 	hover_area = -1
 	var old_state := ui_state
+	if old_state == UIState.CREATIVE: cursor_item = null
 	ui_state = new_state
 	craft_grid = table_craft_grid if new_state == UIState.CONTAINER else inv_craft_grid
 	craft_width = 3 if new_state == UIState.CONTAINER else 2

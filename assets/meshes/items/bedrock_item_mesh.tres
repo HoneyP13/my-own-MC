@@ -1,0 +1,15 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://c7mx7o534vrxy"]
+
+[ext_resource type="Shader" uid="uid://cs183wx2ld0sp" path="res://assets/shaders/block_items.gdshader" id="1_ara8n"]
+[ext_resource type="Texture2D" uid="uid://cbxo8kro6n3al" path="res://assets/sprites/bedrock.png" id="2_6jilh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvhkp"]
+render_priority = 0
+shader = ExtResource("1_ara8n")
+shader_parameter/texture_top = ExtResource("2_6jilh")
+shader_parameter/faces = 0
+shader_parameter/is_transparent = false
+shader_parameter/corner_offset = Vector3(0.5, 0.5, 0.5)
+
+[resource]
+material = SubResource("ShaderMaterial_nvhkp")

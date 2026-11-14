@@ -10,26 +10,28 @@ uniform sampler2D texture_south: source_color, repeat_enable, filter_nearest; //
 uniform sampler2D texture_bottom: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_east: source_color, repeat_enable, filter_nearest;  // -Z face
 
-varying vec3 world_pos;
-varying vec3 world_normal;
+uniform vec3 corner_offset = vec3(0.5);
+
+varying vec3 block_pos;
+varying vec3 block_normal;
 
 void vertex() {
-	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
+	block_pos = VERTEX + corner_offset;
+	block_normal = NORMAL;
 }
 
 void fragment() {
-	vec3 n = world_normal;
+	vec3 n = block_normal;
 	vec3 a = abs(n);
 	vec3 albedo;
 	if (a.x >= a.y && a.x >= a.z) {
-		vec2 uv = 1.0 - world_pos.zy;
+		vec2 uv = 1.0 - block_pos.zy;
 		albedo = (n.x > 0.0) ? texture(texture_north, uv).rgb : texture(texture_south, uv).rgb;
 	} else if (a.y >= a.z) {
-		vec2 uv = 1.0 - world_pos.xz;
+		vec2 uv = 1.0 - block_pos.xz;
 		albedo = (n.y > 0.0) ? texture(texture_top, uv).rgb : texture(texture_bottom, uv).rgb;
 	} else {
-		vec2 uv = 1.0 - world_pos.xy;
+		vec2 uv = 1.0 - block_pos.xy;
 		albedo = (n.z > 0.0) ? texture(texture_west, uv).rgb : texture(texture_east, uv).rgb;
 	}
 	ALBEDO = albedo;

@@ -45,7 +45,7 @@
 [ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
 [ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/fence.tres" id="41_y8tf5"]
 [ext_resource type="BoxMesh" uid="uid://dw3lperd1gh8q" path="res://assets/meshes/blocks/lever.tres" id="42_gthcv"]
-[ext_resource type="BoxMesh" uid="uid://gyf1a8a3uhw1" path="res://assets/meshes/blocks/bed.tres" id="43_gthcv"]
+[ext_resource type="BoxMesh" uid="uid://b5sjebp3b128m" path="res://assets/meshes/blocks/bed_top.tres" id="42_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://clmkhojc2bsp6" path="res://assets/meshes/blocks/lapis_lazuli_block.tres" id="45_w2p7p"]
 [ext_resource type="BoxMesh" uid="uid://cb85scaxvpxqe" path="res://assets/meshes/blocks/hay_bale.tres" id="46_u6ce4"]
 [ext_resource type="BoxMesh" uid="uid://bhu5exy7qjtxr" path="res://assets/meshes/blocks/cactus.tres" id="47_gf5wm"]
@@ -54,6 +54,7 @@
 [ext_resource type="BoxMesh" uid="uid://b01x6pukqqqqo" path="res://assets/meshes/blocks/iron_block.tres" id="50_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://b5mu708bsg73y" path="res://assets/meshes/blocks/emerald_block.tres" id="51_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://dtbem7sgg0lmw" path="res://assets/meshes/blocks/ruby_ore.tres" id="52_vuep8"]
+[ext_resource type="BoxMesh" uid="uid://ci47owrk30f5s" path="res://assets/meshes/blocks/bed_bottom.tres" id="53_vuep8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -144,6 +145,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_v6asg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ej3k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hawhk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0am6y"]
 
@@ -456,11 +459,11 @@ item/48/mesh_cast_shadow = 1
 item/48/shapes = []
 item/48/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/48/navigation_layers = 1
-item/49/name = "bed"
-item/49/mesh = ExtResource("43_gthcv")
+item/49/name = "bed_top"
+item/49/mesh = ExtResource("42_v6asg")
 item/49/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212, 0)
 item/49/mesh_cast_shadow = 1
-item/49/shapes = [SubResource("BoxShape3D_vuep8"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/49/shapes = [SubResource("BoxShape3D_vuep8"), Transform3D(1, 0, 0, 0, 0.575, 0, 0, 0, 1, 0, -0.212, 0)]
 item/49/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/49/navigation_layers = 1
 item/50/name = "lapis_lazuli_block"
@@ -526,4 +529,11 @@ item/58/mesh_cast_shadow = 1
 item/58/shapes = []
 item/58/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/58/navigation_layers = 1
+item/59/name = "bed_bottom"
+item/59/mesh = ExtResource("53_vuep8")
+item/59/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212, 0)
+item/59/mesh_cast_shadow = 1
+item/59/shapes = [SubResource("BoxShape3D_hawhk"), Transform3D(1, 0, 0, 0, 0.575, 0, 0, 0, 1, 0, -0.212, 0)]
+item/59/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/59/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

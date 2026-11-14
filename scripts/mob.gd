@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var running_speed: float = walking_speed
 @export var drop_id: StringName
 @export var behavior: Behavior
+@export var anim : AnimationPlayer
 # If behavior is Roam, then Flee when attacked
 enum Behavior { ROAM, FLEE, HUNT, ATTACK, CHASE, FOLLOW } 
 ## ROAM: Passive mobs that FLEE once attacked. Hostile mobs HUNT the player, and attack on sight
@@ -18,6 +19,7 @@ var _knockback := Vector3.ZERO
 var _lava_timer := 0.0
 @onready var world := get_parent()
 
+var is_walking : bool = true
 
 func _ready() -> void:
 	health = max_health
@@ -40,10 +42,14 @@ func _physics_process(delta: float) -> void:
 	velocity.x = _dir.x * walking_speed + _knockback.x
 	velocity.z = _dir.z * walking_speed + _knockback.z
 	_knockback = _knockback.move_toward(Vector3.ZERO, 20.0 * delta)
+	is_walking = true
 	if _dir != Vector3.ZERO:
 		rotation.y = atan2(-_dir.x, -_dir.z)
-		if is_on_wall() and is_on_floor(): velocity.y = 8.0   # hop up one block
+		if is_on_wall() and is_on_floor():
+			velocity.y = 8.0   # hop up one block
+			is_walking = false
 	move_and_slide()
+	walk()
 	if world.fluid_at(global_position) == &"lava":
 		_lava_timer -= delta
 		if _lava_timer <= 0.0:
@@ -60,3 +66,12 @@ func hurt(amount: int, from: Vector3) -> void:
 	if health <= 0:
 		if drop_id != &"": world.hud.add_item(drop_id)
 		queue_free()
+
+
+func walk() -> void:
+	if anim == null: return
+	if is_walking and not anim.is_playing(): anim.play("walk_cycle")
+	elif anim.is_playing(): return
+	else:
+		anim.play("RESET")
+		anim.stop()
