@@ -51,6 +51,9 @@
 [ext_resource type="BoxMesh" uid="uid://bhu5exy7qjtxr" path="res://assets/meshes/blocks/cactus.tres" id="47_gf5wm"]
 [ext_resource type="BoxMesh" uid="uid://bhp5jgml4gstk" path="res://assets/meshes/blocks/packed_ice.tres" id="48_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://c3rabmse7froj" path="res://assets/meshes/blocks/farmland.tres" id="49_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://b01x6pukqqqqo" path="res://assets/meshes/blocks/iron_block.tres" id="50_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://b5mu708bsg73y" path="res://assets/meshes/blocks/emerald_block.tres" id="51_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://dtbem7sgg0lmw" path="res://assets/meshes/blocks/ruby_ore.tres" id="52_vuep8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -496,4 +499,25 @@ item/54/mesh_cast_shadow = 1
 item/54/shapes = [SubResource("BoxShape3D_syuof"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/54/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/54/navigation_layers = 1
+item/55/name = "iron_block"
+item/55/mesh = ExtResource("50_gu01m")
+item/55/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/55/mesh_cast_shadow = 1
+item/55/shapes = []
+item/55/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/55/navigation_layers = 1
+item/56/name = "emerald_block"
+item/56/mesh = ExtResource("51_v6asg")
+item/56/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/56/mesh_cast_shadow = 1
+item/56/shapes = []
+item/56/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/56/navigation_layers = 1
+item/57/name = "ruby_ore"
+item/57/mesh = ExtResource("52_vuep8")
+item/57/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/57/mesh_cast_shadow = 1
+item/57/shapes = []
+item/57/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/57/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

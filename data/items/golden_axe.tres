@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://5u53xno060ei"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_kr31b"]
+[ext_resource type="Texture2D" uid="uid://drg6dm1qo0kah" path="res://assets/sprites/golden_axe.png" id="1_kr31b"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_vxn7d"]
 
 [resource]

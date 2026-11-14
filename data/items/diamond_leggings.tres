@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cqs6id5gjpsii"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_unqv2"]
+[ext_resource type="Texture2D" uid="uid://uvape20ta0au" path="res://assets/sprites/diamond_leggings.png" id="1_unqv2"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_apqdm"]
 
 [resource]

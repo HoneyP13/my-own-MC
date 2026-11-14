@@ -1,14 +1,16 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bo4p8tl3qw0k4"]
 
-[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_5bpdm"]
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_5fnna"]
+[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_d7uvr"]
+[ext_resource type="Texture2D" uid="uid://ces0xjousplxr" path="res://assets/sprites/watermelon_bottom.png" id="2_gisbh"]
+[ext_resource type="Texture2D" uid="uid://bndg1ktohmkgj" path="res://assets/sprites/watermelon_side.png" id="3_4l4w6"]
+[ext_resource type="Texture2D" uid="uid://ceualamhgmfv2" path="res://assets/sprites/watermelon_top.png" id="4_lx4i2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
 render_priority = 0
-shader = ExtResource("1_5bpdm")
-shader_parameter/texture_top = ExtResource("2_5fnna")
-shader_parameter/texture_side = ExtResource("2_5fnna")
-shader_parameter/texture_bottom = ExtResource("2_5fnna")
+shader = ExtResource("1_d7uvr")
+shader_parameter/texture_top = ExtResource("4_lx4i2")
+shader_parameter/texture_side = ExtResource("3_4l4w6")
+shader_parameter/texture_bottom = ExtResource("2_gisbh")
 
 [resource]
 material = SubResource("ShaderMaterial_p88hg")

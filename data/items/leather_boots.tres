@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dbw1yd6i865lr"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_ya38g"]
+[ext_resource type="Texture2D" uid="uid://dxb2kgdy164hb" path="res://assets/sprites/leather_boots.png" id="1_3y156"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_jimk7"]
 
 [resource]
 script = ExtResource("2_jimk7")
-id = &"flint_and_steel"
-display_name = "flint and steel"
-icon = ExtResource("1_ya38g")
+id = &"leather_boots"
+display_name = "leather boots"
+icon = ExtResource("1_3y156")
 max_stack = 1
+on_use = 8
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

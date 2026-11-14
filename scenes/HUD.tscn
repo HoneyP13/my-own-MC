@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://djyw2tavut04a" path="res://assets/sprites/full_heart.png" id="2_fls4u"]
 [ext_resource type="Texture2D" uid="uid://j01ee113mi0m" path="res://assets/sprites/slot.png" id="3_1etfg"]
 [ext_resource type="Texture2D" uid="uid://cq2wuxythsc3" path="res://assets/sprites/full_shank.png" id="3_7hsmw"]
+[ext_resource type="Texture2D" uid="uid://boytvciuq1c8g" path="res://assets/sprites/helmet_slot_hint.png" id="5_twldb"]
+[ext_resource type="Texture2D" uid="uid://c6wv1gb2gsvra" path="res://assets/sprites/chestplate_slot_hint.png" id="6_8cuoo"]
+[ext_resource type="Texture2D" uid="uid://6un28ehnxl1f" path="res://assets/sprites/leggings_slot_hint.png" id="7_cf6ij"]
+[ext_resource type="Texture2D" uid="uid://le7sxt7k6owg" path="res://assets/sprites/boots_slot_hint.png" id="8_meimr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyap7"]
 bg_color = Color(0, 0, 0, 0)
@@ -334,22 +338,22 @@ layout_mode = 2
 [node name="HelmetSlot" type="TextureRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1848255484]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_1etfg")
+texture = ExtResource("5_twldb")
 
 [node name="TorsoSlot" type="TextureRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=658015278]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_1etfg")
+texture = ExtResource("6_8cuoo")
 
 [node name="PantsSlot" type="TextureRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1969689239]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_1etfg")
+texture = ExtResource("7_cf6ij")
 
 [node name="BootsSlot" type="TextureRect" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/ArmorSlots" unique_id=1382420090]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_1etfg")
+texture = ExtResource("8_meimr")
 
 [node name="InventoryCrafting" type="GridContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=75306722]
 layout_mode = 2

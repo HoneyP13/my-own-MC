@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://d0ovgg3m4s004"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_aemia"]
+[ext_resource type="Texture2D" uid="uid://q7u876khflxn" path="res://assets/sprites/bed_top_higher.png" id="1_aemia"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_qhemn"]
 
 [resource]

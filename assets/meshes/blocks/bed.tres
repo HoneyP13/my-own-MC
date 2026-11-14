@@ -1,12 +1,18 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://gyf1a8a3uhw1"]
 
-[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_40ymy"]
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_40ymy"]
+[ext_resource type="Shader" uid="uid://bax8ves8uptn6" path="res://assets/shaders/triplanar.gdshader" id="1_3ilj6"]
+[ext_resource type="Texture2D" uid="uid://dcm7nkf0chl8k" path="res://assets/sprites/bed_bottom_lower.png" id="2_dd0yh"]
+[ext_resource type="Texture2D" uid="uid://cub2bv7u2ak20" path="res://assets/sprites/bed_top_lower.png" id="3_vo0re"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0
-shader = ExtResource("1_40ymy")
-shader_parameter/texture_2d = ExtResource("2_40ymy")
+shader = ExtResource("1_3ilj6")
+shader_parameter/texture_north = ExtResource("2_dd0yh")
+shader_parameter/texture_top = ExtResource("3_vo0re")
+shader_parameter/texture_west = ExtResource("2_dd0yh")
+shader_parameter/texture_south = ExtResource("2_dd0yh")
+shader_parameter/texture_east = ExtResource("2_dd0yh")
 
 [resource]
 material = SubResource("ShaderMaterial_jvtcq")
+size = Vector3(1, 0.575, 2)

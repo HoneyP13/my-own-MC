@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bts4lbt0py641"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_fmqnn"]
+[ext_resource type="Texture2D" uid="uid://dd6rcwc84o5mv" path="res://assets/sprites/cyan_dye.png" id="1_fmqnn"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_27bwt"]
 
 [resource]

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_7sgg7")
 id = &"raw_meat"
-display_name = "raw_meat"
+display_name = "raw meat"
 icon = ExtResource("1_brm3g")
 on_use = 1
 on_use_value = 3

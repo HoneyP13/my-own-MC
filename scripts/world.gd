@@ -236,10 +236,6 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
-	if hud.held_item == null: return
-	if target == null:
-		if Registry.get_item(hud.held_item.id).on_use != ItemDef.Use.FEED_PLAYER:
-			return
 	var hit_block : BlockDef
 	if target != null: hit_block = _block_for_item(target.item)
 	if hit_block != null and hit_block.id == &"crafting_table" and not player.is_crouching:
@@ -256,6 +252,10 @@ func _on_player_use_pressed() -> void:
 			return
 		if target.place_cell.y > MAX_BUILD_HEIGHT:
 			hud._chat_print("Cannot build above Y:64")
+			return
+	if hud.held_item == null: return
+	if target == null:
+		if Registry.get_item(hud.held_item.id).on_use != ItemDef.Use.FEED_PLAYER:
 			return
 	var def := Registry.get_item(hud.held_item.id)
 	if def == null: return

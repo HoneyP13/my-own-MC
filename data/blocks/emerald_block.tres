@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cm4tgjbhgs643"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_7absj"]
+
+[resource]
+script = ExtResource("1_7absj")
+id = &"emerald_block"
+mesh_name = "emerald_block"
+drop_id = &"emerald_block"
+hardness = 3.0
+tool_kind = &"pickaxe"
+req_tier = &"wooden"
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

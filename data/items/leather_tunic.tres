@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dska0sawbex6g"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_sq578"]
+[ext_resource type="Texture2D" uid="uid://be0kfjms8hs4n" path="res://assets/sprites/leather_tunic.png" id="1_sq578"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_7q7sh"]
 
 [resource]

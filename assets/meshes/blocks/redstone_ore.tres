@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bovawh6un8rrf"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_n081b"]
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_n081b"]
+[ext_resource type="Texture2D" uid="uid://j247ovkr4lvj" path="res://assets/sprites/redstone_ore.png" id="2_n081b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

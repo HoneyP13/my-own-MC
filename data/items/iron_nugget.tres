@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cbfp3nwpscc2d"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_sfy5p"]
+[ext_resource type="Texture2D" uid="uid://brnrxs6ntlgbr" path="res://assets/sprites/iron_nugget.png" id="1_sfy5p"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_x5sr8"]
 
 [resource]

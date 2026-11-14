@@ -158,10 +158,15 @@ const RECIPES := [
 	{"result": &"iron_nugget", "count": 9, "ingredients": {&"iron_ingot": 1}},
 	{"result": &"iron_ingot", "count": 1, "ingredients": [{&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}]},
 ]
-# TODO: add the ability to smelt gold and iron armor / tools into nuggets, once added, and output an empty bucket if lava bucket was used as fuel source.
+# TODO: output an empty bucket if lava bucket was used as fuel source.
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
-	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond", }
+	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond",
+	&"iron_helmet": &"iron_nugget", &"iron_chestplate": &"iron_nugget", &"iron_leggings": &"iron_nugget", &"iron_boots": &"iron_nugget", &"iron_pickaxe": &"iron_nugget", &"iron_axe": &"iron_nugget", &"iron_shovel": &"iron_nugget", &"iron_sword": &"iron_nugget", &"iron_hoe": &"iron_nugget",
+	&"golden_helmet": &"gold_nugget", &"golden_chestplate": &"gold_nugget", &"golden_leggings": &"gold_nugget", &"golden_boots": &"gold_nugget", &"golden_pickaxe": &"gold_nugget", &"golden_axe": &"gold_nugget", &"golden_shovel": &"gold_nugget", &"golden_sword": &"gold_nugget", &"golden_hoe": &"gold_nugget"}
 const FUEL := {&"lava_bucket": 1000.0, &"coal_block": 800.0, &"coal": 80.0, &"charcoal": 80.0, &"log": 15.0, &"plank": 15.0, &"wooden_axe": 10.0, &"wooden_sword": 10.0, &"wooden_shovel": 10.0, &"wooden_hoe": 10.0, &"wooden_pickaxe": 10.0, &"crafting_table": 15.0, &"fishing_rod": 15.0, &"stick": 5.0}  # burn seconds
+const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"diamond_helmet"], &"torso": [&"leather_tunic", &"iron_chestplate", &"golden_chestplate", &"diamond_chestplate"], &"legs": [&"leather_pants", &"iron_leggigns", &"golden_leggings", &"diamond_leggings"], &"feet": [&"leather_boots", &"iron_boots", &"golden_boots", &"diamond_boots"]}
+
+
 
 var furnace_slots : Array = [null, null, null]
 var hotbar : Array
@@ -223,11 +228,43 @@ func _ready() -> void:
 	_build_table_menu()
 	_build_furnace_menu()
 	_setup_inventory_slots()
+	_build_tooltip()
 	refresh_slots()
 	_refresh_ui()
 	for r in RECIPES:
 		if Registry.get_item(r.result) == null:
 			push_warning("Recipe result '%s' has no item def" % r.result)
+
+var tooltip: PanelContainer
+var tooltip_label: Label
+var hover_area := -1
+var hover_index := 0
+
+func _stack_at(area: int, index: int):
+	match area:
+		SlotArea.ARMOR: return player_armor[index]
+		SlotArea.CRAFTING: return inv_craft_grid[index]
+		SlotArea.CRAFTING_TABLE: return table_craft_grid[index]
+		SlotArea.INVENTORY: return inventory[index]
+		SlotArea.HOTBAR: return hotbar[index]
+		SlotArea.RESULT: return craft_output
+		SlotArea.INPUT, SlotArea.FUEL, SlotArea.OUTPUT: return furnace_slots[index]
+	return null
+
+func _build_tooltip() -> void:
+	tooltip = PanelContainer.new()
+	tooltip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	tooltip.visible = false
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.1, 0.0, 0.1, 0.9)
+	sb.border_color = Color(0.3, 0.1, 0.5)
+	sb.set_border_width_all(2)
+	sb.set_content_margin_all(6)
+	tooltip.add_theme_stylebox_override("panel", sb)
+	tooltip_label = Label.new()
+	tooltip_label.add_theme_font_size_override("font_size", 20)
+	tooltip.add_child(tooltip_label)
+	add_child(tooltip)   # added last so it draws on top
 
 func _make_slot() -> TextureRect:
 	var s := TextureRect.new()
@@ -378,6 +415,8 @@ func _wire_slot(slot: TextureRect, area: int, index: int) -> void:
 	slot.gui_input.connect(_on_slot_gui_input.bind(area, index))
 	slot.mouse_entered.connect(func(): slot.texture = HELMET_HOVER_HINT if slot.name == "HelmetSlot" else CHESTPLATE_HOVER_HINT if slot.name == "TorsoSlot" else LEGGINGS_HOVER_HINT if slot.name == "PantsSlot" else BOOTS_HOVER_HINT if slot.name == "BootsSlot" else SLOT_HOVER)
 	slot.mouse_exited.connect(func(): slot.texture = HELMET_SLOT_HINT if slot.name == "HelmetSlot" else CHESTPLATE_SLOT_HINT if slot.name == "TorsoSlot" else LEGGINGS_SLOT_HINT if slot.name == "PantsSlot" else BOOTS_SLOT_HINT if slot.name == "BootsSlot" else SLOT_NORMAL)
+	slot.mouse_entered.connect(func(): hover_area = area; hover_index = index)
+	slot.mouse_exited.connect(func(): if hover_area == area and hover_index == index: hover_area = -1)
 
 var is_shift_pressed : bool = false
 func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
@@ -389,7 +428,7 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 		refresh_slots()
 		return
 	if area == SlotArea.INPUT or area == SlotArea.FUEL: slots = furnace_slots
-	if area == SlotArea.ARMOR: slots = player_armor # TODO: Fix this
+	if area == SlotArea.ARMOR: slots = player_armor
 	if area == SlotArea.CRAFTING: slots = inv_craft_grid
 	if area == SlotArea.INVENTORY: slots = inventory
 	if area == SlotArea.HOTBAR: slots = hotbar
@@ -397,6 +436,10 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if cursor_item != null:
 		if area == SlotArea.INPUT and not SMELTING.has(cursor_item.id): return
 		if area == SlotArea.FUEL and not FUEL.has(cursor_item.id): return
+		if area == SlotArea.ARMOR and slots[0] and not ARMOR[&"head"].has(cursor_item.id): return
+		if area == SlotArea.ARMOR and slots[1] and not ARMOR[&"torso"].has(cursor_item.id): return
+		if area == SlotArea.ARMOR and slots[2] and not ARMOR[&"legs"].has(cursor_item.id): return
+		if area == SlotArea.ARMOR and slots[3] and not ARMOR[&"feet"].has(cursor_item.id): return
 	match event.button_index:
 		MOUSE_BUTTON_LEFT: _left_click(slots, index)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
@@ -560,6 +603,19 @@ func _update_craft_result() -> void:
 func _process(_delta: float) -> void:
 	if cursor_icon.visible:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
+	var stack = _stack_at(hover_area, hover_index) if hover_area >= 0 else null
+	var menu_open := ui_state == UIState.INVENTORY or ui_state == UIState.CONTAINER or ui_state == UIState.FURNACE
+	var show_tip: bool = stack != null and cursor_item == null and menu_open
+	tooltip.visible = show_tip
+	if show_tip:
+		var def := Registry.get_item(stack.id)
+		tooltip_label.text = def.display_name.capitalize() if def else str(stack.id)
+		tooltip.reset_size()
+		var pos := get_viewport().get_mouse_position() + Vector2(16, -8)
+		var limit := get_viewport().get_visible_rect().size - tooltip.size
+		tooltip.position = Vector2(minf(pos.x, limit.x), clampf(pos.y, 0.0, limit.y))
+
+
 
 func add_item(item_id: StringName, amount: int = 1) -> void:
 	var def := Registry.get_item(item_id)
@@ -665,6 +721,7 @@ func _icon_for(stack: StringName) -> Texture2D:
 # ---------------------------------------------------------------------------------------------
 
 func set_ui_state(new_state: UIState) -> void:
+	hover_area = -1
 	var old_state := ui_state
 	ui_state = new_state
 	craft_grid = table_craft_grid if new_state == UIState.CONTAINER else inv_craft_grid

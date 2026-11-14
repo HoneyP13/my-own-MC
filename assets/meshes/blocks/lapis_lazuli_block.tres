@@ -1,12 +1,12 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://clmkhojc2bsp6"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_gtjcr"]
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="2_cp6q7"]
+[ext_resource type="Texture2D" uid="uid://cjlna1nagw7yy" path="res://assets/sprites/lapis_lazuli_block.png" id="2_gtjcr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0
 shader = ExtResource("1_gtjcr")
-shader_parameter/texture_2d = ExtResource("2_cp6q7")
+shader_parameter/texture_2d = ExtResource("2_gtjcr")
 
 [resource]
 material = SubResource("ShaderMaterial_jvtcq")

@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://b5mu708bsg73y"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_ar0go"]
+[ext_resource type="Texture2D" uid="uid://ufuikc47o8gi" path="res://assets/sprites/emerald_block.png" id="2_ar0go"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_ar0go")
+shader_parameter/texture_2d = ExtResource("2_ar0go")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

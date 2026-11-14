@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://bv5po5r3h3gbb"]
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bfwinanc55iuq"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_lsy0l"]
-[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_v10ca"]
+[ext_resource type="Texture2D" uid="uid://cfrd07gb6m178" path="res://assets/sprites/melon_slice.png" id="1_lsy0l"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_v10ca"]
 
 [resource]
 script = ExtResource("2_v10ca")
-block_id = &"watermelon"
-id = &"melon_seeds"
-display_name = "melon seeds"
+id = &"melon_slice"
+display_name = "melon_slice"
 icon = ExtResource("1_lsy0l")
+on_use = 1
+on_use_value = 4
 metadata/_custom_type_script = "uid://bw6b1s4do376f"
