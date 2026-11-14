@@ -245,10 +245,10 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 			f.cook = 0.0
 
 var chests := {}
-func _track_chests() -> void:
-	for cell in chests:
-		var c = chests[cell]
-		var s: Array = c.slots
+func _new_chest() -> Dictionary:
+	var slots := []
+	slots.resize(27)
+	return {"slots": slots}
 
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
@@ -263,8 +263,8 @@ func _on_player_use_pressed() -> void:
 		hud.open_furnace(furnaces[target.cell].slots)
 		return
 	if hit_block != null and hit_block.id == &"chest" and not player.is_crouching:
-		if not chests.has(target.cell):
-			chests[target.cell] = {"slots": [].resize(27)}
+		if not chests.has(target.cell) or not (chests[target.cell].slots is Array):
+			chests[target.cell] = _new_chest()
 		hud.open_chest(chests[target.cell].slots)
 		return
 	if target != null:
@@ -435,6 +435,11 @@ func _update_breaking(delta: float) -> void:
 		_stop_breaking()
 		return
 	var block := _block_for_item(t.item)
+	## remove once drops added
+	if block.id == &"chest" and chests.has(t.cell) \
+			and chests[t.cell].slots.any(func(s): return s != null):
+		_stop_breaking()
+		return
 	if block == null or block.hardness < 0.0:
 		_stop_breaking()
 		return
@@ -477,6 +482,10 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 		for stack in furnaces[cell].slots:
 			if stack != null: hud.add_item(stack.id, stack.count)
 		furnaces.erase(cell)
+	if block.id == &"chest" and chests.has(cell):
+		for stack in chests[cell].slots:
+			if stack != null: hud.add_item(stack.id, stack.count)
+		chests.erase(cell)
 	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
 	if can_harvest:
 		hud.add_item(block.drop_id, randi_range(block.drop_min, block.drop_max))

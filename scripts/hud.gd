@@ -265,6 +265,7 @@ func _stack_at(area: int, index: int):
 		SlotArea.RESULT: return craft_output
 		SlotArea.INPUT, SlotArea.FUEL, SlotArea.OUTPUT: return furnace_slots[index]
 		SlotArea.CREATIVE: return creative_menu[index]
+		SlotArea.CHEST: return single_chest_slots[index]
 	return null
 
 func _build_tooltip() -> void:
@@ -525,19 +526,20 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if area == SlotArea.HOTBAR: slots = hotbar
 	if area == SlotArea.CRAFTING_TABLE: slots = table_craft_grid
 	if area == SlotArea.CREATIVE: slots = creative_menu
+	if area == SlotArea.CHEST: slots = single_chest_slots
 	if cursor_item != null:
 		if area == SlotArea.INPUT and not SMELTING.has(cursor_item.id): return
 		if area == SlotArea.FUEL and not FUEL.has(cursor_item.id): return
 		if area == SlotArea.ARMOR and not ARMOR[ARMOR_SLOTS[index]].has(cursor_item.id): return
 	match event.button_index:
-		MOUSE_BUTTON_LEFT: _left_click(slots, index)
+		MOUSE_BUTTON_LEFT: _left_click(slots, index, area)
 		MOUSE_BUTTON_RIGHT: _right_click(slots, index)
 		_: return
 	refresh_slots()
 
-func _left_click(slots: Array, i: int) -> void:
+func _left_click(slots: Array, i: int, area: SlotArea) -> void:
 	var slot = slots[i]
-	if is_shift_pressed and slot != null: _quick_move(slots, i); return
+	if is_shift_pressed and slot != null: _quick_move(slots, i, area); return
 	# Same item on both sides: pour the cursor stack into the slot, up to the stack limit.
 	if slot != null and cursor_item != null and slot.id == cursor_item.id:
 		var max_stack := Registry.get_item(slot.id).max_stack
@@ -570,11 +572,16 @@ func _right_click(slots: Array, i: int) -> void:
 		cursor_item.count -= 1
 		if cursor_item.count <= 0: cursor_item = null
 
-func _quick_move(slots: Array, i: int) -> void:
+func _quick_move(slots: Array, i: int, area: SlotArea) -> void:
 	var stack = slots[i]
 	if stack == null: return
 	var max_stack := Registry.get_item(stack.id).max_stack
-	var dest: Array = inventory if slots == hotbar else hotbar
+	var dest: Array
+	match area:
+		SlotArea.HOTBAR: dest = single_chest_slots if ui_state == UIState.CHEST else inventory
+		SlotArea.INVENTORY: dest = single_chest_slots if ui_state == UIState.CHEST else hotbar
+		SlotArea.CHEST: dest = inventory
+		_: dest = hotbar
 	for fill_empty in [false, true]:
 		for j in dest.size():
 			if stack.count <= 0: break
@@ -803,8 +810,8 @@ func update_inventory() -> void:
 		_fill_slot(creative_grid.get_child(i), creative_menu[i])
 	for i in creative_hot_bar.get_child_count():
 		_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
-	for i in chest_menu.get_child_count():
-		_fill_slot(chest_menu.get_child(i), single_chest_slots[i])
+	for i in chest_contents.get_child_count():
+		_fill_slot(chest_contents.get_child(i), single_chest_slots[i])
 	for i in chest_inv.get_child_count():
 		_fill_slot(chest_inv.get_child(i), inventory[i])
 	for i in chest_hotbar.get_child_count():
@@ -837,7 +844,7 @@ func set_ui_state(new_state: UIState) -> void:
 ## Show exactly the panels that belong to the current state, and hide the rest.
 func _refresh_ui() -> void:
 	var s := ui_state
-	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER and s != UIState.FURNACE and s != UIState.CREATIVE
+	hud_hot_bar.visible = s != UIState.INVENTORY and s != UIState.DEAD and s != UIState.CONTAINER and s != UIState.FURNACE and s != UIState.CREATIVE and s != UIState.CHEST
 	inventory_menu.visible = s == UIState.INVENTORY
 	chat.visible = s == UIState.CHAT
 	menu_bg.visible = s == UIState.PAUSED or s == UIState.SETTINGS
