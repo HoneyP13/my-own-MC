@@ -28,8 +28,8 @@ enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, 
 @onready var type_interface: LineEdit = %TypeInterface
 @onready var death_screen: PanelContainer = %DeathScreen
 @onready var creative_inventory: Panel = %CreativeInventory
-@onready var creative_grid: GridContainer = $CreativeInventory/ScrollContainer/GridContainer
-@onready var creative_hot_bar: HBoxContainer = $CreativeInventory/HotBar
+@onready var creative_grid: GridContainer = $CreativeInventory/VBoxContainer/ScrollContainer/GridContainer
+@onready var creative_hot_bar: HBoxContainer = $CreativeInventory/VBoxContainer/HotBar
 
 var ui_state : UIState = UIState.PLAYING
 var cursor_item = null          # item name the mouse is holding, or null
@@ -170,7 +170,6 @@ const FUEL := {&"lava_bucket": 1000.0, &"coal_block": 800.0, &"coal": 80.0, &"ch
 const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"diamond_helmet"], &"torso": [&"leather_tunic", &"iron_chestplate", &"golden_chestplate", &"diamond_chestplate"], &"legs": [&"leather_pants", &"iron_leggings", &"golden_leggings", &"diamond_leggings"], &"feet": [&"leather_boots", &"iron_boots", &"golden_boots", &"diamond_boots"]}
 const ARMOR_SLOTS := [&"head", &"torso", &"legs", &"feet"]
 
-
 var furnace_slots : Array = [null, null, null]
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
@@ -222,6 +221,7 @@ func _init() -> void:
 	craft_grid = inv_craft_grid
 	inventory.resize(27)
 	hotbar.resize(9)
+	creative_menu.resize(Registry.items.size())
 
 func _ready() -> void:
 	player.scrolled.connect(_on_player_scrolled)
@@ -253,6 +253,7 @@ func _stack_at(area: int, index: int):
 		SlotArea.HOTBAR: return hotbar[index]
 		SlotArea.RESULT: return craft_output
 		SlotArea.INPUT, SlotArea.FUEL, SlotArea.OUTPUT: return furnace_slots[index]
+		SlotArea.CREATIVE: return creative_menu[index]
 	return null
 
 func _build_tooltip() -> void:
@@ -277,17 +278,21 @@ func _make_slot() -> TextureRect:
 	return s
 
 func _build_creative_menu() -> void:
-	var reg := Registry.items
-	for i in reg:
-		creative_menu.append(i)
-	for i in reg.keys().size():
+	for i in Registry.items.size():
+		var reg := Registry.get_item(Registry.items.keys()[i])
+		creative_menu[i] = {"id":reg.id, "count":reg.max_stack}
 		var s := _make_slot()
 		creative_grid.add_child(s)
 		_wire_slot(s, SlotArea.CREATIVE, i)
-
+	
 	for i in creative_hot_bar.get_child_count():
 		_wire_slot(creative_hot_bar.get_child(i), SlotArea.HOTBAR, i)
-
+	
+	for i in creative_grid.get_child_count():
+		_fill_slot(creative_grid.get_child(i), creative_menu[i])
+	
+	for i in creative_hot_bar.get_child_count():
+		_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
 
 func _build_table_menu() -> void:
 	table_menu = Panel.new()
@@ -450,6 +455,7 @@ func _on_slot_gui_input(event: InputEvent, area: int, index: int) -> void:
 	if area == SlotArea.INVENTORY: slots = inventory
 	if area == SlotArea.HOTBAR: slots = hotbar
 	if area == SlotArea.CRAFTING_TABLE: slots = table_craft_grid
+	if area == SlotArea.CREATIVE: slots = creative_menu
 	if cursor_item != null:
 		if area == SlotArea.INPUT and not SMELTING.has(cursor_item.id): return
 		if area == SlotArea.FUEL and not FUEL.has(cursor_item.id): return
@@ -629,8 +635,6 @@ func _process(_delta: float) -> void:
 		var limit := get_viewport().get_visible_rect().size - tooltip.size
 		tooltip.position = Vector2(minf(pos.x, limit.x), clampf(pos.y, 0.0, limit.y))
 
-
-
 func add_item(item_id: StringName, amount: int = 1) -> void:
 	var def := Registry.get_item(item_id)
 	if def == null:
@@ -726,6 +730,9 @@ func update_inventory() -> void:
 	_fill_slot(smelting_ingredient, furnace_slots[0])
 	_fill_slot(smelting_fuel, furnace_slots[1])
 	_fill_slot(smelting_result, furnace_slots[2])
+	if player.current_gamemode == player.Gamemode.CREATIVE:
+		for i in creative_hot_bar.get_child_count():
+			_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
 
 func _icon_for(stack: StringName) -> Texture2D:
 	return Registry.get_item(stack).icon
@@ -777,7 +784,7 @@ func _on_open_inventory() -> void:
 func _on_open_menu() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.PAUSED)
-		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER, UIState.FURNACE: set_ui_state(UIState.PLAYING)
+		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE: set_ui_state(UIState.PLAYING)
 		UIState.SETTINGS: set_ui_state(UIState.PAUSED) # back to the pause menu
 		# DEAD: Escape does nothing. You have to hit Respawn.
 

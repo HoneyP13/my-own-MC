@@ -36,7 +36,7 @@
 [ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/watermelon.tres" id="30_dol6b"]
 [ext_resource type="BoxMesh" uid="uid://byrikgqfmawh7" path="res://assets/meshes/blocks/carved_pumpkin.tres" id="31_u6ce4"]
 [ext_resource type="BoxMesh" uid="uid://bovawh6un8rrf" path="res://assets/meshes/blocks/redstone_ore.tres" id="32_gf5wm"]
-[ext_resource type="BoxMesh" uid="uid://b8xf2w57dli3g" path="res://assets/meshes/blocks/redstone_dust.tres" id="33_gu01m"]
+[ext_resource type="QuadMesh" uid="uid://diqunegcplagh" path="res://assets/meshes/blocks/redstone_dust.tres" id="33_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://586no1jvv6dd" path="res://assets/meshes/blocks/redstone_block.tres" id="35_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://dcuirxno3ywd6" path="res://assets/meshes/blocks/gold_block.tres" id="36_vuep8"]
 [ext_resource type="BoxMesh" uid="uid://c8sckgpc0uunu" path="res://assets/meshes/blocks/white_wool.tres" id="37_hhxch"]
@@ -400,13 +400,6 @@ item/38/mesh_cast_shadow = 1
 item/38/shapes = [SubResource("BoxShape3D_tkvhc"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/38/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/38/navigation_layers = 1
-item/39/name = "redstone_dust"
-item/39/mesh = ExtResource("33_gu01m")
-item/39/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.462, 0)
-item/39/mesh_cast_shadow = 1
-item/39/shapes = []
-item/39/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/39/navigation_layers = 1
 item/40/name = "redstone_block"
 item/40/mesh = ExtResource("35_v6asg")
 item/40/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -526,4 +519,11 @@ item/57/mesh_cast_shadow = 1
 item/57/shapes = [SubResource("BoxShape3D_1ej3k"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/57/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/57/navigation_layers = 1
+item/58/name = "redstone_dust"
+item/58/mesh = ExtResource("33_gu01m")
+item/58/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.462, 0)
+item/58/mesh_cast_shadow = 1
+item/58/shapes = []
+item/58/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/58/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

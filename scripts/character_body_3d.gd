@@ -43,7 +43,6 @@ extends CharacterBody3D
 ## Name of Input Action to Sprint.
 @export var input_sprint : String = "run"
 ## Name of Input Action to toggle freefly mode.
-@export var input_freefly : String = "debug freefly"
 @export var input_crouch : String = "crouch"
 @export var input_hit : String = "hit"
 @export var input_use : String = "use"
@@ -125,6 +124,7 @@ func _ready() -> void:
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 
+var double_tapped := false
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing. React to the click event itself, and let the click that grabs the
 	# mouse be only that, so it doesn't also count as a "hit".
@@ -170,11 +170,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Use the event itself here, not Input.is_action_just_pressed(): _unhandled_input runs once per
 	# event, and "just pressed" stays true for the whole frame, so a mouse move arriving in the same
 	# frame as the key press would toggle it twice (on, then straight back off).
-	if can_freefly and not is_menu_open and event.is_action_pressed(input_freefly):
-		if not freeflying:
-			enable_freefly()
+	if can_freefly and not is_menu_open and event.is_action_pressed(input_jump):
+		if double_tapped:
+			if not freeflying:
+				enable_freefly()
+			else:
+				disable_freefly()
 		else:
-			disable_freefly()
+			double_tapped = true
+			await get_tree().create_timer(0.25).timeout
+			double_tapped = false
 
 func _physics_process(delta: float) -> void:
 	if is_dead or is_game_paused: return
@@ -186,8 +191,10 @@ func _physics_process(delta: float) -> void:
 	if can_freefly and freeflying:
 		if not is_menu_open:
 			var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
-			var motion := (head.global_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-			motion *= freefly_speed * delta
+			var input_height := Input.get_axis(input_crouch, input_jump)
+			var speed := Input.get_action_strength(input_sprint)
+			var motion := (collider.global_basis * Vector3(input_dir.x, input_height, input_dir.y)).normalized()
+			motion *= (freefly_speed * delta) if speed > 0 else ((freefly_speed / 2) * delta)
 			move_and_collide(motion)
 		return
 
@@ -314,7 +321,6 @@ func feast(value: int, item: Variant = null) -> void:
 	is_satiated = true if hunger >= 17 else false
 	is_starving = true if hunger == 0 else false
 
-
 ## Kill the player. Anything can call this (the void, lava, a health bar hitting zero...).
 ## The world listens for player_died to show the death screen.
 func die() -> void:
@@ -396,9 +402,6 @@ func check_input_mappings():
 	if can_sprint and not InputMap.has_action(input_sprint):
 		push_error("Sprinting disabled. No InputAction found for input_sprint: " + input_sprint)
 		can_sprint = false
-	if can_freefly and not InputMap.has_action(input_freefly):
-		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
-		can_freefly = false
 
 func _on_is_dead_changed(is_true: bool) -> void:
 	if is_true: hud._chat_print(username+" died.")

@@ -1,13 +1,14 @@
-[gd_resource type="BoxMesh" format=3 uid="uid://b8xf2w57dli3g"]
+[gd_resource type="QuadMesh" format=3 uid="uid://diqunegcplagh"]
 
-[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_fbjf2"]
 [ext_resource type="Texture2D" uid="uid://cni5eohbg251k" path="res://assets/sprites/redstone_dust_dot.png" id="2_fbjf2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4lqi0"]
-render_priority = 0
-shader = ExtResource("1_fbjf2")
-shader_parameter/texture_2d = ExtResource("2_fbjf2")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb5iv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_fbjf2")
+texture_filter = 0
 
 [resource]
-material = SubResource("ShaderMaterial_4lqi0")
-size = Vector3(1, 0.075, 1)
+material = SubResource("StandardMaterial3D_nb5iv")
+orientation = 1
