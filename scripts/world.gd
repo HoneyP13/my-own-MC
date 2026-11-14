@@ -1,10 +1,12 @@
 extends Node3D
 
 const SAVE_PATH := "user://world_save.dat"
-const SAVE_VERSION := 2
+const SAVE_VERSION := 3
 const WORLD_RADIUS_CHUNKS := 3   # world is (2*3)x(2*3) chunks = 96x96 blocks. Raise it later.
 const NEIGHBORS: Array[Vector3i] = [
 	Vector3i.RIGHT, Vector3i.LEFT, Vector3i.UP, Vector3i.DOWN, Vector3i.BACK, Vector3i.FORWARD]
+const NEEDS_SUPPORT := [&"short_grass", &"red_flower", &"blue_flower", &"torch",
+	&"redstone_torch", &"snow_layer", &"redstone_dust", &"cactus"]
 
 enum World { OVERWORLD }
 var dimension := World.OVERWORLD
@@ -175,6 +177,9 @@ func _process(delta: float) -> void:
 	_update_breaking(delta)
 	_update_fog()
 	_tick_furnaces(delta)
+	if is_debug_enabled:
+		var p := player.global_position
+		$HUD/DebugInfo/coordinates.text = "X: %.1f Y: %.1f Z: %.1f  Biome: %s" % [p.x, p.y, p.z, generator.biome_at(floori(p.x), floori(p.z))]
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
 	if (entered_void or in_lava or player.is_starving) and not player.is_dead and player.can_be_hurt:
@@ -239,6 +244,12 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 		else:
 			f.cook = 0.0
 
+var chests := {}
+func _track_chests() -> void:
+	for cell in chests:
+		var c = chests[cell]
+		var s: Array = c.slots
+
 func _on_player_use_pressed() -> void:
 	var target := get_targeted_block()
 	var hit_block : BlockDef
@@ -250,6 +261,11 @@ func _on_player_use_pressed() -> void:
 		if not furnaces.has(target.cell):
 			furnaces[target.cell] = {"slots": [null, null, null], "burn": 0.0, "burn_max": 0.0, "cook": 0.0}
 		hud.open_furnace(furnaces[target.cell].slots)
+		return
+	if hit_block != null and hit_block.id == &"chest" and not player.is_crouching:
+		if not chests.has(target.cell):
+			chests[target.cell] = {"slots": [].resize(27)}
+		hud.open_chest(chests[target.cell].slots)
 		return
 	if target != null:
 		if target.place_cell.y < MIN_BUILD_HEIGHT:
@@ -452,12 +468,18 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 	grid_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
 	_broken[cell] = true
 	_reveal_neighbors(cell)
+	var up := grid_map.get_cell_item(cell + Vector3i.UP)
+	if up != GridMap.INVALID_CELL_ITEM:
+		var up_def := _block_for_item(up)
+		if up_def != null and up_def.id in NEEDS_SUPPORT:
+			_break_block(cell + Vector3i.UP, up_def)
 	if block.id == &"furnace" and furnaces.has(cell):
 		for stack in furnaces[cell].slots:
 			if stack != null: hud.add_item(stack.id, stack.count)
 		furnaces.erase(cell)
 	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
 	if can_harvest:
+		hud.add_item(block.drop_id, randi_range(block.drop_min, block.drop_max))
 		if block.drop_id != &"" and randi() % 100 < block.drop_chance:
 			hud.add_item(block.drop_id)
 		if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
@@ -482,6 +504,7 @@ func save_game() -> void:
 		"seed": world_seed,
 		"broken": _pack_broken(),
 		"furnaces": furnaces,
+		"chests": chests,
 	}
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f == null:
@@ -506,6 +529,7 @@ func load_game() -> bool:
 
 	spawnpoint = generator.find_spawn()
 	furnaces = data.get("furnaces", {})
+	chests = data.get("chests", {})
 	player.velocity = Vector3.ZERO
 	player.global_position = data["player_pos"]
 	player.look_rotation = data["player_look"]

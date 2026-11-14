@@ -3,7 +3,7 @@ extends CanvasLayer
 ## Which screen is up. This is the ONE place that answers "what's on screen right now?".
 ## Every panel's visibility, the mouse capture and the pause flag are all worked out from it,
 ## so they can never disagree with each other. See set_ui_state() / _refresh_ui().
-enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURNACE, CREATIVE }
+enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURNACE, CREATIVE, CHEST }
 enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, OUTPUT, CRAFTING_TABLE, CREATIVE }
 
 @onready var world: Node3D = $".."
@@ -171,6 +171,8 @@ const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"di
 const ARMOR_SLOTS := [&"head", &"torso", &"legs", &"feet"]
 
 var furnace_slots : Array = [null, null, null]
+var single_chest_slots : Array
+var double_chest_slots : Array
 var hotbar : Array
 signal current_hotbar_slot_changed(slot: int)
 var current_hotbar_slot : int = 0:
@@ -199,6 +201,7 @@ var table_craft_grid: Array
 var craft_grid: Array          # whichever grid is active right now
 var craft_width := 2
 var creative_menu: Array
+var chest_insides: Array
 var table_menu: Panel
 var table_grid: GridContainer
 var table_result: TextureRect
@@ -210,6 +213,10 @@ var smelting_ingredient: TextureRect
 var smelting_result: TextureRect
 var furnace_inv: GridContainer
 var furnace_hotbar: HBoxContainer
+var chest_menu: Panel
+var chest_contents: GridContainer
+var chest_inv: GridContainer
+var chest_hotbar: HBoxContainer
 
 const FLUIDS_MESH_LIBRARY = preload("uid://bt86017oxii2w")
 const TERRAIN_MESH_LIBRARY = preload("uid://dgqqtmwpwy6eu")
@@ -221,6 +228,8 @@ func _init() -> void:
 	craft_grid = inv_craft_grid
 	inventory.resize(27)
 	hotbar.resize(9)
+	single_chest_slots.resize(27)
+	double_chest_slots.resize(54)
 	creative_menu.resize(Registry.items.size())
 
 func _ready() -> void:
@@ -231,8 +240,10 @@ func _ready() -> void:
 	player.open_debug_info.connect(_on_open_debug_info)
 	_build_table_menu()
 	_build_furnace_menu()
+	_build_chest_menu()
 	_setup_inventory_slots()
 	_build_tooltip()
+	_build_creative_menu()
 	refresh_slots()
 	_refresh_ui()
 	for r in RECIPES:
@@ -350,6 +361,64 @@ func _build_table_menu() -> void:
 		var s := _make_slot()
 		table_hotbar.add_child(s)
 		_wire_slot(s, SlotArea.HOTBAR, i)
+
+func _build_chest_menu() -> void:
+	chest_menu = Panel.new()
+	chest_menu.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	chest_menu.visible = false
+	add_child(chest_menu)
+	chest_menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var center := CenterContainer.new()
+	chest_menu.add_child(center)
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	var window := PanelContainer.new()
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.333, 0.333, 0.333)
+	window.add_theme_stylebox_override("panel", sb)
+	center.add_child(window)
+
+	var margin := MarginContainer.new()
+	for side in ["left", "top", "right", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 12)
+	window.add_child(margin)
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 12)
+	margin.add_child(vbox)
+
+	var top := HBoxContainer.new()
+	top.alignment = BoxContainer.ALIGNMENT_CENTER
+	top.add_theme_constant_override("separation", 48)
+	vbox.add_child(top)
+	chest_contents = GridContainer.new()
+	chest_contents.columns = 9
+	top.add_child(chest_contents)
+	for i in 27:
+		var s := _make_slot()
+		chest_contents.add_child(s)
+		_wire_slot(s, SlotArea.CHEST, i)
+
+	chest_inv = GridContainer.new()
+	chest_inv.columns = 9
+	vbox.add_child(chest_inv)
+	for i in 27:
+		var s := _make_slot()
+		chest_inv.add_child(s)
+		_wire_slot(s, SlotArea.INVENTORY, i)
+
+	chest_hotbar = HBoxContainer.new()
+	chest_hotbar.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	vbox.add_child(chest_hotbar)
+	for i in 9:
+		var s := _make_slot()
+		chest_hotbar.add_child(s)
+		_wire_slot(s, SlotArea.HOTBAR, i)
+
+func open_chest(slots: Array) -> void:
+	single_chest_slots = slots   # same array reference, so edits write through to world.furnaces
+	set_ui_state(UIState.CHEST)
+
 
 func _build_furnace_menu() -> void:
 	furnace_menu = Panel.new()
@@ -624,7 +693,7 @@ func _process(_delta: float) -> void:
 	if cursor_icon.visible:
 		cursor_icon.position = get_viewport().get_mouse_position() - cursor_icon.size / 2.0
 	var stack = _stack_at(hover_area, hover_index) if hover_area >= 0 else null
-	var menu_open := ui_state == UIState.INVENTORY or ui_state == UIState.CONTAINER or ui_state == UIState.FURNACE
+	var menu_open := ui_state == UIState.INVENTORY or ui_state == UIState.CONTAINER or ui_state == UIState.FURNACE or ui_state == UIState.CHEST
 	var show_tip: bool = stack != null and cursor_item == null and menu_open
 	tooltip.visible = show_tip
 	if show_tip:
@@ -730,9 +799,16 @@ func update_inventory() -> void:
 	_fill_slot(smelting_ingredient, furnace_slots[0])
 	_fill_slot(smelting_fuel, furnace_slots[1])
 	_fill_slot(smelting_result, furnace_slots[2])
-	if player.current_gamemode == player.Gamemode.CREATIVE:
-		for i in creative_hot_bar.get_child_count():
-			_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
+	for i in creative_grid.get_child_count():
+		_fill_slot(creative_grid.get_child(i), creative_menu[i])
+	for i in creative_hot_bar.get_child_count():
+		_fill_slot(creative_hot_bar.get_child(i), hotbar[i])
+	for i in chest_menu.get_child_count():
+		_fill_slot(chest_menu.get_child(i), single_chest_slots[i])
+	for i in chest_inv.get_child_count():
+		_fill_slot(chest_inv.get_child(i), inventory[i])
+	for i in chest_hotbar.get_child_count():
+		_fill_slot(chest_hotbar.get_child(i), hotbar[i])
 
 func _icon_for(stack: StringName) -> Texture2D:
 	return Registry.get_item(stack).icon
@@ -748,8 +824,8 @@ func set_ui_state(new_state: UIState) -> void:
 	craft_grid = table_craft_grid if new_state == UIState.CONTAINER else inv_craft_grid
 	craft_width = 3 if new_state == UIState.CONTAINER else 2
 	_refresh_ui()
-	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER or old_state == UIState.FURNACE
-	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER or new_state == UIState.FURNACE
+	var was_crafting := old_state == UIState.INVENTORY or old_state == UIState.CONTAINER or old_state == UIState.FURNACE or old_state == UIState.CREATIVE or old_state == UIState.CHEST
+	var is_crafting := new_state == UIState.INVENTORY or new_state == UIState.CONTAINER or new_state == UIState.FURNACE or new_state == UIState.CREATIVE or new_state == UIState.CHEST
 	if was_crafting and not is_crafting:
 		_return_cursor_item()
 	if old_state == UIState.CHAT and new_state != UIState.CHAT:
@@ -769,6 +845,7 @@ func _refresh_ui() -> void:
 	settings_menu.visible = s == UIState.SETTINGS
 	death_screen.visible = s == UIState.DEAD
 	creative_inventory.visible = s == UIState.CREATIVE
+	chest_menu.visible = s == UIState.CHEST
 	# The debug overlay (toggled with the debug key) hides behind the inventory and pause menus.
 	debug_info.visible = world.is_debug_enabled and (s == UIState.PLAYING or s == UIState.CHAT or s == UIState.DEAD)
 	table_menu.visible = s == UIState.CONTAINER
@@ -778,13 +855,13 @@ func _refresh_ui() -> void:
 func _on_open_inventory() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.INVENTORY if player.current_gamemode == player.Gamemode.SURVIVAL else UIState.CREATIVE)
-		UIState.INVENTORY, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE: set_ui_state(UIState.PLAYING)
+		UIState.INVENTORY, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE, UIState.CHEST: set_ui_state(UIState.PLAYING)
 
 ## Escape key (also used by the Resume button): back out of whatever is open.
 func _on_open_menu() -> void:
 	match ui_state:
 		UIState.PLAYING: set_ui_state(UIState.PAUSED)
-		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE: set_ui_state(UIState.PLAYING)
+		UIState.INVENTORY, UIState.CHAT, UIState.PAUSED, UIState.CONTAINER, UIState.FURNACE, UIState.CREATIVE, UIState.CHEST: set_ui_state(UIState.PLAYING)
 		UIState.SETTINGS: set_ui_state(UIState.PAUSED) # back to the pause menu
 		# DEAD: Escape does nothing. You have to hit Respawn.
 
@@ -891,4 +968,3 @@ func _on_player_current_gamemode_changed(Gamemode: Variant) -> void:
 	hunger_bar.visible = false if Gamemode == player.Gamemode.CREATIVE else true
 	player.can_freefly = true if Gamemode == player.Gamemode.CREATIVE else false
 	if player.freeflying: player.disable_freefly()
-	if Gamemode == player.Gamemode.CREATIVE: _build_creative_menu()

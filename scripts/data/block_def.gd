@@ -4,6 +4,8 @@ extends Resource
 
 @export var id: StringName
 @export var mesh_name: String       # the item name inside terrain_mesh_library
+@export var drop_min: int = 1
+@export var drop_max: int = 1
 @export var drop_id: StringName     # an ItemDef id; empty = drops nothing
 @export var drop_chance: int = 100
 @export var drop_id_2: StringName
