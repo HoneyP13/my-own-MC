@@ -7,13 +7,14 @@ uniform sampler2D texture_top: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_side_1: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_side_2: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_bottom: source_color, repeat_enable, filter_nearest;
+instance uniform float as_item = 0.0;
 
 varying vec3 world_pos;
 varying vec3 world_normal;
 
 void vertex() {
-	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
+	world_pos = as_item > 0.5 ? VERTEX + vec3(0.5) : (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_normal = as_item > 0.5 ? NORMAL : normalize(mat3(MODEL_MATRIX) * NORMAL);
 }
 
 void fragment() {

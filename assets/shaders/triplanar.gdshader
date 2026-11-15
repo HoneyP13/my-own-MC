@@ -11,13 +11,14 @@ uniform sampler2D texture_bottom: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_east: source_color, repeat_enable, filter_nearest;  // -Z face
 
 uniform vec3 corner_offset = vec3(0.5);
+instance uniform float as_item = 0.0;
 
 varying vec3 block_pos;
 varying vec3 block_normal;
 
 void vertex() {
-	block_pos = VERTEX + corner_offset;
-	block_normal = NORMAL;
+	block_pos = as_item > 0.5 ? VERTEX + vec3(0.5) : (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	block_normal = as_item > 0.5 ? NORMAL : normalize(mat3(MODEL_MATRIX) * NORMAL);
 }
 
 void fragment() {

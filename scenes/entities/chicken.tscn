@@ -282,57 +282,59 @@ walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"string"
 
-[node name="body2" type="Node3D" parent="." unique_id=1713163020]
+[node name="chicken_model" type="Node3D" parent="." unique_id=1990482637]
+
+[node name="body2" type="Node3D" parent="chicken_model" unique_id=1713163020]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.5, 0)
 
-[node name="body" type="MeshInstance3D" parent="body2" unique_id=695459115]
+[node name="body" type="MeshInstance3D" parent="chicken_model/body2" unique_id=695459115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("ArrayMesh_s3sln")
 
-[node name="head2" type="Node3D" parent="." unique_id=834210970]
+[node name="head2" type="Node3D" parent="chicken_model" unique_id=834210970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5625, -0.25)
 
-[node name="head" type="MeshInstance3D" parent="head2" unique_id=172149234]
+[node name="head" type="MeshInstance3D" parent="chicken_model/head2" unique_id=172149234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5625, 0.25)
 mesh = SubResource("ArrayMesh_vycan")
 
-[node name="comb2" type="Node3D" parent="head2" unique_id=24165678]
+[node name="comb2" type="Node3D" parent="chicken_model/head2" unique_id=24165678]
 
-[node name="comb" type="MeshInstance3D" parent="head2/comb2" unique_id=1144218785]
+[node name="comb" type="MeshInstance3D" parent="chicken_model/head2/comb2" unique_id=1144218785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5625, 0.25)
 mesh = SubResource("ArrayMesh_hxoy6")
 
-[node name="beak2" type="Node3D" parent="head2" unique_id=1255150206]
+[node name="beak2" type="Node3D" parent="chicken_model/head2" unique_id=1255150206]
 
-[node name="beak" type="MeshInstance3D" parent="head2/beak2" unique_id=1679505129]
+[node name="beak" type="MeshInstance3D" parent="chicken_model/head2/beak2" unique_id=1679505129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5625, 0.25)
 mesh = SubResource("ArrayMesh_im6av")
 
-[node name="leg02" type="Node3D" parent="." unique_id=287796265]
+[node name="leg02" type="Node3D" parent="chicken_model" unique_id=287796265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.3125, 0.0625)
 
-[node name="leg0" type="MeshInstance3D" parent="leg02" unique_id=469552390]
+[node name="leg0" type="MeshInstance3D" parent="chicken_model/leg02" unique_id=469552390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.3125, -0.0625)
 mesh = SubResource("ArrayMesh_6augr")
 
-[node name="leg12" type="Node3D" parent="." unique_id=705440012]
+[node name="leg12" type="Node3D" parent="chicken_model" unique_id=705440012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0625, 0.3125, 0.0625)
 
-[node name="leg1" type="MeshInstance3D" parent="leg12" unique_id=560015676]
+[node name="leg1" type="MeshInstance3D" parent="chicken_model/leg12" unique_id=560015676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625, -0.3125, -0.0625)
 mesh = SubResource("ArrayMesh_6ia5k")
 
-[node name="wing02" type="Node3D" parent="." unique_id=1041581357]
+[node name="wing02" type="Node3D" parent="chicken_model" unique_id=1041581357]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.6875, 0)
 
-[node name="wing0" type="MeshInstance3D" parent="wing02" unique_id=152123651]
+[node name="wing0" type="MeshInstance3D" parent="chicken_model/wing02" unique_id=152123651]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.6875, 0)
 mesh = SubResource("ArrayMesh_pjrek")
 
-[node name="wing12" type="Node3D" parent="." unique_id=1609126754]
+[node name="wing12" type="Node3D" parent="chicken_model" unique_id=1609126754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.6875, 0)
 
-[node name="wing1" type="MeshInstance3D" parent="wing12" unique_id=56684524]
+[node name="wing1" type="MeshInstance3D" parent="chicken_model/wing12" unique_id=56684524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.6875, 0)
 mesh = SubResource("ArrayMesh_ausjq")
 

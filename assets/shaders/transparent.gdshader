@@ -6,14 +6,15 @@ render_mode cull_back;
 // Positive values pull the vertices inward along their normals (it shrinks the mesh).
 uniform float grow_amount: hint_range(0.0, 2.0) = 0.0;
 uniform sampler2D albedo_texture: source_color, repeat_enable, filter_nearest;
+instance uniform float as_item = 0.0;
 
 varying vec3 world_pos;
 varying vec3 world_normal;
 
 void vertex() {
 	VERTEX -= NORMAL * grow_amount;
-	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	world_normal = normalize(mat3(MODEL_MATRIX) * NORMAL);
+	world_pos = as_item > 0.5 ? VERTEX + vec3(0.5) : (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	world_normal = as_item > 0.5 ? NORMAL : normalize(mat3(MODEL_MATRIX) * NORMAL);
 }
 
 void fragment() {

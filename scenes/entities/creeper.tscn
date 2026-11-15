@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bbnqxxkrt56m0"]
 
 [ext_resource type="Texture2D" uid="uid://dphwh1u453jwv" path="res://assets/models/creeper_model_0.png" id="1_t3wml"]
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_ywitv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2kxv"]
 resource_name = "material_0"
@@ -205,44 +206,60 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dny3d")
 
-[node name="blockbench_export" type="Node3D" unique_id=914864599]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
+radius = 0.35
+height = 1.5
 
-[node name="Body2" type="Node3D" parent="." unique_id=1897458378]
+[node name="creeper" type="CharacterBody3D" unique_id=1747681719]
+script = ExtResource("1_ywitv")
+mob_id = &"creeper"
+max_health = 10
+walking_speed = 2.0
+running_speed = 2.0
+behavior = 2
 
-[node name="Body" type="MeshInstance3D" parent="Body2" unique_id=1554518836]
+[node name="creeper_model" type="Node3D" parent="." unique_id=914864599]
+
+[node name="Body2" type="Node3D" parent="creeper_model" unique_id=1897458378]
+
+[node name="Body" type="MeshInstance3D" parent="creeper_model/Body2" unique_id=1554518836]
 mesh = SubResource("ArrayMesh_pg6jb")
 
-[node name="Head2" type="Node3D" parent="Body2" unique_id=72440264]
+[node name="Head2" type="Node3D" parent="creeper_model/Body2" unique_id=72440264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
 
-[node name="Head" type="MeshInstance3D" parent="Body2/Head2" unique_id=909123286]
+[node name="Head" type="MeshInstance3D" parent="creeper_model/Body2/Head2" unique_id=909123286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0)
 mesh = SubResource("ArrayMesh_uad0f")
 
-[node name="leg02" type="Node3D" parent="Body2" unique_id=1883474984]
+[node name="leg02" type="Node3D" parent="creeper_model/Body2" unique_id=1883474984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, 0.25)
 
-[node name="leg0" type="MeshInstance3D" parent="Body2/leg02" unique_id=648687960]
+[node name="leg0" type="MeshInstance3D" parent="creeper_model/Body2/leg02" unique_id=648687960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.375, -0.25)
 mesh = SubResource("ArrayMesh_ni1wp")
 
-[node name="leg12" type="Node3D" parent="Body2" unique_id=901758564]
+[node name="leg12" type="Node3D" parent="creeper_model/Body2" unique_id=901758564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, 0.25)
 
-[node name="leg1" type="MeshInstance3D" parent="Body2/leg12" unique_id=2050273516]
+[node name="leg1" type="MeshInstance3D" parent="creeper_model/Body2/leg12" unique_id=2050273516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.375, -0.25)
 mesh = SubResource("ArrayMesh_1fyrq")
 
-[node name="leg22" type="Node3D" parent="Body2" unique_id=1457029990]
+[node name="leg22" type="Node3D" parent="creeper_model/Body2" unique_id=1457029990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, -0.25)
 
-[node name="leg2" type="MeshInstance3D" parent="Body2/leg22" unique_id=1906030950]
+[node name="leg2" type="MeshInstance3D" parent="creeper_model/Body2/leg22" unique_id=1906030950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.375, 0.25)
 mesh = SubResource("ArrayMesh_dkpbg")
 
-[node name="leg32" type="Node3D" parent="Body2" unique_id=1331561454]
+[node name="leg32" type="Node3D" parent="creeper_model/Body2" unique_id=1331561454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, -0.25)
 
-[node name="leg3" type="MeshInstance3D" parent="Body2/leg32" unique_id=26971341]
+[node name="leg3" type="MeshInstance3D" parent="creeper_model/Body2/leg32" unique_id=26971341]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.375, 0.25)
 mesh = SubResource("ArrayMesh_ldrcr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1159407894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74999994, 0)
+shape = SubResource("CapsuleShape3D_ogq8d")

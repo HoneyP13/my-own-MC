@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtglr457gpwm5"]
+
+[ext_resource type="Script" uid="uid://7ejl7fqxd0ib" path="res://scripts/item_mesh.gd" id="1_0pff4"]
+
+[node name="DroppedItem" type="Node3D" unique_id=1588081495]
+script = ExtResource("1_0pff4")

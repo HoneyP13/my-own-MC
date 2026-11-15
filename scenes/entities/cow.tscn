@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://y4kxawccfa18"]
 
-[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_fgglk"]
-[ext_resource type="Texture2D" uid="uid://cpdiufx3aq6wf" path="res://assets/models/cow_model_0.png" id="2_cairq"]
+[ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_y6s0v"]
+[ext_resource type="Texture2D" uid="uid://cpdiufx3aq6wf" path="res://assets/models/cow_model_0.png" id="2_ifq6p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfue7"]
 resource_name = "material_0"
@@ -9,7 +9,7 @@ transparency = 2
 alpha_scissor_threshold = 0.05
 alpha_antialiasing_mode = 0
 cull_mode = 2
-albedo_texture = ExtResource("2_cairq")
+albedo_texture = ExtResource("2_ifq6p")
 texture_filter = 0
 texture_repeat = false
 metadata/_gltf_primary_texture_coord = 0
@@ -338,71 +338,71 @@ shadow_mesh = SubResource("ArrayMesh_5sl54")
 height = 1.5
 
 [node name="cow" type="CharacterBody3D" unique_id=2007125064]
-script = ExtResource("1_fgglk")
+script = ExtResource("1_y6s0v")
 mob_id = &"cow"
 max_health = 5
 walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"leather"
 
-[node name="root" type="Node3D" parent="." unique_id=444102938]
+[node name="cow_model" type="Node3D" parent="." unique_id=444102938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0625)
 
-[node name="head5" type="Node3D" parent="root" unique_id=1211131274]
+[node name="head5" type="Node3D" parent="cow_model" unique_id=1211131274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 
-[node name="head" type="MeshInstance3D" parent="root/head5" unique_id=1936006989]
+[node name="head" type="MeshInstance3D" parent="cow_model/head5" unique_id=1936006989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_8c6f8")
 
-[node name="head2" type="MeshInstance3D" parent="root/head5" unique_id=711229877]
+[node name="head2" type="MeshInstance3D" parent="cow_model/head5" unique_id=711229877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_61av4")
 
-[node name="head3" type="MeshInstance3D" parent="root/head5" unique_id=2075889262]
+[node name="head3" type="MeshInstance3D" parent="cow_model/head5" unique_id=2075889262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_r1gfk")
 
-[node name="head4" type="MeshInstance3D" parent="root/head5" unique_id=1037141339]
+[node name="head4" type="MeshInstance3D" parent="cow_model/head5" unique_id=1037141339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_11d3a")
 
-[node name="body3" type="Node3D" parent="root" unique_id=255861890]
+[node name="body3" type="Node3D" parent="cow_model" unique_id=255861890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1875, 0.125)
 
-[node name="body" type="MeshInstance3D" parent="root/body3" unique_id=763993293]
+[node name="body" type="MeshInstance3D" parent="cow_model/body3" unique_id=763993293]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0625, 1.1875)
 mesh = SubResource("ArrayMesh_esfiy")
 
-[node name="body2" type="MeshInstance3D" parent="root/body3" unique_id=1661540210]
+[node name="body2" type="MeshInstance3D" parent="cow_model/body3" unique_id=1661540210]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0625, 1.1875)
 mesh = SubResource("ArrayMesh_8gtti")
 
-[node name="leg02" type="Node3D" parent="root" unique_id=1492484190]
+[node name="leg02" type="Node3D" parent="cow_model" unique_id=1492484190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, 0.4375)
 
-[node name="leg0" type="MeshInstance3D" parent="root/leg02" unique_id=1399096721]
+[node name="leg0" type="MeshInstance3D" parent="cow_model/leg02" unique_id=1399096721]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, -0.375)
 mesh = SubResource("ArrayMesh_u8ojr")
 
-[node name="leg12" type="Node3D" parent="root" unique_id=1674064350]
+[node name="leg12" type="Node3D" parent="cow_model" unique_id=1674064350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 0.4375)
 
-[node name="leg1" type="MeshInstance3D" parent="root/leg12" unique_id=728727491]
+[node name="leg1" type="MeshInstance3D" parent="cow_model/leg12" unique_id=728727491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, -0.375)
 mesh = SubResource("ArrayMesh_r7jqk")
 
-[node name="leg22" type="Node3D" parent="root" unique_id=240840188]
+[node name="leg22" type="Node3D" parent="cow_model" unique_id=240840188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -0.375)
 
-[node name="leg2" type="MeshInstance3D" parent="root/leg22" unique_id=530410960]
+[node name="leg2" type="MeshInstance3D" parent="cow_model/leg22" unique_id=530410960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_mb08i")
 
-[node name="leg32" type="Node3D" parent="root" unique_id=260979049]
+[node name="leg32" type="Node3D" parent="cow_model" unique_id=260979049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, -0.375)
 
-[node name="leg3" type="MeshInstance3D" parent="root/leg32" unique_id=189412329]
+[node name="leg3" type="MeshInstance3D" parent="cow_model/leg32" unique_id=189412329]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_vo6qe")
 

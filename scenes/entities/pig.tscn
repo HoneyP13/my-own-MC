@@ -281,55 +281,55 @@ walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"raw_meat"
 
-[node name="root" type="Node3D" parent="." unique_id=905152784]
+[node name="pig_model" type="Node3D" parent="." unique_id=905152784]
 
-[node name="head3" type="Node3D" parent="root" unique_id=394129748]
+[node name="head3" type="Node3D" parent="pig_model" unique_id=394129748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.4375)
 
-[node name="head" type="MeshInstance3D" parent="root/head3" unique_id=1121978868]
+[node name="head" type="MeshInstance3D" parent="pig_model/head3" unique_id=1121978868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_stmhs")
 
-[node name="head2" type="MeshInstance3D" parent="root/head3" unique_id=1724376573]
+[node name="head2" type="MeshInstance3D" parent="pig_model/head3" unique_id=1724376573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_ofue5")
 
-[node name="body3" type="Node3D" parent="root" unique_id=291423870]
+[node name="body3" type="Node3D" parent="pig_model" unique_id=291423870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6875, 0.5625)
 
-[node name="body" type="MeshInstance3D" parent="root/body3" unique_id=620798354]
+[node name="body" type="MeshInstance3D" parent="pig_model/body3" unique_id=620798354]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gsv5l")
 
-[node name="body2" type="MeshInstance3D" parent="root/body3" unique_id=921385609]
+[node name="body2" type="MeshInstance3D" parent="pig_model/body3" unique_id=921385609]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_rku2l")
 
-[node name="leg02" type="Node3D" parent="root" unique_id=199801520]
+[node name="leg02" type="Node3D" parent="pig_model" unique_id=199801520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, 0.375)
 
-[node name="leg0" type="MeshInstance3D" parent="root/leg02" unique_id=969783829]
+[node name="leg0" type="MeshInstance3D" parent="pig_model/leg02" unique_id=969783829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.375, -0.375)
 mesh = SubResource("ArrayMesh_elogj")
 
-[node name="leg12" type="Node3D" parent="root" unique_id=948463292]
+[node name="leg12" type="Node3D" parent="pig_model" unique_id=948463292]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, 0.375)
 
-[node name="leg1" type="MeshInstance3D" parent="root/leg12" unique_id=1816801998]
+[node name="leg1" type="MeshInstance3D" parent="pig_model/leg12" unique_id=1816801998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.375, -0.375)
 mesh = SubResource("ArrayMesh_x5b3d")
 
-[node name="leg32" type="Node3D" parent="root" unique_id=1169148000]
+[node name="leg32" type="Node3D" parent="pig_model" unique_id=1169148000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, -0.375)
 
-[node name="leg3" type="MeshInstance3D" parent="root/leg32" unique_id=2026971532]
+[node name="leg3" type="MeshInstance3D" parent="pig_model/leg32" unique_id=2026971532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.375, 0.375)
 mesh = SubResource("ArrayMesh_mdfic")
 
-[node name="leg22" type="Node3D" parent="root" unique_id=490557163]
+[node name="leg22" type="Node3D" parent="pig_model" unique_id=490557163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, -0.375)
 
-[node name="leg2" type="MeshInstance3D" parent="root/leg22" unique_id=1425485895]
+[node name="leg2" type="MeshInstance3D" parent="pig_model/leg22" unique_id=1425485895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.375, 0.375)
 mesh = SubResource("ArrayMesh_stqn1")
 
