@@ -7,7 +7,12 @@ extends CharacterBody3D
 @export var running_speed: float = walking_speed
 @export var drop_id: StringName
 @export var behavior: Behavior
-@export var anim : AnimationPlayer
+@export var model_node : Node3D
+@export var head_pivot : Node3D
+@export var FL_pivot : Node3D
+@export var FR_pivot : Node3D
+@export var BL_pivot : Node3D
+@export var BR_pivot : Node3D
 # If behavior is Roam, then Flee when attacked
 enum Behavior { ROAM, FLEE, HUNT, ATTACK, CHASE, FOLLOW } 
 ## ROAM: Passive mobs that FLEE once attacked. Hostile mobs HUNT the player, and attack on sight
@@ -19,7 +24,7 @@ var _knockback := Vector3.ZERO
 var _lava_timer := 0.0
 @onready var world := get_parent()
 
-var is_walking : bool = true
+var time_passed := 0.0
 
 func _ready() -> void:
 	health = max_health
@@ -42,19 +47,29 @@ func _physics_process(delta: float) -> void:
 	velocity.x = _dir.x * walking_speed + _knockback.x
 	velocity.z = _dir.z * walking_speed + _knockback.z
 	_knockback = _knockback.move_toward(Vector3.ZERO, 20.0 * delta)
-	is_walking = true
 	if _dir != Vector3.ZERO:
 		rotation.y = atan2(-_dir.x, -_dir.z)
-		if is_on_wall() and is_on_floor():
-			velocity.y = 8.0   # hop up one block
-			is_walking = false
+		if is_on_wall() and is_on_floor(): velocity.y = 8.0   # hop up one block
+		
+		#time_passed += delta * 0.8
+		
+		var swing := sin(Time.get_ticks_msec() * 0.01) * 0.6
+		
+		if FL_pivot != null: FL_pivot.rotation.x = swing
+		if BR_pivot != null: BR_pivot.rotation.x = swing
+		if FR_pivot != null: FR_pivot.rotation.x = -swing
+		if BL_pivot != null: BL_pivot.rotation.x = -swing
+	else:
+		for leg in [FL_pivot, FR_pivot, BL_pivot, BR_pivot]:
+			if leg != null: leg.rotation.x = lerp_angle(leg.rotation.x, 0.0, delta * 10.0)
+	
 	move_and_slide()
-	walk()
 	if world.fluid_at(global_position) == &"lava":
 		_lava_timer -= delta
 		if _lava_timer <= 0.0:
 			_lava_timer = 0.5
 			hurt(2, global_position)
+	if world.fluid_at(global_position) == &"water": velocity.y = 4.0
 
 func hurt(amount: int, from: Vector3) -> void:
 	behavior = Behavior.FLEE # for like, 15 seconds, then back to Roam
@@ -64,14 +79,5 @@ func hurt(amount: int, from: Vector3) -> void:
 	_knockback = away.normalized() * 6.0
 	velocity.y = 4.0
 	if health <= 0:
-		if drop_id != &"": world.hud.add_item(drop_id)
+		if drop_id != &"": world.spawn_drop(drop_id, 1, global_position + Vector3.UP * 0.5)
 		queue_free()
-
-
-func walk() -> void:
-	if anim == null: return
-	if is_walking and not anim.is_playing(): anim.play("walk_cycle")
-	elif anim.is_playing(): return
-	else:
-		anim.play("RESET")
-		anim.stop()

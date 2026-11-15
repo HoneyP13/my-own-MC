@@ -401,13 +401,19 @@ shadow_mesh = SubResource("ArrayMesh_0yqp1")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gly4w"]
 height = 1.35
 
-[node name="sheep" type="CharacterBody3D" unique_id=2095963090]
+[node name="sheep" type="CharacterBody3D" unique_id=2095963090 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot", "BL_pivot", "BR_pivot")]
 script = ExtResource("1_80ofh")
 mob_id = &"sheep"
 max_health = 5
 walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"white_wool"
+model_node = NodePath("sheep_model")
+head_pivot = NodePath("sheep_model/head3")
+FL_pivot = NodePath("sheep_model/leg33")
+FR_pivot = NodePath("sheep_model/leg23")
+BL_pivot = NodePath("sheep_model/leg13")
+BR_pivot = NodePath("sheep_model/leg03")
 
 [node name="sheep_model" type="Node3D" parent="." unique_id=1819567838]
 

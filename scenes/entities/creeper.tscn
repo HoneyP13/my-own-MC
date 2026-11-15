@@ -210,13 +210,19 @@ shadow_mesh = SubResource("ArrayMesh_dny3d")
 radius = 0.35
 height = 1.5
 
-[node name="creeper" type="CharacterBody3D" unique_id=1747681719]
+[node name="creeper" type="CharacterBody3D" unique_id=1747681719 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot", "BL_pivot", "BR_pivot")]
 script = ExtResource("1_ywitv")
 mob_id = &"creeper"
 max_health = 10
 walking_speed = 2.0
 running_speed = 2.0
 behavior = 2
+model_node = NodePath("creeper_model")
+head_pivot = NodePath("creeper_model/Body2/Head2")
+FL_pivot = NodePath("creeper_model/Body2/leg02")
+FR_pivot = NodePath("creeper_model/Body2/leg12")
+BL_pivot = NodePath("creeper_model/Body2/leg22")
+BR_pivot = NodePath("creeper_model/Body2/leg32")
 
 [node name="creeper_model" type="Node3D" parent="." unique_id=914864599]
 

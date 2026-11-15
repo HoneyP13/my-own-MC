@@ -274,13 +274,17 @@ shadow_mesh = SubResource("ArrayMesh_465e7")
 radius = 0.25
 height = 0.75
 
-[node name="chicken" type="CharacterBody3D" unique_id=1482491867]
+[node name="chicken" type="CharacterBody3D" unique_id=1482491867 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot")]
 script = ExtResource("1_8lku0")
 mob_id = &"chicken"
 max_health = 5
 walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"string"
+model_node = NodePath("chicken_model")
+head_pivot = NodePath("chicken_model/head2")
+FL_pivot = NodePath("chicken_model/leg12")
+FR_pivot = NodePath("chicken_model/leg02")
 
 [node name="chicken_model" type="Node3D" parent="." unique_id=1990482637]
 

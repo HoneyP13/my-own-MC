@@ -273,13 +273,19 @@ shadow_mesh = SubResource("ArrayMesh_va2i3")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 height = 1.0
 
-[node name="pig" type="CharacterBody3D" unique_id=1082048042]
+[node name="pig" type="CharacterBody3D" unique_id=1082048042 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot", "BL_pivot", "BR_pivot")]
 script = ExtResource("1_sq5kf")
 mob_id = &"pig"
 max_health = 5
 walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"raw_meat"
+model_node = NodePath("pig_model")
+head_pivot = NodePath("pig_model/head3")
+FL_pivot = NodePath("pig_model/leg02")
+FR_pivot = NodePath("pig_model/leg12")
+BL_pivot = NodePath("pig_model/leg22")
+BR_pivot = NodePath("pig_model/leg32")
 
 [node name="pig_model" type="Node3D" parent="." unique_id=905152784]
 

@@ -242,7 +242,7 @@ shadow_mesh = SubResource("ArrayMesh_l5hph")
 radius = 0.25
 height = 1.8
 
-[node name="zombie" type="CharacterBody3D" unique_id=323702117]
+[node name="zombie" type="CharacterBody3D" unique_id=323702117 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot")]
 script = ExtResource("1_1vlb3")
 mob_id = &"zombie"
 max_health = 10
@@ -250,6 +250,10 @@ walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"string"
 behavior = 2
+model_node = NodePath("zombie_model")
+head_pivot = NodePath("zombie_model/Head2")
+FL_pivot = NodePath("zombie_model/LeftLeg2")
+FR_pivot = NodePath("zombie_model/RightLeg2")
 
 [node name="zombie_model" type="Node3D" parent="." unique_id=355645514]
 
@@ -272,14 +276,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 mesh = SubResource("ArrayMesh_m61vu")
 
 [node name="RightArm2" type="Node3D" parent="zombie_model" unique_id=9822780]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, 1.375, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3125, 1.375, 0)
 
 [node name="RightArm" type="MeshInstance3D" parent="zombie_model/RightArm2" unique_id=1017739348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_ovs5m")
 
 [node name="LeftArm2" type="Node3D" parent="zombie_model" unique_id=176445363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, 1.375, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3125, 1.375, 0)
 
 [node name="LeftArm" type="MeshInstance3D" parent="zombie_model/LeftArm2" unique_id=732887590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, -1.375, 0)

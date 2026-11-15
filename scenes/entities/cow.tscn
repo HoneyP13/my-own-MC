@@ -337,13 +337,19 @@ shadow_mesh = SubResource("ArrayMesh_5sl54")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 height = 1.5
 
-[node name="cow" type="CharacterBody3D" unique_id=2007125064]
+[node name="cow" type="CharacterBody3D" unique_id=2007125064 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot", "BL_pivot", "BR_pivot")]
 script = ExtResource("1_y6s0v")
 mob_id = &"cow"
 max_health = 5
 walking_speed = 2.0
 running_speed = 2.0
 drop_id = &"leather"
+model_node = NodePath("cow_model")
+head_pivot = NodePath("cow_model/head5")
+FL_pivot = NodePath("cow_model/leg32")
+FR_pivot = NodePath("cow_model/leg22")
+BL_pivot = NodePath("cow_model/leg12")
+BR_pivot = NodePath("cow_model/leg02")
 
 [node name="cow_model" type="Node3D" parent="." unique_id=444102938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0625)

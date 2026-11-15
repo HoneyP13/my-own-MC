@@ -720,11 +720,11 @@ func _process(_delta: float) -> void:
 		var limit := get_viewport().get_visible_rect().size - tooltip.size
 		tooltip.position = Vector2(minf(pos.x, limit.x), clampf(pos.y, 0.0, limit.y))
 
-func add_item(item_id: StringName, amount: int = 1) -> void:
+func add_item(item_id: StringName, amount: int = 1) -> int:
 	var def := Registry.get_item(item_id)
 	if def == null:
 		push_warning("No item defined for '%s'" % item_id)
-		return
+		return 0
 	# 1) top up an existing stack (hotbar first, then inventory)
 	for slots in [hotbar, inventory]:
 		for i in slots.size():
@@ -735,7 +735,7 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 				amount -= moved
 				if amount == 0:
 					refresh_slots()
-					return
+					return 0
 	# 2) otherwise use empty slots
 	for slots in [hotbar, inventory]:
 		for i in slots.size():
@@ -745,8 +745,8 @@ func add_item(item_id: StringName, amount: int = 1) -> void:
 				amount -= moved
 				if amount == 0:
 					refresh_slots()
-					return
-	refresh_slots()   # inventory full: leftovers are lost for now
+					return 0
+	return amount
 
 func refresh_slots() -> void:
 	_update_craft_result()

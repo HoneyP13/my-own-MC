@@ -29,8 +29,8 @@ const SEA_LEVEL := 10
 var is_debug_enabled : bool = false
 var spawnpoint : Vector3
 
-const PIG_SCENE := preload("res://scenes/pig.tscn")
-const CHICKEN_SCENE := preload("res://scenes/chicken.tscn")
+const PIG_SCENE := preload("uid://cklif0t5p80ej")
+const CHICKEN_SCENE := preload("uid://cp4gvss1tri6i")
 const COW_SCENE = preload("uid://y4kxawccfa18")
 const SHEEP_SCENE = preload("uid://r3pfy4dfhvjo")
 
@@ -137,6 +137,13 @@ func spawn_mobs() -> void:
 		add_child(mob)
 		mob.global_position = Vector3(x + 0.5, h + 1.5, z + 0.5)
 		spawned += 1
+
+func spawn_drop(item_id: StringName, count: int, pos: Vector3, vel := Vector3.ZERO) -> void:
+	var d := DroppedItem.new()
+	add_child(d)
+	d.setup(item_id, count)
+	d.global_position = pos
+	d.linear_velocity = vel
 
 func _raycast_mobs() -> Dictionary:
 	var from := player.get_eye_position()
@@ -331,10 +338,13 @@ func _on_player_select_pressed() -> void:
 	hud.refresh_slots()
 
 func _on_player_drop_item_pressed() -> void:
-	#var item_id := grid_map.mesh_library.find_item_by_name(hud.held_item)
-	#if item_id == GridMap.INVALID_CELL_ITEM: return
+	var held = hud.held_item
+	if held == null: return
+	spawn_drop(held.id, held.count, player.get_eye_position(), player.get_look_direction() * 5.0)
 	hud.hotbar[hud.current_hotbar_slot] = null
 	hud.refresh_slots()
+	#spawn_drop(held.id, 1, player.get_eye_position(), player.get_look_direction() * 5.0)
+	#_consume_held_item()
 
 func _cell_overlaps_player(cell: Vector3i) -> bool:
 	var center := grid_map.to_global(grid_map.map_to_local(cell))
@@ -435,11 +445,6 @@ func _update_breaking(delta: float) -> void:
 		_stop_breaking()
 		return
 	var block := _block_for_item(t.item)
-	## remove once drops added
-	if block.id == &"chest" and chests.has(t.cell) \
-			and chests[t.cell].slots.any(func(s): return s != null):
-		_stop_breaking()
-		return
 	if block == null or block.hardness < 0.0:
 		_stop_breaking()
 		return
@@ -480,19 +485,19 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 			_break_block(cell + Vector3i.UP, up_def)
 	if block.id == &"furnace" and furnaces.has(cell):
 		for stack in furnaces[cell].slots:
-			if stack != null: hud.add_item(stack.id, stack.count)
+			if stack != null: spawn_drop(stack.id, stack.count, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		furnaces.erase(cell)
 	if block.id == &"chest" and chests.has(cell):
 		for stack in chests[cell].slots:
-			if stack != null: hud.add_item(stack.id, stack.count)
+			if stack != null: spawn_drop(stack.id, stack.count, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		chests.erase(cell)
 	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
 	if can_harvest:
-		hud.add_item(block.drop_id, randi_range(block.drop_min, block.drop_max))
+		spawn_drop(block.drop_id, randi_range(block.drop_min, block.drop_max), grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		if block.drop_id != &"" and randi() % 100 < block.drop_chance:
-			hud.add_item(block.drop_id)
+			spawn_drop(block.drop_id, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
-			hud.add_item(block.drop_id_2)
+			spawn_drop(block.drop_id_2, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 
 # --- Save / load ------------------------------------------------------------
 

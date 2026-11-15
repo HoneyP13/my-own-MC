@@ -286,7 +286,6 @@ middle_mouse_paste_enabled = false
 
 [node name="InventoryMenu" type="Panel" parent="." unique_id=789841521]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -332,6 +331,30 @@ layout_mode = 2
 [node name="PlayerWindow" type="PanelContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=1977391638]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow" unique_id=979373542]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow/SubViewportContainer" unique_id=1647324796]
+handle_input_locally = false
+scaling_3d_mode = 5
+size = Vector2i(202, 268)
+
+[node name="Camera3D" type="Camera3D" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow/SubViewportContainer/SubViewport" unique_id=302704386]
+transform = Transform3D(-1, 0, 8.742278e-08, 1.7763568e-15, 0.99999994, 1.4901161e-08, -8.742276e-08, 1.4901161e-08, -0.99999994, 0, 1.4000001, 0)
+projection = 1
+current = true
+fov = 50.9
+size = 2.5
+
+[node name="player" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow/SubViewportContainer/SubViewport" unique_id=408094235 instance_placeholder="res://scenes/player_model.tscn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 1.6000001)
+motion_mode = 1
+can_move = false
+has_gravity = false
+can_jump = false
+can_sprint = false
 
 [node name="ArmorSlots" type="VBoxContainer" parent="InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2" unique_id=65930874]
 layout_mode = 2
@@ -792,6 +815,7 @@ text = "Quit"
 
 [node name="CreativeInventory" type="Panel" parent="." unique_id=1116187236]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
