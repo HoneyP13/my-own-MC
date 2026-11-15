@@ -33,6 +33,8 @@ const PIG_SCENE := preload("uid://cklif0t5p80ej")
 const CHICKEN_SCENE := preload("uid://cp4gvss1tri6i")
 const COW_SCENE = preload("uid://y4kxawccfa18")
 const SHEEP_SCENE = preload("uid://r3pfy4dfhvjo")
+const CREEPER_SCENE = preload("uid://bbnqxxkrt56m0")
+const ZOMBIE_SCENE = preload("uid://b76qcri4gl1we")
 
 func _ready() -> void:
 	player.hit_pressed.connect(_on_player_hit_pressed)
