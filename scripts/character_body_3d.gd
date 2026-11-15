@@ -106,7 +106,7 @@ var can_be_hurt : bool = true
 enum { LIQUID, ENTITY, BLOCK }
 
 ## IMPORTANT REFERENCES
-@onready var head: Node3D = $Head
+@onready var head: Node3D = $player_model/Waist/Head2
 @onready var collider: CollisionShape3D = $Collider
 @onready var hud: CanvasLayer = $"../HUD"
 @onready var world: Node3D = $".."
@@ -114,7 +114,7 @@ enum { LIQUID, ENTITY, BLOCK }
 
 var is_crouching : bool = false
 var crouch_height : float = 1.0
-@onready var stand_height : float = collider.shape.size.y   # 1.8, read from the scene
+@onready var stand_height : float = collider.shape.height   # 1.8, read from the scene
 @onready var head_stand_y : float = head.position.y         # 0.5, read from the scene
 
 func _ready() -> void:
@@ -343,7 +343,7 @@ func respawn(pos: Vector3) -> void:
 func set_crouching(value: bool) -> void:
 	is_crouching = value
 	var h := crouch_height if value else stand_height
-	collider.shape.size.y = h
+	collider.shape.height = h
 	# The capsule is centred on the body, so shift collider + camera to keep your feet planted
 	collider.position.y = -(stand_height - h) / 2.0
 	head.position.y = head_stand_y - (stand_height - h)

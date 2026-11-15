@@ -17,7 +17,7 @@ const MIN_BUILD_HEIGHT := 0
 const MAX_BUILD_HEIGHT := 64
 const SEA_LEVEL := 10
 
-@onready var player: Player = $Player
+@onready var player: Player = $player
 @onready var hud: CanvasLayer = $HUD
 @onready var grid_map: GridMap = $Terrain
 @onready var fluids_map: GridMap = $Fluids

@@ -5,8 +5,8 @@
 [ext_resource type="PhysicsMaterial" uid="uid://b2m1pv5xyyvit" path="res://assets/materials/standard_physics_material.tres" id="3_i7141"]
 [ext_resource type="MeshLibrary" uid="uid://bt86017oxii2w" path="res://assets/meshes/fluids_mesh_library.tres" id="4_i7141"]
 [ext_resource type="PhysicsMaterial" uid="uid://bh7ynjpdbdik5" path="res://assets/materials/liquid_physics_material.tres" id="5_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://c714subs7q56s" path="res://scenes/player_model.tscn" id="6_i7141"]
 [ext_resource type="PackedScene" uid="uid://be7ht011s66ye" path="res://scenes/HUD.tscn" id="6_qfnet"]
-[ext_resource type="PackedScene" uid="uid://dn02jqka7u0mp" path="res://scenes/player.tscn" id="28_qg546"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvueo"]
 
@@ -47,16 +47,14 @@ cell_size = Vector3(1, 1, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Void" unique_id=1058940562]
 shape = SubResource("WorldBoundaryShape3D_ogq8d")
 
-[node name="Player" parent="." unique_id=408094235 instance=ExtResource("28_qg546")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.5, -4)
-username = "SampleUsername"
+[node name="player" parent="." unique_id=408094235 instance=ExtResource("6_i7141")]
 
 [node name="HUD" parent="." unique_id=1757020517 instance=ExtResource("6_qfnet")]
 
 [connection signal="body_entered" from="Void" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Void" to="." method="_on_void_body_exited"]
-[connection signal="current_gamemode_changed" from="Player" to="HUD" method="_on_player_current_gamemode_changed"]
-[connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
-[connection signal="hunger_changed" from="Player" to="HUD" method="_on_player_hunger_changed"]
-[connection signal="is_dead_changed" from="Player" to="." method="_on_player_is_dead_changed"]
-[connection signal="is_dead_changed" from="Player" to="HUD" method="_on_player_is_dead_changed"]
+[connection signal="current_gamemode_changed" from="player" to="HUD" method="_on_player_current_gamemode_changed"]
+[connection signal="health_changed" from="player" to="HUD" method="_on_player_health_changed"]
+[connection signal="hunger_changed" from="player" to="HUD" method="_on_player_hunger_changed"]
+[connection signal="is_dead_changed" from="player" to="." method="_on_player_is_dead_changed"]
+[connection signal="is_dead_changed" from="player" to="HUD" method="_on_player_is_dead_changed"]

@@ -7,7 +7,7 @@ enum UIState { PLAYING, INVENTORY, CHAT, PAUSED, SETTINGS, DEAD, CONTAINER, FURN
 enum SlotArea { ARMOR, CRAFTING, RESULT, INVENTORY, HOTBAR, CHEST, FUEL, INPUT, OUTPUT, CRAFTING_TABLE, CREATIVE }
 
 @onready var world: Node3D = $".."
-@onready var player: Player = $"../Player"
+@onready var player: Player = $"../player"
 @onready var health_bar: HBoxContainer = %HealthBar
 @onready var hunger_bar: HBoxContainer = %HungerBar
 @onready var hud_hot_bar: Control = %GameplayHUD

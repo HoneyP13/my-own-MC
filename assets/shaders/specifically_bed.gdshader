@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode vertex_lighting, cull_back;
+render_mode vertex_lighting, cull_disabled;
 
 uniform sampler2D texture_top: source_color, repeat_enable, filter_nearest;
 uniform sampler2D texture_north: source_color, repeat_enable, filter_nearest; // +X face
