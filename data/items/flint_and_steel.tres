@@ -9,4 +9,5 @@ id = &"flint_and_steel"
 display_name = "flint and steel"
 icon = ExtResource("1_o4lm0")
 max_stack = 1
+item_type = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

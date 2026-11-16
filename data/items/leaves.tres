@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://fg4ukwnpfnni"]
 
-[ext_resource type="Texture2D" uid="uid://bt1fjotlmarh1" path="res://assets/sprites/leaves.png" id="1_2o0yi"]
+[ext_resource type="Texture2D" uid="uid://bk5iyu1lcda7s" path="res://assets/sprites/leaves.png" id="1_2o0yi"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_u0uxp"]
 
 [resource]
@@ -9,4 +9,5 @@ block_id = &"leaves"
 id = &"leaves"
 display_name = "leaves"
 icon = ExtResource("1_2o0yi")
+item_type = 10
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

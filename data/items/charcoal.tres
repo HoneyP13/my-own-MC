@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dq0a4deeu1cmi"]
+
+[ext_resource type="Texture2D" uid="uid://b68qw3e25nds8" path="res://assets/sprites/coal.png" id="1_14k1x"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_83k2g"]
+
+[resource]
+script = ExtResource("2_83k2g")
+id = &"charcoal"
+display_name = "charcoal"
+icon = ExtResource("1_14k1x")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

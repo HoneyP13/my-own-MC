@@ -9,5 +9,5 @@ id = &"iron_chestplate"
 display_name = "iron chestplate"
 icon = ExtResource("1_l0co4")
 max_stack = 1
-on_use = 8
+item_type = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

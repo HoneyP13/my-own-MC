@@ -68,7 +68,6 @@ func hurt(amount: int, from: Vector3) -> void:
 	_knockback = away.normalized() * 6.0
 	velocity.y = 4.0
 	if health <= 0:
-		if drop_id != &"": world.spawn_drop(drop_id, 1, global_position + Vector3.UP * 0.5)
 		_die()
 
 

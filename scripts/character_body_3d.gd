@@ -199,7 +199,6 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Apply gravity to velocity
-	var world := get_parent()
 	var fluid: StringName = world.fluid_at(global_position)
 	var in_fluid := fluid != &""
 
@@ -271,6 +270,11 @@ func _process(delta: float) -> void:
 	else:
 		regen_timer = 0.0
 
+
+
+
+
+
 # ---------------------------------------------------------------------------------------------
 # Things the world asks of the player (the world calls these directly; nothing here is a signal)
 # ---------------------------------------------------------------------------------------------
@@ -327,6 +331,12 @@ func die() -> void:
 	if is_dead: return
 	is_dead = true
 	velocity = Vector3.ZERO
+	for slots in [hud.inventory, hud.hotbar, hud.player_armor]:
+		for stack in slots:
+			if stack != null:
+				world.spawn_drop(stack.id, stack.count, global_position + Vector3.UP,
+					Vector3(randf_range(-2, 2), 4, randf_range(-2, 2)))
+	hud.player_armor.fill(null)
 	hud.inventory.fill(null)
 	hud.hotbar.fill(null)
 	hud.cursor_item = null
@@ -340,12 +350,14 @@ func respawn(pos: Vector3) -> void:
 	hurt(-20)
 	is_dead = false
 
+@onready var collider_stand_y : float = collider.position.y   # 0.9, read from the scene
+
 func set_crouching(value: bool) -> void:
 	is_crouching = value
 	var h := crouch_height if value else stand_height
 	collider.shape.height = h
-	# The capsule is centred on the body, so shift collider + camera to keep your feet planted
-	collider.position.y = -(stand_height - h) / 2.0
+	# keep the capsule's feet where they were
+	collider.position.y = collider_stand_y - (stand_height - h) / 2.0
 	head.position.y = head_stand_y - (stand_height - h)
 
 func can_stand() -> bool:

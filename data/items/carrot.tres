@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cl2gktqad3fo"]
+
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_6g0dw"]
+[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_cmqf5"]
+
+[resource]
+script = ExtResource("1_6g0dw")
+id = &"carrot"
+display_name = "carrot"
+icon = ExtResource("1_cmqf5")
+item_type = 5
+attributes = Dictionary[int, float]({
+3: 3.0,
+4: 3.6,
+5: 2.4
+})
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -8,6 +8,10 @@ script = ExtResource("2_meqyy")
 id = &"bread"
 display_name = "bread"
 icon = ExtResource("1_5xdh6")
-on_use = 1
-on_use_value = 6
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 5.0,
+4: 6.0,
+5: 4.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

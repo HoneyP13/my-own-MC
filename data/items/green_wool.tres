@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://cvhr5g857ihha"]
+
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_y5n5t"]
+
+[resource]
+script = ExtResource("1_y5n5t")
+metadata/_custom_type_script = "uid://bw6b1s4do376f"

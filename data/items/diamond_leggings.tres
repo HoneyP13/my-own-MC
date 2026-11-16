@@ -9,5 +9,10 @@ id = &"diamond_leggings"
 display_name = "diamond leggings"
 icon = ExtResource("1_unqv2")
 max_stack = 1
-on_use = 8
+item_type = 3
+attributes = Dictionary[int, float]({
+0: 495.0,
+2: 6.0,
+6: 2.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -165,7 +165,8 @@ const RECIPES := [
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
 	&"raw_meat": &"cooked_meat", &"cobblestone": &"stone", &"sand": &"glass_block", &"diamond_ore": &"diamond",
 	&"iron_helmet": &"iron_nugget", &"iron_chestplate": &"iron_nugget", &"iron_leggings": &"iron_nugget", &"iron_boots": &"iron_nugget", &"iron_pickaxe": &"iron_nugget", &"iron_axe": &"iron_nugget", &"iron_shovel": &"iron_nugget", &"iron_sword": &"iron_nugget", &"iron_hoe": &"iron_nugget",
-	&"golden_helmet": &"gold_nugget", &"golden_chestplate": &"gold_nugget", &"golden_leggings": &"gold_nugget", &"golden_boots": &"gold_nugget", &"golden_pickaxe": &"gold_nugget", &"golden_axe": &"gold_nugget", &"golden_shovel": &"gold_nugget", &"golden_sword": &"gold_nugget", &"golden_hoe": &"gold_nugget"}
+	&"golden_helmet": &"gold_nugget", &"golden_chestplate": &"gold_nugget", &"golden_leggings": &"gold_nugget", &"golden_boots": &"gold_nugget", &"golden_pickaxe": &"gold_nugget", &"golden_axe": &"gold_nugget", &"golden_shovel": &"gold_nugget", &"golden_sword": &"gold_nugget", &"golden_hoe": &"gold_nugget",
+	&"log": &"charcoal", &"cactus": &"green_dye"}
 const FUEL := {&"lava_bucket": 1000.0, &"coal_block": 800.0, &"coal": 80.0, &"charcoal": 80.0, &"log": 15.0, &"plank": 15.0, &"wooden_axe": 10.0, &"wooden_sword": 10.0, &"wooden_shovel": 10.0, &"wooden_hoe": 10.0, &"wooden_pickaxe": 10.0, &"crafting_table": 15.0, &"fishing_rod": 15.0, &"stick": 5.0}  # burn seconds
 const ARMOR := {&"head": [&"leather_cap", &"iron_helmet", &"golden_helmet", &"diamond_helmet"], &"torso": [&"leather_tunic", &"iron_chestplate", &"golden_chestplate", &"diamond_chestplate"], &"legs": [&"leather_pants", &"iron_leggings", &"golden_leggings", &"diamond_leggings"], &"feet": [&"leather_boots", &"iron_boots", &"golden_boots", &"diamond_boots"]}
 const ARMOR_SLOTS := [&"head", &"torso", &"legs", &"feet"]
@@ -244,6 +245,7 @@ func _ready() -> void:
 	_setup_inventory_slots()
 	_build_tooltip()
 	_build_creative_menu()
+	_build_player_preview()
 	refresh_slots()
 	_refresh_ui()
 	for r in RECIPES:
@@ -288,6 +290,16 @@ func _make_slot() -> TextureRect:
 	s.custom_minimum_size = Vector2(64, 64)
 	s.texture = SLOT_NORMAL
 	return s
+
+@onready var preview_viewport: SubViewport = $InventoryMenu/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayerWindow/SubViewportContainer/SubViewport
+
+func _build_player_preview() -> void:
+	var model: Node3D = player.get_node("player_model").duplicate()
+	var cam := model.find_child("Camera3D", true, false)
+	if cam: cam.free()              # the player's own camera, not wanted in the preview
+	preview_viewport.add_child(model)
+	model.position = Vector3(0, 0.4, 1.6)
+
 
 func _build_creative_menu() -> void:
 	var ids := Registry.items.keys(); ids.sort()

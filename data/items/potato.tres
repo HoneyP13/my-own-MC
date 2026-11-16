@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bp5p0ipmiragy"]
+
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_d2bqp"]
+
+[resource]
+script = ExtResource("1_d2bqp")
+id = &"potato"
+display_name = "potato"
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

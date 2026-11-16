@@ -9,6 +9,5 @@ id = &"iron_pickaxe"
 display_name = "iron pickaxe"
 icon = ExtResource("1_n1qyv")
 max_stack = 1
-on_use = 6
-on_use_value = 4
+item_type = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

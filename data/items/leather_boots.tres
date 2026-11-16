@@ -9,5 +9,5 @@ id = &"leather_boots"
 display_name = "leather boots"
 icon = ExtResource("1_3y156")
 max_stack = 1
-on_use = 8
+item_type = 3
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

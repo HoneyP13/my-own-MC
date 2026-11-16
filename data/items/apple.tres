@@ -8,6 +8,10 @@ script = ExtResource("2_hwi2a")
 id = &"apple"
 display_name = "apple"
 icon = ExtResource("1_j163c")
-on_use = 1
-on_use_value = 2
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 4.0,
+4: 2.4,
+5: 1.6
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

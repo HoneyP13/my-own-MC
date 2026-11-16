@@ -9,4 +9,5 @@ block_id = &"carved_pumpkin"
 id = &"carved_pumpkin"
 display_name = "carved pumpkin"
 icon = ExtResource("1_74wa4")
+item_type = 3
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

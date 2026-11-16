@@ -1,6 +1,6 @@
 extends Node3D
 
-const SAVE_PATH := "user://world_save.dat"
+#const SAVE_PATH := "user://world_save.dat"
 const SAVE_VERSION := 3
 const WORLD_RADIUS_CHUNKS := 3   # world is (2*3)x(2*3) chunks = 96x96 blocks. Raise it later.
 const NEIGHBORS: Array[Vector3i] = [
@@ -227,7 +227,7 @@ func _held_attack_damage() -> int:
 	var held = hud.held_item
 	if held == null: return 1
 	var def := Registry.get_item(held.id)
-	return def.on_use_value if def != null and def.on_use == ItemDef.Use.ATTACK_DAMAGE else 1
+	return def.attributes.get(ItemDef.Attr.ATTACK_DAMAGE) if def != null and def.attributes.has(ItemDef.Attr.ATTACK_DAMAGE) else 1
 
 var furnaces := {}  # Vector3i -> {slots=[input,fuel,output], burn, burn_max, cook}
 func _tick_furnaces(delta: float) -> void:   # call from _process
@@ -285,12 +285,14 @@ func _on_player_use_pressed() -> void:
 			return
 	if hud.held_item == null: return
 	if target == null:
-		if Registry.get_item(hud.held_item.id).on_use != ItemDef.Use.FEED_PLAYER:
+		if Registry.get_item(hud.held_item.id).item_type != ItemDef.Type.FOOD:
 			return
 	var def := Registry.get_item(hud.held_item.id)
 	if def == null: return
 	if def.use_on_block(self, target) and def is BlockItemDef:
 		_consume_held_item()
+	if def.use_on_block(self, target) and def is ItemDef:
+		def.use_on_block(self, target)
 
 func _consume_held_item() -> void:
 	var slot = hud.current_hotbar_slot
@@ -496,10 +498,10 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
 	if can_harvest:
 		spawn_drop(block.drop_id, randi_range(block.drop_min, block.drop_max), grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
-		if block.drop_id != &"" and randi() % 100 < block.drop_chance:
-			spawn_drop(block.drop_id, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
-		if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
-			spawn_drop(block.drop_id_2, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
+		#if block.drop_id != &"" and randi() % 100 < block.drop_chance:
+			#spawn_drop(block.drop_id, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
+		#if block.drop_id_2 != &"" and randi() % 100 < block.drop_chance_2:
+			#spawn_drop(block.drop_id_2, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 
 # --- Save / load ------------------------------------------------------------
 
@@ -522,15 +524,15 @@ func save_game() -> void:
 		"furnaces": furnaces,
 		"chests": chests,
 	}
-	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var f := FileAccess.open(Global.save_path, FileAccess.WRITE)
 	if f == null:
 		push_error("Couldn't save: " + error_string(FileAccess.get_open_error()))
 		return
 	f.store_var(data)
 
 func load_game() -> bool:
-	if not FileAccess.file_exists(SAVE_PATH): return false
-	var f := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if not FileAccess.file_exists(Global.save_path): return false
+	var f := FileAccess.open(Global.save_path, FileAccess.READ)
 	if f == null: return false
 	var data = f.get_var()
 	if typeof(data) != TYPE_DICTIONARY or data.get("version", 0) != SAVE_VERSION:
