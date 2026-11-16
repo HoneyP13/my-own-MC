@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://gdp4gp6mvvk5"]
 
-[ext_resource type="Texture2D" uid="uid://b2alwkgm43yx" path="res://assets/sprites/stone_sword.png" id="1_i16o4"]
+[ext_resource type="Texture2D" uid="uid://b2alwkgm43yx" path="res://assets/textures/block/stone_sword.png" id="1_i16o4"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_p6bs6"]
 
 [resource]

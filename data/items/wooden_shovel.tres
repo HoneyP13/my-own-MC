@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b75jejbo2g0vw"]
 
-[ext_resource type="Texture2D" uid="uid://cv1v1cwsh5u2r" path="res://assets/sprites/wooden_shovel.png" id="1_0euqc"]
+[ext_resource type="Texture2D" uid="uid://cv1v1cwsh5u2r" path="res://assets/textures/block/wooden_shovel.png" id="1_0euqc"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_b4p7i"]
 
 [resource]

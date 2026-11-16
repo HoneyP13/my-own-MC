@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bywgxu610e3wv"]
 
-[ext_resource type="Texture2D" uid="uid://13h0xupbro3w" path="res://assets/sprites/iron_boots.png" id="1_m8h6w"]
+[ext_resource type="Texture2D" uid="uid://13h0xupbro3w" path="res://assets/textures/block/iron_boots.png" id="1_m8h6w"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_iympo"]
 
 [resource]

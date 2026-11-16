@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dr2ay6ik1woky"]
+
+[ext_resource type="Texture2D" uid="uid://de2ky5spam1cd" path="res://assets/textures/entity/cow/cow_temperate.png" id="1_lxdvy"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_lxdvy")
+texture_filter = 0
+texture_repeat = false

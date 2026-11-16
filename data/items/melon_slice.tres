@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bfwinanc55iuq"]
 
-[ext_resource type="Texture2D" uid="uid://cfrd07gb6m178" path="res://assets/sprites/melon_slice.png" id="1_lsy0l"]
+[ext_resource type="Texture2D" uid="uid://cfrd07gb6m178" path="res://assets/textures/block/melon_slice.png" id="1_lsy0l"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_v10ca"]
 
 [resource]

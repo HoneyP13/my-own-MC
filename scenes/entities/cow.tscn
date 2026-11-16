@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_y6s0v"]
 [ext_resource type="Texture2D" uid="uid://cpdiufx3aq6wf" path="res://assets/models/cow_model_0.png" id="2_ifq6p"]
+[ext_resource type="Material" uid="uid://dr2ay6ik1woky" path="res://assets/materials/cow_mat.tres" id="3_ifq6p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfue7"]
 resource_name = "material_0"
@@ -302,24 +303,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e2n0s")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5sl54"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ifq6p"]
+resource_name = "blockbench_export_mesh8"
 _surfaces = [{
-"aabb": AABB(-0.375, 0, -0.5, 0.25, 0.75, 0.25),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwAAAAIAAgABAAQABQAAAAMABQABAAAAAwACAAYABgAFAAMABgACAAQABwABAAUABwAFAAYAAQAHAAQABAAHAAYA"),
-"name": "material_0",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAA/////wAAAAAAAAAAAAAAAP//AAAAAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_vo6qe"]
-resource_name = "blockbench_export_mesh10"
-_surfaces = [{
-"aabb": AABB(-0.375, 0, -0.5, 0.25, 0.75, 0.25),
+"aabb": AABB(-0.375, 0, 0.25, 0.25, 0.75, 0.25),
 "attribute_data": PackedByteArray("7y8PUA8gD1DvL+9/DyDvf+8PD1APAA9Q7w/vfw8A738PEO9P7x/vTw8QD0DvHw9ADyAPQO8vD0APIO9P7y/vT+8/D1APMA9Q7z/vfw8w73/vHw9QDxAPUO8f738PEO9/"),
 "format": 34896613399,
 "index_count": 36,
@@ -332,7 +319,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAA//8AAAAAAAAAAP//AAAAAAAA/////wAAAAAAAAAAAAAAAAAA//8AAAAA//8AAP8//////wAA/z8AAP//////P/////////8/AAAAAP///7///wAA////vwAAAAAAAP+///8AAAAA/78AAP////8AAP///////wAAAAAAAP//AAD//wAA//8AAP////8AAAAAAAD//wAAAAD//wAAAAAAAAAAAAAAAAAA/7//f/+//3//v/9//7//f/8//3//P/9//z//f/8//3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f/9//3//f/9//3//f/9//3////9/////f////3////9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_5sl54")
+shadow_mesh = SubResource("ArrayMesh_ibxp5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
 height = 1.5
@@ -360,18 +347,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -0.5)
 [node name="head" type="MeshInstance3D" parent="cow_model/head5" unique_id=1936006989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_8c6f8")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="head2" type="MeshInstance3D" parent="cow_model/head5" unique_id=711229877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_61av4")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="head3" type="MeshInstance3D" parent="cow_model/head5" unique_id=2075889262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_r1gfk")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="head4" type="MeshInstance3D" parent="cow_model/head5" unique_id=1037141339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5625)
 mesh = SubResource("ArrayMesh_11d3a")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="body3" type="Node3D" parent="cow_model" unique_id=255861890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1875, 0.125)
@@ -379,10 +370,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1875, 0.125)
 [node name="body" type="MeshInstance3D" parent="cow_model/body3" unique_id=763993293]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0625, 1.1875)
 mesh = SubResource("ArrayMesh_esfiy")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="body2" type="MeshInstance3D" parent="cow_model/body3" unique_id=1661540210]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0625, 1.1875)
 mesh = SubResource("ArrayMesh_8gtti")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="leg02" type="Node3D" parent="cow_model" unique_id=1492484190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, 0.4375)
@@ -390,6 +383,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, 0.4375)
 [node name="leg0" type="MeshInstance3D" parent="cow_model/leg02" unique_id=1399096721]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, -0.375)
 mesh = SubResource("ArrayMesh_u8ojr")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="leg12" type="Node3D" parent="cow_model" unique_id=1674064350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 0.4375)
@@ -397,6 +391,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, 0.4375)
 [node name="leg1" type="MeshInstance3D" parent="cow_model/leg12" unique_id=728727491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, -0.375)
 mesh = SubResource("ArrayMesh_r7jqk")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="leg22" type="Node3D" parent="cow_model" unique_id=240840188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -0.375)
@@ -404,13 +399,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.75, -0.375)
 [node name="leg2" type="MeshInstance3D" parent="cow_model/leg22" unique_id=530410960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_mb08i")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="leg32" type="Node3D" parent="cow_model" unique_id=260979049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.75, -0.375)
 
 [node name="leg3" type="MeshInstance3D" parent="cow_model/leg32" unique_id=189412329]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, 0.4375)
-mesh = SubResource("ArrayMesh_vo6qe")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.75, -0.3)
+mesh = SubResource("ArrayMesh_ifq6p")
+surface_material_override/0 = ExtResource("3_ifq6p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1805176093]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

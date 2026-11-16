@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://g44j5xft1g08"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_dw325"]
+
+[resource]
+script = ExtResource("1_dw325")
+id = &"deepslate_diamond_ore"
+mesh_name = "deepslate_diamond_ore"
+drop_id = &"diamond"
+min_exp = 3
+max_exp = 7
+hardness = 4.5
+tool_kind = &"pickaxe"
+req_tier = &"iron"
+blast_resistance = 3.0
+needs_silk_touch = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

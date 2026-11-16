@@ -1,9 +1,9 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bhu5exy7qjtxr"]
 
 [ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_redc4"]
-[ext_resource type="Texture2D" uid="uid://ktaldxbjht0i" path="res://assets/sprites/cactus_inside.png" id="2_w4kk6"]
-[ext_resource type="Texture2D" uid="uid://ciarhfwfaebir" path="res://assets/sprites/cactus_side.png" id="3_x4t0o"]
-[ext_resource type="Texture2D" uid="uid://7psaoqvrxiq8" path="res://assets/sprites/cactus_top.png" id="4_vjgfw"]
+[ext_resource type="Texture2D" uid="uid://ktaldxbjht0i" path="res://assets/textures/block/cactus_inside.png" id="2_w4kk6"]
+[ext_resource type="Texture2D" uid="uid://ciarhfwfaebir" path="res://assets/textures/block/cactus_side.png" id="3_x4t0o"]
+[ext_resource type="Texture2D" uid="uid://7psaoqvrxiq8" path="res://assets/textures/block/cactus_top.png" id="4_vjgfw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

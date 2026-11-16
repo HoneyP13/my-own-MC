@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dphwh1u453jwv" path="res://assets/models/creeper_model_0.png" id="1_t3wml"]
 [ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_ywitv"]
+[ext_resource type="Material" uid="uid://bq7mpc7djgv5" path="res://assets/materials/creeper_mat.tres" id="3_vi4ui"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2kxv"]
 resource_name = "material_0"
@@ -230,6 +231,7 @@ BR_pivot = NodePath("creeper_model/Body2/leg32")
 
 [node name="Body" type="MeshInstance3D" parent="creeper_model/Body2" unique_id=1554518836]
 mesh = SubResource("ArrayMesh_pg6jb")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="Head2" type="Node3D" parent="creeper_model/Body2" unique_id=72440264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
@@ -237,6 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
 [node name="Head" type="MeshInstance3D" parent="creeper_model/Body2/Head2" unique_id=909123286]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0)
 mesh = SubResource("ArrayMesh_uad0f")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="leg02" type="Node3D" parent="creeper_model/Body2" unique_id=1883474984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, 0.25)
@@ -244,6 +247,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, 0.25)
 [node name="leg0" type="MeshInstance3D" parent="creeper_model/Body2/leg02" unique_id=648687960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.375, -0.25)
 mesh = SubResource("ArrayMesh_ni1wp")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="leg12" type="Node3D" parent="creeper_model/Body2" unique_id=901758564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, 0.25)
@@ -251,6 +255,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, 0.25)
 [node name="leg1" type="MeshInstance3D" parent="creeper_model/Body2/leg12" unique_id=2050273516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.375, -0.25)
 mesh = SubResource("ArrayMesh_1fyrq")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="leg22" type="Node3D" parent="creeper_model/Body2" unique_id=1457029990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, -0.25)
@@ -258,6 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.375, -0.25)
 [node name="leg2" type="MeshInstance3D" parent="creeper_model/Body2/leg22" unique_id=1906030950]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -0.375, 0.25)
 mesh = SubResource("ArrayMesh_dkpbg")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="leg32" type="Node3D" parent="creeper_model/Body2" unique_id=1331561454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, -0.25)
@@ -265,6 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.375, -0.25)
 [node name="leg3" type="MeshInstance3D" parent="creeper_model/Body2/leg32" unique_id=26971341]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, -0.375, 0.25)
 mesh = SubResource("ArrayMesh_ldrcr")
+surface_material_override/0 = ExtResource("3_vi4ui")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1159407894]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74999994, 0)

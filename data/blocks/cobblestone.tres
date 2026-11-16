@@ -10,4 +10,5 @@ drop_id = &"cobblestone"
 hardness = 2.0
 tool_kind = &"pickaxe"
 req_tier = &"wooden"
+blast_resistance = 6.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

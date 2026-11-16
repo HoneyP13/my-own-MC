@@ -9,4 +9,5 @@ mesh_name = "crafting_table"
 drop_id = &"crafting_table"
 hardness = 2.5
 tool_kind = &"axe"
+blast_resistance = 2.5
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

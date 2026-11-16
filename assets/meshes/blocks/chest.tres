@@ -1,9 +1,9 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://1wlta17dknne"]
 
 [ext_resource type="Shader" uid="uid://dunmvc7ff0syp" path="res://assets/shaders/directional_y_axis.gdshader" id="1_f7xra"]
-[ext_resource type="Texture2D" uid="uid://bkdw3k6x7yrna" path="res://assets/sprites/chest_front.png" id="3_h8t0m"]
-[ext_resource type="Texture2D" uid="uid://w3sar8dus8a" path="res://assets/sprites/chest_sides.png" id="4_m642a"]
-[ext_resource type="Texture2D" uid="uid://dl60cfypa5btc" path="res://assets/sprites/chest_top.png" id="5_ol8ii"]
+[ext_resource type="Texture2D" uid="uid://bkdw3k6x7yrna" path="res://assets/textures/block/chest_front.png" id="3_h8t0m"]
+[ext_resource type="Texture2D" uid="uid://w3sar8dus8a" path="res://assets/textures/block/chest_sides.png" id="4_m642a"]
+[ext_resource type="Texture2D" uid="uid://dl60cfypa5btc" path="res://assets/textures/block/chest_top.png" id="5_ol8ii"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
 render_priority = 0

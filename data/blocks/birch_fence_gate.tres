@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://c86uhgs4edeh4"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_slox8"]
+
+[resource]
+script = ExtResource("1_slox8")
+id = &"birch_fence_gate"
+mesh_name = "birch_fence_gate"
+drop_id = &"birch_fence_gate"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+transparent = true
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

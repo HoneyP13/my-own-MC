@@ -8,4 +8,5 @@ id = &"carved_pumpkin"
 mesh_name = "carved_pumpkin"
 drop_id = &"carved_pumpkin"
 tool_kind = &"axe"
+blast_resistance = 1.0
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

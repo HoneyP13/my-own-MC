@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://bhp5jgml4gstk"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_pinn8"]
-[ext_resource type="Texture2D" uid="uid://dgwjmoewtifmb" path="res://assets/sprites/packed_ice.png" id="2_pinn8"]
+[ext_resource type="Texture2D" uid="uid://dgwjmoewtifmb" path="res://assets/textures/block/packed_ice.png" id="2_pinn8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

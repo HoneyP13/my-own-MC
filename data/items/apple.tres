@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bia6kg14bh6vc"]
 
-[ext_resource type="Texture2D" uid="uid://c73f1eu5bfpas" path="res://assets/sprites/apple.png" id="1_j163c"]
+[ext_resource type="Texture2D" uid="uid://c73f1eu5bfpas" path="res://assets/textures/block/apple.png" id="1_j163c"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_hwi2a"]
 
 [resource]

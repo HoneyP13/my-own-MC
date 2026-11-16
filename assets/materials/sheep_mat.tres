@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d35iy2iuea4oe"]
+
+[ext_resource type="Texture2D" uid="uid://ctcm252wktffg" path="res://assets/textures/sheep.png" id="1_01qwn"]
+
+[resource]
+albedo_texture = ExtResource("1_01qwn")
+texture_filter = 0
+texture_repeat = false

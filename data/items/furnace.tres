@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://4gjspnxb4i2n"]
 
-[ext_resource type="Texture2D" uid="uid://dnpg1nq17qa0x" path="res://assets/sprites/furnace_front.png" id="1_st1po"]
+[ext_resource type="Texture2D" uid="uid://dnpg1nq17qa0x" path="res://assets/textures/block/furnace_front.png" id="1_st1po"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_aufta"]
 
 [resource]

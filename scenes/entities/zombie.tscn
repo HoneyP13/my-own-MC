@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_1vlb3"]
 [ext_resource type="Texture2D" uid="uid://ce6k4aar4iy5g" path="res://assets/models/zombie_model_0.png" id="1_ihn6k"]
+[ext_resource type="Material" uid="uid://cxf2sq85atq4a" path="res://assets/materials/zombie_mat.tres" id="3_asks5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vq5t"]
 resource_name = "material_0"
@@ -263,6 +264,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Body" type="MeshInstance3D" parent="zombie_model/Body2" unique_id=2026079908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 mesh = SubResource("ArrayMesh_bq81u")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="Head2" type="Node3D" parent="zombie_model" unique_id=238248567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -270,10 +272,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Head" type="MeshInstance3D" parent="zombie_model/Head2" unique_id=1919357231]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 mesh = SubResource("ArrayMesh_mr0ry")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="Hat Layer" type="MeshInstance3D" parent="zombie_model/Head2" unique_id=846736390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+visible = false
 mesh = SubResource("ArrayMesh_m61vu")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="RightArm2" type="Node3D" parent="zombie_model" unique_id=9822780]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.3125, 1.375, 0)
@@ -281,6 +286,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.31
 [node name="RightArm" type="MeshInstance3D" parent="zombie_model/RightArm2" unique_id=1017739348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_ovs5m")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="LeftArm2" type="Node3D" parent="zombie_model" unique_id=176445363]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3125, 1.375, 0)
@@ -288,6 +294,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3
 [node name="LeftArm" type="MeshInstance3D" parent="zombie_model/LeftArm2" unique_id=732887590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_5wlpq")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="RightLeg2" type="Node3D" parent="zombie_model" unique_id=1749981544]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, 0.75, 0)
@@ -295,6 +302,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, 0.75, 0)
 [node name="RightLeg" type="MeshInstance3D" parent="zombie_model/RightLeg2" unique_id=1876040268]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_5xv1d")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="LeftLeg2" type="Node3D" parent="zombie_model" unique_id=74043867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, 0.75, 0)
@@ -302,6 +310,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, 0.75, 0)
 [node name="LeftLeg" type="MeshInstance3D" parent="zombie_model/LeftLeg2" unique_id=1350849599]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_gpsn2")
+surface_material_override/0 = ExtResource("3_asks5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=375239788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

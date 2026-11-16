@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://kolsa3ws582a"]
+
+[ext_resource type="Texture2D" uid="uid://0brycsyy6jkq" path="res://assets/textures/entity/pig/pig_temperate.png" id="1_wwl8s"]
+
+[resource]
+albedo_texture = ExtResource("1_wwl8s")
+texture_filter = 0
+texture_repeat = false

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://ch2jtnnx8rsok"]
 
-[ext_resource type="Texture2D" uid="uid://bwyquj6k3flnq" path="res://assets/sprites/snowball.png" id="1_upybr"]
+[ext_resource type="Texture2D" uid="uid://bwyquj6k3flnq" path="res://assets/textures/block/snowball.png" id="1_upybr"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_f6nla"]
 
 [resource]

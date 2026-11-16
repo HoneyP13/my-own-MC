@@ -123,6 +123,7 @@ func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	capture_mouse()
 
 var double_tapped := false
 func _unhandled_input(event: InputEvent) -> void:

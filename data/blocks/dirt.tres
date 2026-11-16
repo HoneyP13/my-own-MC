@@ -9,4 +9,5 @@ mesh_name = "dirt"
 drop_id = &"dirt"
 hardness = 0.5
 tool_kind = &"shovel"
+blast_resistance = 0.5
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

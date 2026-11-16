@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://qgsqkfof1x8j"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_8mqv3"]
+
+[resource]
+script = ExtResource("1_8mqv3")
+id = &"white_bed"
+mesh_name = "white_bed"
+drop_id = &"bed"
+hardness = 0.2
+blast_resistance = 0.2
+transparent = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_sq5kf"]
 [ext_resource type="Texture2D" uid="uid://bjk0atopscbx8" path="res://assets/models/pig_model_0.png" id="2_4a8uq"]
+[ext_resource type="Material" uid="uid://kolsa3ws582a" path="res://assets/materials/pig_mat.tres" id="3_b0iiv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nk8ue"]
 resource_name = "material_0"
@@ -271,7 +272,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_va2i3")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ogq8d"]
-height = 1.0
+radius = 0.45
+height = 0.9
 
 [node name="pig" type="CharacterBody3D" unique_id=1082048042 node_paths=PackedStringArray("model_node", "head_pivot", "FL_pivot", "FR_pivot", "BL_pivot", "BR_pivot")]
 script = ExtResource("1_sq5kf")
@@ -295,10 +297,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.4375)
 [node name="head" type="MeshInstance3D" parent="pig_model/head3" unique_id=1121978868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_stmhs")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="head2" type="MeshInstance3D" parent="pig_model/head3" unique_id=1724376573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0.4375)
 mesh = SubResource("ArrayMesh_ofue5")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="body3" type="Node3D" parent="pig_model" unique_id=291423870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6875, 0.5625)
@@ -306,10 +310,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6875, 0.5625)
 [node name="body" type="MeshInstance3D" parent="pig_model/body3" unique_id=620798354]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gsv5l")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="body2" type="MeshInstance3D" parent="pig_model/body3" unique_id=921385609]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_rku2l")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="leg02" type="Node3D" parent="pig_model" unique_id=199801520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, 0.375)
@@ -317,6 +324,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, 0.375)
 [node name="leg0" type="MeshInstance3D" parent="pig_model/leg02" unique_id=969783829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.375, -0.375)
 mesh = SubResource("ArrayMesh_elogj")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="leg12" type="Node3D" parent="pig_model" unique_id=948463292]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, 0.375)
@@ -324,6 +332,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, 0.375)
 [node name="leg1" type="MeshInstance3D" parent="pig_model/leg12" unique_id=1816801998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.375, -0.375)
 mesh = SubResource("ArrayMesh_x5b3d")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="leg32" type="Node3D" parent="pig_model" unique_id=1169148000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, -0.375)
@@ -331,6 +340,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.375, -0.375)
 [node name="leg3" type="MeshInstance3D" parent="pig_model/leg32" unique_id=2026971532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.375, 0.375)
 mesh = SubResource("ArrayMesh_mdfic")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="leg22" type="Node3D" parent="pig_model" unique_id=490557163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, -0.375)
@@ -338,6 +348,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.375, -0.375)
 [node name="leg2" type="MeshInstance3D" parent="pig_model/leg22" unique_id=1425485895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.375, 0.375)
 mesh = SubResource("ArrayMesh_stqn1")
+surface_material_override/0 = ExtResource("3_b0iiv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=751988572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

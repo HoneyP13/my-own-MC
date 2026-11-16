@@ -9,4 +9,7 @@ mesh_name = "chest"
 drop_id = &"chest"
 hardness = 2.5
 tool_kind = &"axe"
+blast_resistance = 2.5
+transparent = true
+waterloggable = true
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

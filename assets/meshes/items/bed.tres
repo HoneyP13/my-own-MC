@@ -1,8 +1,8 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://gyf1a8a3uhw1"]
 
 [ext_resource type="Shader" uid="uid://bax8ves8uptn6" path="res://assets/shaders/triplanar.gdshader" id="1_3ilj6"]
-[ext_resource type="Texture2D" uid="uid://dcm7nkf0chl8k" path="res://assets/sprites/bed_bottom_lower.png" id="2_dd0yh"]
-[ext_resource type="Texture2D" uid="uid://cub2bv7u2ak20" path="res://assets/sprites/bed_top_lower.png" id="3_vo0re"]
+[ext_resource type="Texture2D" uid="uid://dcm7nkf0chl8k" path="res://assets/textures/block/bed_bottom_lower.png" id="2_dd0yh"]
+[ext_resource type="Texture2D" uid="uid://cub2bv7u2ak20" path="res://assets/textures/block/bed_top_lower.png" id="3_vo0re"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

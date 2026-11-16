@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://drduto1eoq1ge"]
 
-[ext_resource type="Texture2D" uid="uid://cni5eohbg251k" path="res://assets/sprites/redstone_dust_dot.png" id="1_e2rsj"]
+[ext_resource type="Texture2D" uid="uid://cni5eohbg251k" path="res://assets/textures/block/redstone_dust_dot.png" id="1_e2rsj"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_vgrrx"]
 
 [resource]

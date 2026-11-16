@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://ds8pf8uidvmul"]
 
-[ext_resource type="Texture2D" uid="uid://cm4as6i121a0r" path="res://assets/sprites/red_flower.png" id="1_q2pah"]
+[ext_resource type="Texture2D" uid="uid://cm4as6i121a0r" path="res://assets/textures/block/red_flower.png" id="1_q2pah"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_afo2c"]
 
 [resource]

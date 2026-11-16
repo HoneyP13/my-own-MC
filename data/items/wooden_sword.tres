@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://drwy27mvvlo58"]
 
-[ext_resource type="Texture2D" uid="uid://bvww8yyumups4" path="res://assets/sprites/wooden_sword.png" id="1_ddwwj"]
+[ext_resource type="Texture2D" uid="uid://bvww8yyumups4" path="res://assets/textures/block/wooden_sword.png" id="1_ddwwj"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_q4h6c"]
 
 [resource]

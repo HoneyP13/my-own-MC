@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://pkhbu3hwjgf4"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_u8oxl"]
+
+[resource]
+script = ExtResource("1_u8oxl")
+id = &"clay"
+mesh_name = "clay"
+drop_min = 4
+drop_max = 4
+drop_id = &"clay_ball"
+hardness = 0.6
+tool_kind = &"shovel"
+blast_resistance = 0.6
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

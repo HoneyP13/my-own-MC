@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://blp7kovikd6si"]
 
-[ext_resource type="Texture2D" uid="uid://wwlaqsytnn3p" path="res://assets/sprites/wooden_pickaxe.png" id="1_au3y1"]
+[ext_resource type="Texture2D" uid="uid://wwlaqsytnn3p" path="res://assets/textures/block/wooden_pickaxe.png" id="1_au3y1"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_juoat"]
 
 [resource]

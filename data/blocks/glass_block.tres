@@ -6,8 +6,11 @@
 script = ExtResource("1_frk1q")
 id = &"glass_block"
 mesh_name = "glass_block"
-drop_id = &"glass_block"
+drop_min = 0
+drop_max = 0
 drop_chance = 0
 hardness = 0.3
-tool_kind = &"pickaxe"
+blast_resistance = 0.3
+transparent = true
+needs_silk_touch = true
 metadata/_custom_type_script = "uid://hei6tbfej2j6"

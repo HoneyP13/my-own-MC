@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cm3c2kjqhapd4" path="res://scripts/mob.gd" id="1_80ofh"]
 [ext_resource type="Texture2D" uid="uid://6o0lryjfcxvw" path="res://assets/models/sheep_model_0.png" id="2_ghv4m"]
+[ext_resource type="Material" uid="uid://d35iy2iuea4oe" path="res://assets/materials/sheep_mat.tres" id="3_ghv4m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkua6"]
 resource_name = "material_0"
@@ -423,10 +424,12 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 1.1875, 0.125)
 [node name="body" type="MeshInstance3D" parent="sheep_model/body3" unique_id=916218437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1875, -0.125)
 mesh = SubResource("ArrayMesh_wgri4")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="body2" type="MeshInstance3D" parent="sheep_model/body3" unique_id=1849146170]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1875, -0.125)
 mesh = SubResource("ArrayMesh_mibg8")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="head3" type="Node3D" parent="sheep_model" unique_id=1149175416]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, -0.5)
@@ -434,10 +437,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, -0.5)
 [node name="head" type="MeshInstance3D" parent="sheep_model/head3" unique_id=1854209068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0.5)
 mesh = SubResource("ArrayMesh_cuf6u")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="head2" type="MeshInstance3D" parent="sheep_model/head3" unique_id=1641740874]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0.5)
 mesh = SubResource("ArrayMesh_sdald")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg03" type="Node3D" parent="sheep_model" unique_id=409049597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.75, 0.4375)
@@ -445,10 +450,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.75, 0.4375)
 [node name="leg0" type="MeshInstance3D" parent="sheep_model/leg03" unique_id=1438732359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.75, -0.4375)
 mesh = SubResource("ArrayMesh_g5o45")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg02" type="MeshInstance3D" parent="sheep_model/leg03" unique_id=958027497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.75, -0.4375)
 mesh = SubResource("ArrayMesh_2tkj7")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg13" type="Node3D" parent="sheep_model" unique_id=1759588653]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.75, 0.4375)
@@ -456,10 +463,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.75, 0.4375)
 [node name="leg1" type="MeshInstance3D" parent="sheep_model/leg13" unique_id=411324309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.75, -0.4375)
 mesh = SubResource("ArrayMesh_tvxli")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg12" type="MeshInstance3D" parent="sheep_model/leg13" unique_id=1431441356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.75, -0.4375)
 mesh = SubResource("ArrayMesh_2gm7e")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg23" type="Node3D" parent="sheep_model" unique_id=571668884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.75, -0.3125)
@@ -467,10 +476,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, 0.75, -0.3125)
 [node name="leg2" type="MeshInstance3D" parent="sheep_model/leg23" unique_id=1466637861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.75, 0.3125)
 mesh = SubResource("ArrayMesh_dmdie")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg22" type="MeshInstance3D" parent="sheep_model/leg23" unique_id=1701349108]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.75, 0.3125)
 mesh = SubResource("ArrayMesh_lnvu7")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg33" type="Node3D" parent="sheep_model" unique_id=1530773338]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.75, -0.3125)
@@ -478,10 +489,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, 0.75, -0.3125)
 [node name="leg3" type="MeshInstance3D" parent="sheep_model/leg33" unique_id=1794079515]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.75, 0.3125)
 mesh = SubResource("ArrayMesh_k6tp3")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="leg32" type="MeshInstance3D" parent="sheep_model/leg33" unique_id=1311407897]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.75, 0.3125)
 mesh = SubResource("ArrayMesh_yx6w7")
+surface_material_override/0 = ExtResource("3_ghv4m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1400342454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 0)

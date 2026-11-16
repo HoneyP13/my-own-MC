@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bq7mpc7djgv5"]
+
+[ext_resource type="Texture2D" uid="uid://b0hli3aphtxsv" path="res://assets/textures/entity/creeper/creeper.png" id="1_5v1nn"]
+
+[resource]
+albedo_texture = ExtResource("1_5v1nn")
+texture_filter = 0
+texture_repeat = false

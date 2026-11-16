@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://be7ht011s66ye"]
 
 [ext_resource type="Script" uid="uid://c242l27tccfee" path="res://scripts/hud.gd" id="1_qpvh6"]
-[ext_resource type="Texture2D" uid="uid://djyw2tavut04a" path="res://assets/sprites/full_heart.png" id="2_fls4u"]
-[ext_resource type="Texture2D" uid="uid://j01ee113mi0m" path="res://assets/sprites/slot.png" id="3_1etfg"]
-[ext_resource type="Texture2D" uid="uid://cq2wuxythsc3" path="res://assets/sprites/full_shank.png" id="3_7hsmw"]
-[ext_resource type="Texture2D" uid="uid://boytvciuq1c8g" path="res://assets/sprites/helmet_slot_hint.png" id="5_twldb"]
-[ext_resource type="Texture2D" uid="uid://c6wv1gb2gsvra" path="res://assets/sprites/chestplate_slot_hint.png" id="6_8cuoo"]
-[ext_resource type="Texture2D" uid="uid://6un28ehnxl1f" path="res://assets/sprites/leggings_slot_hint.png" id="7_cf6ij"]
-[ext_resource type="Texture2D" uid="uid://le7sxt7k6owg" path="res://assets/sprites/boots_slot_hint.png" id="8_meimr"]
+[ext_resource type="Texture2D" uid="uid://djyw2tavut04a" path="res://assets/textures/block/full_heart.png" id="2_fls4u"]
+[ext_resource type="Texture2D" uid="uid://j01ee113mi0m" path="res://assets/textures/block/slot.png" id="3_1etfg"]
+[ext_resource type="Texture2D" uid="uid://cq2wuxythsc3" path="res://assets/textures/block/full_shank.png" id="3_7hsmw"]
+[ext_resource type="Texture2D" uid="uid://boytvciuq1c8g" path="res://assets/textures/block/helmet_slot_hint.png" id="5_twldb"]
+[ext_resource type="Texture2D" uid="uid://c6wv1gb2gsvra" path="res://assets/textures/block/chestplate_slot_hint.png" id="6_8cuoo"]
+[ext_resource type="Texture2D" uid="uid://6un28ehnxl1f" path="res://assets/textures/block/leggings_slot_hint.png" id="7_cf6ij"]
+[ext_resource type="Texture2D" uid="uid://le7sxt7k6owg" path="res://assets/textures/block/boots_slot_hint.png" id="8_meimr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyap7"]
 bg_color = Color(0, 0, 0, 0)

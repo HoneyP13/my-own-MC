@@ -6,8 +6,12 @@
 script = ExtResource("1_kipyb")
 id = &"diamond_ore"
 mesh_name = "diamond_ore"
-drop_id = &"diamond_ore"
-hardness = 3.5
+drop_id = &"diamond"
+min_exp = 3
+max_exp = 7
+hardness = 3.0
 tool_kind = &"pickaxe"
 req_tier = &"iron"
+blast_resistance = 3.0
+needs_silk_touch = true
 metadata/_custom_type_script = "uid://hei6tbfej2j6"
