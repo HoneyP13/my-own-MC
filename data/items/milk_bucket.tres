@@ -1,7 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c3hfsdgy2yqiv"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_7eb0u"]
+[ext_resource type="Texture2D" uid="uid://y17qfnxmn213" path="res://assets/textures/item/milk_bucket.png" id="1_oboka"]
 
 [resource]
 script = ExtResource("1_7eb0u")
+id = &"milk_bucket"
+display_name = "milk bucket"
+icon = ExtResource("1_oboka")
+max_stack = 1
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 0.0,
+4: 0.0,
+5: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

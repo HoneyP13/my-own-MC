@@ -8,6 +8,7 @@ id = &"cornflower"
 mesh_name = "cornflower"
 drop_id = &"cornflower"
 hardness = 0.0
+transparent = true
 flammable = true
 ignite_odds = 60
 burn_odds = 100

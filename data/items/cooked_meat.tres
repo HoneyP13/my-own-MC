@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://ltktpjd1ndix"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_nc5pf"]
-[ext_resource type="Texture2D" uid="uid://cjd1nwhsmqkfo" path="res://assets/textures/block/cooked_meat.png" id="1_yd7oq"]
+[ext_resource type="Texture2D" uid="uid://le3a1uc0vbcc" path="res://assets/textures/item/cooked_beef.png" id="1_yd7oq"]
 
 [resource]
 script = ExtResource("1_nc5pf")
-id = &"cooked_meat"
-display_name = "cooked meat"
+id = &"cooked_beef"
+display_name = "steak"
 icon = ExtResource("1_yd7oq")
 item_type = 4
 attributes = Dictionary[int, float]({

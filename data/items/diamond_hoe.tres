@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bh8bub6em8r0c"]
 
-[ext_resource type="Texture2D" uid="uid://c3bk15d5xhak5" path="res://assets/textures/block/diamond_hoe.png" id="1_b8yxb"]
+[ext_resource type="Texture2D" uid="uid://qc3flkjx4fcv" path="res://assets/textures/item/diamond_hoe.png" id="1_b8yxb"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_6o3f3"]
 
 [resource]
@@ -9,6 +9,9 @@ id = &"diamond_hoe"
 display_name = "diamond hoe"
 icon = ExtResource("1_b8yxb")
 max_stack = 1
-on_use = 6
-on_use_value = 2
+item_type = 1
+attributes = Dictionary[int, float]({
+0: 1561.0,
+1: 1.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

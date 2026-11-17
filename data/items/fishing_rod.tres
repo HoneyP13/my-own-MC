@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://1jl3egnyij8w"]
 
-[ext_resource type="Texture2D" uid="uid://b2da86gmnpful" path="res://assets/textures/block/fishing_rod.png" id="1_s0s3t"]
+[ext_resource type="Texture2D" uid="uid://bbaoecrt2nnfb" path="res://assets/textures/item/fishing_rod.png" id="1_s0s3t"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_t8x6q"]
 
 [resource]
@@ -9,4 +9,8 @@ id = &"fishing_rod"
 display_name = "fishing rod"
 icon = ExtResource("1_s0s3t")
 max_stack = 1
+item_type = 1
+attributes = Dictionary[int, float]({
+0: 64.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

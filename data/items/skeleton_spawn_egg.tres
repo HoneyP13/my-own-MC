@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://csqmwbqp030v5"]
 
+[ext_resource type="Texture2D" uid="uid://dttgpluh2j0dl" path="res://assets/textures/item/skeleton_spawn_egg.png" id="1_h70oc"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_x3lx1"]
 
 [resource]
 script = ExtResource("1_x3lx1")
+id = &"skeleton_spawn_egg"
+display_name = "skeleton spawn egg"
+icon = ExtResource("1_h70oc")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

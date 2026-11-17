@@ -1,60 +1,63 @@
-[gd_resource type="MeshLibrary" format=3 uid="uid://dgqqtmwpwy6eu"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://dgqqtmwpwy6eu"]
 
 [ext_resource type="BoxMesh" uid="uid://bsa445eq5cxn6" path="res://assets/meshes/blocks/dirt.tres" id="1_ftcee"]
 [ext_resource type="BoxMesh" uid="uid://cw370jxnt6250" path="res://assets/meshes/blocks/stone.tres" id="3_qogbe"]
 [ext_resource type="BoxMesh" uid="uid://xuu86d7oup8t" path="res://assets/meshes/blocks/coal_ore.tres" id="4_3s85j"]
-[ext_resource type="BoxMesh" uid="uid://duitll6nvjond" path="res://assets/meshes/blocks/red_flower.tres" id="5_bjp6x"]
+[ext_resource type="BoxMesh" uid="uid://duitll6nvjond" path="res://assets/meshes/blocks/poppy.tres" id="5_gf5wm"]
 [ext_resource type="BoxMesh" uid="uid://b5jvkirclh85v" path="res://assets/meshes/blocks/sand.tres" id="5_ntran"]
 [ext_resource type="BoxMesh" uid="uid://bnnbw5svy5wbu" path="res://assets/meshes/blocks/crafting_table.tres" id="8_3s85j"]
-[ext_resource type="BoxMesh" uid="uid://3gt03xlyl8h1" path="res://assets/meshes/blocks/clay_block.tres" id="8_5o0yj"]
-[ext_resource type="BoxMesh" uid="uid://ctn4ge5c7unfo" path="res://assets/meshes/blocks/brick_block.tres" id="9_1oisa"]
+[ext_resource type="BoxMesh" uid="uid://3gt03xlyl8h1" path="res://assets/meshes/blocks/clay.tres" id="8_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://ctn4ge5c7unfo" path="res://assets/meshes/blocks/bricks.tres" id="9_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://d0g7fqjt15r13" path="res://assets/meshes/blocks/gravel.tres" id="11_21d3n"]
 [ext_resource type="BoxMesh" uid="uid://cis3e0w18qj0f" path="res://assets/meshes/blocks/cobblestone.tres" id="11_75pwm"]
 [ext_resource type="BoxMesh" uid="uid://1wlta17dknne" path="res://assets/meshes/blocks/chest.tres" id="12_1oisa"]
-[ext_resource type="BoxMesh" uid="uid://cly5evqwy7yd1" path="res://assets/meshes/blocks/torch.tres" id="13_21d3n"]
-[ext_resource type="BoxMesh" uid="uid://bbngdege4nuux" path="res://assets/meshes/blocks/log.tres" id="13_ptyle"]
+[ext_resource type="BoxMesh" uid="uid://bbngdege4nuux" path="res://assets/meshes/blocks/oak_log.tres" id="12_vuep8"]
+[ext_resource type="Shader" uid="uid://bafsys6e0e0hn" path="res://assets/shaders/torch.gdshader" id="13_71v0w"]
 [ext_resource type="BoxMesh" uid="uid://c5fq5nasnodoi" path="res://assets/meshes/blocks/grass_block.tres" id="14_cx2io"]
-[ext_resource type="BoxMesh" uid="uid://dnyrijkusivx7" path="res://assets/meshes/blocks/blue_flower.tres" id="14_xlegy"]
+[ext_resource type="Texture2D" uid="uid://bnyja3qfm2pa6" path="res://assets/sprites/torch_bottom.png" id="14_m1gdm"]
+[ext_resource type="Texture2D" uid="uid://ya3uvronev8" path="res://assets/sprites/torch_side.png" id="15_i8r8g"]
 [ext_resource type="BoxMesh" uid="uid://q5bxv3dpiwej" path="res://assets/meshes/blocks/furnace.tres" id="15_nw1yx"]
+[ext_resource type="Texture2D" uid="uid://beg5sykn2thbj" path="res://assets/sprites/torch_top.png" id="16_6bfyg"]
 [ext_resource type="BoxMesh" uid="uid://q4uqr5h17swl" path="res://assets/meshes/blocks/iron_ore.tres" id="16_ftcee"]
+[ext_resource type="BoxMesh" uid="uid://dnyrijkusivx7" path="res://assets/meshes/blocks/cornflower.tres" id="17_haxkv"]
 [ext_resource type="BoxMesh" uid="uid://2a4aoapwjvfw" path="res://assets/meshes/blocks/gold_ore.tres" id="17_qogbe"]
-[ext_resource type="BoxMesh" uid="uid://ds1a83qd2bpqq" path="res://assets/meshes/blocks/leaves.tres" id="17_smuq3"]
-[ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass_block.tres" id="18_k2i0r"]
 [ext_resource type="BoxMesh" uid="uid://dcqq2yillpcuk" path="res://assets/meshes/blocks/diamond_ore.tres" id="18_ntran"]
-[ext_resource type="BoxMesh" uid="uid://v6bbq6k3dgp1" path="res://assets/meshes/blocks/plank.tres" id="19_8qcg7"]
 [ext_resource type="BoxMesh" uid="uid://bvpvxxoc80hks" path="res://assets/meshes/blocks/bedrock.tres" id="19_10o61"]
 [ext_resource type="BoxMesh" uid="uid://06g0f2cbl8v5" path="res://assets/meshes/blocks/snow_block.tres" id="20_nw1yx"]
-[ext_resource type="BoxMesh" uid="uid://bkw3rk8tubyfa" path="res://assets/meshes/blocks/wood_block.tres" id="21_hhxch"]
 [ext_resource type="BoxMesh" uid="uid://b35h1klkb40si" path="res://assets/meshes/blocks/short_grass.tres" id="21_hmb8a"]
+[ext_resource type="BoxMesh" uid="uid://v6bbq6k3dgp1" path="res://assets/meshes/blocks/oak_planks.tres" id="22_jg5lf"]
 [ext_resource type="BoxMesh" uid="uid://cq0pvd6b3tw2d" path="res://assets/meshes/blocks/diorite.tres" id="22_y8tf5"]
+[ext_resource type="BoxMesh" uid="uid://bkw3rk8tubyfa" path="res://assets/meshes/blocks/oak_wood.tres" id="24_3p7ju"]
 [ext_resource type="BoxMesh" uid="uid://b03oc53b5pnnn" path="res://assets/meshes/blocks/granite.tres" id="24_dol6b"]
 [ext_resource type="BoxMesh" uid="uid://bahig3vmp5x5b" path="res://assets/meshes/blocks/andesite.tres" id="25_gthcv"]
 [ext_resource type="BoxMesh" uid="uid://tp4gjv7a4afw" path="res://assets/meshes/blocks/blue_ice.tres" id="26_w31n8"]
-[ext_resource type="BoxMesh" uid="uid://c2p35bucg604w" path="res://assets/meshes/blocks/ice_block.tres" id="27_ie5yr"]
 [ext_resource type="BoxMesh" uid="uid://b0em2klaecy5b" path="res://assets/meshes/blocks/snow_layer.tres" id="28_7op3e"]
 [ext_resource type="BoxMesh" uid="uid://bhhgmetk7r2vb" path="res://assets/meshes/blocks/pumpkin.tres" id="29_nfxs4"]
-[ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/watermelon.tres" id="30_dol6b"]
+[ext_resource type="BoxMesh" uid="uid://c2p35bucg604w" path="res://assets/meshes/blocks/ice.tres" id="30_mi0ow"]
 [ext_resource type="BoxMesh" uid="uid://byrikgqfmawh7" path="res://assets/meshes/blocks/carved_pumpkin.tres" id="31_u6ce4"]
 [ext_resource type="BoxMesh" uid="uid://bovawh6un8rrf" path="res://assets/meshes/blocks/redstone_ore.tres" id="32_gf5wm"]
-[ext_resource type="QuadMesh" uid="uid://diqunegcplagh" path="res://assets/meshes/blocks/redstone_dust.tres" id="33_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/melon.tres" id="33_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://586no1jvv6dd" path="res://assets/meshes/blocks/redstone_block.tres" id="35_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://ds1a83qd2bpqq" path="res://assets/meshes/blocks/oak_leaves.tres" id="36_nwsjh"]
 [ext_resource type="BoxMesh" uid="uid://dcuirxno3ywd6" path="res://assets/meshes/blocks/gold_block.tres" id="36_vuep8"]
 [ext_resource type="BoxMesh" uid="uid://c8sckgpc0uunu" path="res://assets/meshes/blocks/white_wool.tres" id="37_hhxch"]
-[ext_resource type="BoxMesh" uid="uid://bxc5ffqks0640" path="res://assets/meshes/blocks/redstone_torch.tres" id="38_m1gdm"]
 [ext_resource type="BoxMesh" uid="uid://camdpgnae67gx" path="res://assets/meshes/blocks/diamond_block.tres" id="39_i8r8g"]
+[ext_resource type="Texture2D" uid="uid://b6j7ilo3bxbvg" path="res://assets/textures/block/redstone_torch.png" id="40_vtu4l"]
 [ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
-[ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/fence.tres" id="41_y8tf5"]
-[ext_resource type="BoxMesh" uid="uid://dw3lperd1gh8q" path="res://assets/meshes/blocks/lever.tres" id="42_gthcv"]
-[ext_resource type="BoxMesh" uid="uid://b5sjebp3b128m" path="res://assets/meshes/blocks/bed_top.tres" id="42_v6asg"]
-[ext_resource type="BoxMesh" uid="uid://clmkhojc2bsp6" path="res://assets/meshes/blocks/lapis_lazuli_block.tres" id="45_w2p7p"]
+[ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/oak_fence.tres" id="43_5hlrj"]
+[ext_resource type="BoxMesh" uid="uid://clmkhojc2bsp6" path="res://assets/meshes/blocks/lapis_block.tres" id="45_oi1y7"]
 [ext_resource type="BoxMesh" uid="uid://cb85scaxvpxqe" path="res://assets/meshes/blocks/hay_bale.tres" id="46_u6ce4"]
 [ext_resource type="BoxMesh" uid="uid://bhu5exy7qjtxr" path="res://assets/meshes/blocks/cactus.tres" id="47_gf5wm"]
 [ext_resource type="BoxMesh" uid="uid://bhp5jgml4gstk" path="res://assets/meshes/blocks/packed_ice.tres" id="48_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://c3rabmse7froj" path="res://assets/meshes/blocks/farmland.tres" id="49_v6asg"]
 [ext_resource type="BoxMesh" uid="uid://b01x6pukqqqqo" path="res://assets/meshes/blocks/iron_block.tres" id="50_gu01m"]
 [ext_resource type="BoxMesh" uid="uid://b5mu708bsg73y" path="res://assets/meshes/blocks/emerald_block.tres" id="51_v6asg"]
-[ext_resource type="BoxMesh" uid="uid://dtbem7sgg0lmw" path="res://assets/meshes/blocks/ruby_ore.tres" id="52_vuep8"]
-[ext_resource type="BoxMesh" uid="uid://ci47owrk30f5s" path="res://assets/meshes/blocks/bed_bottom.tres" id="53_vuep8"]
+[ext_resource type="Material" uid="uid://bimhqod64c5gw" path="res://assets/materials/bed_mat.tres" id="52_m1gdm"]
+[ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass.tres" id="53_tkvhc"]
+[ext_resource type="BoxMesh" uid="uid://wvfotya14ogx" path="res://assets/meshes/blocks/tnt.tres" id="54_m1gdm"]
+[ext_resource type="BoxMesh" uid="uid://d1cshk8mbnyra" path="res://assets/meshes/blocks/spruce_log.tres" id="55_i8r8g"]
+[ext_resource type="BoxMesh" uid="uid://cmmblxcjo7v01" path="res://assets/meshes/blocks/spruce_planks.tres" id="56_6bfyg"]
+[ext_resource type="BoxMesh" uid="uid://b6o2p818e8gxu" path="res://assets/meshes/blocks/spruce_leaves.tres" id="57_haxkv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
 
@@ -77,6 +80,19 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_e5n0k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cptob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("13_71v0w")
+shader_parameter/side_shrink = 0.438
+shader_parameter/top_shrink = 0.438
+shader_parameter/top_texture = ExtResource("16_6bfyg")
+shader_parameter/side_texture = ExtResource("15_i8r8g")
+shader_parameter/bottom_texture = ExtResource("14_m1gdm")
+
+[sub_resource type="BoxMesh" id="BoxMesh_aj6hr"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_smuq3"]
 
@@ -120,13 +136,22 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rljr"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j2fh"]
+render_priority = 0
+shader = ExtResource("13_71v0w")
+shader_parameter/side_shrink = 0.438
+shader_parameter/top_shrink = 0.438
+shader_parameter/side_texture = ExtResource("40_vtu4l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2rljr"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_1j2fh")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvwf3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dol6b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w31n8"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vuep8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn2ro"]
 
@@ -144,9 +169,47 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v6asg"]
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_v6asg"]
+_surfaces = [{
+"aabb": AABB(-0.5, -1, -0.5625, 1, 1, 0.5625),
+"attribute_data": PackedByteArray("8ABwOeAe4D6/eL894B7gPvAAcDmw7y8/v3i/PbDvLz+wHrA+4B7gPuDe3z7gHuA+sB6wPrDvLz/g3t8+sO8vP7Derz7g3t8+wHjAPeDe3z6w3q8+sB6wPsB4wD2wHrA+mO8XP7AesD6wHrA+sB6wPpjvFz/g3t8+sB6wPuDe3z7gHuA+4B7gPrDvLz/gHuA+4B7gPrDvLz+w7y8/sO8vP8B4wD3gHuA+sN6vPuAe4D7AeMA9sO8vP7Derz6w7y8/yA9IP8HwQD3U71M/wfBAPcgPSD+/eL891O9TP794vz3gD2A/wfBAPezvaz/B8EA94A9gP794vz3s72s/v3i/PeDvXz+/8D491A9UP7/wPj3g718/8ABwOdQPVD/wAHA57O9rP/AAcDngD2A/8ABwOezvaz+/8D494A9gP7/wPj3sD2w/wfBAPfjvdz/B8EA97A9sP794vz3473c/v3i/PdQPVD/B8EA94O9fP8HwQD3UD1Q/v3i/PeDvXz+/eL89yA9IP/A8cD7U71M/8DxwPsgPSD+Q3o8+1O9TP5Dejz7gD2A/8DxwPuzvaz/wPHA+4A9gP5Dejz7s72s/kN6PPuDvXz/wvG8+1A9UP/C8bz7g718/wDxAPtQPVD/APEA+7O9rP8A8QD7gD2A/wDxAPuzvaz/wvG8+4A9gP/C8bz7sD2w/8DxwPvjvdz/wPHA+7A9sP5Dejz7473c/kN6PPtQPVD/wPHA+4O9fP/A8cD7UD1Q/kN6PPuDvXz+Q3o8+"),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcAGAAZABoAGgAZABsAHAAdAB4AHgAdAB8AIAAhACIAIgAhACMAJAAlACYAJgAlACcAKAApACoAKgApACsALAAtAC4ALgAtAC8AMAAxADIAMgAxADMANAA1ADYANgA1ADcAOAA5ADoAOgA5ADsAPAA9AD4APgA9AD8AQABBAEIAQgBBAEMARABFAEYARgBFAEcA"),
+"material": ExtResource("52_m1gdm"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("AAAAPwAAAAAAAEC+AAAAPwAAAAAAABC/AAAAPwAAgL8AAEC+AAAAPwAAgL8AABC/AAAAvwAAAAAAABC/AAAAvwAAAAAAAEC+AAAAvwAAgL8AABC/AAAAvwAAgL8AAEC+AAAAvwAAAAAAABC/AAAAPwAAAAAAABC/AAAAvwAAAAAAAEC+AAAAPwAAAAAAAEC+AAAAvwAAgL8AAEC+AAAAPwAAgL8AAEC+AAAAvwAAgL8AABC/AAAAPwAAgL8AABC/AAAAvwAAAAAAAEC+AAAAPwAAAAAAAEC+AAAAvwAAgL8AAEC+AAAAPwAAgL8AAEC+AAAAPwAAAAAAABC/AAAAvwAAAAAAABC/AAAAPwAAgL8AABC/AAAAvwAAgL8AABC/AAAAPwAAUL8AAEC+AAAAPwAAgL8AAEC+AAAAPwAAUL8AAAAAAAAAPwAAgL8AAAAAAACgPgAAgL8AAEC+AACgPgAAUL8AAEC+AACgPgAAgL8AAAAAAACgPgAAUL8AAAAAAACgPgAAgL8AAEC+AAAAPwAAgL8AAEC+AACgPgAAUL8AAEC+AAAAPwAAUL8AAEC+AACgPgAAUL8AAAAAAAAAPwAAUL8AAAAAAACgPgAAgL8AAAAAAAAAPwAAgL8AAAAAAACgPgAAUL8AAEC+AAAAPwAAUL8AAEC+AACgPgAAUL8AAAAAAAAAPwAAUL8AAAAAAAAAPwAAgL8AAEC+AACgPgAAgL8AAEC+AAAAPwAAgL8AAAAAAACgPgAAgL8AAAAAAACgvgAAgL8AAEC+AAAAvwAAgL8AAEC+AACgvgAAgL8AAAAAAAAAvwAAgL8AAAAAAAAAvwAAUL8AAEC+AACgvgAAUL8AAEC+AAAAvwAAUL8AAAAAAACgvgAAUL8AAAAAAAAAvwAAUL8AAEC+AAAAvwAAgL8AAEC+AACgvgAAUL8AAEC+AACgvgAAgL8AAEC+AACgvgAAUL8AAAAAAACgvgAAgL8AAAAAAAAAvwAAUL8AAAAAAAAAvwAAgL8AAAAAAACgvgAAUL8AAEC+AACgvgAAgL8AAEC+AACgvgAAUL8AAAAAAACgvgAAgL8AAAAAAAAAvwAAgL8AAEC+AAAAvwAAUL8AAEC+AAAAvwAAgL8AAAAAAAAAvwAAUL8AAAAA/f8AgP7//v/9/wCA/v/+//3/AID+//7//f8AgP7//v8BAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/v/5//v8AAP6//n/+/wAA/r/+f/7/AAD+v/5//v8AAP6/+n8BAAEA/j/6fwEAAQD+P/p/AQABAP4/+n8BAAEA/j/9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/7/AAAAAP+//v8AAAAA/7/+/wAAAAD/v/7/AAAAAP+//v8AgACAAID+/wCAAIAAgP7/AIAAgACA/v8AgACAAIABAACAAID+/wEAAIAAgP7/AQAAgACA/v8BAACAAID+/wAAAAABAP6/AAAAAAEA/r8AAAAAAQD+vwAAAAABAP6//n/7fwAAAED+f/t/AAAAQP5/+38AAABA/n/7fwAAAED9f/3//f8AwP1//f/9/wDA/X/9//3/AMD9f/3//f8AwP9/AQAAAP+//38BAAAA/7//fwEAAAD/v/9/AQAAAP+/AIAAAAAA/r8AgAAAAAD+vwCAAAAAAP6/AIAAAAAA/r8AgP3//v/+vwCA/f/+//6/AID9//7//r8AgP3//v/+vwAA///+f/7/AAD///5//v8AAP///n/+/wAA///+f/7/+38AgP1/AAD7fwCA/X8AAPt/AID9fwAA+38AgP1/AAD9/wGAAYAAgP3/AYABgACA/f8BgAGAAID9/wGAAYAAgAEA/3//f///AQD/f/9///8BAP9//3///wEA/3//f///")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vuep8"]
+size = Vector3(1, 0.5625, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m1gdm"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5625, 1, 1, 0.5625),
+"attribute_data": PackedByteArray("8ABwOcB4wD2/eL89wHjAPfAAcDmw3q8+v3i/PbDerz6wHrA+wHjAPeDe3z7AeMA9sB6wPrDerz7g3t8+sN6vPrDerz6/eL89wHjAPb94vz2w3q8+8ABwOcB4wD3wAHA5mO8XP/AAcDmwHrA+8ABwOZjvFz+/eL89sB6wPr94vz3gHuA+wHjAPbDvLz/AeMA94B7gPrDerz6w7y8/sN6vPsB4wD3AeMA9sN6vPsB4wD3AeMA9sN6vPrDerz6w3q8+yA9IP5A8ED7U71M/kDwQPsgPSD/AvD8+1O9TP8C8Pz7gD2A/kDwQPuzvaz+QPBA+4A9gP8C8Pz7s72s/wLw/PuDvXz+QvA8+1A9UP5C8Dz7g718/wHjAPdQPVD/AeMA97O9rP8B4wD3gD2A/wHjAPezvaz+QvA8+4A9gP5C8Dz7sD2w/kDwQPvjvdz+QPBA+7A9sP8C8Pz7473c/wLw/PtQPVD+QPBA+4O9fP5A8ED7UD1Q/wLw/PuDvXz/AvD8+yA9IP6geqD7U71M/qB6oPsgPSD/A3r8+1O9TP8Devz7gD2A/qB6oPuzvaz+oHqg+4A9gP8Devz7s72s/wN6/PuDvXz+o3qc+1A9UP6jepz7g718/kB6QPtQPVD+QHpA+7O9rP5AekD7gD2A/kB6QPuzvaz+o3qc+4A9gP6jepz7sD2w/qB6oPvjvdz+oHqg+7A9sP8Devz7473c/wN6/PtQPVD+oHqg+4O9fP6geqD7UD1Q/wN6/PuDvXz/A3r8+"),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcAGAAZABoAGgAZABsAHAAdAB4AHgAdAB8AIAAhACIAIgAhACMAJAAlACYAJgAlACcAKAApACoAKgApACsALAAtAC4ALgAtAC8AMAAxADIAMgAxADMANAA1ADYANgA1ADcAOAA5ADoAOgA5ADsAPAA9AD4APgA9AD8AQABBAEIAQgBBAEMARABFAEYARgBFAEcA"),
+"material": ExtResource("52_m1gdm"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("AAAAPwAAgD8AAEC+AAAAPwAAgD8AABC/AAAAPwAAAAAAAEC+AAAAPwAAAAAAABC/AAAAvwAAgD8AABC/AAAAvwAAgD8AAEC+AAAAvwAAAAAAABC/AAAAvwAAAAAAAEC+AAAAvwAAgD8AABC/AAAAPwAAgD8AABC/AAAAvwAAgD8AAEC+AAAAPwAAgD8AAEC+AAAAvwAAAAAAAEC+AAAAPwAAAAAAAEC+AAAAvwAAAAAAABC/AAAAPwAAAAAAABC/AAAAvwAAgD8AAEC+AAAAPwAAgD8AAEC+AAAAvwAAAAAAAEC+AAAAPwAAAAAAAEC+AAAAPwAAgD8AABC/AAAAvwAAgD8AABC/AAAAPwAAAAAAABC/AAAAvwAAAAAAABC/AACgPgAAgD8AAEC+AAAAPwAAgD8AAEC+AACgPgAAgD8AAAAAAAAAPwAAgD8AAAAAAAAAPwAAUD8AAEC+AACgPgAAUD8AAEC+AAAAPwAAUD8AAAAAAACgPgAAUD8AAAAAAAAAPwAAUD8AAEC+AAAAPwAAgD8AAEC+AACgPgAAUD8AAEC+AACgPgAAgD8AAEC+AACgPgAAUD8AAAAAAACgPgAAgD8AAAAAAAAAPwAAUD8AAAAAAAAAPwAAgD8AAAAAAACgPgAAUD8AAEC+AACgPgAAgD8AAEC+AACgPgAAUD8AAAAAAACgPgAAgD8AAAAAAAAAPwAAgD8AAEC+AAAAPwAAUD8AAEC+AAAAPwAAgD8AAAAAAAAAPwAAUD8AAAAAAAAAvwAAUD8AAEC+AAAAvwAAgD8AAEC+AAAAvwAAUD8AAAAAAAAAvwAAgD8AAAAAAACgvgAAgD8AAEC+AACgvgAAUD8AAEC+AACgvgAAgD8AAAAAAACgvgAAUD8AAAAAAACgvgAAgD8AAEC+AAAAvwAAgD8AAEC+AACgvgAAUD8AAEC+AAAAvwAAUD8AAEC+AACgvgAAUD8AAAAAAAAAvwAAUD8AAAAAAACgvgAAgD8AAAAAAAAAvwAAgD8AAAAAAACgvgAAUD8AAEC+AAAAvwAAUD8AAEC+AACgvgAAUD8AAAAAAAAAvwAAUD8AAAAAAAAAvwAAgD8AAEC+AACgvgAAgD8AAEC+AAAAvwAAgD8AAAAAAACgvgAAgD8AAAAA/f8AgP7//v/9/wCA/v/+//3/AID+//7//f8AgP7//v8BAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/v/5//v8AAP6//n/+/wAA/r/+f/7/AAD+v/5//v8AAP6/+n8BAAEA/j/6fwEAAQD+P/p/AQABAP4/+n8BAAEA/j/9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/7/AAAAAP+//v8AAAAA/7/+/wAAAAD/v/7/AAAAAP+//n/+//7//7/+f/7//v//v/5//v/+//+//n/+//7//7/+fwEAAAD/v/5/AQAAAP+//n8BAAAA/7/+fwEAAAD/v/7/AAAAgACA/v8AAACAAID+/wAAAIAAgP7/AAAAgACAA4D+fwGA/n8DgP5/AYD+fwOA/n8BgP5/A4D+fwGA/n8BAP1//X/+/wEA/X/9f/7/AQD9f/1//v8BAP1//X/+//3//3//fwCA/f//f/9/AID9//9//38AgP3//3//fwCAAAD+f/5//v8AAP5//n/+/wAA/n/+f/7/AAD+f/5//v/9//5//n8AgP3//n/+fwCA/f/+f/5/AID9//5//n8AgP///v/9//+////+//3//7////7//f//v////v/9//+/AIADgP7//j8AgAOA/v/+PwCAA4D+//4/AIADgP7//j8BgAEAAQD+vwGAAQABAP6/AYABAAEA/r8BgAEAAQD+v/9//f/+//+//3/9//7//7//f/3//v//v/9//f/+//+/")
+}]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ej3k"]
+size = Vector3(1, 0.5625, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hawhk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8088"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdmo5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uteda"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0am6y"]
 
@@ -165,8 +228,8 @@ item/1/mesh_cast_shadow = 1
 item/1/shapes = [SubResource("BoxShape3D_10v3s"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
-item/2/name = "log"
-item/2/mesh = ExtResource("13_ptyle")
+item/2/name = "oak_log"
+item/2/mesh = ExtResource("12_vuep8")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/mesh_cast_shadow = 1
 item/2/shapes = [SubResource("BoxShape3D_cptob"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -179,8 +242,8 @@ item/3/mesh_cast_shadow = 1
 item/3/shapes = [SubResource("BoxShape3D_umdqk"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
-item/4/name = "leaves"
-item/4/mesh = ExtResource("17_smuq3")
+item/4/name = "oak_leaves"
+item/4/mesh = ExtResource("36_nwsjh")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/mesh_cast_shadow = 1
 item/4/shapes = [SubResource("BoxShape3D_6l3rs"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -200,8 +263,8 @@ item/6/mesh_cast_shadow = 1
 item/6/shapes = []
 item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/6/navigation_layers = 1
-item/9/name = "glass_block"
-item/9/mesh = ExtResource("18_k2i0r")
+item/9/name = "glass"
+item/9/mesh = ExtResource("53_tkvhc")
 item/9/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/9/mesh_cast_shadow = 1
 item/9/shapes = [SubResource("BoxShape3D_0am6y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -221,8 +284,8 @@ item/11/mesh_cast_shadow = 1
 item/11/shapes = [SubResource("BoxShape3D_lr7et"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/11/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/11/navigation_layers = 1
-item/12/name = "red_flower"
-item/12/mesh = ExtResource("5_bjp6x")
+item/12/name = "poppy"
+item/12/mesh = ExtResource("5_gf5wm")
 item/12/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/12/mesh_cast_shadow = 1
 item/12/shapes = []
@@ -242,15 +305,15 @@ item/15/mesh_cast_shadow = 1
 item/15/shapes = [SubResource("BoxShape3D_cx2io"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/15/navigation_layers = 1
-item/16/name = "clay_block"
-item/16/mesh = ExtResource("8_5o0yj")
+item/16/name = "clay"
+item/16/mesh = ExtResource("8_gu01m")
 item/16/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/mesh_cast_shadow = 1
 item/16/shapes = [SubResource("BoxShape3D_cnkuy"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/navigation_layers = 1
 item/17/name = "brick_block"
-item/17/mesh = ExtResource("9_1oisa")
+item/17/mesh = ExtResource("9_v6asg")
 item/17/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/17/mesh_cast_shadow = 1
 item/17/shapes = [SubResource("BoxShape3D_75pwm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -271,14 +334,14 @@ item/19/shapes = [SubResource("BoxShape3D_e5n0k"), Transform3D(1, 0, 0, 0, 1, 0,
 item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/navigation_layers = 1
 item/20/name = "torch"
-item/20/mesh = ExtResource("13_21d3n")
+item/20/mesh = SubResource("BoxMesh_aj6hr")
 item/20/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/mesh_cast_shadow = 1
 item/20/shapes = []
 item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/navigation_layers = 1
-item/21/name = "blue_flower"
-item/21/mesh = ExtResource("14_xlegy")
+item/21/name = "cornflower"
+item/21/mesh = ExtResource("17_haxkv")
 item/21/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/21/mesh_cast_shadow = 1
 item/21/shapes = []
@@ -312,8 +375,8 @@ item/25/mesh_cast_shadow = 1
 item/25/shapes = [SubResource("BoxShape3D_mdel1"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/25/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/25/navigation_layers = 1
-item/26/name = "plank"
-item/26/mesh = ExtResource("19_8qcg7")
+item/26/name = "oak_planks"
+item/26/mesh = ExtResource("22_jg5lf")
 item/26/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/26/mesh_cast_shadow = 1
 item/26/shapes = [SubResource("BoxShape3D_o14jv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -326,8 +389,8 @@ item/27/mesh_cast_shadow = 1
 item/27/shapes = [SubResource("BoxShape3D_qogbe"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/27/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/27/navigation_layers = 1
-item/28/name = "wood_block"
-item/28/mesh = ExtResource("21_hhxch")
+item/28/name = "oak_wood"
+item/28/mesh = ExtResource("24_3p7ju")
 item/28/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/28/mesh_cast_shadow = 1
 item/28/shapes = [SubResource("BoxShape3D_6bfyg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -362,7 +425,7 @@ item/32/shapes = [SubResource("BoxShape3D_mi0ow"), Transform3D(1, 0, 0, 0, 1, 0,
 item/32/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/32/navigation_layers = 1
 item/33/name = "ice_block"
-item/33/mesh = ExtResource("27_ie5yr")
+item/33/mesh = ExtResource("30_mi0ow")
 item/33/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/33/mesh_cast_shadow = 1
 item/33/shapes = [SubResource("BoxShape3D_nwsjh"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -382,8 +445,8 @@ item/35/mesh_cast_shadow = 1
 item/35/shapes = [SubResource("BoxShape3D_vtu4l"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/35/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/35/navigation_layers = 1
-item/36/name = "watermelon"
-item/36/mesh = ExtResource("30_dol6b")
+item/36/name = "melon"
+item/36/mesh = ExtResource("33_gu01m")
 item/36/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/36/mesh_cast_shadow = 1
 item/36/shapes = [SubResource("BoxShape3D_5hlrj"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -425,7 +488,7 @@ item/42/shapes = [SubResource("BoxShape3D_2rljr"), Transform3D(1, 0, 0, 0, 1, 0,
 item/42/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/42/navigation_layers = 1
 item/44/name = "redstone_torch"
-item/44/mesh = ExtResource("38_m1gdm")
+item/44/mesh = SubResource("BoxMesh_2rljr")
 item/44/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/44/mesh_cast_shadow = 1
 item/44/shapes = []
@@ -445,29 +508,15 @@ item/46/mesh_cast_shadow = 1
 item/46/shapes = [SubResource("BoxShape3D_dol6b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/46/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/46/navigation_layers = 1
-item/47/name = "fence"
-item/47/mesh = ExtResource("41_y8tf5")
+item/47/name = "oak_fence"
+item/47/mesh = ExtResource("43_5hlrj")
 item/47/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/47/mesh_cast_shadow = 1
 item/47/shapes = [SubResource("BoxShape3D_w31n8"), Transform3D(0.25, 0, 0, 0, 1.5, 0, 0, 0, 0.25, 0, 0.5, 0)]
 item/47/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/47/navigation_layers = 1
-item/48/name = "lever"
-item/48/mesh = ExtResource("42_gthcv")
-item/48/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/48/mesh_cast_shadow = 1
-item/48/shapes = []
-item/48/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/48/navigation_layers = 1
-item/49/name = "bed_top"
-item/49/mesh = ExtResource("42_v6asg")
-item/49/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212, 0)
-item/49/mesh_cast_shadow = 1
-item/49/shapes = [SubResource("BoxShape3D_vuep8"), Transform3D(1, 0, 0, 0, 0.575, 0, 0, 0, 1, 0, -0.212, 0)]
-item/49/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/49/navigation_layers = 1
-item/50/name = "lapis_lazuli_block"
-item/50/mesh = ExtResource("45_w2p7p")
+item/50/name = "lapis_block"
+item/50/mesh = ExtResource("45_oi1y7")
 item/50/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/50/mesh_cast_shadow = 1
 item/50/shapes = [SubResource("BoxShape3D_71v0w"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
@@ -515,25 +564,52 @@ item/56/mesh_cast_shadow = 1
 item/56/shapes = [SubResource("BoxShape3D_v6asg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/56/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/56/navigation_layers = 1
-item/57/name = "ruby_ore"
-item/57/mesh = ExtResource("52_vuep8")
-item/57/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/57/mesh_cast_shadow = 1
-item/57/shapes = [SubResource("BoxShape3D_1ej3k"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/57/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/57/navigation_layers = 1
-item/58/name = "redstone_dust"
-item/58/mesh = ExtResource("33_gu01m")
-item/58/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.462, 0)
+item/58/name = "bed_foot"
+item/58/mesh = SubResource("ArrayMesh_v6asg")
+item/58/mesh_transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.5, 0.5)
 item/58/mesh_cast_shadow = 1
-item/58/shapes = []
+item/58/shapes = [SubResource("BoxShape3D_vuep8"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21875, 0)]
 item/58/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/58/navigation_layers = 1
-item/59/name = "bed_bottom"
-item/59/mesh = ExtResource("53_vuep8")
-item/59/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212, 0)
+item/59/name = "bed_head"
+item/59/mesh = SubResource("ArrayMesh_m1gdm")
+item/59/mesh_transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -0.5, -0.5)
 item/59/mesh_cast_shadow = 1
-item/59/shapes = [SubResource("BoxShape3D_hawhk"), Transform3D(1, 0, 0, 0, 0.575, 0, 0, 0, 1, 0, -0.212, 0)]
+item/59/shapes = [SubResource("BoxShape3D_1ej3k"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.21875, 0)]
 item/59/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/59/navigation_layers = 1
+item/60/name = "tnt"
+item/60/mesh = ExtResource("54_m1gdm")
+item/60/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/60/mesh_cast_shadow = 1
+item/60/shapes = [SubResource("BoxShape3D_hawhk"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/60/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/60/navigation_layers = 1
+item/61/name = "spruce_log"
+item/61/mesh = ExtResource("55_i8r8g")
+item/61/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/61/mesh_cast_shadow = 1
+item/61/shapes = [SubResource("BoxShape3D_u8088"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/61/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/61/navigation_layers = 1
+item/62/name = "spruce_planks"
+item/62/mesh = ExtResource("56_6bfyg")
+item/62/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/62/mesh_cast_shadow = 1
+item/62/shapes = [SubResource("BoxShape3D_fdmo5"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/62/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/62/navigation_layers = 1
+item/63/name = "spruce_leaves"
+item/63/mesh = ExtResource("57_haxkv")
+item/63/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/63/mesh_cast_shadow = 1
+item/63/shapes = [SubResource("BoxShape3D_uteda"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/63/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/63/navigation_layers = 1
+item/64/name = "bed"
+item/64/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/64/mesh_cast_shadow = 1
+item/64/shapes = []
+item/64/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/64/navigation_layers = 1
 metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

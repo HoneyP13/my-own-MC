@@ -1,13 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dska0sawbex6g"]
 
-[ext_resource type="Texture2D" uid="uid://be0kfjms8hs4n" path="res://assets/textures/block/leather_tunic.png" id="1_sq578"]
+[ext_resource type="Texture2D" uid="uid://bgortds8iq5fc" path="res://assets/textures/item/leather_chestplate.png" id="1_sq578"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_7q7sh"]
 
 [resource]
 script = ExtResource("2_7q7sh")
-id = &"leather_tunic"
+id = &"leather_chestplate"
 display_name = "leather tunic"
 icon = ExtResource("1_sq578")
 max_stack = 1
-on_use = 8
+item_type = 3
+attributes = Dictionary[int, float]({
+0: 80.0,
+2: 3.0,
+6: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

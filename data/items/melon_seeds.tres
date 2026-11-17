@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://bv5po5r3h3gbb"]
 
-[ext_resource type="Texture2D" uid="uid://qbtjk216urol" path="res://assets/textures/block/melon_seeds.png" id="1_k0r5v"]
+[ext_resource type="Texture2D" uid="uid://cy2pvqfgjbchk" path="res://assets/textures/item/melon_seeds.png" id="1_k0r5v"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_kymxs"]
 
 [resource]

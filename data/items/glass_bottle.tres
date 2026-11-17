@@ -1,7 +1,12 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cma3an3kvjjpa"]
 
+[ext_resource type="Texture2D" uid="uid://djvfoqx85t7ak" path="res://assets/textures/item/glass_bottle.png" id="1_c5sdd"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_t1wrr"]
 
 [resource]
 script = ExtResource("1_t1wrr")
+id = &"glass_bottle"
+display_name = "glass bottle"
+icon = ExtResource("1_c5sdd")
+item_type = 8
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

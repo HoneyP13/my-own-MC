@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cmm4ho2532nvs"]
 
-[ext_resource type="Texture2D" uid="uid://b65au8ce57jx3" path="res://assets/textures/block/golden_shovel.png" id="1_ewrt2"]
+[ext_resource type="Texture2D" uid="uid://bg10ei1po2sak" path="res://assets/textures/item/golden_shovel.png" id="1_ewrt2"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_d5hqs"]
 
 [resource]
@@ -9,6 +9,9 @@ id = &"golden_shovel"
 display_name = "golden shovel"
 icon = ExtResource("1_ewrt2")
 max_stack = 1
-on_use = 6
-on_use_value = 2
+item_type = 1
+attributes = Dictionary[int, float]({
+0: 32.0,
+1: 2.5
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

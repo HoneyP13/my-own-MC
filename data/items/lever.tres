@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://b30dyy4t0sch7"]
 
-[ext_resource type="Texture2D" uid="uid://ds35ahaikm67p" path="res://assets/placeholder_texture_2d.tres" id="1_q15pb"]
+[ext_resource type="Texture2D" uid="uid://qmw6q7wornpj" path="res://assets/textures/block/lever.png" id="1_q15pb"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_ncsoo"]
 
 [resource]

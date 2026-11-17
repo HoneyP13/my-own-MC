@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b2jnueywnyqpb"]
 
+[ext_resource type="Texture2D" uid="uid://du6u85uvps6bf" path="res://assets/textures/item/bee_spawn_egg.png" id="1_dqt1e"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_ya1sy"]
 
 [resource]
 script = ExtResource("1_ya1sy")
+id = &"bee_spawn_egg"
+display_name = "bee spawn egg"
+icon = ExtResource("1_dqt1e")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,0 +1,526 @@
+[gd_resource type="MeshLibrary" format=3 uid="uid://dgqqtmwpwy6eu"]
+
+[ext_resource type="BoxMesh" uid="uid://bsa445eq5cxn6" path="res://assets/meshes/blocks/dirt.tres" id="1_ftcee"]
+[ext_resource type="BoxMesh" uid="uid://cw370jxnt6250" path="res://assets/meshes/blocks/stone.tres" id="3_qogbe"]
+[ext_resource type="BoxMesh" uid="uid://xuu86d7oup8t" path="res://assets/meshes/blocks/coal_ore.tres" id="4_3s85j"]
+[ext_resource type="BoxMesh" uid="uid://duitll6nvjond" path="res://assets/meshes/blocks/poppy.tres" id="5_gf5wm"]
+[ext_resource type="BoxMesh" uid="uid://b5jvkirclh85v" path="res://assets/meshes/blocks/sand.tres" id="5_ntran"]
+[ext_resource type="BoxMesh" uid="uid://bnnbw5svy5wbu" path="res://assets/meshes/blocks/crafting_table.tres" id="8_3s85j"]
+[ext_resource type="BoxMesh" uid="uid://3gt03xlyl8h1" path="res://assets/meshes/blocks/clay.tres" id="8_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://ctn4ge5c7unfo" path="res://assets/meshes/blocks/bricks.tres" id="9_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://d0g7fqjt15r13" path="res://assets/meshes/blocks/gravel.tres" id="11_21d3n"]
+[ext_resource type="BoxMesh" uid="uid://cis3e0w18qj0f" path="res://assets/meshes/blocks/cobblestone.tres" id="11_75pwm"]
+[ext_resource type="BoxMesh" uid="uid://1wlta17dknne" path="res://assets/meshes/blocks/chest.tres" id="12_1oisa"]
+[ext_resource type="BoxMesh" uid="uid://bbngdege4nuux" path="res://assets/meshes/blocks/oak_log.tres" id="12_vuep8"]
+[ext_resource type="Shader" uid="uid://bafsys6e0e0hn" path="res://assets/shaders/torch.gdshader" id="13_71v0w"]
+[ext_resource type="BoxMesh" uid="uid://c5fq5nasnodoi" path="res://assets/meshes/blocks/grass_block.tres" id="14_cx2io"]
+[ext_resource type="Texture2D" uid="uid://bnyja3qfm2pa6" path="res://assets/sprites/torch_bottom.png" id="14_m1gdm"]
+[ext_resource type="Texture2D" uid="uid://ya3uvronev8" path="res://assets/sprites/torch_side.png" id="15_i8r8g"]
+[ext_resource type="BoxMesh" uid="uid://q5bxv3dpiwej" path="res://assets/meshes/blocks/furnace.tres" id="15_nw1yx"]
+[ext_resource type="Texture2D" uid="uid://beg5sykn2thbj" path="res://assets/sprites/torch_top.png" id="16_6bfyg"]
+[ext_resource type="BoxMesh" uid="uid://q4uqr5h17swl" path="res://assets/meshes/blocks/iron_ore.tres" id="16_ftcee"]
+[ext_resource type="BoxMesh" uid="uid://dnyrijkusivx7" path="res://assets/meshes/blocks/cornflower.tres" id="17_haxkv"]
+[ext_resource type="BoxMesh" uid="uid://2a4aoapwjvfw" path="res://assets/meshes/blocks/gold_ore.tres" id="17_qogbe"]
+[ext_resource type="BoxMesh" uid="uid://dcqq2yillpcuk" path="res://assets/meshes/blocks/diamond_ore.tres" id="18_ntran"]
+[ext_resource type="BoxMesh" uid="uid://bvpvxxoc80hks" path="res://assets/meshes/blocks/bedrock.tres" id="19_10o61"]
+[ext_resource type="BoxMesh" uid="uid://06g0f2cbl8v5" path="res://assets/meshes/blocks/snow_block.tres" id="20_nw1yx"]
+[ext_resource type="BoxMesh" uid="uid://b35h1klkb40si" path="res://assets/meshes/blocks/short_grass.tres" id="21_hmb8a"]
+[ext_resource type="BoxMesh" uid="uid://v6bbq6k3dgp1" path="res://assets/meshes/blocks/oak_planks.tres" id="22_jg5lf"]
+[ext_resource type="BoxMesh" uid="uid://cq0pvd6b3tw2d" path="res://assets/meshes/blocks/diorite.tres" id="22_y8tf5"]
+[ext_resource type="BoxMesh" uid="uid://bkw3rk8tubyfa" path="res://assets/meshes/blocks/oak_wood.tres" id="24_3p7ju"]
+[ext_resource type="BoxMesh" uid="uid://b03oc53b5pnnn" path="res://assets/meshes/blocks/granite.tres" id="24_dol6b"]
+[ext_resource type="BoxMesh" uid="uid://bahig3vmp5x5b" path="res://assets/meshes/blocks/andesite.tres" id="25_gthcv"]
+[ext_resource type="BoxMesh" uid="uid://tp4gjv7a4afw" path="res://assets/meshes/blocks/blue_ice.tres" id="26_w31n8"]
+[ext_resource type="BoxMesh" uid="uid://b0em2klaecy5b" path="res://assets/meshes/blocks/snow_layer.tres" id="28_7op3e"]
+[ext_resource type="BoxMesh" uid="uid://bhhgmetk7r2vb" path="res://assets/meshes/blocks/pumpkin.tres" id="29_nfxs4"]
+[ext_resource type="BoxMesh" uid="uid://bo4p8tl3qw0k4" path="res://assets/meshes/blocks/watermelon.tres" id="30_dol6b"]
+[ext_resource type="BoxMesh" uid="uid://c2p35bucg604w" path="res://assets/meshes/blocks/ice.tres" id="30_mi0ow"]
+[ext_resource type="BoxMesh" uid="uid://byrikgqfmawh7" path="res://assets/meshes/blocks/carved_pumpkin.tres" id="31_u6ce4"]
+[ext_resource type="BoxMesh" uid="uid://bovawh6un8rrf" path="res://assets/meshes/blocks/redstone_ore.tres" id="32_gf5wm"]
+[ext_resource type="BoxMesh" uid="uid://586no1jvv6dd" path="res://assets/meshes/blocks/redstone_block.tres" id="35_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://ds1a83qd2bpqq" path="res://assets/meshes/blocks/oak_leaves.tres" id="36_nwsjh"]
+[ext_resource type="BoxMesh" uid="uid://dcuirxno3ywd6" path="res://assets/meshes/blocks/gold_block.tres" id="36_vuep8"]
+[ext_resource type="BoxMesh" uid="uid://c8sckgpc0uunu" path="res://assets/meshes/blocks/white_wool.tres" id="37_hhxch"]
+[ext_resource type="BoxMesh" uid="uid://camdpgnae67gx" path="res://assets/meshes/blocks/diamond_block.tres" id="39_i8r8g"]
+[ext_resource type="Texture2D" uid="uid://b6j7ilo3bxbvg" path="res://assets/textures/block/redstone_torch.png" id="40_vtu4l"]
+[ext_resource type="BoxMesh" uid="uid://d0km14vcrm0xe" path="res://assets/meshes/blocks/coal_block.tres" id="40_y8tf5"]
+[ext_resource type="BoxMesh" uid="uid://chdbrthmvtreb" path="res://assets/meshes/blocks/oak_fence.tres" id="43_5hlrj"]
+[ext_resource type="BoxMesh" uid="uid://clmkhojc2bsp6" path="res://assets/meshes/blocks/lapis_block.tres" id="45_oi1y7"]
+[ext_resource type="BoxMesh" uid="uid://cb85scaxvpxqe" path="res://assets/meshes/blocks/hay_bale.tres" id="46_u6ce4"]
+[ext_resource type="BoxMesh" uid="uid://bhu5exy7qjtxr" path="res://assets/meshes/blocks/cactus.tres" id="47_gf5wm"]
+[ext_resource type="BoxMesh" uid="uid://bhp5jgml4gstk" path="res://assets/meshes/blocks/packed_ice.tres" id="48_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://c3rabmse7froj" path="res://assets/meshes/blocks/farmland.tres" id="49_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://b01x6pukqqqqo" path="res://assets/meshes/blocks/iron_block.tres" id="50_gu01m"]
+[ext_resource type="BoxMesh" uid="uid://b5mu708bsg73y" path="res://assets/meshes/blocks/emerald_block.tres" id="51_v6asg"]
+[ext_resource type="BoxMesh" uid="uid://dsc7f3s87d0v3" path="res://assets/meshes/blocks/glass.tres" id="53_tkvhc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10v3s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h0k7y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr7et"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ftcee"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cx2io"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cnkuy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75pwm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ptyle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5n0k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cptob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("13_71v0w")
+shader_parameter/side_shrink = 0.438
+shader_parameter/top_shrink = 0.438
+shader_parameter/top_texture = ExtResource("16_6bfyg")
+shader_parameter/side_texture = ExtResource("15_i8r8g")
+shader_parameter/bottom_texture = ExtResource("14_m1gdm")
+
+[sub_resource type="BoxMesh" id="BoxMesh_aj6hr"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smuq3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10o61"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmb8a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdel1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o14jv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qogbe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bfyg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_haxkv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umdqk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jg5lf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3p7ju"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mi0ow"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwsjh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtu4l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5hlrj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oi1y7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkvhc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6l3rs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aj6hr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j2fh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2rljr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1j2fh"]
+render_priority = 0
+shader = ExtResource("13_71v0w")
+shader_parameter/side_shrink = 0.438
+shader_parameter/top_shrink = 0.438
+shader_parameter/side_texture = ExtResource("40_vtu4l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2rljr"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_1j2fh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fvwf3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dol6b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w31n8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dn2ro"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71v0w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1gdm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i8r8g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kipw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_syuof"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gu01m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6asg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0am6y"]
+
+[resource]
+item/0/name = "dirt"
+item/0/mesh = ExtResource("1_ftcee")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = [SubResource("BoxShape3D_xvgsr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "stone"
+item/1/mesh = ExtResource("3_qogbe")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = [SubResource("BoxShape3D_10v3s"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+item/2/name = "oak_log"
+item/2/mesh = ExtResource("12_vuep8")
+item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = [SubResource("BoxShape3D_cptob"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
+item/3/name = "grass_block"
+item/3/mesh = ExtResource("14_cx2io")
+item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/mesh_cast_shadow = 1
+item/3/shapes = [SubResource("BoxShape3D_umdqk"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1
+item/4/name = "oak_leaves"
+item/4/mesh = ExtResource("36_nwsjh")
+item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/mesh_cast_shadow = 1
+item/4/shapes = [SubResource("BoxShape3D_6l3rs"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/navigation_layers = 1
+item/5/name = "bedrock"
+item/5/mesh = ExtResource("19_10o61")
+item/5/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/mesh_cast_shadow = 1
+item/5/shapes = [SubResource("BoxShape3D_dn2ro"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/navigation_layers = 1
+item/6/name = "short_grass"
+item/6/mesh = ExtResource("21_hmb8a")
+item/6/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/mesh_cast_shadow = 1
+item/6/shapes = []
+item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/navigation_layers = 1
+item/9/name = "glass"
+item/9/mesh = ExtResource("53_tkvhc")
+item/9/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/9/mesh_cast_shadow = 1
+item/9/shapes = [SubResource("BoxShape3D_0am6y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/9/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/9/navigation_layers = 1
+item/10/name = "sand"
+item/10/mesh = ExtResource("5_ntran")
+item/10/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/10/mesh_cast_shadow = 1
+item/10/shapes = [SubResource("BoxShape3D_h0k7y"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/10/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/10/navigation_layers = 1
+item/11/name = "coal_ore"
+item/11/mesh = ExtResource("4_3s85j")
+item/11/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/11/mesh_cast_shadow = 1
+item/11/shapes = [SubResource("BoxShape3D_lr7et"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/11/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/11/navigation_layers = 1
+item/12/name = "poppy"
+item/12/mesh = ExtResource("5_gf5wm")
+item/12/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/12/mesh_cast_shadow = 1
+item/12/shapes = []
+item/12/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/12/navigation_layers = 1
+item/13/name = "cobblestone"
+item/13/mesh = ExtResource("11_75pwm")
+item/13/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/mesh_cast_shadow = 1
+item/13/shapes = [SubResource("BoxShape3D_ftcee"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/13/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/navigation_layers = 1
+item/15/name = "crafting_table"
+item/15/mesh = ExtResource("8_3s85j")
+item/15/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/15/mesh_cast_shadow = 1
+item/15/shapes = [SubResource("BoxShape3D_cx2io"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/15/navigation_layers = 1
+item/16/name = "clay"
+item/16/mesh = ExtResource("8_gu01m")
+item/16/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/16/mesh_cast_shadow = 1
+item/16/shapes = [SubResource("BoxShape3D_cnkuy"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/16/navigation_layers = 1
+item/17/name = "brick_block"
+item/17/mesh = ExtResource("9_v6asg")
+item/17/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/17/mesh_cast_shadow = 1
+item/17/shapes = [SubResource("BoxShape3D_75pwm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/17/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/17/navigation_layers = 1
+item/18/name = "gravel"
+item/18/mesh = ExtResource("11_21d3n")
+item/18/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/18/mesh_cast_shadow = 1
+item/18/shapes = [SubResource("BoxShape3D_ptyle"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/18/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/18/navigation_layers = 1
+item/19/name = "chest"
+item/19/mesh = ExtResource("12_1oisa")
+item/19/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/19/mesh_cast_shadow = 1
+item/19/shapes = [SubResource("BoxShape3D_e5n0k"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/19/navigation_layers = 1
+item/20/name = "torch"
+item/20/mesh = SubResource("BoxMesh_aj6hr")
+item/20/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/20/mesh_cast_shadow = 1
+item/20/shapes = []
+item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/20/navigation_layers = 1
+item/21/name = "cornflower"
+item/21/mesh = ExtResource("17_haxkv")
+item/21/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/21/mesh_cast_shadow = 1
+item/21/shapes = []
+item/21/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/21/navigation_layers = 1
+item/22/name = "furnace"
+item/22/mesh = ExtResource("15_nw1yx")
+item/22/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/22/mesh_cast_shadow = 1
+item/22/shapes = [SubResource("BoxShape3D_smuq3"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/22/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/22/navigation_layers = 1
+item/23/name = "iron_ore"
+item/23/mesh = ExtResource("16_ftcee")
+item/23/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/23/mesh_cast_shadow = 1
+item/23/shapes = [SubResource("BoxShape3D_10o61"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/23/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/23/navigation_layers = 1
+item/24/name = "gold_ore"
+item/24/mesh = ExtResource("17_qogbe")
+item/24/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/24/mesh_cast_shadow = 1
+item/24/shapes = [SubResource("BoxShape3D_hmb8a"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/24/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/24/navigation_layers = 1
+item/25/name = "diamond_ore"
+item/25/mesh = ExtResource("18_ntran")
+item/25/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/25/mesh_cast_shadow = 1
+item/25/shapes = [SubResource("BoxShape3D_mdel1"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/25/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/25/navigation_layers = 1
+item/26/name = "oak_planks"
+item/26/mesh = ExtResource("22_jg5lf")
+item/26/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/26/mesh_cast_shadow = 1
+item/26/shapes = [SubResource("BoxShape3D_o14jv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/26/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/26/navigation_layers = 1
+item/27/name = "snow_block"
+item/27/mesh = ExtResource("20_nw1yx")
+item/27/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/27/mesh_cast_shadow = 1
+item/27/shapes = [SubResource("BoxShape3D_qogbe"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/27/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/27/navigation_layers = 1
+item/28/name = "oak_wood"
+item/28/mesh = ExtResource("24_3p7ju")
+item/28/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/28/mesh_cast_shadow = 1
+item/28/shapes = [SubResource("BoxShape3D_6bfyg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/28/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/28/navigation_layers = 1
+item/29/name = "diorite"
+item/29/mesh = ExtResource("22_y8tf5")
+item/29/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/29/mesh_cast_shadow = 1
+item/29/shapes = [SubResource("BoxShape3D_haxkv"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/29/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/29/navigation_layers = 1
+item/30/name = "granite"
+item/30/mesh = ExtResource("24_dol6b")
+item/30/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/30/mesh_cast_shadow = 1
+item/30/shapes = [SubResource("BoxShape3D_jg5lf"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/30/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/30/navigation_layers = 1
+item/31/name = "andesite"
+item/31/mesh = ExtResource("25_gthcv")
+item/31/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/31/mesh_cast_shadow = 1
+item/31/shapes = [SubResource("BoxShape3D_3p7ju"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/31/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/31/navigation_layers = 1
+item/32/name = "blue_ice"
+item/32/mesh = ExtResource("26_w31n8")
+item/32/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/32/mesh_cast_shadow = 1
+item/32/shapes = [SubResource("BoxShape3D_mi0ow"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/32/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/32/navigation_layers = 1
+item/33/name = "ice_block"
+item/33/mesh = ExtResource("30_mi0ow")
+item/33/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/33/mesh_cast_shadow = 1
+item/33/shapes = [SubResource("BoxShape3D_nwsjh"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/33/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/33/navigation_layers = 1
+item/34/name = "snow_layer"
+item/34/mesh = ExtResource("28_7op3e")
+item/34/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
+item/34/mesh_cast_shadow = 1
+item/34/shapes = []
+item/34/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/34/navigation_layers = 1
+item/35/name = "pumpkin"
+item/35/mesh = ExtResource("29_nfxs4")
+item/35/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/35/mesh_cast_shadow = 1
+item/35/shapes = [SubResource("BoxShape3D_vtu4l"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/35/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/35/navigation_layers = 1
+item/36/name = "melon"
+item/36/mesh = ExtResource("30_dol6b")
+item/36/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/36/mesh_cast_shadow = 1
+item/36/shapes = [SubResource("BoxShape3D_5hlrj"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/36/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/36/navigation_layers = 1
+item/37/name = "carved_pumpkin"
+item/37/mesh = ExtResource("31_u6ce4")
+item/37/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/37/mesh_cast_shadow = 1
+item/37/shapes = [SubResource("BoxShape3D_oi1y7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/37/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/37/navigation_layers = 1
+item/38/name = "redstone_ore"
+item/38/mesh = ExtResource("32_gf5wm")
+item/38/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/38/mesh_cast_shadow = 1
+item/38/shapes = [SubResource("BoxShape3D_tkvhc"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/38/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/38/navigation_layers = 1
+item/40/name = "redstone_block"
+item/40/mesh = ExtResource("35_v6asg")
+item/40/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/40/mesh_cast_shadow = 1
+item/40/shapes = [SubResource("BoxShape3D_aj6hr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/40/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/40/navigation_layers = 1
+item/41/name = "gold_block"
+item/41/mesh = ExtResource("36_vuep8")
+item/41/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/41/mesh_cast_shadow = 1
+item/41/shapes = [SubResource("BoxShape3D_1j2fh"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/41/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/41/navigation_layers = 1
+item/42/name = "white_wool"
+item/42/mesh = ExtResource("37_hhxch")
+item/42/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/42/mesh_cast_shadow = 1
+item/42/shapes = [SubResource("BoxShape3D_2rljr"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/42/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/42/navigation_layers = 1
+item/44/name = "redstone_torch"
+item/44/mesh = SubResource("BoxMesh_2rljr")
+item/44/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/44/mesh_cast_shadow = 1
+item/44/shapes = []
+item/44/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/44/navigation_layers = 1
+item/45/name = "diamond_block"
+item/45/mesh = ExtResource("39_i8r8g")
+item/45/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/45/mesh_cast_shadow = 1
+item/45/shapes = [SubResource("BoxShape3D_fvwf3"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/45/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/45/navigation_layers = 1
+item/46/name = "coal_block"
+item/46/mesh = ExtResource("40_y8tf5")
+item/46/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/46/mesh_cast_shadow = 1
+item/46/shapes = [SubResource("BoxShape3D_dol6b"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/46/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/46/navigation_layers = 1
+item/47/name = "oak_fence"
+item/47/mesh = ExtResource("43_5hlrj")
+item/47/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/47/mesh_cast_shadow = 1
+item/47/shapes = [SubResource("BoxShape3D_w31n8"), Transform3D(0.25, 0, 0, 0, 1.5, 0, 0, 0, 0.25, 0, 0.5, 0)]
+item/47/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/47/navigation_layers = 1
+item/50/name = "lapis_block"
+item/50/mesh = ExtResource("45_oi1y7")
+item/50/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/50/mesh_cast_shadow = 1
+item/50/shapes = [SubResource("BoxShape3D_71v0w"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/50/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/50/navigation_layers = 1
+item/51/name = "hay_bale"
+item/51/mesh = ExtResource("46_u6ce4")
+item/51/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/51/mesh_cast_shadow = 1
+item/51/shapes = [SubResource("BoxShape3D_m1gdm"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/51/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/51/navigation_layers = 1
+item/52/name = "cactus"
+item/52/mesh = ExtResource("47_gf5wm")
+item/52/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/52/mesh_cast_shadow = 1
+item/52/shapes = [SubResource("BoxShape3D_i8r8g"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/52/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/52/navigation_layers = 1
+item/53/name = "packed_ice"
+item/53/mesh = ExtResource("48_gu01m")
+item/53/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/53/mesh_cast_shadow = 1
+item/53/shapes = [SubResource("BoxShape3D_3kipw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/53/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/53/navigation_layers = 1
+item/54/name = "farmland"
+item/54/mesh = ExtResource("49_v6asg")
+item/54/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.037, 0)
+item/54/mesh_cast_shadow = 1
+item/54/shapes = [SubResource("BoxShape3D_syuof"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/54/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/54/navigation_layers = 1
+item/55/name = "iron_block"
+item/55/mesh = ExtResource("50_gu01m")
+item/55/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/55/mesh_cast_shadow = 1
+item/55/shapes = [SubResource("BoxShape3D_gu01m"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/55/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/55/navigation_layers = 1
+item/56/name = "emerald_block"
+item/56/mesh = ExtResource("51_v6asg")
+item/56/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/56/mesh_cast_shadow = 1
+item/56/shapes = [SubResource("BoxShape3D_v6asg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/56/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/56/navigation_layers = 1
+item/57/name = ""
+item/57/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/57/mesh_cast_shadow = 1
+item/57/shapes = []
+item/57/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/57/navigation_layers = 1
+metadata/_editor_source_scene = "res://scenes/node_3d.tscn"

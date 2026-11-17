@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c6fl7su0ndwls"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_1majw"]
+[ext_resource type="Texture2D" uid="uid://1yk3v6cvyrwk" path="res://assets/textures/item/lapis_lazuli.png" id="1_8csbj"]
 
 [resource]
 script = ExtResource("1_1majw")
+id = &"lapis_lazuli"
+display_name = "lapis lazuli"
+icon = ExtResource("1_8csbj")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

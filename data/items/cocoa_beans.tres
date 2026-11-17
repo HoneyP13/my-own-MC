@@ -1,7 +1,12 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://84cbandhmfpj"]
 
+[ext_resource type="Texture2D" uid="uid://d4n0cqs41funa" path="res://assets/textures/item/cocoa_beans.png" id="1_j58uq"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_mgwco"]
 
 [resource]
 script = ExtResource("1_mgwco")
+id = &"cocoa_beans"
+display_name = "cocoa beans"
+icon = ExtResource("1_j58uq")
+item_type = 6
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

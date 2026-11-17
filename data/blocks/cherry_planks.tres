@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cxpg6a0jpmv00"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_mb5rt"]
+
+[resource]
+script = ExtResource("1_mb5rt")
+id = &"cherry_planks"
+mesh_name = "cherry_planks"
+drop_id = &"cherry_planks"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

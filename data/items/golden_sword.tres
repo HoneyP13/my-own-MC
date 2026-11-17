@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://crtc0bf53y5ql"]
 
-[ext_resource type="Texture2D" uid="uid://cgfckieaeap3d" path="res://assets/textures/block/golden_sword.png" id="1_qawts"]
+[ext_resource type="Texture2D" uid="uid://wck5xyh70fun" path="res://assets/textures/item/golden_sword.png" id="1_qawts"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_ta0ku"]
 
 [resource]
@@ -9,6 +9,9 @@ id = &"golden_sword"
 display_name = "golden sword"
 icon = ExtResource("1_qawts")
 max_stack = 1
-on_use = 6
-on_use_value = 5
+item_type = 2
+attributes = Dictionary[int, float]({
+0: 32.0,
+1: 4.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,7 +1,17 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dgrnkpyr3s1fd"]
 
+[ext_resource type="Texture2D" uid="uid://d1qe26bdnmylg" path="res://assets/textures/item/bow.png" id="1_1458k"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_iqlgq"]
 
 [resource]
 script = ExtResource("1_iqlgq")
+id = &"bow"
+display_name = "bow"
+icon = ExtResource("1_1458k")
+max_stack = 1
+item_type = 2
+attributes = Dictionary[int, float]({
+0: 384.0,
+1: 5.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,14 +1,14 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://cb85scaxvpxqe"]
 
 [ext_resource type="Shader" uid="uid://bp4b6uvfwkd4o" path="res://assets/shaders/directional_3_axis.gdshader" id="1_rac5f"]
-[ext_resource type="Texture2D" uid="uid://c1kkarxgmwj2p" path="res://assets/textures/block/hay_bale_side.png" id="2_0mc13"]
-[ext_resource type="Texture2D" uid="uid://birp4es6aiame" path="res://assets/textures/block/hay_bale_top.png" id="3_rreaa"]
+[ext_resource type="Texture2D" uid="uid://ck0fhnxxmuopb" path="res://assets/textures/block/hay_block_side.png" id="2_rac5f"]
+[ext_resource type="Texture2D" uid="uid://d2bfhfmprdy0e" path="res://assets/textures/block/hay_block_top.png" id="3_0mc13"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0
 shader = ExtResource("1_rac5f")
-shader_parameter/texture_top = ExtResource("3_rreaa")
-shader_parameter/texture_side = ExtResource("2_0mc13")
+shader_parameter/texture_top = ExtResource("3_0mc13")
+shader_parameter/texture_side = ExtResource("2_rac5f")
 shader_parameter/corner_offset = Vector3(0.5, 0.5, 0.5)
 
 [resource]

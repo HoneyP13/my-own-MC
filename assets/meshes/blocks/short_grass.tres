@@ -1,13 +1,19 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://b35h1klkb40si"]
 
-[ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_0gy5s"]
-[ext_resource type="Texture2D" uid="uid://cthbhrsdnb2ac" path="res://assets/textures/block/short_grass.png" id="1_sb7jn"]
+[ext_resource type="Shader" uid="uid://wgtygtbrl3lk" path="res://assets/shaders/tinted_cutout.gdshader" id="1_fvckk"]
+[ext_resource type="Texture2D" uid="uid://morwid0odnds" path="res://assets/textures/block/short_grass.png" id="1_sb7jn"]
+[ext_resource type="Texture2D" uid="uid://dl10nayjksjlg" path="res://assets/textures/colormap/grass.png" id="3_dhvwh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
 render_priority = 0
-shader = ExtResource("1_0gy5s")
-shader_parameter/grow_amount = 0.50000002375
-shader_parameter/albedo_texture = ExtResource("1_sb7jn")
+shader = ExtResource("1_fvckk")
+shader_parameter/albedo_tex = ExtResource("1_sb7jn")
+shader_parameter/colormap = ExtResource("3_dhvwh")
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/use_fixed_tint = false
+shader_parameter/fixed_tint = Vector3(0.38, 0.6, 0.38)
+shader_parameter/climate_origin = Vector2(-48, -48)
+shader_parameter/climate_size = Vector2(96, 96)
 
 [resource]
 lightmap_size_hint = Vector2i(14, 21)

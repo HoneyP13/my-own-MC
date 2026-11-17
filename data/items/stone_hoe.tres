@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://jrbelqgnyoco"]
 
-[ext_resource type="Texture2D" uid="uid://cgwbwfvirqm3l" path="res://assets/textures/block/stone_hoe.png" id="1_03fli"]
+[ext_resource type="Texture2D" uid="uid://byi0quqtrudbs" path="res://assets/textures/item/stone_hoe.png" id="1_03fli"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_jfgmm"]
 
 [resource]

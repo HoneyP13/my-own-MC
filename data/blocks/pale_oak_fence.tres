@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cmq5p0gp6djlf"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_e4sef"]
+
+[resource]
+script = ExtResource("1_e4sef")
+id = &"pale_oak_fence"
+mesh_name = "pale_oak_fence"
+drop_id = &"pale_oak_fence"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+transparent = true
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+waterloggable = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

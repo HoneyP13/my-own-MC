@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cb8qinxjlqxsp"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_jf4ky"]
+
+[resource]
+script = ExtResource("1_jf4ky")
+id = &"crimson_stem"
+mesh_name = "crimson_stem"
+drop_id = &"crimson_stem"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 2.0
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

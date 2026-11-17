@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://ckh6stbt8qdih"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_4l68e"]
+
+[resource]
+script = ExtResource("1_4l68e")
+id = &"acacia_fence"
+mesh_name = "acacia_fence"
+drop_id = &"acacia_fence"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+transparent = true
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+waterloggable = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

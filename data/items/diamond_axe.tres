@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://ijutnx15rkr3"]
 
-[ext_resource type="Texture2D" uid="uid://dpo1l04htt274" path="res://assets/textures/block/diamond_axe.png" id="1_tx2gj"]
+[ext_resource type="Texture2D" uid="uid://82yxw4f2te1a" path="res://assets/textures/item/diamond_axe.png" id="1_tx2gj"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_1q1qr"]
 
 [resource]
@@ -9,6 +9,8 @@ id = &"diamond_axe"
 display_name = "diamond axe"
 icon = ExtResource("1_tx2gj")
 max_stack = 1
-on_use = 6
-on_use_value = 5
+attributes = Dictionary[int, float]({
+0: 1561.0,
+1: 9.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

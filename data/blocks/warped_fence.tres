@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://bawmg1648myxl"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_6k74g"]
+
+[resource]
+script = ExtResource("1_6k74g")
+id = &"warped_fence"
+mesh_name = "warped_fence"
+drop_id = &"warped_fence"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+transparent = true
+waterloggable = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

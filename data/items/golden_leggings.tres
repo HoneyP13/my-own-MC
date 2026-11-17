@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://d2y868dhkm01d"]
 
-[ext_resource type="Texture2D" uid="uid://gt3h2by0qyum" path="res://assets/textures/block/golden_leggings.png" id="1_58npo"]
+[ext_resource type="Texture2D" uid="uid://rlqq5a068bav" path="res://assets/textures/item/golden_leggings.png" id="1_58npo"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_vv5wt"]
 
 [resource]
@@ -9,5 +9,10 @@ id = &"golden_leggings"
 display_name = "golden leggings"
 icon = ExtResource("1_58npo")
 max_stack = 1
-on_use = 8
+item_type = 3
+attributes = Dictionary[int, float]({
+0: 105.0,
+2: 3.0,
+6: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

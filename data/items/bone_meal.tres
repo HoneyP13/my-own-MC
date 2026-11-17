@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://btbpyhy15v6rw"]
+
+[ext_resource type="Texture2D" uid="uid://b4dnt25yh5tul" path="res://assets/textures/item/bone_meal.png" id="1_2hivv"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_1dfd7"]
+
+[resource]
+script = ExtResource("2_1dfd7")
+id = &"bone_meal"
+display_name = "bone_meal"
+icon = ExtResource("1_2hivv")
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

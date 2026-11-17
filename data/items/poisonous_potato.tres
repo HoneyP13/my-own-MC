@@ -1,10 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://de6jf5tywc0t5"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_0taja"]
+[ext_resource type="Texture2D" uid="uid://c262xj4lpaopp" path="res://assets/textures/item/poisonous_potato.png" id="1_qejyi"]
 
 [resource]
 script = ExtResource("1_0taja")
 id = &"poisonous_potato"
 display_name = "poisonous_potato"
+icon = ExtResource("1_qejyi")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 2.0,
+4: 1.2,
+5: 0.8
+})
 give_effect = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

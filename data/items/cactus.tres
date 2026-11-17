@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://du3rkhiedp3pl"]
 
-[ext_resource type="Texture2D" uid="uid://ciarhfwfaebir" path="res://assets/textures/block/cactus_side.png" id="1_i7vcg"]
+[ext_resource type="Texture2D" uid="uid://d2powax1omfuv" path="res://assets/textures/block/cactus_side.png" id="1_i7vcg"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_jhk3t"]
 
 [resource]
@@ -9,4 +9,5 @@ block_id = &"cactus"
 id = &"cactus"
 display_name = "cactus"
 icon = ExtResource("1_i7vcg")
+item_type = 10
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

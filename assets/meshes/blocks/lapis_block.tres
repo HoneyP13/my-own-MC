@@ -1,0 +1,12 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://clmkhojc2bsp6"]
+
+[ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_yvyos"]
+[ext_resource type="Texture2D" uid="uid://bekpfgmrckxso" path="res://assets/textures/block/lapis_block.png" id="2_xyswj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_yvyos")
+shader_parameter/texture_2d = ExtResource("2_xyswj")
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

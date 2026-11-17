@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cfdjgmghqa1yo"]
 
-[ext_resource type="Texture2D" uid="uid://bxuppekr0evd6" path="res://assets/textures/block/diamond_sword.png" id="1_tylii"]
+[ext_resource type="Texture2D" uid="uid://dlej2dhi2dqov" path="res://assets/textures/item/diamond_sword.png" id="1_tylii"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_ys5ff"]
 
 [resource]
@@ -9,6 +9,9 @@ id = &"diamond_sword"
 display_name = "diamond sword"
 icon = ExtResource("1_tylii")
 max_stack = 1
-on_use = 6
-on_use_value = 6
+item_type = 2
+attributes = Dictionary[int, float]({
+0: 1561.0,
+1: 7.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

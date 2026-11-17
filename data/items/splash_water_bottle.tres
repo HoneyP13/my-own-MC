@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cg4pdqotosw0i"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_p4l7p"]
+[ext_resource type="Texture2D" uid="uid://dxu6we1t1ldxf" path="res://assets/textures/item/splash_potion.png" id="1_xi3sl"]
 
 [resource]
 script = ExtResource("1_p4l7p")
+id = &"splash_water_bottle"
+display_name = "splash water bottle"
+icon = ExtResource("1_xi3sl")
+max_stack = 1
+item_type = 7
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

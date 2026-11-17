@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://bvd1scgha5fm7"]
 
-[ext_resource type="Texture2D" uid="uid://b8sq1wpw0yhof" path="res://assets/textures/block/diamond_ore.png" id="1_uxb44"]
+[ext_resource type="Texture2D" uid="uid://dbxfuojo2yxrg" path="res://assets/textures/block/diamond_ore.png" id="1_uxb44"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_akds6"]
 
 [resource]

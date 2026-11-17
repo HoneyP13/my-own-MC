@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bwec4em4vh6t"]
 
-[ext_resource type="Texture2D" uid="uid://bm6myjga0f7bi" path="res://assets/textures/block/golden_chestplate.png" id="1_un44b"]
+[ext_resource type="Texture2D" uid="uid://c0ibx4m4okl0u" path="res://assets/textures/item/golden_chestplate.png" id="1_un44b"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_pmfq1"]
 
 [resource]
@@ -9,5 +9,10 @@ id = &"golden_chestplate"
 display_name = "golden chestplate"
 icon = ExtResource("1_un44b")
 max_stack = 1
-on_use = 8
+item_type = 3
+attributes = Dictionary[int, float]({
+0: 112.0,
+2: 5.0,
+6: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://kw6iaeesghfr"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_ej53d"]
+[ext_resource type="Texture2D" uid="uid://dkcmr6x1wiwaj" path="res://assets/textures/item/spider_spawn_egg.png" id="1_j5wu0"]
 
 [resource]
 script = ExtResource("1_ej53d")
+id = &"spider_spawn_egg"
+display_name = "spider spawn egg"
+icon = ExtResource("1_j5wu0")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

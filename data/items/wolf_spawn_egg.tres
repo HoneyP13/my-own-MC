@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dc2anofgmipuj"]
 
+[ext_resource type="Texture2D" uid="uid://s4cjnjb4ke1n" path="res://assets/textures/item/wolf_spawn_egg.png" id="1_whqmw"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_wrbub"]
 
 [resource]
 script = ExtResource("1_wrbub")
+id = &"wolf_spawn_egg"
+display_name = "wolf_spawn_egg"
+icon = ExtResource("1_whqmw")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

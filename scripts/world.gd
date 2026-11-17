@@ -1,7 +1,7 @@
 extends Node3D
 
 #const SAVE_PATH := "user://world_save.dat"
-const SAVE_VERSION := 3
+const SAVE_VERSION := 4
 const WORLD_RADIUS_CHUNKS := 3   # world is (2*3)x(2*3) chunks = 96x96 blocks. Raise it later.
 const NEIGHBORS: Array[Vector3i] = [
 	Vector3i.RIGHT, Vector3i.LEFT, Vector3i.UP, Vector3i.DOWN, Vector3i.BACK, Vector3i.FORWARD]
@@ -35,6 +35,17 @@ const COW_SCENE = preload("uid://y4kxawccfa18")
 const SHEEP_SCENE = preload("uid://r3pfy4dfhvjo")
 const CREEPER_SCENE = preload("uid://bbnqxxkrt56m0")
 const ZOMBIE_SCENE = preload("uid://b76qcri4gl1we")
+## mob id -> scene, for spawn_mob() (the /summon command and the hostile spawner use it)
+const MOB_SCENES := {
+	&"pig": PIG_SCENE, &"chicken": CHICKEN_SCENE, &"cow": COW_SCENE, &"sheep": SHEEP_SCENE,
+	&"creeper": CREEPER_SCENE, &"zombie": ZOMBIE_SCENE,
+}
+
+# The three systems this file now drives. They're plain child nodes, created in _ready().
+var states: BlockStates      # per-cell block state: lit furnaces, bed halves, fence arms
+var day_night: DayNight      # the clock, the sun and the sky
+var spawner: MobSpawner      # hostile mobs
+var bed_spawn := Vector3i(0, -999999, 0)   # cell of the foot of the bed you last used (NO_CELL = none)
 
 func _ready() -> void:
 	player.hit_pressed.connect(_on_player_hit_pressed)
@@ -47,13 +58,28 @@ func _ready() -> void:
 	if fluids_map.mesh_library == null:
 		fluids_map.mesh_library = preload("uid://bt86017oxii2w")
 	_setup_water_surface()
+	# These have to exist before load_game(), which fills them in.
+	states = BlockStates.new()
+	add_child(states)
+	states.setup(self)
+	day_night = DayNight.new()
+	add_child(day_night)
+	day_night.setup(env)
+	spawner = MobSpawner.new()
+	add_child(spawner)
+	spawner.setup(self)
 	if not load_game():
 		world_seed = randi()
 		generator = TerrainGenerator.new(world_seed, SEA_LEVEL)
 		generate_world()
+		BiomeTint.setup(generator, [grid_map.mesh_library], HALF_WORLD)
 	for b in Registry.blocks.values():
 		if grid_map.mesh_library.find_item_by_name(b.mesh_name) == GridMap.INVALID_CELL_ITEM:
 			push_warning("Block '%s': no mesh '%s' in terrain library" % [b.id, b.mesh_name])
+	BlockRules.validate(grid_map.mesh_library)
+	for item_id in [&"bucket", &"water_bucket", &"lava_bucket"]:
+		if Registry.get_item(item_id) == null:
+			push_warning("Bucket item '%s' isn't in data/items, so buckets won't fully work" % item_id)
 	spawn_mobs.call_deferred()
 	_setup_outline()
 	_setup_crack()
@@ -188,7 +214,7 @@ func _process(delta: float) -> void:
 	_tick_furnaces(delta)
 	if is_debug_enabled:
 		var p := player.global_position
-		$HUD/DebugInfo/coordinates.text = "X: %.1f Y: %.1f Z: %.1f  Biome: %s" % [p.x, p.y, p.z, generator.biome_at(floori(p.x), floori(p.z))]
+		$HUD/DebugInfo/coordinates.text = "X: %.1f Y: %.1f Z: %.1f  Biome: %s  Day %d %s" % [p.x, p.y, p.z, generator.biome_at(floori(p.x), floori(p.z)), day_night.day_count + 1, day_night.get_clock_string()]
 	var in_lava := fluid_at(player.global_position) == &"lava" \
 		or fluid_at(player.global_position + Vector3.DOWN * 0.8) == &"lava"
 	if (entered_void or in_lava or player.is_starving) and not player.is_dead and player.can_be_hurt:
@@ -207,7 +233,7 @@ func _on_character_body_3d_player_died() -> void:
 
 func _on_respawn_pressed() -> void:
 	if hud.ui_state != hud.UIState.DEAD: return
-	player.respawn(spawnpoint)
+	player.respawn(_respawn_point())
 	hud.set_ui_state(hud.UIState.PLAYING)
 
 func _on_player_is_dead_changed(is_true: bool) -> void:
@@ -252,6 +278,8 @@ func _tick_furnaces(delta: float) -> void:   # call from _process
 				else: s[2].count += 1
 		else:
 			f.cook = 0.0
+		# Light the furnace mesh while fuel is burning. set_state does nothing if nothing changed.
+		states.set_state(cell, &"lit", f.burn > 0.0)
 
 var chests := {}
 func _new_chest() -> Dictionary:
@@ -276,6 +304,11 @@ func _on_player_use_pressed() -> void:
 			chests[target.cell] = _new_chest()
 		hud.open_chest(chests[target.cell].slots)
 		return
+	if hit_block != null and hit_block.id == &"bed" and not player.is_crouching:
+		_use_bed(target.cell)
+		return
+	if _use_bucket():
+		return
 	if target != null:
 		if target.place_cell.y < MIN_BUILD_HEIGHT:
 			hud._chat_print("Cannot build below Y:0")
@@ -289,10 +322,10 @@ func _on_player_use_pressed() -> void:
 			return
 	var def := Registry.get_item(hud.held_item.id)
 	if def == null: return
+	# use_on_block() used to be called up to three times per click (the second `if` repeated the
+	# first, and its body was a third call). Once is enough, and blocks are consumed on success.
 	if def.use_on_block(self, target) and def is BlockItemDef:
 		_consume_held_item()
-	if def.use_on_block(self, target) and def is ItemDef:
-		def.use_on_block(self, target)
 
 func _consume_held_item() -> void:
 	var slot = hud.current_hotbar_slot
@@ -304,6 +337,11 @@ func _consume_held_item() -> void:
 func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 	var block: BlockDef = Registry.get_block(block_id)
 	if block == null: return false
+	if BlockRules.is_multi(block_id):    # bed (and later doors, double chests...)
+		var turns := _facing_turns()
+		if not states.can_place_multi(block_id, hit.place_cell, turns): return false
+		states.place_multi(block_id, hit.place_cell, turns)
+		return true
 	var item_id := grid_map.mesh_library.find_item_by_name(block.mesh_name)
 	var cell := hit.place_cell
 	if item_id == GridMap.INVALID_CELL_ITEM: return false
@@ -314,7 +352,13 @@ func place_block(block_id: StringName, hit: VoxelRaycast.Hit) -> bool:
 		&"log", &"hay_bale": orientation = _log_orientation(hit.normal)
 		&"chest", &"furnace", &"carved_pumpkin": orientation = _facing_orientation()
 	grid_map.set_cell_item(cell, item_id, orientation)
+	states.refresh(cell)               # e.g. a new fence looks around for neighbours
+	states.refresh_neighbors(cell)     # ...and the neighbours look at it
 	return true
+
+## How many quarter-turns the player is facing away from -Z (0..3).
+func _facing_turns() -> int:
+	return posmod(roundi(player.look_rotation.y / (PI / 2.0)), 4)
 
 func _facing_orientation() -> int:
 	var yaw := roundf(player.look_rotation.y / (PI / 2.0)) * (PI / 2.0)
@@ -334,7 +378,7 @@ func _on_player_select_pressed() -> void:
 	var target := get_targeted_block()
 	if target == null: return
 	object_info.set_text(str(target.cell, " ", target.normal, " ", target.place_cell))
-	var block: BlockDef = Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(target.item))
+	var block: BlockDef = _block_for_item(target.item)
 	if block == null: return
 	var def := Registry.get_item(block.id)
 	if def == null: return
@@ -413,8 +457,15 @@ void fragment() {
 	_crack.visible = false
 	add_child(_crack)
 
+## The BlockDef for a cell's mesh. Variant meshes ("furnace_lit", "bed_head"...) are looked up
+## FIRST, so they always resolve to their base block however the Registry happens to list them.
 func _block_for_item(item: int) -> BlockDef:
-	return Registry.blocks_by_mesh.get(grid_map.mesh_library.get_item_name(item))
+	var mesh_name := grid_map.mesh_library.get_item_name(item)
+	var base := BlockRules.block_for_mesh(mesh_name)
+	if base != &"":
+		var b := Registry.get_block(base)
+		if b != null: return b
+	return Registry.blocks_by_mesh.get(mesh_name)
 
 ## Seconds needed to break `block` with whatever is in the player's hand.
 func _break_time(block: BlockDef) -> float:
@@ -478,15 +529,26 @@ func _tool_tier(block: BlockDef) -> int:   # -1 = no matching tool; golden count
 	return 0 if parts[0] == "golden" else TIERS.find(StringName(parts[0]))
 
 
-func _break_block(cell: Vector3i, block: BlockDef) -> void:
+## `drop` is false for explosions that destroy a block without leaving anything behind.
+func _break_block(cell: Vector3i, block: BlockDef, drop := true) -> void:
+	# A multi-cell block (a bed) goes as a whole. Only the cell that was mined drops anything.
+	for other in states.cells_of(cell):
+		if other == cell: continue
+		states.erase(other)
+		grid_map.set_cell_item(other, GridMap.INVALID_CELL_ITEM)
+		_broken[other] = true
+		_reveal_neighbors(other)
+		states.refresh_neighbors(other)
+	states.erase(cell)
 	grid_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
 	_broken[cell] = true
 	_reveal_neighbors(cell)
+	states.refresh_neighbors(cell)     # fences next to it lose their arm
 	var up := grid_map.get_cell_item(cell + Vector3i.UP)
 	if up != GridMap.INVALID_CELL_ITEM:
 		var up_def := _block_for_item(up)
 		if up_def != null and up_def.id in NEEDS_SUPPORT:
-			_break_block(cell + Vector3i.UP, up_def)
+			_break_block(cell + Vector3i.UP, up_def, drop)
 	if block.id == &"furnace" and furnaces.has(cell):
 		for stack in furnaces[cell].slots:
 			if stack != null: spawn_drop(stack.id, stack.count, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
@@ -496,7 +558,7 @@ func _break_block(cell: Vector3i, block: BlockDef) -> void:
 			if stack != null: spawn_drop(stack.id, stack.count, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		chests.erase(cell)
 	var can_harvest := block.req_tier == &"" or _tool_tier(block) >= TIERS.find(block.req_tier)
-	if can_harvest:
+	if drop and can_harvest:
 		spawn_drop(block.drop_id, randi_range(block.drop_min, block.drop_max), grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
 		#if block.drop_id != &"" and randi() % 100 < block.drop_chance:
 			#spawn_drop(block.drop_id, 1, grid_map.to_global(grid_map.map_to_local(cell)), Vector3(randf_range(-1, 1), 3, randf_range(-1, 1)))
@@ -523,6 +585,9 @@ func save_game() -> void:
 		"broken": _pack_broken(),
 		"furnaces": furnaces,
 		"chests": chests,
+		"block_states": states.pack(),
+		"clock": day_night.to_dict(),
+		"bed_spawn": bed_spawn,
 	}
 	var f := FileAccess.open(Global.save_path, FileAccess.WRITE)
 	if f == null:
@@ -535,7 +600,7 @@ func load_game() -> bool:
 	var f := FileAccess.open(Global.save_path, FileAccess.READ)
 	if f == null: return false
 	var data = f.get_var()
-	if typeof(data) != TYPE_DICTIONARY or data.get("version", 0) != SAVE_VERSION:
+	if typeof(data) != TYPE_DICTIONARY or not data.get("version", 0) in [3, SAVE_VERSION]:   # v3 saves just lack the new fields
 		push_warning("Save file missing or from another version, ignoring it.")
 		return false
 	
@@ -544,6 +609,9 @@ func load_game() -> bool:
 	_unpack_broken(data["broken"])
 	_unpack_grid(grid_map, data["terrain"])
 	_unpack_grid(fluids_map, data["fluids"])
+	states.unpack(data.get("block_states", {}))
+	day_night.from_dict(data.get("clock", {}))
+	bed_spawn = data.get("bed_spawn", NO_CELL)
 
 	spawnpoint = generator.find_spawn()
 	furnaces = data.get("furnaces", {})
@@ -574,6 +642,9 @@ func generate_world() -> void:
 	player.velocity = Vector3.ZERO
 	player.global_position = spawnpoint
 	furnaces.clear()
+	chests.clear()
+	states.clear()
+	bed_spawn = NO_CELL
 
 func _pack_broken() -> PackedInt32Array:
 	var out := PackedInt32Array()
@@ -613,3 +684,267 @@ func _unpack_grid(grid: GridMap, packed: PackedInt32Array) -> void:
 	grid.clear()
 	for i in range(0, packed.size(), 5):
 		grid.set_cell_item(Vector3i(packed[i], packed[i + 1], packed[i + 2]), packed[i + 3], packed[i + 4])
+
+
+# --- Looking at the world (used by mobs and the spawner) -----------------------------------------------
+# The terrain GridMap leaves out buried blocks, so "empty cell" does NOT mean "air". These helpers
+# answer properly by also asking the generator what natural terrain would be there.
+
+const NO_Y := -999999
+const HALF_WORLD := WORLD_RADIUS_CHUNKS * TerrainGenerator.CHUNK_SIZE
+## Solid blocks that still let light through (so the sky counts as "visible" through them).
+const SEE_THROUGH := [&"glass", &"ice_block"]
+
+func in_world_bounds(x: int, z: int) -> bool:
+	return x >= -HALF_WORLD and x < HALF_WORLD and z >= -HALF_WORLD and z < HALF_WORLD
+
+## Would this cell stop a walking body? Plants and torches don't; stone, logs and leaves do.
+func is_solid_at(cell: Vector3i) -> bool:
+	var item := grid_map.get_cell_item(cell)
+	if item != GridMap.INVALID_CELL_ITEM:
+		var b := _block_for_item(item)
+		return b == null or not b.id in NEEDS_SUPPORT
+	if cell.y < MIN_BUILD_HEIGHT: return true
+	if _broken.has(cell) or not in_world_bounds(cell.x, cell.z): return false
+	return generator.block_at(cell.x, cell.y, cell.z) != &""
+
+func is_opaque_at(cell: Vector3i) -> bool:
+	if not is_solid_at(cell): return false
+	var item := grid_map.get_cell_item(cell)
+	if item == GridMap.INVALID_CELL_ITEM: return true    # buried natural terrain
+	var b := _block_for_item(item)
+	return b == null or not b.id in SEE_THROUGH
+
+## How many opaque blocks sit above `cell` (counting stops at `limit`, since that's all callers need).
+func cover_depth(cell: Vector3i, limit := 8) -> int:
+	var n := 0
+	for y in range(cell.y + 1, MAX_BUILD_HEIGHT + 2):
+		if is_opaque_at(Vector3i(cell.x, y, cell.z)):
+			n += 1
+			if n >= limit: break
+	return n
+
+func is_sky_exposed(pos: Vector3) -> bool:
+	return cover_depth(world_to_cell(pos), 1) == 0
+
+## The highest cell between `around_y + 12` and `around_y - 24` where a 2-block-tall body fits while
+## standing on something solid. NO_Y if the column has none. Anchoring on the player's own height is
+## what makes this find cave floors when you're underground and the surface when you're not.
+func find_standing_y(x: int, z: int, around_y: int) -> int:
+	var top := mini(around_y + 12, MAX_BUILD_HEIGHT)
+	var low := maxi(around_y - 24, MIN_BUILD_HEIGHT + 1)
+	for y in range(top, low - 1, -1):
+		var c := Vector3i(x, y, z)
+		if is_solid_at(c + Vector3i.DOWN) and not is_solid_at(c) and not is_solid_at(c + Vector3i.UP):
+			return y
+	return NO_Y
+
+## True if nothing solid is between the two points (terrain layer only; the player is ignored).
+func has_line_of_sight(from: Vector3, to: Vector3) -> bool:
+	var q := PhysicsRayQueryParameters3D.create(from, to, 1)
+	q.exclude = [player.get_rid()]
+	return get_world_3d().direct_space_state.intersect_ray(q).is_empty()
+
+func spawn_mob(id: StringName, pos: Vector3) -> Mob:
+	var scene: PackedScene = MOB_SCENES.get(id)
+	if scene == null: return null
+	var node := scene.instantiate()
+	var mob := node as Mob
+	if mob == null:    # a scene whose root doesn't use mob.gd
+		node.queue_free()
+		return null
+	mob.mob_id = id    # set BEFORE add_child so the mob's _ready() applies the right preset
+	add_child(mob)
+	mob.global_position = pos
+	return mob
+
+
+# --- Explosions ---------------------------------------------------------------------------------------------
+
+## Blow a round hole. Bedrock (hardness < 0) survives. About a third of destroyed blocks drop.
+func explode(center: Vector3, radius := 3.0) -> void:
+	var c := world_to_cell(center)
+	var r := ceili(radius)
+	for dx in range(-r, r + 1):
+		for dy in range(-r, r + 1):
+			for dz in range(-r, r + 1):
+				if Vector3(dx, dy, dz).length() > radius: continue
+				var cell := c + Vector3i(dx, dy, dz)
+				if cell.y < MIN_BUILD_HEIGHT or cell.y > MAX_BUILD_HEIGHT: continue
+				var item := grid_map.get_cell_item(cell)
+				if item != GridMap.INVALID_CELL_ITEM:
+					var b := _block_for_item(item)
+					if b != null and b.hardness >= 0.0:
+						_break_block(cell, b, randf() < 0.3)
+				elif not _broken.has(cell) and in_world_bounds(cell.x, cell.z):
+					# Buried natural terrain isn't in the GridMap; dig it out "virtually" and
+					# let _reveal_neighbors draw the new crater wall.
+					var natural := generator.block_at(cell.x, cell.y, cell.z)
+					var nb := Registry.get_block(natural)
+					if natural != &"" and (nb == null or nb.hardness >= 0.0):
+						_broken[cell] = true
+						_reveal_neighbors(cell)
+				set_fluid_if(cell, &"")    # water and lava in the way are blown away too
+	# Whoever is nearby gets hurt, less the further they are.
+	var reach := radius * 2.0
+	var d := player.global_position.distance_to(center)
+	if d < reach and not player.is_dead and player.can_be_hurt:
+		player.hurt(maxi(1, roundi(16.0 * (1.0 - d / reach))))
+		if player.has_method("apply_knockback"):
+			player.apply_knockback((player.global_position - center).normalized(), 9.0)
+	for m: Mob in get_tree().get_nodes_in_group("mobs"):
+		var md := m.global_position.distance_to(center)
+		if md < reach: m.hurt(maxi(1, roundi(16.0 * (1.0 - md / reach))), center)
+
+## Remove fluid at `cell`, but only if kind == &"" (used by explosions; avoids touching empty cells).
+func set_fluid_if(cell: Vector3i, kind: StringName) -> void:
+	if kind == &"" and fluid_kind_at_cell(cell) != &"":
+		set_fluid(cell, &"")
+
+
+# --- Fluids and buckets -------------------------------------------------------------------------------------
+# Water in this game doesn't flow (yet), so every fluid cell is effectively a "source block".
+# Scooping removes the top cell of the column you point at; pouring fills one cell.
+
+const BUCKET_FILLED := {&"water_bucket": &"water", &"lava_bucket": &"lava"}
+
+func fluid_kind_at_cell(cell: Vector3i) -> StringName:
+	var item := fluids_map.get_cell_item(cell)
+	if item == GridMap.INVALID_CELL_ITEM: return &""
+	match fluids_map.mesh_library.get_item_name(item):
+		"water", "water_surface": return &"water"
+		"lava": return &"lava"
+	return &""
+
+## Put `kind` (&"water", &"lava", or &"" to empty it) in a cell and keep the column's surface correct:
+## only the TOP water cell is drawn (as the thin surface plane), so the cell below must change when
+## something is added or removed above it.
+func set_fluid(cell: Vector3i, kind: StringName) -> void:
+	var lib := fluids_map.mesh_library
+	var water_id := lib.find_item_by_name("water")
+	var surface_id := lib.find_item_by_name("water_surface")
+	match kind:
+		&"":
+			fluids_map.set_cell_item(cell, GridMap.INVALID_CELL_ITEM)
+		&"lava":
+			fluids_map.set_cell_item(cell, lib.find_item_by_name("lava"))
+		&"water":
+			var covered := fluid_kind_at_cell(cell + Vector3i.UP) == &"water"
+			fluids_map.set_cell_item(cell, water_id if covered else surface_id)
+	var below := cell + Vector3i.DOWN
+	if fluid_kind_at_cell(below) == &"water":
+		var capped := fluid_kind_at_cell(cell) == &"water"
+		fluids_map.set_cell_item(below, water_id if capped else surface_id)
+
+## The fluid cell the player is pointing at, unless solid terrain is in the way.
+func _targeted_fluid() -> VoxelRaycast.Hit:
+	var fh := VoxelRaycast.cast_ray(fluids_map, player.get_eye_position(), player.get_look_direction(), player.reach)
+	if fh == null: return null
+	var t := get_targeted_block()
+	if t != null and t.distance <= fh.distance: return null
+	return fh
+
+func _in_build_limits(cell: Vector3i) -> bool:
+	if cell.y < MIN_BUILD_HEIGHT:
+		hud._chat_print("Cannot build below Y:0")
+		return false
+	if cell.y > MAX_BUILD_HEIGHT:
+		hud._chat_print("Cannot build above Y:64")
+		return false
+	return true
+
+## Handles right-clicking with any bucket. Returns true if the held item WAS a bucket, so the caller stops.
+func _use_bucket() -> bool:
+	var held = hud.held_item
+	if held == null: return false
+	var id: StringName = held.id
+	var creative: bool = player.current_gamemode == player.Gamemode.CREATIVE
+
+	if id == &"bucket":    # scoop
+		var scoop_hit := _targeted_fluid()
+		if scoop_hit == null: return true
+		var scoop_cell := scoop_hit.cell
+		var scooped := fluid_kind_at_cell(scoop_cell)
+		while fluid_kind_at_cell(scoop_cell + Vector3i.UP) == scooped:    # always take the top of the column
+			scoop_cell += Vector3i.UP
+		set_fluid(scoop_cell, &"")
+		if not creative:
+			_swap_held(&"water_bucket" if scooped == &"water" else &"lava_bucket")
+		return true
+
+	if not BUCKET_FILLED.has(id): return false
+	var kind: StringName = BUCKET_FILLED[id]
+	var target := get_targeted_block()
+	var fh := _targeted_fluid()
+	var cell: Vector3i
+	if fh != null:
+		cell = fh.cell                # pouring into/onto a fluid: replace it
+	elif target != null:
+		cell = target.place_cell
+		var hit_block := _block_for_item(target.item)
+		if kind == &"water" and hit_block != null and hit_block.id in BlockRules.WATERLOGGABLE:
+			cell = target.cell        # waterlog the fence you're pointing at instead of the air beside it
+	else:
+		return true                   # nothing to pour onto
+	if not _in_build_limits(cell): return true
+
+	var occupant := grid_map.get_cell_item(cell)
+	if occupant != GridMap.INVALID_CELL_ITEM:
+		var ob := _block_for_item(occupant)
+		if kind != &"water" or ob == null or not ob.id in BlockRules.WATERLOGGABLE:
+			return true               # a solid block is there (only water can share a cell, and only with a fence-like block)
+	var existing := fluid_kind_at_cell(cell)
+	if existing == kind: return true  # already full
+	if existing != &"":               # water meets lava: the cell turns to stone
+		set_fluid(cell, &"")
+		var stone := &"obsidian" if kind == &"water" else &"cobblestone"
+		var stone_id := grid_map.mesh_library.find_item_by_name(String(stone))
+		if stone_id != GridMap.INVALID_CELL_ITEM:
+			grid_map.set_cell_item(cell, stone_id)
+	else:
+		set_fluid(cell, kind)
+	if not creative: _swap_held(&"bucket")
+	return true
+
+## Turn the held stack's first item into `new_id` (one bucket in the stack becomes a full one).
+func _swap_held(new_id: StringName) -> void:
+	var slot: int = hud.current_hotbar_slot
+	var stack = hud.hotbar[slot]
+	if stack == null: return
+	if stack.count <= 1:
+		hud.hotbar[slot] = {"id": new_id, "count": 1}
+	else:
+		stack.count -= 1
+		var left: int = hud.add_item(new_id, 1)
+		if left > 0:
+			spawn_drop(new_id, left, player.get_eye_position(), player.get_look_direction() * 3.0)
+	hud.refresh_slots()
+
+
+# --- Beds and respawning ----------------------------------------------------------------------------------------
+
+func _use_bed(cell: Vector3i) -> void:
+	var origin: Vector3i = states.get_state(cell).get("origin", cell)
+	bed_spawn = origin
+	if not day_night.is_night():
+		hud._chat_print("Respawn point set. You can only sleep at night.")
+		return
+	for m: Mob in get_tree().get_nodes_in_group("hostile"):
+		var d := m.global_position - player.global_position
+		if Vector2(d.x, d.z).length() < 10.0 and absf(d.y) < 5.0:
+			hud._chat_print("You may not rest now, there are monsters nearby.")
+			return
+	day_night.skip_to_morning()
+	hud._chat_print("Good morning!")
+
+func _is_bed(cell: Vector3i) -> bool:
+	return states.get_state(cell).get("block", &"") == &"bed"
+
+## Where the player comes back: your bed if it still stands, else the world spawn.
+func _respawn_point() -> Vector3:
+	if bed_spawn != NO_CELL:
+		if _is_bed(bed_spawn):
+			return grid_map.to_global(grid_map.map_to_local(bed_spawn)) + Vector3.UP * 1.0
+		hud._chat_print("Your home bed was missing or obstructed.")
+		bed_spawn = NO_CELL
+	return spawnpoint

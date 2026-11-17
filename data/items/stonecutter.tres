@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://chbb0uernofpp"]
 
+[ext_resource type="Texture2D" uid="uid://cllrfbfak68jg" path="res://assets/textures/block/stonecutter_side.png" id="1_8t1tn"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_douv1"]
 
 [resource]
 script = ExtResource("1_douv1")
+block_id = &"stonecutter"
+id = &"stonecutter"
+display_name = "stonecutter"
+icon = ExtResource("1_8t1tn")
+item_type = 9
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://07vpr074wtxf"]
+
+[ext_resource type="Texture2D" uid="uid://b23wcb7nnsw4x" path="res://assets/textures/item/egg.png" id="1_udsm3"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_1r53r"]
+
+[resource]
+script = ExtResource("2_1r53r")
+id = &"egg"
+display_name = "egg"
+icon = ExtResource("1_udsm3")
+max_stack = 16
+item_type = 7
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

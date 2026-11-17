@@ -1,7 +1,16 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bjol6lovddmd4"]
 
+[ext_resource type="Texture2D" uid="uid://cj0ybbefsyeys" path="res://assets/textures/item/cooked_porkchop.png" id="1_lf5is"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_xkrlb"]
 
 [resource]
 script = ExtResource("1_xkrlb")
+id = &"cooked_porkchop"
+display_name = "cooked porkchop"
+icon = ExtResource("1_lf5is")
+attributes = Dictionary[int, float]({
+3: 8.0,
+4: 12.8,
+5: 8.533
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

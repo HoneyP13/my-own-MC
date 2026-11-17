@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dtlcqeba7r2f2"]
 
-[ext_resource type="Texture2D" uid="uid://dfqsthayodmxi" path="res://assets/textures/block/iron_pickaxe.png" id="1_n1qyv"]
+[ext_resource type="Texture2D" uid="uid://50jmmk2m67pi" path="res://assets/textures/item/iron_pickaxe.png" id="1_n1qyv"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_2yieb"]
 
 [resource]
@@ -10,4 +10,8 @@ display_name = "iron pickaxe"
 icon = ExtResource("1_n1qyv")
 max_stack = 1
 item_type = 1
+attributes = Dictionary[int, float]({
+0: 250.0,
+1: 4.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://bg27kxb45ahc7"]
 
+[ext_resource type="Texture2D" uid="uid://coq10t3rkbt8b" path="res://assets/textures/block/barrel_side.png" id="1_43vwe"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_gkbi0"]
 
 [resource]
 script = ExtResource("1_gkbi0")
+block_id = &"barrel"
+id = &"barrel"
+display_name = "barrel"
+icon = ExtResource("1_43vwe")
+item_type = 8
 metadata/_custom_type_script = "uid://bw6b1s4do376f"

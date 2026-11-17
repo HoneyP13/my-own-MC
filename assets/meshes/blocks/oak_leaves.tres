@@ -1,0 +1,19 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://ds1a83qd2bpqq"]
+
+[ext_resource type="Shader" uid="uid://wgtygtbrl3lk" path="res://assets/shaders/tinted_cutout.gdshader" id="1_86wdt"]
+[ext_resource type="Texture2D" uid="uid://do72gew3bk2fo" path="res://assets/textures/block/oak_leaves.png" id="2_86wdt"]
+[ext_resource type="Texture2D" uid="uid://dnctmq17whpn3" path="res://assets/textures/colormap/foliage.png" id="3_rjfew"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
+render_priority = 0
+shader = ExtResource("1_86wdt")
+shader_parameter/albedo_tex = ExtResource("2_86wdt")
+shader_parameter/colormap = ExtResource("3_rjfew")
+shader_parameter/alpha_cutoff = 0.5
+shader_parameter/use_fixed_tint = false
+shader_parameter/fixed_tint = Vector3(0.38, 0.6, 0.38)
+shader_parameter/climate_origin = Vector2(-48, -48)
+shader_parameter/climate_size = Vector2(96, 96)
+
+[resource]
+material = SubResource("ShaderMaterial_jvtcq")

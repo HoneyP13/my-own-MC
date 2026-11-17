@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dlqahgk2eoag0"]
 
-[ext_resource type="Texture2D" uid="uid://dq7tqpsp0fr8f" path="res://assets/textures/block/golden_apple.png" id="1_rir0n"]
+[ext_resource type="Texture2D" uid="uid://din3v3fa5cow5" path="res://assets/textures/item/golden_apple.png" id="1_rir0n"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_hplwy"]
 
 [resource]
@@ -8,5 +8,11 @@ script = ExtResource("2_hplwy")
 id = &"golden_apple"
 display_name = "golden apple"
 icon = ExtResource("1_rir0n")
-on_use = 5
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 4.0,
+4: 9.6,
+5: 6.4
+})
+give_effect = 5
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

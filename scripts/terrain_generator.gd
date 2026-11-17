@@ -88,7 +88,7 @@ func block_at(x: int, y: int, z: int) -> StringName:
 	if y == h:
 		if h < sea_level:   # lake bed
 			var r := _hash(x, 0, z, 41) % 100
-			if r < 12: return &"clay_block"
+			if r < 12: return &"clay"
 			if r < 24: return &"gravel"
 			return &"sand"
 		if sandy: return &"sand"
@@ -98,7 +98,6 @@ func block_at(x: int, y: int, z: int) -> StringName:
 	const ORES := [   # block, max_y, chance per 1000, hash salt, min surface height above sea level
 		[&"diamond_ore",       6,  4, 21, -99],
 		[&"emerald_ore",      24,  5, 23,   8],
-		[&"ruby_ore",          9,  4, 29, -99],
 		[&"gold_ore",         10,  8, 19, -99],
 		[&"lapis_lazuli_ore", 14, 10, 31, -99],
 		[&"redstone_ore",     10, 16, 37, -99],
@@ -173,7 +172,7 @@ func generate_chunk(chunk: Vector2i, terrain: GridMap, fluids: GridMap) -> void:
 			for y in range(h + 1, sea_level + 1):
 				fluids.set_cell_item(Vector3i(x, y, z), surface_id if y == sea_level else water_id)
 			if h < sea_level and biome_at(x, z) == &"snowy":
-				_place(terrain, Vector3i(x, sea_level, z), &"ice_block")
+				_place(terrain, Vector3i(x, sea_level, z), &"ice")
 			if h > sea_level + 1:
 				_decorate(terrain, x, z, h, biome_at(x, z))
 				# Trees. Look a little outside the chunk so trees on the border aren't cut in half; each chunk
@@ -187,10 +186,10 @@ func generate_chunk(chunk: Vector2i, terrain: GridMap, fluids: GridMap) -> void:
 				var tree_blocks := {}   # Vector3i -> StringName
 				for t in trees:
 					for c in _tree_leaves(t.x, t.y):
-						tree_blocks[c] = &"leaves"
+						tree_blocks[c] = &"oak_leaves"
 				for t in trees:
 					for c in _tree_logs(t.x, t.y):
-						tree_blocks[c] = &"log"     # logs overwrite leaves
+						tree_blocks[c] = &"oak_log"     # logs overwrite leaves
 
 				for c: Vector3i in tree_blocks:
 					if c.x < x0 or c.x >= x0 + CHUNK_SIZE or c.z < z0 or c.z >= z0 + CHUNK_SIZE: continue
@@ -214,9 +213,9 @@ func _decorate(terrain: GridMap, x: int, z: int, h: int, biome: StringName) -> v
 	var r := _hash(x, 1, z, 17) % 100
 	match biome:
 		&"plains", &"forest":
-			if r < 1: _place(terrain, above, &"blue_flower")
+			if r < 1: _place(terrain, above, &"cornflower")
 			elif r < 8: _place(terrain, above, &"short_grass")
-			elif r < 10: _place(terrain, above, &"red_flower")
+			elif r < 10: _place(terrain, above, &"poppy")
 			elif _hash(x, 4, z, 53) % 300 == 0: _place(terrain, above, &"pumpkin")
 		&"desert":
 			if _hash(x, 2, z, 43) % 70 == 0:

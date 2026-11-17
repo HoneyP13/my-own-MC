@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://fg4ukwnpfnni"]
+
+[ext_resource type="Texture2D" uid="uid://do72gew3bk2fo" path="res://assets/textures/block/oak_leaves.png" id="1_jgce4"]
+[ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_u0uxp"]
+
+[resource]
+script = ExtResource("2_u0uxp")
+block_id = &"oak_leaves"
+id = &"oak_leaves"
+display_name = "oak leaves"
+icon = ExtResource("1_jgce4")
+item_type = 10
+metadata/_custom_type_script = "uid://bw6b1s4do376f"

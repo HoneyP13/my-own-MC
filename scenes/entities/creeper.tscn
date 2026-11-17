@@ -217,6 +217,7 @@ mob_id = &"creeper"
 max_health = 10
 walking_speed = 2.0
 running_speed = 2.0
+drop_id = &"gunpowder"
 behavior = 2
 model_node = NodePath("creeper_model")
 head_pivot = NodePath("creeper_model/Body2/Head2")

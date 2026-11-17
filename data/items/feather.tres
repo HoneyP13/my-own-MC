@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cd1bj7l3u2tst"]
 
+[ext_resource type="Texture2D" uid="uid://dvse1i7dhxfm2" path="res://assets/textures/item/feather.png" id="1_7dxfs"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_yps78"]
 
 [resource]
 script = ExtResource("1_yps78")
+id = &"feather"
+display_name = "feather"
+icon = ExtResource("1_7dxfs")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

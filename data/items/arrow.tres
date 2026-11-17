@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c175mbrmw1tnd"]
 
+[ext_resource type="Texture2D" uid="uid://yf8voppnb72w" path="res://assets/textures/item/arrow.png" id="1_22fbi"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_cyonh"]
 
 [resource]
 script = ExtResource("1_cyonh")
+id = &"arrow"
+display_name = "arrow"
+icon = ExtResource("1_22fbi")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

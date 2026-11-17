@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://dufcxd42td0aj"]
 
-[ext_resource type="Texture2D" uid="uid://c1kkarxgmwj2p" path="res://assets/textures/block/hay_bale_side.png" id="1_5157w"]
+[ext_resource type="Texture2D" uid="uid://ck0fhnxxmuopb" path="res://assets/textures/block/hay_block_side.png" id="1_5157w"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="1_pu3mo"]
 
 [resource]

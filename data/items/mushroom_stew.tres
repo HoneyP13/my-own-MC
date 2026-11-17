@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b0sh0gvn2lud5"]
+
+[ext_resource type="Texture2D" uid="uid://brolctrn06ud2" path="res://assets/textures/item/mushroom_stew.png" id="1_qc45e"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_3ejod"]
+
+[resource]
+script = ExtResource("2_3ejod")
+id = &"mushroom_stew"
+display_name = "mushroom stew"
+icon = ExtResource("1_qc45e")
+max_stack = 1
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 6.0,
+4: 7.2,
+5: 4.8
+})
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

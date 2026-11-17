@@ -1,13 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b2pwujsaxe032"]
 
-[ext_resource type="Texture2D" uid="uid://bpr3em12hqrkm" path="res://assets/textures/block/leather_cap.png" id="1_1o0xq"]
+[ext_resource type="Texture2D" uid="uid://bllkwmepaxcwn" path="res://assets/textures/item/leather_helmet.png" id="1_1o0xq"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_hltxo"]
 
 [resource]
 script = ExtResource("2_hltxo")
-id = &"leather_cap"
+id = &"leather_helmet"
 display_name = "leather cap"
 icon = ExtResource("1_1o0xq")
 max_stack = 1
 item_type = 3
+attributes = Dictionary[int, float]({
+0: 55.0,
+2: 1.0,
+6: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

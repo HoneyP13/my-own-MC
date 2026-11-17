@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b7fy2j34ifkpd"]
 
+[ext_resource type="Texture2D" uid="uid://ctn6jot3wclmt" path="res://assets/textures/item/chicken_spawn_egg.png" id="1_8tl44"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_bwugk"]
 
 [resource]
 script = ExtResource("1_bwugk")
+id = &"chicken_spawn_egg"
+display_name = "chicken spawn egg"
+icon = ExtResource("1_8tl44")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

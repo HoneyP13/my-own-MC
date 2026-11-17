@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://br6drjggabbra"]
+
+[ext_resource type="Texture2D" uid="uid://cby02lhx75yly" path="res://assets/textures/item/salmon.png" id="1_gmvpp"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_pkgck"]
+
+[resource]
+script = ExtResource("2_pkgck")
+id = &"salmon"
+display_name = "raw_salmon"
+icon = ExtResource("1_gmvpp")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 2.0,
+4: 0.4,
+5: 0.267
+})
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

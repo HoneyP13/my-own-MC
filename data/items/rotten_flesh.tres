@@ -1,7 +1,18 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cbd1r1l8bwtv7"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_4q82k"]
+[ext_resource type="Texture2D" uid="uid://b7couqrspg8o" path="res://assets/textures/item/rotten_flesh.png" id="1_povvp"]
 
 [resource]
 script = ExtResource("1_4q82k")
+id = &"rotten_flesh"
+display_name = "rotten flesh"
+icon = ExtResource("1_povvp")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 4.0,
+4: 0.8,
+5: 0.533
+})
+give_effect = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

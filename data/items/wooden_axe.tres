@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dlnrrygaaa5i0"]
 
-[ext_resource type="Texture2D" uid="uid://cssdfuvbgwkc0" path="res://assets/textures/block/wooden_axe.png" id="1_tgsm3"]
+[ext_resource type="Texture2D" uid="uid://k1686w36ra6u" path="res://assets/textures/item/wooden_axe.png" id="1_tgsm3"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_xsgs7"]
 
 [resource]
@@ -9,6 +9,4 @@ id = &"wooden_axe"
 display_name = "wooden axe"
 icon = ExtResource("1_tgsm3")
 max_stack = 1
-on_use = 6
-on_use_value = 2
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

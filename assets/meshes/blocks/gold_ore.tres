@@ -1,7 +1,7 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://2a4aoapwjvfw"]
 
 [ext_resource type="Shader" uid="uid://b6x7if1lk4qn2" path="res://assets/shaders/single_texture.gdshader" id="1_rtc6f"]
-[ext_resource type="Texture2D" uid="uid://dpg7sucqpa7eb" path="res://assets/textures/block/gold_ore.png" id="2_rtc6f"]
+[ext_resource type="Texture2D" uid="uid://bxicihal5xh4g" path="res://assets/textures/block/gold_ore.png" id="2_rtc6f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jvtcq"]
 render_priority = 0

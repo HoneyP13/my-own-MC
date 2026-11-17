@@ -1,7 +1,17 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bo8a28pgsaxdk"]
 
+[ext_resource type="Texture2D" uid="uid://m4n0v458egwv" path="res://assets/textures/item/cooked_chicken.png" id="1_1yps4"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_es6ba"]
 
 [resource]
 script = ExtResource("1_es6ba")
+id = &"cooked_chicken"
+display_name = "cooked chicken"
+icon = ExtResource("1_1yps4")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 6.0,
+4: 7.2,
+5: 4.8
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

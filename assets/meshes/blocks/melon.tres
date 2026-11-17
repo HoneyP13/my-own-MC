@@ -1,0 +1,15 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://bo4p8tl3qw0k4"]
+
+[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_d7uvr"]
+[ext_resource type="Texture2D" uid="uid://bqnp7orj3wipx" path="res://assets/textures/block/melon_top.png" id="2_fh2me"]
+[ext_resource type="Texture2D" uid="uid://dh0fxeo711fv" path="res://assets/textures/block/melon_side.png" id="3_d7uvr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p88hg"]
+render_priority = 0
+shader = ExtResource("1_d7uvr")
+shader_parameter/texture_top = ExtResource("2_fh2me")
+shader_parameter/texture_side = ExtResource("3_d7uvr")
+shader_parameter/texture_bottom = ExtResource("2_fh2me")
+
+[resource]
+material = SubResource("ShaderMaterial_p88hg")

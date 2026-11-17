@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cyfejphsuyy8r"]
 
+[ext_resource type="Texture2D" uid="uid://b4rwpfr8ckhwc" path="res://assets/textures/item/villager_spawn_egg.png" id="1_8ayfm"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_kj1kp"]
 
 [resource]
 script = ExtResource("1_kj1kp")
+id = &"villager_spawn_egg"
+display_name = "villager spawn egg"
+icon = ExtResource("1_8ayfm")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

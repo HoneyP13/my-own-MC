@@ -1,16 +1,23 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://c5fq5nasnodoi"]
 
-[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_m1038"]
-[ext_resource type="Texture2D" uid="uid://deuxstquixp1n" path="res://assets/textures/block/dirt.png" id="2_m1038"]
-[ext_resource type="Texture2D" uid="uid://k4t3n1ca47dw" path="res://assets/textures/block/grass_side.png" id="3_w6xi1"]
-[ext_resource type="Texture2D" uid="uid://ce01l45ngsh8l" path="res://assets/textures/block/grass_top.png" id="4_dc11l"]
+[ext_resource type="Shader" uid="uid://c7e70l34pl41h" path="res://assets/shaders/tinted_grass_block.gdshader" id="1_w6xi1"]
+[ext_resource type="Texture2D" uid="uid://di3snv7lmn1d0" path="res://assets/textures/block/dirt.png" id="2_m1038"]
+[ext_resource type="Texture2D" uid="uid://dl10nayjksjlg" path="res://assets/textures/colormap/grass.png" id="3_dc11l"]
+[ext_resource type="Texture2D" uid="uid://c0tvv3scnxav5" path="res://assets/textures/block/grass_block_side.png" id="3_m1038"]
+[ext_resource type="Texture2D" uid="uid://cps7lvwve6vg6" path="res://assets/textures/block/grass_block_top.png" id="4_0auak"]
+[ext_resource type="Texture2D" uid="uid://dmpdkp7xuuo87" path="res://assets/textures/block/grass_block_side_overlay.png" id="4_abt50"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mkex"]
 render_priority = 0
-shader = ExtResource("1_m1038")
-shader_parameter/texture_top = ExtResource("4_dc11l")
-shader_parameter/texture_side = ExtResource("3_w6xi1")
-shader_parameter/texture_bottom = ExtResource("2_m1038")
+shader = ExtResource("1_w6xi1")
+shader_parameter/top_tex = ExtResource("4_0auak")
+shader_parameter/side_tex = ExtResource("3_m1038")
+shader_parameter/side_overlay_tex = ExtResource("4_abt50")
+shader_parameter/bottom_tex = ExtResource("2_m1038")
+shader_parameter/use_side_overlay = true
+shader_parameter/colormap = ExtResource("3_dc11l")
+shader_parameter/climate_origin = Vector2(-48, -48)
+shader_parameter/climate_size = Vector2(96, 96)
 
 [resource]
 material = SubResource("ShaderMaterial_2mkex")

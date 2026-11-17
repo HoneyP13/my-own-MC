@@ -57,21 +57,70 @@ const HALF_SHANK = preload("uid://b0x815uer06mj")
 const EMPTY_SHANK = preload("uid://b7t3cmr3ptk7o")
 
 const RECIPES := [
-	{"result": &"plank", "count": 4, "ingredients": {&"log": 1}},
-	#{"result": &"red_wool", "count": 1, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
-	#{"result": &"green_wool", "count": 1, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
-	#{"result": &"blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
-	#{"result": &"cyan_wool", "count": 1, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
-	#{"result": &"magenta_wool", "count": 1, "ingredients": {&"white_wool": 1, &"magenta_dye": 1}},
-	#{"result": &"yellow_wool", "count": 1, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
-	#{"result": &"black_wool", "count": 1, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
-	#{"result": &"gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
-	#{"result": &"light_gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
+	{"result": &"oak_planks", "count": 4, "ingredients": {&"oak_log": 1}},
+	{"result": &"birch_planks", "count": 4, "ingredients": {&"birch_log": 1}},
+	{"result": &"spruce_planks", "count": 4, "ingredients": {&"spruce_log": 1}},
+	{"result": &"acacia_planks", "count": 4, "ingredients": {&"acacia_log": 1}},
+	{"result": &"jungle_planks", "count": 4, "ingredients": {&"jungle_log": 1}},
+	{"result": &"dark_oak_planks", "count": 4, "ingredients": {&"dark_oak_log": 1}},
+	{"result": &"mangrove_planks", "count": 4, "ingredients": {&"mangrove_log": 1}},
+	{"result": &"cherry_planks", "count": 4, "ingredients": {&"cherry_log": 1}},
+	{"result": &"pale_oak_planks", "count": 4, "ingredients": {&"pale_oak_log": 1}},
+	{"result": &"poplar_planks", "count": 4, "ingredients": {&"poplar_log": 1}},
+	{"result": &"bamboo_planks", "count": 4, "ingredients": {&"bamboo_block": 1}},
+	{"result": &"crimson_planks", "count": 4, "ingredients": {&"crimson_stem": 1}},
+	{"result": &"warped_planks", "count": 4, "ingredients": {&"warped_stem": 1}},
+	{"result": &"oak_planks", "count": 4, "ingredients": {&"stripped_oak_log": 1}},
+	{"result": &"birch_planks", "count": 4, "ingredients": {&"stripped_birch_log": 1}},
+	{"result": &"spruce_planks", "count": 4, "ingredients": {&"stripped_spruce_log": 1}},
+	{"result": &"acacia_planks", "count": 4, "ingredients": {&"stripped_acacia_log": 1}},
+	{"result": &"jungle_planks", "count": 4, "ingredients": {&"stripped_jungle_log": 1}},
+	{"result": &"dark_oak_planks", "count": 4, "ingredients": {&"stripped_dark_oak_log": 1}},
+	{"result": &"mangrove_planks", "count": 4, "ingredients": {&"stripped_mangrove_log": 1}},
+	{"result": &"cherry_planks", "count": 4, "ingredients": {&"stripped_cherry_log": 1}},
+	{"result": &"pale_oak_planks", "count": 4, "ingredients": {&"stripped_pale_oak_log": 1}},
+	{"result": &"poplar_planks", "count": 4, "ingredients": {&"stripped_poplar_log": 1}},
+	{"result": &"bamboo_planks", "count": 4, "ingredients": {&"stripped_bamboo_block": 1}},
+	{"result": &"crimson_planks", "count": 4, "ingredients": {&"stripped_crimson_stem": 1}},
+	{"result": &"warped_planks", "count": 4, "ingredients": {&"stripped_warped_stem": 1}},
+	{"result": &"oak_planks", "count": 4, "ingredients": {&"stripped_oak_wood": 1}},
+	{"result": &"birch_planks", "count": 4, "ingredients": {&"stripped_birch_wood": 1}},
+	{"result": &"spruce_planks", "count": 4, "ingredients": {&"stripped_spruce_wood": 1}},
+	{"result": &"acacia_planks", "count": 4, "ingredients": {&"stripped_acacia_wood": 1}},
+	{"result": &"jungle_planks", "count": 4, "ingredients": {&"stripped_jungle_wood": 1}},
+	{"result": &"dark_oak_planks", "count": 4, "ingredients": {&"stripped_dark_oak_wood": 1}},
+	{"result": &"mangrove_planks", "count": 4, "ingredients": {&"stripped_mangrove_wood": 1}},
+	{"result": &"cherry_planks", "count": 4, "ingredients": {&"stripped_cherry_wood": 1}},
+	{"result": &"pale_oak_planks", "count": 4, "ingredients": {&"stripped_pale_oak_wood": 1}},
+	{"result": &"poplar_planks", "count": 4, "ingredients": {&"stripped_poplar_wood": 1}},
+	{"result": &"crimson_planks", "count": 4, "ingredients": {&"stripped_crimson_hyphae": 1}},
+	{"result": &"warped_planks", "count": 4, "ingredients": {&"stripped_warped_hyphae": 1}},
+	{"result": &"oak_planks", "count": 4, "ingredients": {&"oak_wood": 1}},
+	{"result": &"birch_planks", "count": 4, "ingredients": {&"birch_wood": 1}},
+	{"result": &"spruce_planks", "count": 4, "ingredients": {&"spruce_wood": 1}},
+	{"result": &"acacia_planks", "count": 4, "ingredients": {&"acacia_wood": 1}},
+	{"result": &"jungle_planks", "count": 4, "ingredients": {&"jungle_wood": 1}},
+	{"result": &"dark_oak_planks", "count": 4, "ingredients": {&"dark_oak_wood": 1}},
+	{"result": &"mangrove_planks", "count": 4, "ingredients": {&"mangrove_wood": 1}},
+	{"result": &"cherry_planks", "count": 4, "ingredients": {&"cherry_wood": 1}},
+	{"result": &"pale_oak_planks", "count": 4, "ingredients": {&"pale_oak_wood": 1}},
+	{"result": &"poplar_planks", "count": 4, "ingredients": {&"poplar_wood": 1}},
+	{"result": &"crimson_planks", "count": 4, "ingredients": {&"crimson_hyphae": 1}},
+	{"result": &"warped_planks", "count": 4, "ingredients": {&"warped_hyphae": 1}},
+	{"result": &"red_wool", "count": 1, "ingredients": {&"white_wool": 1, &"red_dye": 1}},
+	{"result": &"green_wool", "count": 1, "ingredients": {&"white_wool": 1, &"green_dye": 1}},
+	{"result": &"blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"blue_dye": 1}},
+	{"result": &"cyan_wool", "count": 1, "ingredients": {&"white_wool": 1, &"cyan_dye": 1}},
+	{"result": &"magenta_wool", "count": 1, "ingredients": {&"white_wool": 1, &"magenta_dye": 1}},
+	{"result": &"yellow_wool", "count": 1, "ingredients": {&"white_wool": 1, &"yellow_dye": 1}},
+	{"result": &"black_wool", "count": 1, "ingredients": {&"white_wool": 1, &"black_dye": 1}},
+	{"result": &"gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"gray_dye": 1}},
+	{"result": &"light_gray_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_gray_dye": 1}},
 	{"result": &"white_wool", "count": 1, "ingredients": {&"string": 4}},
-	#{"result": &"orange_wool", "count": 1, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
-	#{"result": &"pink_wool", "count": 1, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
-	#{"result": &"light_blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
-	#{"result": &"brown_wool", "count": 1, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
+	{"result": &"orange_wool", "count": 1, "ingredients": {&"white_wool": 1, &"orange_dye": 1}},
+	{"result": &"pink_wool", "count": 1, "ingredients": {&"white_wool": 1, &"pink_dye": 1}},
+	{"result": &"light_blue_wool", "count": 1, "ingredients": {&"white_wool": 1, &"light_blue_dye": 1}},
+	{"result": &"brown_wool", "count": 1, "ingredients": {&"white_wool": 1, &"brown_dye": 1}},
 	{"result": &"pink_dye", "count": 2, "ingredients": {&"red_dye": 1, &"white_dye": 1}},
 	{"result": &"orange_dye", "count": 2, "ingredients": {&"red_dye": 1, &"yellow_dye": 1}},
 	{"result": &"light_blue_dye", "count": 2, "ingredients": {&"blue_dye": 1, &"white_dye": 1}},
@@ -95,7 +144,7 @@ const RECIPES := [
 	{"result": &"furnace", "count": 1, "ingredients": [{&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, null, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}, {&"cobblestone": 1}]},
 	{"result": &"hay_bale", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
 	{"result": &"redstone_block", "count": 1, "ingredients": [{&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}, {&"redstone_dust": 1}]},
-	{"result": &"bed", "count": 1, "ingredients": [{&"white_wool": 1}, {&"white_wool": 1}, {&"white_wool": 1}, {&"plank": 1}, {&"plank": 1}, {&"plank": 1}]},
+	{"result": &"white_bed", "count": 1, "ingredients": [{&"white_wool": 1}, {&"white_wool": 1}, {&"white_wool": 1}, {&"plank": 1}, {&"plank": 1}, {&"plank": 1}]},
 	{"result": &"bread", "count": 1, "ingredients": [{&"wheat": 1}, {&"wheat": 1}, {&"wheat": 1}]},
 	{"result": &"diamond_block", "count": 1, "ingredients": [{&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}, {&"diamond": 1}]},
 	{"result": &"coal_block", "count": 1, "ingredients": [{&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}, {&"coal": 1}]},
@@ -148,18 +197,24 @@ const RECIPES := [
 	{"result": &"iron_block", "count": 1, "ingredients": [{&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}, {&"iron_ingot": 1}]},
 	#{"result": &"tnt", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
 	#{"result": &"slime_block", "count": 1, "ingredients": [{&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}, {&"": 1}]},
-	{"result": &"watermelon", "count": 1, "ingredients": [{&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}]},
+	{"result": &"melon", "count": 1, "ingredients": [{&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}, {&"melon_slice": 1}]},
 	{"result": &"melon_seeds", "count": 1, "ingredients": {&"melon_slice": 1}},
 	{"result": &"pumpkin_seeds", "count": 1, "ingredients": {&"pumpkin": 1}},
-	{"result": &"red_dye", "count": 4, "ingredients": {&"red_flower": 1}},
-	{"result": &"blue_dye", "count": 4, "ingredients": {&"blue_flower": 1}},
-	{"result": &"purple_dye", "count": 4, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
+	{"result": &"red_dye", "count": 1, "ingredients": {&"beetroot": 1}},
+	{"result": &"red_dye", "count": 1, "ingredients": {&"poppy": 1}},
+	{"result": &"red_dye", "count": 1, "ingredients": {&"red_tulip": 1}},
+	{"result": &"red_dye", "count": 2, "ingredients": {&"rose_bush": 1}},
+	{"result": &"blue_dye", "count": 1, "ingredients": {&"cornflower": 1}},
+	{"result": &"blue_dye", "count": 1, "ingredients": {&"lapis_lazuli": 1}},
+	{"result": &"purple_dye", "count": 1, "ingredients": {&"red_dye": 1, &"blue_dye": 1}},
 	{"result": &"packed_ice", "count": 1, "ingredients": [{&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}, {&"ice_block": 1}]},
 	{"result": &"blue_ice", "count": 1, "ingredients": [{&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}, {&"packed_ice": 1}]},
 	{"result": &"gold_nugget", "count": 9, "ingredients": {&"gold_ingot": 1}},
 	{"result": &"gold_ingot", "count": 1, "ingredients": [{&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}, {&"gold_nugget": 1}]},
 	{"result": &"iron_nugget", "count": 9, "ingredients": {&"iron_ingot": 1}},
 	{"result": &"iron_ingot", "count": 1, "ingredients": [{&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}, {&"iron_nugget": 1}]},
+	{"result": &"emerald_block", "count": 1, "ingredients": [{&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"emerald": 1}, {&"gold_ingot": 1}]},
+	{"result": &"emerald", "count": 9, "ingredients": {&"emerald_block": 1}},
 ]
 # TODO: output an empty bucket if lava bucket was used as fuel source.
 const SMELTING := {&"iron_ore": &"iron_ingot", &"gold_ore": &"gold_ingot",
@@ -926,7 +981,7 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 		match cmd:
 			"help":
 				if parts.size() == 1:
-					_chat_print("Available commands: /clear, /give, /gamemode")
+					_chat_print("Available commands: /clear, /give, /gamemode, /time, /summon")
 				else:
 					arg_1 = parts[1] if parts.size() > 1 else ""
 					match arg_1:
@@ -955,6 +1010,36 @@ func _on_type_interface_text_submitted(new_text: String) -> void:
 						player.current_gamemode = player.Gamemode.CREATIVE
 					"s", "survival":
 						player.current_gamemode = player.Gamemode.SURVIVAL
+			"time":
+				var dn: DayNight = world.day_night
+				var sub := parts[1] if parts.size() > 1 else ""
+				var val := parts[2] if parts.size() > 2 else ""
+				match sub:
+					"set":
+						var t := -1.0
+						match val:
+							"sunrise": t = 0.0
+							"day": t = 0.06
+							"noon": t = 0.25
+							"sunset": t = 0.5
+							"night": t = 0.56
+							"midnight": t = 0.75
+							_:
+								if val.is_valid_float(): t = float(val)
+						if t < 0.0:
+							_chat_print("Usage: /time set sunrise|day|noon|sunset|night|midnight|<0-1>")
+						else:
+							dn.set_time_fraction(t)
+							_chat_print("Time set to " + dn.get_clock_string())
+					"freeze":
+						dn.paused = not dn.paused
+						_chat_print("Time is " + ("frozen" if dn.paused else "running"))
+					_:
+						_chat_print("Day %d, %s. Usage: /time set <value> | /time freeze" % [dn.day_count + 1, dn.get_clock_string()])
+			"summon":
+				var mob_name := StringName(parts[1]) if parts.size() > 1 else &""
+				var spawned = world.spawn_mob(mob_name, player.global_position + player.get_look_direction() * 4.0)
+				_chat_print("Unknown mob: " + str(mob_name) if spawned == null else "Summoned " + str(mob_name))
 			_:
 				_chat_print("Unknown command: \"/" + cmd + "\"")
 	else:

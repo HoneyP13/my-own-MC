@@ -1,7 +1,12 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cjlstwaqfdwrw"]
 
+[ext_resource type="Texture2D" uid="uid://du0au2dmmqnx1" path="res://assets/textures/item/minecart.png" id="1_76ecw"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_oa6v8"]
 
 [resource]
 script = ExtResource("1_oa6v8")
+id = &"minecart"
+display_name = "minecart"
+icon = ExtResource("1_76ecw")
+max_stack = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

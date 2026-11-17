@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://5u53xno060ei"]
 
-[ext_resource type="Texture2D" uid="uid://drg6dm1qo0kah" path="res://assets/textures/block/golden_axe.png" id="1_kr31b"]
+[ext_resource type="Texture2D" uid="uid://tljvn6v1ml16" path="res://assets/textures/item/golden_axe.png" id="1_kr31b"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_vxn7d"]
 
 [resource]
@@ -10,4 +10,8 @@ display_name = "golden axe"
 icon = ExtResource("1_kr31b")
 max_stack = 1
 item_type = 1
+attributes = Dictionary[int, float]({
+0: 32.0,
+1: 7.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

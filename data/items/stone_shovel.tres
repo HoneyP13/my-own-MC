@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c6bo8b0dnue8f"]
 
-[ext_resource type="Texture2D" uid="uid://d21igk7a881mv" path="res://assets/textures/block/stone_shovel.png" id="1_eongh"]
+[ext_resource type="Texture2D" uid="uid://ndbxdfoknyu5" path="res://assets/textures/item/stone_shovel.png" id="1_eongh"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_1bk01"]
 
 [resource]
@@ -9,6 +9,4 @@ id = &"stone_shovel"
 display_name = "stone shovel"
 icon = ExtResource("1_eongh")
 max_stack = 1
-on_use = 6
-on_use_value = 2
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

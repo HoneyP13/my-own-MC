@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bd2rgomin0yvl"]
 
-[ext_resource type="Texture2D" uid="uid://dqxhn7fgcrgw8" path="res://assets/textures/block/diamond_boots.png" id="1_uqpsf"]
+[ext_resource type="Texture2D" uid="uid://bwjbewf0u0xjd" path="res://assets/textures/item/diamond_boots.png" id="1_uqpsf"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_jsxau"]
 
 [resource]

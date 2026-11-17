@@ -1,0 +1,14 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://dnyrijkusivx7"]
+
+[ext_resource type="Shader" uid="uid://q3bjjfvx87vp" path="res://assets/shaders/greenery.gdshader" id="1_twhi0"]
+[ext_resource type="Texture2D" uid="uid://dwpubuueoinla" path="res://assets/textures/block/cornflower.png" id="2_n2eg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o2ah"]
+render_priority = 0
+shader = ExtResource("1_twhi0")
+shader_parameter/grow_amount = 0.50000002375
+shader_parameter/albedo_texture = ExtResource("2_n2eg3")
+
+[resource]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("ShaderMaterial_4o2ah")

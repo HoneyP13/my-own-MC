@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://07hbl1b8bv71"]
+
+[ext_resource type="Texture2D" uid="uid://b116scf1uujp1" path="res://assets/textures/item/rabbit.png" id="1_aqvnr"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_sisos"]
+
+[resource]
+script = ExtResource("2_sisos")
+id = &"rabbit"
+display_name = "raw rabbit"
+icon = ExtResource("1_aqvnr")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 3.0,
+4: 1.8,
+5: 1.2
+})
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

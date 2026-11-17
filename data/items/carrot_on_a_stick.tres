@@ -1,7 +1,13 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://beex2r2yh3ipd"]
 
+[ext_resource type="Texture2D" uid="uid://hihb42csu51j" path="res://assets/textures/item/carrot_on_a_stick.png" id="1_0ip63"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_wpbga"]
 
 [resource]
 script = ExtResource("1_wpbga")
+id = &"carrot_on_a_stick"
+display_name = "carrot on a stick"
+icon = ExtResource("1_0ip63")
+max_stack = 1
+item_type = 1
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b75jejbo2g0vw"]
 
-[ext_resource type="Texture2D" uid="uid://cv1v1cwsh5u2r" path="res://assets/textures/block/wooden_shovel.png" id="1_0euqc"]
+[ext_resource type="Texture2D" uid="uid://dnju7f77fxyah" path="res://assets/textures/item/wooden_shovel.png" id="1_0euqc"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_b4p7i"]
 
 [resource]
@@ -9,6 +9,4 @@ id = &"wooden_shovel"
 display_name = "wooden shovel"
 icon = ExtResource("1_0euqc")
 max_stack = 1
-on_use = 6
-on_use_value = 2
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

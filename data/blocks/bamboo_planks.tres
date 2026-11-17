@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://bsq71cjunm01n"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_tl6fw"]
+
+[resource]
+script = ExtResource("1_tl6fw")
+id = &"bamboo_planks"
+mesh_name = "bamboo_planks"
+drop_id = &"bamboo_planks"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

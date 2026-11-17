@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bfjp7fj4d8e5x"]
+
+[ext_resource type="Texture2D" uid="uid://b2qfde6gmu6mx" path="res://assets/textures/item/chicken.png" id="1_1xf0m"]
+[ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_keu3s"]
+
+[resource]
+script = ExtResource("2_keu3s")
+id = &"chicken"
+display_name = "raw chicken"
+icon = ExtResource("1_1xf0m")
+item_type = 4
+attributes = Dictionary[int, float]({
+3: 2.0,
+4: 1.2,
+5: 0.8
+})
+metadata/_custom_type_script = "uid://cu3dgxq723uac"

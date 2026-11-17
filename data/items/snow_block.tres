@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockItemDef" format=3 uid="uid://c6ekl6b806wjh"]
 
-[ext_resource type="Texture2D" uid="uid://b55367rib7445" path="res://assets/textures/block/snow_block.png" id="1_8c13s"]
+[ext_resource type="Texture2D" uid="uid://cv008m7a4wl6q" path="res://assets/textures/block/snow.png" id="1_8c13s"]
 [ext_resource type="Script" uid="uid://bw6b1s4do376f" path="res://scripts/data/block_item_def.gd" id="2_ans3m"]
 
 [resource]

@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c50qnlgxvxq0d"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_65b5b"]
+[ext_resource type="Texture2D" uid="uid://cliqk88cc4oc6" path="res://assets/textures/item/gunpowder.png" id="1_hv5a8"]
 
 [resource]
 script = ExtResource("1_65b5b")
+id = &"gunpowder"
+display_name = "gunpowder"
+icon = ExtResource("1_hv5a8")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

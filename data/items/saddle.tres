@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://oojp66w7q1hg"]
 
+[ext_resource type="Texture2D" uid="uid://cs2mhi4vi8jbe" path="res://assets/textures/item/saddle.png" id="1_2ym5w"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_ci551"]
 
 [resource]
 script = ExtResource("1_ci551")
+id = &"saddle"
+display_name = "saddle"
+icon = ExtResource("1_2ym5w")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bop561eqp8wht"]
 
-[ext_resource type="Texture2D" uid="uid://bkh8ctofrbt3a" path="res://assets/textures/block/diamond_pickaxe.png" id="1_5y0j8"]
+[ext_resource type="Texture2D" uid="uid://dsu4w6r73lnun" path="res://assets/textures/item/diamond_pickaxe.png" id="1_5y0j8"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_eoje6"]
 
 [resource]
@@ -9,6 +9,9 @@ id = &"diamond_pickaxe"
 display_name = "diamond pickaxe"
 icon = ExtResource("1_5y0j8")
 max_stack = 1
-on_use = 6
-on_use_value = 4
+item_type = 1
+attributes = Dictionary[int, float]({
+0: 1561.0,
+1: 5.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

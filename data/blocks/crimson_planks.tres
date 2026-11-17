@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cj3gdibs5tich"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_ywe0m"]
+
+[resource]
+script = ExtResource("1_ywe0m")
+id = &"crimson_planks"
+mesh_name = "crimson_planks"
+drop_id = &"crimson_planks"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

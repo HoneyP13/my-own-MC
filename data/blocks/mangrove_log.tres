@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://cv7k37slb3dx"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_sl413"]
+
+[resource]
+script = ExtResource("1_sl413")
+id = &"mangrove_log"
+mesh_name = "mangrove_log"
+drop_id = &"mangrove_log"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 2.0
+flammable = true
+ignite_odds = 5
+burn_odds = 5
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

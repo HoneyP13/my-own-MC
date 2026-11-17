@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bh5xrqndyvbuf"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_cu2cj"]
+[ext_resource type="Texture2D" uid="uid://ctmxr1tas2pl0" path="res://assets/textures/item/creeper_spawn_egg.png" id="1_j6hxn"]
 
 [resource]
 script = ExtResource("1_cu2cj")
+id = &"creeper_spawn_egg"
+display_name = "creeper spawn egg"
+icon = ExtResource("1_j6hxn")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

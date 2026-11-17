@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://6expeuk2bifm"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_okoky"]
+
+[resource]
+script = ExtResource("1_okoky")
+id = &"spruce_fence"
+mesh_name = "spruce_fence"
+drop_id = &"spruce_fence"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 3.0
+transparent = true
+flammable = true
+ignite_odds = 5
+burn_odds = 20
+waterloggable = true
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

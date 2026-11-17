@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BlockDef" format=3 uid="uid://dd0rhxxumx0rp"]
+
+[ext_resource type="Script" uid="uid://hei6tbfej2j6" path="res://scripts/data/block_def.gd" id="1_8ac43"]
+
+[resource]
+script = ExtResource("1_8ac43")
+id = &"pale_oak_log"
+mesh_name = "pale_oak_log"
+drop_id = &"pale_oak_log"
+hardness = 2.0
+tool_kind = &"axe"
+blast_resistance = 2.0
+flammable = true
+ignite_odds = 5
+burn_odds = 5
+metadata/_custom_type_script = "uid://hei6tbfej2j6"

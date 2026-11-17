@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://d1gsag3ceru2k"]
 
-[ext_resource type="Texture2D" uid="uid://6k4xc536eow6" path="res://assets/textures/block/iron_helmet.png" id="1_c3uwe"]
+[ext_resource type="Texture2D" uid="uid://bjr88e5qddhy2" path="res://assets/textures/item/iron_helmet.png" id="1_c3uwe"]
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="2_3ifti"]
 
 [resource]
@@ -10,4 +10,9 @@ display_name = "iron helmet"
 icon = ExtResource("1_c3uwe")
 max_stack = 1
 item_type = 3
+attributes = Dictionary[int, float]({
+0: 165.0,
+2: 2.0,
+6: 0.0
+})
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

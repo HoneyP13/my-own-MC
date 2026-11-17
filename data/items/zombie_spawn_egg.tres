@@ -1,7 +1,11 @@
 [gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cwfb0fcd4jh6n"]
 
 [ext_resource type="Script" uid="uid://cu3dgxq723uac" path="res://scripts/data/item_def.gd" id="1_jdrgi"]
+[ext_resource type="Texture2D" uid="uid://th1d2ecu04e6" path="res://assets/textures/item/zombie_spawn_egg.png" id="1_smfjs"]
 
 [resource]
 script = ExtResource("1_jdrgi")
+id = &"zombie_spawn_egg"
+display_name = "zombie_spawn_egg"
+icon = ExtResource("1_smfjs")
 metadata/_custom_type_script = "uid://cu3dgxq723uac"

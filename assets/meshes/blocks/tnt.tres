@@ -1,0 +1,16 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://wvfotya14ogx"]
+
+[ext_resource type="Shader" uid="uid://b4ge0cueitoa4" path="res://assets/shaders/constant_texture_3.gdshader" id="1_4a1c6"]
+[ext_resource type="Texture2D" uid="uid://bt71g0ryjlncb" path="res://assets/textures/block/tnt_bottom.png" id="2_8ta7r"]
+[ext_resource type="Texture2D" uid="uid://cp4n35y0xdiow" path="res://assets/textures/block/tnt_side.png" id="3_pw8dn"]
+[ext_resource type="Texture2D" uid="uid://db7oppey2y7yd" path="res://assets/textures/block/tnt_top.png" id="4_80c73"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cytte"]
+render_priority = 0
+shader = ExtResource("1_4a1c6")
+shader_parameter/texture_top = ExtResource("4_80c73")
+shader_parameter/texture_side = ExtResource("3_pw8dn")
+shader_parameter/texture_bottom = ExtResource("2_8ta7r")
+
+[resource]
+material = SubResource("ShaderMaterial_cytte")
